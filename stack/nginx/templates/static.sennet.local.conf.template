@@ -1,0 +1,19 @@
+server {
+    index index.html;
+    server_name static.sennet.local;
+    root /usr/local/src/app/static;
+
+    gzip on;
+    gzip_static on;
+    gzip_types text/plain text/css application/javascript application/json;
+    gzip_min_length 1000;
+    
+    location / {
+        try_files $uri $uri/ =404;
+        add_header 'Access-Control-Allow-Origin' '*' always;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}

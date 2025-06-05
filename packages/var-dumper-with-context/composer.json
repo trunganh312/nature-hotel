@@ -1,0 +1,13 @@
+{
+    "name": "packages/var-dumper-with-context",
+    "version": "1.0.0",
+    "description": "Show the line number where the dump method was called",
+    "require-dev": {
+        "symfony/var-dumper": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "files": [ "src/dump.php" ],
+        "psr-4": { "Packages\\VarDumperWithContext\\": "src/" }
+    }
+}

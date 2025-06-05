@@ -1,0 +1,69 @@
+stages:
+    - 'dev'
+    - 'demo'
+    - 'production'
+variables:
+    GIT_STRATEGY: none
+deploy_dev:
+    variables:
+        WORK_DIR: /var/www/dev.sennet
+        SSH_HOST: 10.0.8.175
+        SSH_USER: ubuntu
+    stage: 'dev'
+    tags:
+        - sennet
+    only:
+        - dev
+    script:
+        - echo $CI_COMMIT_SHA
+        - ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR &&
+          bash &&
+          git reset --hard &&
+          git fetch origin dev &&
+          git checkout $CI_COMMIT_SHA &&
+          composer install &&
+          cd $WORK_DIR/database && php vendor/bin/phinx migrate &&
+          cd $WORK_DIR/webpack && npm run build"
+deploy_demo:
+    variables:
+        WORK_DIR: /var/www/demo.sennet
+        SSH_HOST: 10.0.8.175
+        SSH_USER: ubuntu
+    stage: 'demo'
+    tags:
+        - sennet
+    only:
+        - production
+    script:
+        - echo $CI_COMMIT_SHA
+        - ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR &&
+          bash &&
+          git reset --hard &&
+          git fetch origin production &&
+          git checkout $CI_COMMIT_SHA &&
+          composer install &&
+          cd $WORK_DIR/database && php vendor/bin/phinx migrate &&
+          cd $WORK_DIR/webpack && npm run build"
+deploy_pro:
+    variables:
+        WORK_DIR: /var/www/sennet.pro
+    stage: 'production'
+    tags:
+        - sennet-production
+    only:
+        - production
+    before_script:
+        - export NVM_DIR="$HOME/.nvm"
+        - source "$NVM_DIR/nvm.sh"
+        - nvm use 18.20.4
+        - export PATH="$NVM_BIN:$PATH"
+    script:
+        - node -v
+        - echo $CI_COMMIT_SHA
+        - cd $WORK_DIR &&
+            git reset --hard &&
+            git fetch origin production &&
+            git checkout $CI_COMMIT_SHA
+        - /usr/bin/php /usr/local/bin/composer install
+        - cd $WORK_DIR/database && php vendor/bin/phinx migrate
+        - cd $WORK_DIR/webpack && npm run build

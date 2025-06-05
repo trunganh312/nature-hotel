@@ -1,0 +1,264 @@
+/*******************************Calendar Top Navigation*********************************/
+div#calendar{
+    margin:0px auto;
+    padding:0px;
+    width: 100%;
+}
+ 
+div#calendar div.box{
+    position:relative;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:40px;
+    background-color: #787878;
+}
+ 
+div#calendar div.header{
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+}
+ 
+div#calendar div.header a.prev,div#calendar div.header a.next{ 
+    position:absolute;
+    top:0px;   
+    height: 17px;
+    display:block;
+    cursor:pointer;
+    text-decoration:none;
+    color:#FFF;
+}
+ 
+div#calendar div.header span.title{
+    color:#FFF;
+    font-size:18px;
+}
+ 
+ 
+div#calendar div.header a.prev{
+    left:0px;
+}
+ 
+div#calendar div.header a.next{
+    right:0px;
+}
+ 
+ 
+ 
+ 
+/*******************************Calendar Content Cells*********************************/
+div#calendar div.box-content{
+    border:1px solid #787878 ;
+    border-top:none;
+}
+ 
+ 
+ 
+div#calendar ul.label{
+    float:left;
+    margin: 0px;
+    padding: 0px;
+    margin-top:5px;
+    margin-left: 5px;
+    width: 100%;
+    border-bottom: 1px solid #7e8e9f;
+    margin-bottom: 15px;
+}
+ 
+div#calendar ul.label li{
+    margin:0px;
+    padding:0px;
+    float:left;
+    list-style-type:none;
+    width: 14.2%;
+    height:40px;
+    line-height:40px;
+    vertical-align:middle;
+    text-align:center;
+    font-weight: 600;
+}
+ 
+ 
+div#calendar ul.dates{
+    float:left;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+ 
+/** overall width = width+padding-right**/
+div#calendar ul.dates li {
+    margin: 0px;
+    vertical-align: middle;
+    float: left;
+    list-style-type: none;
+    width: 14.2%;
+    text-align:center; 
+    position: relative;
+    line-height: normal;
+    padding: 5px;
+    padding-bottom: 20px;
+    background: #fafafa;
+    border: 1px solid #7e8e9f;
+    border-bottom: unset;
+    border-right: unset;
+    padding-top: 30px;
+}
+div#calendar ul.dates li.end {
+    border-right: 1px solid #7e8e9f;
+}
+div#calendar ul.dates li.finish{
+    border-bottom: 1px solid #7e8e9f !important;
+}
+div#calendar ul.dates li.mask{
+    border-bottom: unset !important;
+}
+div#calendar ul.dates li.mask{
+    border: unset;
+}
+div#calendar ul.dates li.mask.finish{
+    border-top: 1px solid #7e8e9f;
+}
+div#calendar ul.dates > li.end_date {
+    border-right: 1px solid #7e8e9f;
+    border-bottom: 1px solid #7e8e9f;
+}
+div#calendar ul.dates > li.end_date.end{
+    border-bottom: unset;
+}
+
+div#calendar ul.dates li > input,
+div#calendar ul.dates li > select{
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 1px 4px;
+    height: 26px;
+    font-size: 13.5px;
+}
+
+div#calendar ul.dates li > span{
+    position: absolute;
+    left: 0;
+    top: -1px;
+    font-size: 11px;
+    background: #0059a1;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+    right: 0;
+}
+
+div#calendar ul.dates li button{
+    cursor: pointer;
+    font-size: 11px;
+    display: inline-block;
+    float: left;
+}
+
+div#calendar ul.dates li button.rm{
+    float: right;
+}
+
+div#calendar ul.dates li button.rm.unactive{
+    background: #ececec;
+    color: #001f3f;
+    border-color: #ececec;
+    cursor: unset;
+}
+
+div#calendar ul.dates li .fa-copy{
+    position: absolute;
+    right: 5px;
+    font-size: 20px;
+    top: 2px;
+    cursor: pointer;
+    color: #d44452;
+}
+div#calendar ul.dates li .fa-copy:after{
+    content: 'Copy tuần';
+    font-size: 11px;
+    float: left;
+    padding-right: 4px;
+    padding-top: 4px;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 400;
+}
+ 
+:focus{
+    outline:none;
+}
+ 
+div.clear{
+    clear:both;
+}
+
+.value .form-group>label{
+    float: unset;
+    display: block;
+    text-align: left;
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+.value .form-control{
+    width: 100%;
+}
+.manage-price .add-node{
+    text-align: center;
+    margin-top: 15px;
+}
+.manage-price .add-node>span{
+    color: #27c24c;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+.manage-price{
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
+.manage-price .month{
+    margin-bottom: 20px;
+}
+.manage-price .month .box-scroll{
+    max-height: 158px;
+    overflow: auto;
+}
+.manage-price .month .box-scroll .form-control{
+    cursor: pointer;
+}
+.manage-price .month .box-scroll .form-control.active{
+    background: #f1f1f1;
+}
+.table-condensed tbody {
+    display: none;
+}
+.table-condensed thead tr:last-child {
+    display: none;
+}
+.table-condensed {
+    width: 254px!important;
+}
+
+#calendar>.box{
+    display: none;
+}
+#calendar>.box-content{
+    border: unset!important;
+}
+.manage-price .form-group > label {
+    width: auto;
+    margin-right: 5px;
+}
+.manage-price .form-group > .form_input {
+    margin-left: unset;
+}
+div#calendar ul.dates li .form-control {
+    text-align: right;
+    border-radius: 4px;
+}

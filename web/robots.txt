@@ -1,0 +1,6 @@
+Sitemap: https://vietgoing.com/sitemap.xml
+User-agent: *
+Disallow: /ajax/
+Disallow: /page/
+Disallow: /profile/
+Disallow: /search/

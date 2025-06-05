@@ -1,0 +1,292 @@
+<div class="item-content">
+<span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="0"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">0₫</span><span class="irs-max" style="visibility: hidden;">20,000,000₫</span><span class="irs-from" style="visibility: visible; left: 0%;">0₫</span><span class="irs-to" style="visibility: visible; left: 65.1163%;">20,000,000₫</span><span class="irs-single" style="visibility: hidden; left: 0%;">0₫ — 20,000,000₫</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 0%; width: 100%;"></span><span class="irs-shadow shadow-from" style="display: none;"></span><span class="irs-shadow shadow-to" style="display: none;"></span><span class="irs-slider from" style="left: 0%;"></span><span class="irs-slider to type_last" style="left: 100%;"></span></span><input type="text" class="price_range irs-hidden-input" name="price_range" value="" data-min="0" data-max="20000000" data-step="500000" data-postfix="₫" tabindex="-1" readonly="">
+<div class="form-button text-center">
+<button class="btn btn-primary btn-search" type="submit">Cập nhật</button>
+</div>
+</div>
+<div class="daterangepicker dropdown-menu ltr show-calendar moveright opensright" style="top: 616.594px; left: 7.5px; right: auto; display: block;"><div class="calendar left"><div class="calendar-table"><div class="table-header"><div class="prev available"></div><div class="month">Tháng 1 2022</div><div class="next available"></div></div><div class="table-sub-header"><div class="day-off-week">CN</div><div class="day-off-week">T2</div><div class="day-off-week">T3</div><div class="day-off-week">T4</div><div class="day-off-week">T5</div><div class="day-off-week">T6</div><div class="day-off-week">T7</div></div><table class="table-condensed body"><tbody><tr><td class="td-date td-no-show weekend off off disabled" data-title="r0c0"><div class="date no-show"></div></td><td class="td-date td-no-show off off disabled" data-title="r0c1"><div class="date no-show"></div></td><td class="td-date td-no-show off off disabled" data-title="r0c2"><div class="date no-show"></div></td><td class="td-date td-no-show off off disabled" data-title="r0c3"><div class="date no-show"></div></td><td class="td-date td-no-show off off disabled" data-title="r0c4"><div class="date no-show"></div></td><td class="td-date td-no-show off off disabled" data-title="r0c5"><div class="date no-show"></div></td><td class="td-date weekend off disabled" data-title="r0c6"><div class="date ">1</div></td></tr><tr><td class="td-date weekend off disabled" data-title="r1c0"><div class="date ">2</div></td><td class="td-date off disabled" data-title="r1c1"><div class="date ">3</div></td><td class="td-date off disabled" data-title="r1c2"><div class="date ">4</div></td><td class="td-date off disabled" data-title="r1c3"><div class="date ">5</div></td><td class="td-date today  available" data-title="r1c4"><div class="date ">6</div></td><td class="td-date available" data-title="r1c5"><div class="date ">7</div></td><td class="td-date weekend  available" data-title="r1c6"><div class="date ">8</div></td></tr><tr><td class="td-date weekend  available" data-title="r2c0"><div class="date ">9</div></td><td class="td-date available" data-title="r2c1"><div class="date ">10</div></td><td class="td-date available" data-title="r2c2"><div class="date ">11</div></td><td class="td-date available" data-title="r2c3"><div class="date ">12</div></td><td class="td-date available" data-title="r2c4"><div class="date ">13</div></td><td class="td-date available" data-title="r2c5"><div class="date ">14</div></td><td class="td-date weekend  available" data-title="r2c6"><div class="date ">15</div></td></tr><tr><td class="td-date weekend  available" data-title="r3c0"><div class="date ">16</div></td><td class="td-date available" data-title="r3c1"><div class="date ">17</div></td><td class="td-date available" data-title="r3c2"><div class="date ">18</div></td><td class="td-date available" data-title="r3c3"><div class="date ">19</div></td><td class="td-date available" data-title="r3c4"><div class="date ">20</div></td><td class="td-date available" data-title="r3c5"><div class="date ">21</div></td><td class="td-date weekend  available" data-title="r3c6"><div class="date ">22</div></td></tr><tr><td class="td-date weekend  available" data-title="r4c0"><div class="date ">23</div></td><td class="td-date available" data-title="r4c1"><div class="date ">24</div></td><td class="td-date active start-date  available" data-title="r4c2"><div class="date ">25</div></td><td class="td-date in-range  available" data-title="r4c3"><div class="date ">26</div></td><td class="td-date active end-date in-range  available" data-title="r4c4"><div class="date ">27</div></td><td class="td-date available" data-title="r4c5"><div class="date ">28</div></td><td class="td-date weekend  available" data-title="r4c6"><div class="date ">29</div></td></tr><tr><td class="td-date weekend  available" data-title="r5c0"><div class="date ">30</div></td><td class="td-date available" data-title="r5c1"><div class="date ">31</div></td><td class="td-date td-no-show off  available" data-title="r5c2"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c3"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c4"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c5"><div class="date no-show"></div></td><td class="td-date td-no-show weekend off  available" data-title="r5c6"><div class="date no-show"></div></td></tr></tbody></table></div><div class="daterangepicker_input"><input class="input-mini form-control active" type="text" name="daterangepicker_start" value="" style="display: none;"></div></div><div class="calendar right"><div class="calendar-table"><div class="table-header"><div></div><div class="month">Tháng 2 2022</div><div class="next available"></div></div><div class="table-sub-header"><div class="day-off-week">CN</div><div class="day-off-week">T2</div><div class="day-off-week">T3</div><div class="day-off-week">T4</div><div class="day-off-week">T5</div><div class="day-off-week">T6</div><div class="day-off-week">T7</div></div><table class="table-condensed body"><tbody><tr><td class="td-date td-no-show weekend off  available" data-title="r0c0"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r0c1"><div class="date no-show"></div></td><td class="td-date available" data-title="r0c2"><div class="date ">1</div></td><td class="td-date available" data-title="r0c3"><div class="date ">2</div></td><td class="td-date available" data-title="r0c4"><div class="date ">3</div></td><td class="td-date available" data-title="r0c5"><div class="date ">4</div></td><td class="td-date weekend  available" data-title="r0c6"><div class="date ">5</div></td></tr><tr><td class="td-date weekend  available" data-title="r1c0"><div class="date ">6</div></td><td class="td-date available" data-title="r1c1"><div class="date ">7</div></td><td class="td-date available" data-title="r1c2"><div class="date ">8</div></td><td class="td-date available" data-title="r1c3"><div class="date ">9</div></td><td class="td-date available" data-title="r1c4"><div class="date ">10</div></td><td class="td-date available" data-title="r1c5"><div class="date ">11</div></td><td class="td-date weekend  available" data-title="r1c6"><div class="date ">12</div></td></tr><tr><td class="td-date weekend  available" data-title="r2c0"><div class="date ">13</div></td><td class="td-date available" data-title="r2c1"><div class="date ">14</div></td><td class="td-date available" data-title="r2c2"><div class="date ">15</div></td><td class="td-date available" data-title="r2c3"><div class="date ">16</div></td><td class="td-date available" data-title="r2c4"><div class="date ">17</div></td><td class="td-date available" data-title="r2c5"><div class="date ">18</div></td><td class="td-date weekend  available" data-title="r2c6"><div class="date ">19</div></td></tr><tr><td class="td-date weekend  available" data-title="r3c0"><div class="date ">20</div></td><td class="td-date available" data-title="r3c1"><div class="date ">21</div></td><td class="td-date available" data-title="r3c2"><div class="date ">22</div></td><td class="td-date available" data-title="r3c3"><div class="date ">23</div></td><td class="td-date available" data-title="r3c4"><div class="date ">24</div></td><td class="td-date available" data-title="r3c5"><div class="date ">25</div></td><td class="td-date weekend  available" data-title="r3c6"><div class="date ">26</div></td></tr><tr><td class="td-date weekend  available" data-title="r4c0"><div class="date ">27</div></td><td class="td-date available" data-title="r4c1"><div class="date ">28</div></td><td class="td-date td-no-show off  available" data-title="r4c2"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r4c3"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r4c4"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r4c5"><div class="date no-show"></div></td><td class="td-date td-no-show weekend off  available" data-title="r4c6"><div class="date no-show"></div></td></tr><tr><td class="td-date td-no-show weekend off  available" data-title="r5c0"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c1"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c2"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c3"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c4"><div class="date no-show"></div></td><td class="td-date td-no-show off  available" data-title="r5c5"><div class="date no-show"></div></td><td class="td-date td-no-show weekend off  available" data-title="r5c6"><div class="date no-show"></div></td></tr></tbody></table></div><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_enddaterangepicker_end" value="" style="display: none;"></div></div><div class="calendar-time-wrapper"><div class="calendar-time left" style="display: none;"><div></div></div><div class="calendar-time right" style="display: none;"><div></div></div></div><div class="ranges" style="display: none;"><div class="range_inputs"><button class="cancelBtn btn btn-small btn-ghost" type="button">Hủy</button><button class="applyBtn btn btn-small btn-primary" type="button">Chọn</button> </div></div></div>
+<div class="pagination moderm-pagination" id="moderm-pagination" data-layout="normal"><ul class="page-numbers"><li>
+<a href="javascript:;" class="page-numbers current">1</a>
+</li><li>
+<a href="/hotel/city-10-lao-cai.html?page=2" class="page-numbers">2</a>
+</li><li>
+<a href="/hotel/city-10-lao-cai.html?page=3" class="page-numbers">3</a>
+</li><li>
+<a href="/hotel/city-10-lao-cai.html?page=2" class="page-numbers next"><i class="fas fa-angle-right"></i></a>
+</li></ul><span class="count-string">Có 79 kết quả được tìm thấy</span></div>
+<i class="fas fa-chevron-right"></i>
+<span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-city_from-container"><span class="select2-selection__rendered" id="select2-city_from-container" role="textbox" aria-readonly="true" title="Bạc Liêu">Bạc Liêu</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+<span class="select2-container select2-container--default select2-container--open" style="position: absolute; top: 905.75px; left: 42.5px;"><span class="select2-dropdown select2-dropdown--below" dir="ltr" style="width: 228px;"><span class="select2-search select2-search--dropdown"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox"></span><span class="select2-results"><ul class="select2-results__options" role="tree" id="select2-city_from-results" aria-expanded="true" aria-hidden="false"><li class="select2-results__option" role="treeitem" aria-selected="false" data-select2-id="86">Chọn Tỉnh/TP</li><li class="select2-results__option" id="select2-city_from-result-3lcr-Đồng Tháp" role="treeitem" aria-selected="false" data-select2-id="select2-city_from-result-3lcr-Đồng Tháp">Đồng Tháp</li></ul></span></span></span>
+<span class="select2 select2-container select2-container--default select2-container--focus select2-container--below select2-container--open" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="0" aria-labelledby="select2-city_from-container" aria-owns="select2-city_from-results" aria-activedescendant="select2-city_from-result-1hmv-Hà Nội"><span class="select2-selection__rendered" id="select2-city_from-container" role="textbox" aria-readonly="true" title="Hà Nội">Hà Nội</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+<select id="city_from" name="city_from" class="filter_city_from select2-hidden-accessible" data-toggle="select2" style="width: 100% !important;" data-select2-id="city_from" tabindex="-1" aria-hidden="true">
+<option value="" data-select2-id="7">Chọn Tỉnh/TP</option></select>
+<div class="st-icheck-item">
+<div class="advance-item facilities st-icheck"><label><span class="checkmark fcheckbox"></span></label></div></div>
+<div class="owl-carousel st-service-slider owl-loaded owl-drag" style="">
+<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;"><div class="owl-item"><div class="item-service grid-item has-matchHeight" style="">
+<div class="service-border">
+<div class="thumb">
+
+<!--
+<a href="" class="login" data-toggle="modal" data-target="#st-login-form">
+<div class="service-add-wishlist" title="Add to wishlist">
+<i class="fa fa-heart"></i>
+<div class="lds-dual-ring"></div>
+</div>
+</a>
+--><div class="service-tag bestseller">
+<div class="feature_class st_featured featured">HOT</div>
+</div><a href="http://vietgoing.local/tour/413-ha-noi-sapa-cat-cat-ham-rong-fansipan-3n2d-ks-3-sao.html">
+<img width="680" height="500" src="https://image.vietgoing.com/tour/01/13/medium/image_kkz1635437250.jpg" class="img-responsive wp-post-image" alt="Hà Nội - Sapa - Cát Cát - Hàm Rồng - Fansipan - 3N2Đ (Ks 3 sao)" loading="lazy" srcset="https://image.vietgoing.com/tour/01/13/medium/image_kkz1635437250.jpg 260w" sizes="(max-width: 680px) 100vw, 680px">
+</a>
+</div>
+<p class="service-location plr15"><i class="input-icon field-icon fas fa-map-marker-alt"></i>Lào Cai</p>
+<h4 class="service-title plr15 item_title_list"><a href="http://vietgoing.local/tour/413-ha-noi-sapa-cat-cat-ham-rong-fansipan-3n2d-ks-3-sao.html" class="st-link c-main">Hà Nội - Sapa - Cát Cát - Hàm Rồng - Fansipan - 3N2Đ (Ks 3 sao)</a></h4>                          
+<div class="section-footer">
+
+<div class="footer-inner plr15">
+<div class="service-duration">
+3 ngày 2 đêm
+</div>
+<div class="service-price">
+<span>
+<i class="input-icon field-icon fa fa-bolt"></i>
+</span>
+<span class="price">
+
+<span class="text-lg lh1em item"> 2,500,000₫</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item"><div class="item-service grid-item has-matchHeight" style="">
+<div class="service-border">
+<div class="thumb">
+
+<!--
+<a href="" class="login" data-toggle="modal" data-target="#st-login-form">
+<div class="service-add-wishlist" title="Add to wishlist">
+<i class="fa fa-heart"></i>
+<div class="lds-dual-ring"></div>
+</div>
+</a>
+--><div class="service-tag bestseller">
+<div class="feature_class st_featured featured">HOT</div>
+</div><a href="http://vietgoing.local/tour/101-da-lat-3-ngay-2-dem.html">
+<img width="680" height="500" src="https://image.vietgoing.com/tour/01/01/medium/image_lnl1620276227.jpg" class="img-responsive wp-post-image" alt="Đà Lạt - 3 ngày 2 đêm" loading="lazy" srcset="https://image.vietgoing.com/tour/01/01/medium/image_lnl1620276227.jpg 260w" sizes="(max-width: 680px) 100vw, 680px">
+</a>
+</div>
+<p class="service-location plr15"><i class="input-icon field-icon fas fa-map-marker-alt"></i>Lâm Đồng</p>
+<h4 class="service-title plr15 item_title_list"><a href="http://vietgoing.local/tour/101-da-lat-3-ngay-2-dem.html" class="st-link c-main">Đà Lạt - 3 ngày 2 đêm</a></h4>                          
+<div class="section-footer">
+
+<div class="reviews plr15">
+<span class="rate">4.1/5</span>
+<span class="summary">3 đánh giá</span>
+</div>
+<div class="footer-inner plr15">
+<div class="service-duration">
+3 ngày 2 đêm
+</div>
+<div class="service-price">
+<span>
+<i class="input-icon field-icon fa fa-bolt"></i>
+</span>
+<span class="price">
+
+<span class="text-lg lh1em item"> 2,200,000₫</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item"><div class="item-service grid-item has-matchHeight" style="">
+<div class="service-border">
+<div class="thumb">
+
+<!--
+<a href="" class="login" data-toggle="modal" data-target="#st-login-form">
+<div class="service-add-wishlist" title="Add to wishlist">
+<i class="fa fa-heart"></i>
+<div class="lds-dual-ring"></div>
+</div>
+</a>
+--><div class="service-tag bestseller">
+<div class="feature_class st_featured featured">HOT</div>
+</div><a href="http://vietgoing.local/tour/71-da-nang-ba-na-hoi-an-hue-3-ngay-2-dem.html">
+<img width="680" height="500" src="https://image.vietgoing.com/tour/01/71/medium/image_oio1616863718.jpg" class="img-responsive wp-post-image" alt="Đà Nẵng- Bà Nà- Hội An- Huế- 3 ngày 2 đêm" loading="lazy" srcset="https://image.vietgoing.com/tour/01/71/medium/image_oio1616863718.jpg 260w" sizes="(max-width: 680px) 100vw, 680px">
+</a>
+</div>
+<p class="service-location plr15"><i class="input-icon field-icon fas fa-map-marker-alt"></i>Đà Nẵng</p>
+<h4 class="service-title plr15 item_title_list"><a href="http://vietgoing.local/tour/71-da-nang-ba-na-hoi-an-hue-3-ngay-2-dem.html" class="st-link c-main">Đà Nẵng- Bà Nà- Hội An- Huế- 3 ngày 2 đêm</a></h4>                          
+<div class="section-footer">
+
+<div class="footer-inner plr15">
+<div class="service-duration">
+3 ngày 2 đêm
+</div>
+<div class="service-price">
+<span>
+<i class="input-icon field-icon fa fa-bolt"></i>
+</span>
+<span class="price">
+
+<span class="text-lg lh1em item"> 3,100,000₫</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item"><div class="item-service grid-item has-matchHeight" style="">
+<div class="service-border">
+<div class="thumb">
+
+<!--
+<a href="" class="login" data-toggle="modal" data-target="#st-login-form">
+<div class="service-add-wishlist" title="Add to wishlist">
+<i class="fa fa-heart"></i>
+<div class="lds-dual-ring"></div>
+</div>
+</a>
+--><div class="service-tag bestseller">
+<div class="feature_class st_featured featured">HOT</div>
+</div><a href="http://vietgoing.local/tour/63-da-nang-ba-na-hills-1-ngay.html">
+<img width="680" height="500" src="https://image.vietgoing.com/tour/01/63/medium/image_zmv1620375574.jpg" class="img-responsive wp-post-image" alt="Đà Nẵng - Bà Nà Hills 1 ngày" loading="lazy" srcset="https://image.vietgoing.com/tour/01/63/medium/image_zmv1620375574.jpg 260w" sizes="(max-width: 680px) 100vw, 680px">
+</a>
+</div>
+<p class="service-location plr15"><i class="input-icon field-icon fas fa-map-marker-alt"></i>Đà Nẵng</p>
+<h4 class="service-title plr15 item_title_list"><a href="http://vietgoing.local/tour/63-da-nang-ba-na-hills-1-ngay.html" class="st-link c-main">Đà Nẵng - Bà Nà Hills 1 ngày</a></h4>                          
+<div class="section-footer">
+
+<div class="footer-inner plr15">
+<div class="service-duration">
+1 ngày 0 đêm
+</div>
+<div class="service-price">
+<span>
+<i class="input-icon field-icon fa fa-bolt"></i>
+</span>
+<span class="price">
+
+<span class="text-lg lh1em item"> 950,000₫</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item"><div class="item-service grid-item has-matchHeight" style="">
+<div class="service-border">
+<div class="thumb">
+
+<!--
+<a href="" class="login" data-toggle="modal" data-target="#st-login-form">
+<div class="service-add-wishlist" title="Add to wishlist">
+<i class="fa fa-heart"></i>
+<div class="lds-dual-ring"></div>
+</div>
+</a>
+--><div class="service-tag bestseller">
+<div class="feature_class st_featured featured">HOT</div>
+</div><a href="http://vietgoing.local/tour/111-dao-co-to-3-ngay-2-dem.html">
+<img width="680" height="500" src="https://image.vietgoing.com/tour/01/11/medium/image_jrp1616164109.jpg" class="img-responsive wp-post-image" alt="Đảo Cô Tô 3 ngày 2 đêm" loading="lazy" srcset="https://image.vietgoing.com/tour/01/11/medium/image_jrp1616164109.jpg 260w" sizes="(max-width: 680px) 100vw, 680px">
+</a>
+</div>
+<p class="service-location plr15"><i class="input-icon field-icon fas fa-map-marker-alt"></i>Quảng Ninh</p>
+<h4 class="service-title plr15 item_title_list"><a href="http://vietgoing.local/tour/111-dao-co-to-3-ngay-2-dem.html" class="st-link c-main">Đảo Cô Tô 3 ngày 2 đêm</a></h4>                          
+<div class="section-footer">
+
+<div class="footer-inner plr15">
+<div class="service-duration">
+3 ngày 2 đêm
+</div>
+<div class="service-price">
+<span>
+<i class="input-icon field-icon fa fa-bolt"></i>
+</span>
+<span class="price">
+
+<span class="text-lg lh1em item"> 3,280,000₫</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item"><div class="item-service grid-item has-matchHeight" style="">
+<div class="service-border">
+<div class="thumb">
+<span class="st_sale_class box_sale sale_small">50% </span>
+<!--
+<a href="" class="login" data-toggle="modal" data-target="#st-login-form">
+<div class="service-add-wishlist" title="Add to wishlist">
+<i class="fa fa-heart"></i>
+<div class="lds-dual-ring"></div>
+</div>
+</a>
+--><div class="service-tag bestseller">
+<div class="feature_class st_featured featured">HOT</div>
+</div><a href="http://vietgoing.local/tour/215-du-lich-mien-tay-ben-tre-my-tho-1-ngay-khoi-hanh-chu-nhat-hang-tuan.html">
+<img width="680" height="500" src="https://image.vietgoing.com/tour/01/15/medium/image_kfn1617322351.jpg" class="img-responsive wp-post-image" alt="Du lịch Miền Tây (Bến Tre + Mỹ Tho) 1 Ngày (Khởi hành Chủ nhật hàng tuần)" loading="lazy" srcset="https://image.vietgoing.com/tour/01/15/medium/image_kfn1617322351.jpg 260w" sizes="(max-width: 680px) 100vw, 680px">
+</a>
+</div>
+<p class="service-location plr15"><i class="input-icon field-icon fas fa-map-marker-alt"></i>Tiền Giang</p>
+<h4 class="service-title plr15 item_title_list"><a href="http://vietgoing.local/tour/215-du-lich-mien-tay-ben-tre-my-tho-1-ngay-khoi-hanh-chu-nhat-hang-tuan.html" class="st-link c-main">Du lịch Miền Tây (Bến Tre + Mỹ Tho) 1 Ngày (Khởi hành Chủ nhật hàng tuần)</a></h4>                          
+<div class="section-footer">
+
+<div class="reviews plr15">
+<span class="rate">3.2/5</span>
+<span class="summary">4 đánh giá</span>
+</div>
+<div class="footer-inner plr15">
+<div class="service-duration">
+1 ngày 0 đêm
+</div>
+<div class="service-price">
+<span>
+<i class="input-icon field-icon fa fa-bolt"></i>
+</span>
+<span class="price">
+<span class="text-small lh1em item onsale">500,000₫</span>
+<span class="text-lg lh1em item"> 250,000₫</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
+<div class="open"></div>
+<div class="st-gallery" data-width="100%" data-nav="thumbs" data-allowfullscreen="true">
+<style>.fotorama1641523451035 .fotorama__nav--thumbs .fotorama__nav__frame{
+padding:12px;
+height:80px}
+.fotorama1641523451035 .fotorama__thumb-border{
+height:76px;
+border-width:2px;
+margin-top:12px}</style><div class="fotorama--hidden"></div><div class="fotorama fotorama1641523451035" data-auto="false"><div class="fotorama__wrap fotorama__wrap--css3 fotorama__wrap--slide fotorama__wrap--toggle-arrows fotorama__wrap--no-controls" style="width: 100%; min-width: 0px; max-width: 100%;"><div class="fotorama__stage fotorama__pointer" style="width: 720px; height: 529px;"><div class="fotorama__fullscreen-icon" tabindex="0" role="button"></div><div class="fotorama__stage__shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 720px; margin-left: 0px;"><div class="fotorama__stage__frame fotorama__active fotorama__loaded fotorama__loaded--img" style="left: 0px;"><img src="https://image.vietgoing.com/tour/01/42/large/image_isx1618562762.jpg" class="fotorama__img" style="width: 719.44px; height: 529px; left: 0.28px; top: 0px;"></div><div class="fotorama__stage__frame fotorama__loaded fotorama__loaded--img" style="left: 732px;"><img src="https://image.vietgoing.com/tour/01/42/large/image_iuz1617516271.jpg" class="fotorama__img" style="width: 719.44px; height: 529px; left: 0.28px; top: 0px;"></div></div><div class="fotorama__arr fotorama__arr--prev fotorama__arr--disabled" tabindex="-1" role="button" disabled="disabled"></div><div class="fotorama__arr fotorama__arr--next" tabindex="0" role="button"></div><div class="fotorama__video-close"></div></div><div class="fotorama__nav-wrap"><div class="fotorama__nav fotorama__nav--thumbs" style="width: 720px;"><div class="fotorama__nav__shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);"><div class="fotorama__thumb-border" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 76px;"></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active" tabindex="0" role="button" style="width: 80px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/tour/01/42/large/image_isx1618562762.jpg" class="fotorama__img" style="width: 108.8px; height: 80px; left: -14.4px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 80px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/tour/01/42/large/image_iuz1617516271.jpg" class="fotorama__img" style="width: 108.8px; height: 80px; left: -14.4px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 80px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/tour/01/42/large/image_odb1618562848.jpg" class="fotorama__img" style="width: 108.8px; height: 80px; left: -14.4px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 80px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/tour/01/42/large/image_fnm1618562654.jpg" class="fotorama__img" style="width: 108.886px; height: 80px; left: -14.4428px; top: 0px;"></div></div></div></div></div></div></div>
+<div class="shares dropdown">
+<a href="#" class="share-item social-share">
+<i class="input-icon field-icon las la-share-square"></i>
+</a>
+<ul class="share-wrapper">
+<li>
+<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://vietgoing.local/tour/242-nha-trang-diep-son-doc-let-1-ngay.html&amp;title=Nha Trang - Điệp Sơn- Dốc Lết- 1 ngày" target="_blank" rel="nofollow" title="Chia sẻ Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+</li>
+<li>
+<a class="twitter" href="https://twitter.com/share?url=http://vietgoing.local/tour/242-nha-trang-diep-son-doc-let-1-ngay.html&amp;title=Nha Trang - Điệp Sơn- Dốc Lết- 1 ngày" target="_blank" rel="nofollow" title="Chia sẻ Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+</li>
+</ul>
+<!--
+<a href="#" class="share-item like-it" data-toggle="modal" data-target="#st-login-form" data-type="st_tours" data-id="1610"><i class="fa fa-heart-o"></i></a>
+-->
+</div>
+</div>
+<div class="modal fade in" id="st-modal-show-room" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 0px;">
+<div class="modal-dialog container">
+<div class="modal-content">
+<div class="modal-body">
+</div>
+</div>
+</div>
+</div>
+<div class="modal-backdrop fade in"></div>
+<div class="fotorama fotorama1641922679087 fotorama--fullscreen" data-auto="false"><div class="fotorama__wrap fotorama__wrap--css3 fotorama__wrap--slide fotorama__wrap--toggle-arrows fotorama__wrap--no-controls" style="width: 100%; min-width: 0px; max-width: 99999px;"><div class="fotorama__stage fotorama__pointer" style="width: 1806px; height: 778px;"><div class="fotorama__fullscreen-icon" tabindex="0" role="button"></div><div class="fotorama__stage__shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 1806px; margin-left: 0px;"><div class="fotorama__stage__frame fotorama__loaded fotorama__loaded--img fotorama__active" style="left: 0px;"><img src="https://image.vietgoing.com/hotel/01/18/large/image_fqt1639360483.jpg" class="fotorama__img" style="width: 1383.11px; height: 778px; left: 211.444px; top: 0px;"></div><div class="fotorama__stage__frame fotorama__loaded fotorama__loaded--img" style="left: 1818px;"><img src="https://image.vietgoing.com/hotel/01/18/large/image_lzb1639360624.jpg" class="fotorama__img" style="width: 1383.11px; height: 778px; left: 211.444px; top: 0px;"></div></div><div class="fotorama__arr fotorama__arr--prev fotorama__arr--disabled" tabindex="-1" role="button" disabled="disabled"></div><div class="fotorama__arr fotorama__arr--next" tabindex="0" role="button"></div><div class="fotorama__video-close"></div></div><div class="fotorama__nav-wrap"><div class="fotorama__nav fotorama__nav--thumbs fotorama__shadows--right" style="width: 1806px;"><div class="fotorama__nav__shaft fotorama__grab" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);"><div class="fotorama__thumb-border" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 131px;"></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_fqt1639360483.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_lzb1639360624.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_eiy1639360666.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_ido1639360629.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_voo1639360638.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_cqk1639360794.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_mcl1639360804.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_oum1639360673.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_aka1639360751.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_vlp1639360779.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_ccm1639360833.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_gms1639360878.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://image.vietgoing.com/hotel/01/18/large/image_rsy1639360892.jpg" class="fotorama__img" style="width: 240px; height: 135px; left: -52.5px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 135px;"><div class="fotorama__thumb"></div></div></div></div></div></div></div>
