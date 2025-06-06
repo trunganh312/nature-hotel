@@ -5,6 +5,7 @@
 
   /* Màu bổ sung */
   --accent-color: #6b9c6e; /* Màu nhấn nhá, sáng hơn màu phụ */
+  --accent-color-hover: #cee1ce;
   --background-color: #f5f5f5; /* Màu nền sáng */
   --text-color: #1a1a1a; /* Màu chữ chính */
   --text-light: #666666; /* Màu chữ phụ */
@@ -17,7 +18,9 @@
   /* Màu gradient (dựa trên màu chính và phụ) */
   --gradient-primary: linear-gradient(135deg, #233a1a, #4a6c4c);
 }
-
+.show {
+    display: block !important;
+}
 /* Nút chung */
 .btn {
   display: inline-flex;

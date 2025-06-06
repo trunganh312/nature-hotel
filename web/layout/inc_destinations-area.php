@@ -1,7 +1,7 @@
 <?php
 // destinations-area.php
 ?>
-<section class="destinations-area py-5" style="background-color: var(--background-color);">
+<section class="destinations-area py-5" style="background-color: #F7FAFC;">
     <div class="container">
         <div class="section-title text-center mb-5">
             <h2 class="fw-bold" style="color: var(--text-color);">Chọn Điểm Đến</h2>
