@@ -529,7 +529,7 @@
                 </div>
                 <div class="col-md-1">
                     <div class="btnSreach">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fas fa-search"></i>
                     </div>
                 </div>
                 <div class="indicator"></div>
