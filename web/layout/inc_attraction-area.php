@@ -1,7 +1,7 @@
 <?php
 // attraction-area.php
 ?>
-<section class="attraction-area py-5" style="background-color: var(--background-color);">
+<section class="attraction-area py-5" style="background-color: #F7FAFC;">
     <div class="container">
         <div class="section-title text-center mb-5">
             <h2 class="fw-bold" style="color: var(--text-color);">Địa Điểm Nổi Bật</h2>

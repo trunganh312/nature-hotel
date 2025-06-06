@@ -386,13 +386,23 @@ iframe {
 
 .service-card-content {
     background-color: var(--white);
+    padding: 12px;
+    height: auto;
+    min-height: 80px; /* Đảm bảo có đủ không gian cho 2 dòng */
 }
 
 .service-title a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Giới hạn hiển thị 2 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 1.125rem;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.3s ease;
+    line-height: 1.4; /* Tăng line-height để chữ không bị dính */
+    max-height: 3em; /* 2 dòng x 1.4 line-height */
 }
 
 .service-title a:hover {
@@ -443,25 +453,32 @@ iframe {
     font-size: 1rem;
 }
 
+.section-title {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .section-title-line {
     position: relative;
+    width: 160px;
     height: 18px;
-    margin: 10px auto;
-    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-title-line::before {
     content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-image: url(../img/section-shapes2.svg);
+    display: block;
+    background-image: url(../theme/images/section-shapes2.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 18px;
     width: 100%;
+    height: 100%;
 }
 
 .attraction-card {
@@ -469,7 +486,7 @@ iframe {
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
     border: 1px solid var(--text-light);
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
 .attraction-card.visible {
@@ -590,33 +607,12 @@ iframe {
     font-size: 1rem;
 }
 
-.section-title-line {
-    position: relative;
-    height: 18px;
-    margin: 10px auto;
-    width: 100px;
-}
-
-.section-title-line::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-image: url(../img/section-shapes2.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 18px;
-    width: 100%;
-}
-
 .news-card {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
     border: 1px solid var(--text-light);
-    border-radius: 10px;
+    border-radius: 10px !important;
 }
 
 .news-card.visible {
