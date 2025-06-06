@@ -1,102 +1,87 @@
-<header class="header-style-01">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <!-- Logo -->
-      <a class="navbar-brand" href="https://naturehotel.vn">
-        <img src="https://naturehotel.vn/storage/logo/logo.png" alt="Nature Hotel" height="50">
-      </a>
-      
-      <!-- Mobile Toggle -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <!-- Language Switch (Mobile) -->
-      <div class="d-lg-none ms-auto me-2">
-        <a href="https://naturehotel.vn/vi" title="Tiếng Việt">
-          <img src="https://naturehotel.vn/themes/frontend/hotel/img/vi.png" alt="Tiếng Việt" width="30">
-        </a>
-      </div>
-      
-      <!-- Mobile Menu Button -->
-      <button class="btn d-lg-none" type="button" id="mobileMenuBtn">
-        <i class="las la-ellipsis-v"></i>
-      </button>
-      
-      <!-- Main Menu -->
-      <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://naturehotel.vn/en">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://naturehotel.vn/en/page/gioi-thieu">About Us</a>
-          </li>
-          
-          <!-- Location Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="locationDropdown" role="button" data-bs-toggle="dropdown">Location</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/location/hanoi">Ha Noi</a></li>
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/location/danang">Da Nang</a></li>
-              
-              <!-- Da Lat with submenu -->
-              <li class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle" href="https://naturehotel.vn/en/location/dalat">Da Lat</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="https://naturehotel.vn/en/hotel/nature-hotel-le-hong-phong">Nature Hotel - Lê Hồng Phong</a></li>
-                  <li><a class="dropdown-item" href="https://naturehotel.vn/en/hotel/nature-hotel-luong-the-vinh">Nature Hotel - Lương Thế Vinh</a></li>
-                  <li><a class="dropdown-item" href="https://naturehotel.vn/en/hotel/nature-boutique-hotel-nguyen-thi-nghia">Nature Boutique Hotel - Nguyễn Thị Nghĩa</a></li>
-                  <li><a class="dropdown-item" href="https://naturehotel.vn/en/hotel/nature-hotel-nam-ky-khoi-nghia">Nature Hotel - Nam Ky Khoi Nghia</a></li>
-                  <li><a class="dropdown-item" href="https://naturehotel.vn/en/hotel/nature-hotel-phan-boi-chau">Nature Hotel - Phan Bội Châu</a></li>
-                  <li><a class="dropdown-item" href="https://naturehotel.vn/en/hotel/nature-hotel-le-dai-hanh">Nature Hotel - Le Dai Hanh</a></li>
-                </ul>
-              </li>
-              
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/location/hoian">Hoi An</a></li>
-            </ul>
-          </li>
-          
-          <!-- Services Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">Services</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/page/dich-vu-tour">Dịch vụ Tour</a></li>
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/page/dua-don-van-chuyen">Pick Up - Transportation</a></li>
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/page/dich-vu-cho-thue-xe-may">Dịch vụ thuê xe máy</a></li>
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/page/dich-vu-giat-la">Dịch vụ giặt là</a></li>
-            </ul>
-          </li>
-          
-          <!-- News & Events Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-bs-toggle="dropdown">News & Event</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/posts/tuyen-dung">Recruit</a></li>
-              <li><a class="dropdown-item" href="https://naturehotel.vn/en/posts/tin-tuc">News</a></li>
-            </ul>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://naturehotel.vn/en/contact">Contact Us</a>
-          </li>
-        </ul>
-        
-        <!-- Right Side Content -->
-        <div class="d-flex align-items-center">
-          <!-- Language Switch (Desktop) -->
-          <div class="nav-lang me-3 d-none d-lg-block">
-            <a href="https://naturehotel.vn/vi" title="Tiếng Việt">
-              <img src="https://naturehotel.vn/themes/frontend/hotel/img/vi.png" alt="Tiếng Việt" width="30">
+<?php
+// header.php
+?>
+<header class="header-style-modern bg-light shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container custom-container-one">
+            <!-- Logo -->
+            <a class="navbar-brand" href="https://naturehotel.vn">
+                <img src="https://naturehotel.vn/storage/logo/logo.png" alt="Nature Hotel Logo" class="img-fluid" style="max-height: 50px;">
             </a>
-          </div>
-          
-          <!-- Login Button -->
-          <div class="navbar-right-btn d-none d-lg-block">
-            <a href="javascript:void(0)" class="btn btn-outline-primary">Log In</a>
-          </div>
+
+            <!-- Toggler for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#hotel_booking_menu" aria-controls="hotel_booking_menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Mobile right icon -->
+            <a href="javascript:void(0)" class="click-nav-right-icon d-lg-none ms-2">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+
+            <!-- Navbar Menu -->
+            <div class="collapse navbar-collapse" id="hotel_booking_menu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://naturehotel.vn/vi">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://naturehotel.vn/vi/page/gioi-thieu">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Địa điểm
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="locationDropdown">
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/location/hanoi">Hà Nội</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/location/danang">Đà Nẵng</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://naturehotel.vn/vi/location/dalat">Đà Lạt</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://naturehotel.vn/vi/hotel/nature-hotel-le-hong-phong">Nature Hotel - Lê Hồng Phong</a></li>
+                                    <li><a class="dropdown-item" href="https://naturehotel.vn/vi/hotel/nature-hotel-luong-the-vinh">Nature Hotel - Lương Thế Vinh</a></li>
+                                    <li><a class="dropdown-item" href="https://naturehotel.vn/vi/hotel/nature-boutique-hotel-nguyen-thi-nghia">Nature Boutique Hotel - Nguyễn Thị Nghĩa</a></li>
+                                    <li><a class="dropdown-item" href="https://naturehotel.vn/vi/hotel/nature-hotel-nam-ky-khoi-nghia">Nature Hotel - Nam Kỳ Khởi Nghĩa</a></li>
+                                    <li><a class="dropdown-item" href="https://naturehotel.vn/vi/hotel/nature-hotel-phan-boi-chau">Nature Hotel - Phan Bội Châu</a></li>
+                                    <li><a class="dropdown-item" href="https://naturehotel.vn/vi/hotel/nature-hotel-le-dai-hanh">Nature Hotel - Lê Đại Hành</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/location/hoian">Hội An</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dịch vụ
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dich-vu-tour">Dịch vụ Tour</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dua-don-van-chuyen">Dịch vụ đưa đón sân bay</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dich-vu-cho-thue-xe-may">Dịch vụ thuê xe máy</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dich-vu-giat-la">Dịch vụ giặt là</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="newsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tin tức & Sự kiện
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="newsDropdown">
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/posts/tuyen-dung">Tuyển dụng</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/posts/tin-tuc">Tin tức</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://naturehotel.vn/vi/contact">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right Content -->
+            <div class="navbar-right-content d-flex align-items-center ms-lg-3">
+                <a href="https://naturehotel.vn/en" title="English" class="me-3">
+                    <img src="https://naturehotel.vn/themes/frontend/hotel/img/en.png" alt="English" style="width: 24px;">
+                </a>
+                <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Đăng nhập</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </header>
