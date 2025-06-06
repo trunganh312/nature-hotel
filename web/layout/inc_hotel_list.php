@@ -335,7 +335,7 @@
 
   .owl-nav button.owl-prev:hover i,
   .owl-nav button.owl-next:hover i {
-    color: #00B6F3 !important;
+    color: var(--secondary-color) !important;
   }
 
   .owl-nav button.owl-prev {
@@ -383,7 +383,7 @@
   }
 
   .hotel-card:hover .hotel-name {
-    color: #00B6F3;
+    color: var(--secondary-color);
   }
 
   .image-dots {
@@ -442,7 +442,7 @@
     width: 100%;
     white-space: wrap;
     background: linear-gradient(90deg, #F7FAFC 0%, #FFFFFF 100%);
-    padding: 8px 24px;
+    padding: 4px 24px;
   }
 
   .room-info h3 {
@@ -488,90 +488,6 @@
     border-radius: 4px;
     font-size: 14px;
   }
-
-  .price-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .original-price {
-    color: var(--text-lighter);
-    text-decoration: line-through;
-    font-size: 16px;
-  }
-
-  .discounted-price {
-    color: var(--primary-color);
-    font-size: 26px;
-    font-weight: 600;
-  }
-
-  .discount-badge {
-    background: var(--primary-color);
-    color: var(--white-color);
-    padding: 4px 6px;
-    border-radius: 4px;
-    font-size: 14px;
-    position: relative;
-  }
-
-  .discount-badge::after {
-    content: "";
-    position: absolute;
-    top: 21px;
-    right: 2px;
-    width: 3px;
-    height: 3px;
-    border-style: solid;
-    border-width: 0 0 8px 8px;
-    border-color: transparent transparent transparent #b23655;
-  }
-
-  .book-btn {
-    background: var(--primary-color);
-    color: var(--white-color);
-    padding: 12px 24px;
-    border-radius: 4px;
-    border: none;
-  }
-
-  .rewards {
-    color: var(--text-lighter);
-    font-size: 16px;
-    background-color: rgba(237, 137, 54, 0.1);
-    color: #ED8936;
-    padding: 6px 10px;
-    border-radius: 8px;
-  }
-
-  .rewards i {
-    color: #ffc107;
-    margin-right: 4px;
-  }
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-    margin-left: 150px;
-  }
-
-  .pagination a {
-    margin-left: 10px;
-    width: 30px;
-    height: 30px;
-    color: var(--white-color);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    background-color: var(--primary-color);
-  }
-
   .hotel-description {
     display: -webkit-box;
     -webkit-line-clamp: 5;
