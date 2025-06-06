@@ -79,7 +79,9 @@ body {
     margin-bottom: 15px;
     font-size: 0.95rem;
 }
-
+.card {
+    border: none;
+}
 .summary-item i {
     margin-right: 8px;
     color: var(--accent-color, #6b9c6e);

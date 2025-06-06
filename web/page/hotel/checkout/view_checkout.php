@@ -1,34 +1,10 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Toán Đặt Phòng - Nature Hotel</title>
-    <!-- Liên kết các tệp CSS -->
-    <link rel="stylesheet" href="/theme/css/bootstrap.css">
-    <link rel="stylesheet" href="/theme/css/root.css">
-    <link rel="stylesheet" href="/theme/css/icon.css">
-    <link rel="stylesheet" href="/theme/css/daterangepicker.css">
-    <link rel="stylesheet" href="/theme/css/header.css">
-    <link rel="stylesheet" href="/theme/css/footer.css">
-    <link rel="stylesheet" href="/theme/css/home.css">
-    <link rel="stylesheet" href="/theme/css/mapview.css">
-    <link rel="stylesheet" href="/theme/view_checkout.css">
-</head>
-<body>
-    <!-- Header -->
-    <?php
-    include '../../../layout/inc_header.php';
-    ?>
-
-    <!-- Nội dung chính -->
     <div class="checkout-container container">
         <h1 class="section-title text-center mb-4">Đặt Phòng</h1>
         <div class="row checkout-grid">
             <!-- Bên trái: Thông tin khách sạn và Thông tin liên hệ -->
             <div class="col-lg-8">
                 <!-- Thông tin khách sạn -->
-                <div class="hotel-info mb-4">
+                <div class=" mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex">
@@ -63,7 +39,7 @@
                 <div class="payment-form">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="mb-3">Thông tin liên hệ</h2>
+                            <h2 class="mb-3 " style='font-weight: bold;'>Thông tin liên hệ</h2>
                             <div class="text-center mb-3">
                                 <a href="/login.php" class="text-primary-color">Đăng nhập để đặt phòng nhanh hơn</a>
                             </div>
@@ -175,7 +151,7 @@
             <div class="col-lg-4 booking-summary">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="mb-3">Thông tin các hạng phòng</h2>
+                        <h2 class="mb-3" style='font-weight: bold;'>Thông tin các hạng phòng</h2>
                         <!-- Hạng phòng 1: Deluxe -->
                         <div class="room-info mb-3">
                             <img src="https://cdn3.ivivu.com/2014/01/SUPER-DELUXE2.jpg" alt="Phòng Deluxe" class="room-image mb-2">
@@ -209,42 +185,3 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <?php
-    include '../../../layout/inc_footer.php';
-    ?>
-    <!-- JavaScript -->
-    <script src="/theme/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Hiển thị form thẻ tín dụng
-        document.querySelectorAll('input[name="payment_method"]').forEach((input) => {
-            input.addEventListener('change', function () {
-                const creditCardInfo = document.querySelector('.credit-card-info');
-                creditCardInfo.style.display = this.value === 'credit_card' ? 'block' : 'none';
-            });
-        });
-
-        // Hiển thị form hóa đơn
-        document.getElementById('invoice').addEventListener('change', function () {
-            const invoiceDetails = document.querySelector('.invoice-details');
-            invoiceDetails.style.display = this.checked ? 'block' : 'none';
-        });
-
-        // Validation form Bootstrap
-        (function () {
-            'use strict';
-            const forms = document.querySelectorAll('.needs-validation');
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        })();
-    </script>
-</body>
-</html>
