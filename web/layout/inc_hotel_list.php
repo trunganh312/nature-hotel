@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="room-info">
+                                    <div class="utilities">
                                         <h3>Tiện ích</h3>
                                         <div class="amenities">
                                             <?php if (!empty($hotel['utilities'])): ?>
@@ -246,7 +246,7 @@
     padding: 8px 24px;
   }
 
-  .room-info h3 {
+  .utilities h3 {
     white-space: wrap;
     font-size: 16px;
     font-weight: 500;

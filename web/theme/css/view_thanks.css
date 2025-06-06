@@ -1,12 +1,3 @@
-body {
-    font-family: 'Roboto', Arial, sans-serif; /* Modern font for professionalism */
-    background-color: #e8f5e9; /* Softer green background */
-    margin: 0;
-    padding: 0;
-    color: #333;
-    line-height: 1.6;
-}
-
 .box {
     max-width: 1000px;
     margin: 40px auto;
