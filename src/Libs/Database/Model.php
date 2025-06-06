@@ -208,14 +208,13 @@ class Model {
      * @return int
      */
     public function update(array $data, array $conds = [1]) {
-        if (!empty($this->company_key) && DB::isCheckFieldRequired() && !in_array($this->company_key, $conds)) {
+        if (!empty($this->company_key) && !in_array($this->company_key, $conds)) {
             $conds[$this->company_key] = Utils::companyID();
         }
 
         // Kiểm tra xem có cần phải thêm hotel id vào sql không
         if (
             !empty($this->hotel_field)
-            && DB::isCheckFieldRequired('hotel')
             && Utils::checkRequiredFieldHotel()
             && !in_array($this->hotel_field, $conds)
         ) {
@@ -264,14 +263,13 @@ class Model {
      * @return string
      */
     function sql() {
-        if (!empty($this->company_key) && DB::isCheckFieldRequired() && !in_array($this->company_key, $this->where_fields)) {
+        if (!empty($this->company_key) && !in_array($this->company_key, $this->where_fields)) {
             $this->company($this->company_key);
         }
 
         // Kiểm tra xem có cần phải thêm hotel id vào sql không
         if (
             !empty($this->hotel_field)
-            && DB::isCheckFieldRequired('hotel')
             && Utils::checkRequiredFieldHotel()
             && !in_array($this->hotel_field, $this->where_fields)
         ) {
