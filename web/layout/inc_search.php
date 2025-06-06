@@ -423,7 +423,7 @@
                             <div id="startDateText"><?php echo date('d/m/Y'); ?></div>
                         </div>
                         <div class="moon col-md-2">
-                            <i class="fa-regular fa-moon-stars"></i>
+                            <i class="fas fa-moon"></i>
                         </div>
                         <div class="return-date col-md-5 ms-4">
                             <h6>Ngày về</h6>
