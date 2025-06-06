@@ -256,13 +256,36 @@ class Layout extends Model {
         $js_files = glob($js_folder . '*.js');
         $footer = '';
         
-        if (!empty($js_files)) {
-            foreach ($js_files as $file) {
-                $filename = basename($file, '.js');
-                $js_path = $this->path_theme . 'js/' . $filename . '.js';
+        // Danh sách file JS với thứ tự ưu tiên
+        $priority_files = [
+            'jquery.js',      // jQuery phải load đầu tiên
+            'moment.js',          // Moment.js load tiếp theo
+            'daterangepicker.js', // DateRangePicker load sau moment
+            // Các file khác
+        ];
+        
+        // Load các file ưu tiên trước
+        foreach ($priority_files as $priority_file) {
+            $file_path = $js_folder . $priority_file;
+            if (file_exists($file_path)) {
+                $filename = basename($priority_file, '.js');
+                $js_path = $this->path_theme . 'js/' . $priority_file;
                 $version = isset($cfg_theme_version_js[$filename]) ? '?v=' . $cfg_theme_version_js[$filename] : '?v=' . time();
                 $footer .= '<script src="' . $js_path . $version . '"></script>' . PHP_EOL;
+                
+                // Loại bỏ file đã load khỏi danh sách chung
+                $js_files = array_filter($js_files, function($file) use ($priority_file) {
+                    return basename($file) !== $priority_file;
+                });
             }
+        }
+        
+        // Load các file JS còn lại
+        foreach ($js_files as $file) {
+            $filename = basename($file, '.js');
+            $js_path = $this->path_theme . 'js/' . basename($file);
+            $version = isset($cfg_theme_version_js[$filename]) ? '?v=' . $cfg_theme_version_js[$filename] : '?v=' . time();
+            $footer .= '<script src="' . $js_path . $version . '"></script>' . PHP_EOL;
         }
         
         // Load JS Map

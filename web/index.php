@@ -32,7 +32,9 @@ include('page/home/data_home.php');
     <?
     include('page/home/view_home.php');
     ?>
-    
+    <?
+    include('layout/inc_footer.php');
+    ?>
     <?=$Layout->loadFooter()?>
 
 </body>
