@@ -45,11 +45,6 @@ import LayoutAdmin from '@admin/components/admin_layout.vue';
 
 // CRM
 import CrmHotelList from '@admin/hotel/list.vue';
-import CrmHotelDaily from '@admin/hotel/daily.vue';
-import CrmHotelServiceList from '@admin/hotel/service_list.vue';
-import CrmHotelSurchargeList from '@admin/hotel/surcharge_list.vue';
-import CrmHotelBedList from '@admin/hotel/bed_list.vue';
-import CrmArea from '@admin/hotel/area.vue';
 import CrmGeneraAttributelList from '@admin/general/attribute_list.vue';
 import CrmGeneraApplication from '@admin/general/application.vue';
 import CrmGeneraCity from '@admin/general/city.vue';
@@ -59,13 +54,10 @@ import CrmGeneraDocumentList from '@admin/general/document_list.vue';
 import CrmGeneraDocumentCreate from '@admin/general/document_create.vue';
 import CrmGeneraDocumentEdit from '@admin/general/document_edit.vue';
 import CrmGeneraConfig from '@admin/general/crm_config.vue';
-import CrmAccountUserlList from '@admin/account/user_list.vue';
 import CrmAccountAdminlList from '@admin/account/admin_list.vue';
 import CrmAccountPermissionlList from '@admin/account/permission_list.vue';
 import CrmAccountGroupList from '@admin/account/group_list.vue';
 import CrmAccountDepartmentList from '@admin/account/department_list.vue';
-import CrmAccountCompanyCreate from '@admin/account/company_create.vue';
-import CrmAccountCompanyList from '@admin/account/company_list.vue';
 import CrmAccountProfile from '@admin/account/profile.vue';
 import CrmSystemModuleList from '@admin/system/module_list.vue';
 import CrmSystemTableList from '@admin/system/table_log_list.vue';

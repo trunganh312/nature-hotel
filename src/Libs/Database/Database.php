@@ -20,10 +20,6 @@ class Database {
 
     protected $result;
     protected $sql;
-    protected $check_required = [
-        'hotel' => true,
-        'company' => true
-    ];
 
     /**
      * Thực thi câu truy vấn và lấy kết quả
@@ -76,14 +72,7 @@ class Database {
             // Nếu arg1 khác null và arg2 === null
             $hotel = true;
         }
-
-        $this->check_required['company']    = $company;
-        $this->check_required['hotel']      = $hotel;
         return $this;
-    }
-
-    function isCheckFieldRequired($object='company') {
-        return $this->check_required[$object];
     }
     
     public function beautifySQL($sql) {

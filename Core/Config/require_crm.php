@@ -48,7 +48,6 @@ if ($Auth->envUser()) {
 $Router         =   new Router;
 $Layout         =   new Layout;
 $Log            =   new LogModel;
-$BookingModel   =   new BookingModel;
 
 //Note đang làm dở
 //exit('Đang làm chọn khách sạn ở trang /home');
