@@ -26,7 +26,9 @@
     }
 
     .search-place {
-        padding: 12px 24px;
+        padding: 12px 26px;
+        display: flex;
+        align-items: center;
     }
 
     .place>label {
@@ -40,6 +42,7 @@
         font-weight: 600;
         border: 0;
         height: 1.6em;
+        width: 100%;
         margin: 0;
         display: block;
         padding: 0 !important;
@@ -62,9 +65,9 @@
     .dropdown-panel {
         display: none;
         position: absolute;
-        top: 142%;
-        width: 1200px;
-        left: -3.5%;
+        top: 110%;
+        left: 0.2%;
+        width: 800px;
         background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 8px;
@@ -162,6 +165,7 @@
     }
 
     .btnSreach {
+        margin-left: 10px;
         width: 88px;
         height: 45px;
         background: var(--primary-color);
@@ -183,12 +187,12 @@
     }
 
     .btnSreach:hover {
-        background: rgb(178, 35, 71);
+        background: var(--secondary-color);
         color: rgba(255, 255, 255, 0.8);
     }
 
     .room-selector {
-        position: relative;
+        /* position: relative; */
         cursor: pointer;
     }
 
@@ -297,12 +301,6 @@
         display: block;
     }
 
-    .daterangepicker {
-        z-index: 10000 !important;
-        top: 307px !important;
-        left: 650px !important;
-    }
-
     .indicator {
         border-radius: 1px;
         position: absolute;
@@ -314,6 +312,59 @@
         width: 0;
         opacity: 0;
     }
+    .daterangepicker {
+        position: absolute !important;
+        /* left: 37.5% !important; */
+        width: 800px !important; /* Tăng chiều rộng để chứa 2 lịch */
+        border: none !important; /* Bỏ viền mặc định */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important; /* Thêm bóng */
+        border-radius: 8px !important; /* Bo góc */
+        /* top: 108% !important; */
+    }
+    .daterangepicker .drp-calendar {
+        width: 400px !important;
+        max-width: 400px !important; /* Tăng từ 270px lên */
+    }
+    .daterangepicker .calendar-table th,
+    .daterangepicker .calendar-table td {
+        min-width: 40px !important;
+        width: 40px !important;
+        height: 40px !important;
+        line-height: 40px !important;
+        font-size: 14px !important;
+    }
+    .daterangepicker .drp-calendar.left,
+    .daterangepicker .drp-calendar.right {
+        padding: 15px !important;
+    }
+    /* CSS cho daterangepicker để sử dụng biến màu từ root.css */
+    .daterangepicker td.active, .daterangepicker td.active:hover {
+        background-color: var(--secondary-color) !important;
+        border-color: transparent !important;
+        color: var(--white) !important;
+    }
+    
+    /* .daterangepicker td.in-range {
+        background-color: var(--accent-color-hover) !important;
+        color: var(--black) !important;
+    } */
+    
+    .daterangepicker td.available:hover, .daterangepicker th.available:hover {
+        background-color: var(--secondary-color) !important;
+        color: var(--white) !important;
+    }
+
+    
+    .daterangepicker th.month {
+        color: var(--primary-color) !important;
+        font-weight: bold !important;
+        font-size: 18px !important;
+    }
+    
+    .daterangepicker .calendar-table .next span, 
+    .daterangepicker .calendar-table .prev span {
+        border-color: var(--primary-color) !important;
+    } 
 </style>
 
 <div class="baler-box">
@@ -371,7 +422,9 @@
                             <h6>Ngày đến</h6>
                             <div id="startDateText"><?php echo date('d/m/Y'); ?></div>
                         </div>
-                        <div class="moon col-md-2"><i class="fa-regular fa-moon"></i></div>
+                        <div class="moon col-md-2">
+                            <i class="fas fa-moon"></i>
+                        </div>
                         <div class="return-date col-md-5 ms-4">
                             <h6>Ngày về</h6>
                             <div id="endDateText"><?php echo date('d/m/Y', strtotime('+1 day')); ?></div>
@@ -476,7 +529,7 @@
                 </div>
                 <div class="col-md-1">
                     <div class="btnSreach">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fas fa-search"></i>
                     </div>
                 </div>
                 <div class="indicator"></div>

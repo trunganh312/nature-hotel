@@ -38,18 +38,9 @@ class Auth extends Model {
         
         parent::__construct();
 
-        /* Lấy Table theo Environment đang sử dụng */
-        if (is_user()) {
-            $this->table    =   'users';
-            $this->prefix   =   'use_';
-        } else if (is_admin()) {
-            $this->table    =   'admins';
-            $this->prefix   =   'adm_';
-            $this->path_login = '/login.php';
-        } else {
-            save_log('error_environment.cfn', 'Error Environment');
-            exit('Error Environment');
-        }
+        $this->table    =   'admins';
+        $this->prefix   =   'adm_';
+        $this->path_login = '/login.php';
         
         if(isset($_SESSION['login_error'])) unset($_SESSION['login_error']);
         
@@ -209,128 +200,6 @@ class Auth extends Model {
 
             if ($this->info['boss'] == 1 || $this->cto) $this->superAccount =   true;
 
-        } else {
-            /**
-             * Nếu là User thì phải check theo công ty, nếu là owner của cty đang sử dụng thì mới là Super admin
-             * Đồng thời define ra COMPANY_ID là ID của công ty mà Account đang sử dụng (Tại 1 thời điểm chỉ làm việc trên 1 company)
-             * Nếu cty làm việc mà là HMS (Quản lý KS) thì có thể sẽ có nhiều KS, nên phải chọn 1 KS để làm việc
-             * Tại 1 thời điểm, 1 User chỉ được hoạt động trên 1 cty và 1 KS
-             */
-            //Lấy ra các cty của User Login
-            $UserModel  =   new UserModel;
-            $list_company   =   $UserModel->getCompanyList();
-
-            //Biến đánh dấu là đã chọn Workspace
-            $has_work   =   false;
-
-            //Đánh dấu là User này chỉ có 1 công ty
-            $has_only_one   =   false;
-
-            //Check xem có phải đang thuộc trang /home hay ko
-            $is_home    =   false;
-            $path_home  =   ['home', 'changeto'];
-            foreach ($path_home as $value) {
-                if (Router::isRoute($value)) {
-                    $is_home    =   true;
-                    break;
-                }
-            }
-
-            //Check xem đã chọn Workspace chưa
-            $company_id =   getValue('work_company', GET_INT, GET_SESSION);
-            $ems        =   getValue('work_ems', GET_STRING, GET_SESSION);
-
-            if ($company_id <= 0) {
-                if (count($list_company) == 1) {
-                    $company_id =   array_key_first($list_company);
-                }
-            }
-            
-            //Check để tránh fake
-            if (key_exists($company_id, $list_company)) {
-                
-                $info   =   $this->DB->query("SELECT com_id, com_group, com_owner_id
-                                                FROM company
-                                                WHERE com_active = 1 AND com_id = $company_id")
-                                                ->getOne();
-                //Nếu là cty HMS thì phải check xem đã chọn KS để làm việc chưa
-                if ($info['com_group'] == MODULE_HOTEL) {
-                    // Nếu chọn là EMS
-                    if($ems == 'true') {
-                        $has_work = true;
-                    }else {
-                        $hotel_id   =   getValue('work_hotel', GET_INT, GET_SESSION);
-                        if ($hotel_id > 0) {
-                            //Kiểm tra xem KS có thuộc company ko (Tránh fake)
-                            if (!empty($this->DB->query("SELECT hot_id FROM hotel WHERE hot_active = 1 AND hot_company_id = $company_id"))) {
-                                $has_work   =   true;
-                            }
-                        } else {
-                            //Lấy ra các KS của company để check, nếu chỉ có 1 KS thì lấy luôn KS đó làm workspace
-                            $hotels =  Hotel::pass()->where(['hot_active' => STATUS_ACTIVE, 'hot_company_id' => $company_id])->pluck('hot_id', 'hot_name');
-                            if (count($hotels) == 1) {
-                                $hotel_id   =   array_key_first($hotels);
-                                $has_work   =   true;
-                                $has_only_one   =   true;
-                            }
-                        }
-                    }
-                    
-                    
-                } else {
-                    $has_work   =   true;
-                    if (count($list_company) == 1)  $has_only_one   =   true;
-                }
-
-                //Check super admin
-                if ($info['com_owner_id'] == $this->id) $this->superAccount =   true;
-                $this->work_space   =   $ems == 'true' ? MODULE_EMS : $info['com_group'];
-            }
-
-            //Set single cho Account
-            $this->single   =   $has_only_one;
-            
-            //Nếu đã chọn được workspace thì define constant và khởi tạo session
-            if ($has_work) {
-
-                // Check tạo hotel id trước
-                if (isset($hotel_id) && $hotel_id > 0) {
-                    define('HOTEL_ID', $hotel_id);
-                    if (!isset($_SESSION['work_hotel'])) {
-                        $_SESSION['work_hotel']     =   HOTEL_ID;
-                    }
-                }
-
-                //Nếu là trang /home và User này là Has_only_one (Chỉ thuộc 1 cty và 1 KS) thì redirect về trang chủ
-                if ($is_home && $has_only_one) {
-                    redirect_url('/');
-                }
-                
-                define('COMPANY_ID', $company_id);
-
-                 //Nếu chưa có session thì khởi tạo
-                if (!isset($_SESSION['work_ems']) && $ems == 'true') {
-                    $_SESSION['work_ems']   =   'true';
-                }
-
-                //Nếu chưa có session thì khởi tạo
-                if (!isset($_SESSION['work_company'])) {
-                    $_SESSION['work_company']   =   COMPANY_ID;
-                }
-                
-                
-            } else {
-
-                //Nếu ko thì phải redirect về Home để chọn workspace
-                if (defined('COMPANY_ID'))  define('COMPANY_ID', 0);
-                if (defined('HOTEL_ID'))  define('HOTEL_ID', 0);
-                if (isset($_SESSION['work_company']))   unset($_SESSION['work_company']);
-                if (isset($_SESSION['work_hotel']))   unset($_SESSION['work_hotel']);
-                if (isset($_SESSION['work_ems']))   unset($_SESSION['work_ems']);
-
-                //Nếu ko phải đang ở trang Home thì redirect về trang Home để bắt buộc phải chọn Workspace
-                if (!$is_home)   redirect_url('/home');
-            }
         }
     }
 
@@ -424,18 +293,7 @@ class Auth extends Model {
                                                                     FROM admins_group_admins
                                                                     WHERE grac_account_id = " . $this->id . ")")
                                             ->toArray();
-        } else {
-            //Nếu là User thì các quyền được phân theo từng công ty của User
-            $data   =   $this->DB->query("SELECT per_alias
-                                            FROM users_permission_groups
-                                            INNER JOIN users_permission ON (pega_permission_id = per_id)
-                                            WHERE per_active = 1
-                                                AND pega_group_id IN(SELECT grac_group_id
-                                                                    FROM users_group_users
-                                                                    INNER JOIN users_group ON(grac_group_id = gro_id)
-                                                                    WHERE gro_active = 1 AND grac_account_id = " . $this->id . " AND gro_company_id = " . COMPANY_ID . ")")
-                                            ->toArray();
-        }
+        } 
         
         foreach ($data as $row) {
             $this->all_permission[] =   $row['per_alias'];
@@ -496,18 +354,7 @@ class Auth extends Model {
                                             FROM admins_permission
                                             WHERE per_alias = '$permission'")
                                             ->getOne();
-        } else {
-            $per_info   =   $this->DB->pass()->query("SELECT per_id, per_company_config
-                                                FROM users_permission
-                                                WHERE per_alias = '$permission'")
-                                                ->getOne();
-            if ($per_info['per_company_config'] == 1) {
-                $check  =   $this->DB->pass(true)->query("SELECT ccp_check_owner AS check_owner, ccp_allow_leader AS allow_leader
-                                                FROM company_config_permission
-                                                WHERE ccp_company_id = " . COMPANY_ID . " AND ccp_permission_id = " . $per_info['per_id'])
-                                                ->getOne();
-            }
-        }
+        } 
 
         if (isset($check['check_owner']) && $check['check_owner'] == 1) {
             

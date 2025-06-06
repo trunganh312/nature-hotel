@@ -8,7 +8,7 @@
 }
 
 .footer_content p, .footer_content a {
-    color: var(--white);
+    color: var(--text-light);
     font-size: 0.875rem;
     transition: color 0.3s ease;
 }
@@ -23,7 +23,7 @@
 }
 
 .footer-link {
-    color: var(--white);
+    color: var(--text-light);
     text-decoration: none;
     font-size: 0.875rem;
     transition: color 0.3s ease;
