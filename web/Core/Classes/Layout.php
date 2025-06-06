@@ -226,15 +226,12 @@ class Layout extends Model {
         // Load tất cả CSS
         $css_folder = $_SERVER['DOCUMENT_ROOT'] . '/theme/css/';
         $css_files = glob($css_folder . '*.css');
-        
-        if (!empty($css_files)) {
-            // Trang cần index: Đọc nội dung CSS và thêm vào <style>
-            $head .= '<style>';
-            foreach ($css_files as $file) {
-                $content = file_get_contents($file);
-                $head .= $content;
-            }
-            $head .= '</style>';
+
+        foreach ($css_files as $file) {
+            $filename = basename($file, '.css');
+            $css_path = $this->path_theme . 'css/' . basename($file);
+            $version = isset($cfg_theme_version_css[$filename]) ? '?v=' . $cfg_theme_version_css[$filename] : '?v=' . time();
+            $head .= '<link rel="stylesheet" href="' . $css_path . $version . '">' . PHP_EOL;
         }
         
         // Biến JS toàn trang
