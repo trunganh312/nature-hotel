@@ -11,26 +11,26 @@ $Layout->setTitle($cfg_website['con_meta_title'])
         ->setCanonical(DOMAIN_WEB)
         ->setJS(['page.home']);
 
-// Danh sách các điểm đến 
 $hotels = Hotel::where('hot_active', 1)
-                ->select('cit_name', 'cit_id')
-                ->join('cities', 'hot_city', 'cit_id')
-                ->toArray();
-
-$data_city_count = [];
-foreach ($hotels as $hotel) {
-        $name = $hotel['cit_name'];
-        if (!isset($data_city_count[$name])) {
-                $data_city_count[$name] = 0;
-        }
-        $data_city_count[$name]++;
-}
+    ->select('cit_name', 'cit_id', 'cit_image')
+    ->join('cities', 'hot_city', 'cit_id')
+    ->toArray();
 
 $data_city = [];
-foreach ($data_city_count as $name => $value) {
-        $slug = to_slug($hotel['cit_name']);
-        $data_city[] = ['name' => $name, 'value' => $value, 'link' => '/city-' . $hotel['cit_id'] . '-' . $slug . '.html'];
+foreach ($hotels as $hotel) {
+    $name = $hotel['cit_name'];
+    if (!isset($data_city[$name])) {
+        $slug = to_slug($name);
+        $data_city[$name] = [
+            'name' => $name,
+            'value' => 1,
+            'link' => '/city-' . $hotel['cit_id'] . '-' . $slug . '.html',
+            'img' => $hotel['cit_image']
+        ];
+    } else {
+        $data_city[$name]['value']++;
+    }
 }
-
+$data_city = array_values($data_city);
 
 ?>

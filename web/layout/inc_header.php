@@ -1,6 +1,3 @@
-<?php
-// header.php
-?>
 <header class="header-style-modern bg-light shadow-sm sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container custom-container-one">
@@ -73,14 +70,6 @@
                         <a class="nav-link" href="https://naturehotel.vn/vi/contact">Liên hệ</a>
                     </li>
                 </ul>
-            </div>
-
-            <!-- Right Content -->
-            <div class="navbar-right-content d-flex align-items-center ms-lg-3">
-                <a href="https://naturehotel.vn/en" title="English" class="me-3">
-                    <img src="https://naturehotel.vn/themes/frontend/hotel/img/en.png" alt="English" style="width: 24px;">
-                </a>
-                <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Đăng nhập</a>
             </div>
         </div>
     </nav>
