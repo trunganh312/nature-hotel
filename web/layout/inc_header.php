@@ -1,12 +1,9 @@
-<?php
-// header.php
-?>
 <header class="header-style-modern bg-light shadow-sm sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container custom-container-one">
             <!-- Logo -->
-            <a class="navbar-brand" href="https://naturehotel.vn">
-                <img src="https://naturehotel.vn/storage/logo/logo.png" alt="Nature Hotel Logo" class="img-fluid" style="max-height: 50px;">
+            <a class="navbar-brand" href="/">
+                <img src="<?=$cfg_path_image?>logo.png" alt="Nature Hotel Logo" class="img-fluid" style="max-height: 50px;">
             </a>
 
             <!-- Toggler for mobile -->
@@ -23,10 +20,10 @@
             <div class="collapse navbar-collapse" id="hotel_booking_menu">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://naturehotel.vn/vi">Trang chủ</a>
+                        <a class="nav-link" href="/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://naturehotel.vn/vi/page/gioi-thieu">Giới thiệu</a>
+                        <a class="nav-link" href="/gioi-thieu">Giới thiệu</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,14 +70,6 @@
                         <a class="nav-link" href="https://naturehotel.vn/vi/contact">Liên hệ</a>
                     </li>
                 </ul>
-            </div>
-
-            <!-- Right Content -->
-            <div class="navbar-right-content d-flex align-items-center ms-lg-3">
-                <a href="https://naturehotel.vn/en" title="English" class="me-3">
-                    <img src="https://naturehotel.vn/themes/frontend/hotel/img/en.png" alt="English" style="width: 24px;">
-                </a>
-                <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Đăng nhập</a>
             </div>
         </div>
     </nav>

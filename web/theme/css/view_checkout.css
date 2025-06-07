@@ -1,0 +1,237 @@
+.ok {
+    background: #f7f7f7;
+    padding: 1px 0;
+}
+.checkout-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+        font-family: var(--bs-font-sans-serif, Arial, sans-serif);
+    color: var(--text-color, #1a1a1a);
+}
+
+/* Tiêu đề */
+
+.section-title {
+    color: var(--primary-color, #233a1a);
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Grid */
+.checkout-grid {
+    display: flex;
+}
+
+/* Tóm tắt đặt phòng */
+.booking-summary {
+    background: var(--white, #fff);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-summary .card-body {
+    padding: 25px;
+}
+
+.booking-summary h2 {
+    color: var(--primary-color, #233a1a);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.hotel-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color, #233a1a);
+    margin-bottom: 10px;
+}
+
+.room-image {
+    width: 100%;
+    max-height: 100px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.hotel-address {
+    font-size: 0.875rem;
+    color: var(--text-light, #666);
+    margin-bottom: 15px;
+}
+
+.rating .badge {
+    font-size: 0.875rem;
+    padding: 5px 10px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+.card {
+    border: none;
+}
+.summary-item i {
+    margin-right: 8px;
+    color: var(--accent-color, #6b9c6e);
+}
+
+.summary-item.total {
+    font-weight: 700;
+    border-top: 2px solid var(--text-light, #666);
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+/* Form thanh toán */
+.payment-form {
+    border-radius: 8px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.payment-form .card-body {
+    padding: 25px;
+    /* background:#b6ee35; */
+    border-radius: 8px;
+
+
+}
+
+.payment-form h2 {
+    color: var(--primary-color, #233a1a);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.payment-form .text-primary-color {
+    color: var(--accent-color, #6b9c6e);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.payment-form .text-primary-color:hover {
+    color: var(--primary-color, #233a1a);
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-color, #1a1a1a);
+}
+
+.form-group .input-group-text,
+.form-group .form-select,
+.form-group .form-control {
+    border-color: var(--text-light, #666);
+    border-radius: 0.375rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group .input-group-text {
+    background-color: var(--background-color, #f5f5f5);
+    color: var(--accent-color, #6b9c6e);
+}
+
+.form-group .form-control:focus,
+.form-group .form-select:focus {
+    border-color: var(--primary-color, #233a1a);
+    box-shadow: 0 0 0 0.2rem rgba(35, 58, 26, 0.25);
+}
+
+.payment-methods .form-check {
+    padding-left: 2.5em;
+    margin-bottom: 10px;
+}
+
+.payment-methods .form-check-input {
+    margin-left: -2.5em;
+}
+
+.payment-methods .form-check-label i {
+    margin-right: 8px;
+    color: var(--accent-color, #6b9c6e);
+}
+
+.credit-card-info .form-control,
+.invoice-details .form-control {
+    font-size: 0.9rem;
+}
+
+.submit-button {
+    background-color: var(--primary-color, #233a1a);
+    border-color: var(--primary-color, #233a1a);
+    padding: 12px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: var(--secondary-color, #4a6c4c);
+    border-color: var(--secondary-color, #4a6c4c);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .checkout-grid {
+        flex-direction: column-reverse; 
+    }
+
+    .booking-summary,
+    .payment-form {
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .booking-summary h2,
+    .payment-form h2 {
+        font-size: 1.25rem;
+    }
+
+    .summary-item {
+        font-size: 0.875rem;
+    }
+
+    .submit-button {
+        font-size: 1rem;
+    }
+
+    .hotel-name {
+        font-size: 1.125rem;
+    }
+}
+
+/* Thêm vào view_checkout.css */
+.hotel-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Định nghĩa màu cho sao */
+.text-warning-star {
+    color: #ffbc39;
+    font-size: 16px;
+}
+
+/* Responsive cho hình ảnh khách sạn */
+@media (max-width: 576px) {
+    .hotel-image {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+.box-in div i {
+    color: var(--secondary-color);
+}
