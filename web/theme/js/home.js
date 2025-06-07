@@ -64,8 +64,14 @@ function initHomeJS() {
             // Date picker
             $('input[name="datetimes"]').daterangepicker({
                 timePicker: false,
+                parentEl: '.baler-info',
                 startDate: moment().startOf("day"),
                 endDate: moment().add(1, "day").startOf("day"),
+                minSpan: { days: 1 }, // Không cho phép chọn ngày giống nhau
+                isInvalidDate: function(date) {
+                    return date.isBefore(moment(), 'day');
+                },
+                autoApply: true,
                 locale: {
                     format: "DD/MM/YYYY",
                     applyLabel: "Chọn",
@@ -74,18 +80,24 @@ function initHomeJS() {
                     monthNames: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
                 }
             }, function(start, end) {
+                let nights = end.diff(start, "days");
+                if (nights <= 0) {
+                    // Nếu chọn ngày giống nhau, tự động tăng ngày checkout lên 1 ngày (cả giá trị thực và UI)
+                    end = start.clone().add(1, "day");
+                    nights = 1;
+                    // Cập nhật lại giá trị thực trong daterangepicker
+                    $('input[name="datetimes"]').data('daterangepicker').setEndDate(end);
+                }
                 $("#startDateText").text(start.format("DD/MM/YYYY"));
                 $("#endDateText").text(end.format("DD/MM/YYYY"));
-                const nights = end.diff(start, "days");
-                $(".moon").html(`${nights} <i class='fa-regular fa-moon'></i>`);
+                $(".moon").html(`${nights} <i class='fas fa-moon'></i>`);
             });
-
             // Default display for initial date
             const start = moment().startOf("day");
             const end = moment().add(1, "day").startOf("day");
             $("#startDateText").text(start.format("DD/MM/YYYY"));
             $("#endDateText").text(end.format("DD/MM/YYYY"));
-            $(".moon").html(`1 <i class='fa-regular fa-moon'></i>`);
+            $(".moon").html(`1 <i class='fas fa-moon'></i>`);
 
             // Indicator handling
             const $indicator = $('.indicator');
