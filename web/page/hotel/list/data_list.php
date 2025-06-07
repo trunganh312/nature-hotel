@@ -36,6 +36,7 @@ foreach ($hotels as &$hotel) {
     $hotel['utilities'] = [];
     $images = HotelPicture::where('hopi_hotel_id', $hotel['hot_id'])->toArray();
     $hotel['images'] = [];
+    $hotel['link'] = '/hotel-' . $hotel['hot_id'] . '-' . to_slug($hotel['hot_name']) . '.html';
     foreach ($images as $image) {
         $hotel['images'][] = $Router->srcHotel($hotel['hot_id'], $image['hopi_picture']);
     }
@@ -58,18 +59,6 @@ if (!empty($selected_tags)) {
     $hotels = array_values($hotels);
 }
 
-foreach ($hotels as &$hotel) {
-    $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
-    $hotel['utilities'] = [];
-    foreach ($attrs as $attr) {
-        if ($attr['info']['param'] == 'tien-nghi') {
-            $hotel['utilities'] = array_values($attr['data']);
-            break;
-        }
-    }
-}
-unset($hotel);
-
 // Lấy danh sách tiện nghi duy nhất từ tất cả khách sạn đang hoạt động để filter
 $amenity_map = [];
 foreach ($all_hotels as $hotel) {
@@ -90,5 +79,6 @@ $amenities = [];
 foreach ($amenity_map as $value => $name) {
     $amenities[] = ['tag_id' => $value, 'tag_name' => $name];
 }
+
 
 ?>

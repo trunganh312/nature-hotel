@@ -19,3 +19,5 @@ RewriteRule ^thanks\.html$ /page/hotel/thanks/thanks.php [QSA,L]
 
 RewriteRule ^checkout\.html$ /page/hotel/checkout/checkout.php [QSA,L]
 
+RewriteRule ^hotel-([0-9]+)-([^/]+)\.html$ /page/hotel/detail/detail.php?id=$1 [QSA,L]
+

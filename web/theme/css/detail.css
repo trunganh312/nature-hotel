@@ -1,0 +1,284 @@
+  /* Custom CSS cho section */
+  #hotel-overview {
+    background-color: var(--white);
+    padding: 20px 0;
+}
+
+/* Tiêu đề khách sạn */
+#hotel-overview h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+/* Đánh giá và điểm */
+#hotel-overview .badge.bg-warning {
+    background-color: #ff5722 !important;
+    color: white !important;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+#hotel-overview .fw-bold.text-primary {
+    color: var(--primary-color) !important;
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+/* Địa chỉ */
+#hotel-overview .fa-location-dot {
+    color: var(--primary-color) !important;
+}
+
+#hotel-overview .btn-outline {
+    border: 1px solid #ddd;
+    color: var(--primary-color);
+    padding: 3px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#hotel-overview .btn-outline:hover {
+    background-color: #f5f5f5;
+}
+
+/* Phần giá và giảm giá */
+.price-section {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+}
+
+.discount-badge {
+    background-color: #f85757;
+    color: white;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.current-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f85757;
+    margin-top: 5px;
+    display: block;
+}
+
+.book-now-btn {
+    background-color: #f85757;
+    color: white;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 6px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.book-now-btn:hover {
+    background-color: #e04848;
+}
+
+/* Phần video và gallery */
+.hotel-video {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-video video {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+.play-icon:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Gallery ảnh */
+.hotel-gallery {
+    margin: 0 0;
+}
+
+.hotel-gallery .col-6 {
+    padding: 0 4px;
+}
+
+.hotel-gallery img {
+    width: 100%;
+    height: 172px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 0;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-gallery img:hover {
+    transform: scale(1.02);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    right: 4px;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-overlay .overlay-content {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gallery-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Gallery */
+#hotelGalleryModal .modal-dialog {
+    max-width: 70%;
+    margin: 30px auto;
+}
+
+#hotelGalleryModal .modal-header {
+    border-bottom: 1px solid #eee;
+    padding: 15px 20px;
+}
+
+#hotelGalleryModal .modal-title {
+    color: #222;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* Owl Carousel cho gallery chính */
+.gallery-main {
+    background-color: #000;
+}
+
+.gallery-main .item img {
+    height: 65vh;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Owl Carousel nav buttons */
+.gallery-main .owl-nav button,
+.gallery-thumbs .owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50%;
+    margin: 0 10px !important;
+}
+
+.gallery-main .owl-nav button:hover,
+.gallery-thumbs .owl-nav button:hover {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.gallery-main .owl-prev {
+    left: 10px;
+}
+
+.gallery-main .owl-next {
+    right: 10px;
+}
+
+/* Thumbnails Gallery */
+.gallery-thumbnails-container {
+    background-color: #000;
+    padding: 15px;
+}
+
+.gallery-thumbs .item {
+    cursor: pointer;
+}
+
+.gallery-thumbs .item img {
+    height: 150px;
+    object-fit: cover;
+    transition: all 0.3s;
+    opacity: 0.6;
+    border: 2px solid transparent;
+}
+
+.gallery-thumbs .owl-item.current .item img {
+    opacity: 1;
+    border-color: #ff5722;
+}
+
+.gallery-thumbs .owl-prev {
+    left: 10px;
+}
+
+.gallery-thumbs .owl-next {
+    right: 10px;
+}
+
+@media (max-width: 991px) {
+    .gallery-main .item img {
+        height: 50vh;
+    }
+}
+
+@media (max-width: 767px) {
+    .gallery-main .item img {
+        height: 40vh;
+    }
+
+    .gallery-thumbs .item img {
+        height: 45px;
+    }
+}
