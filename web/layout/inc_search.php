@@ -16,31 +16,15 @@
                                         <span>Địa điểm nổi bật</span>
                                     </div>
                                     <div class="popular-destinations">
-                                        <div class="destination" data-city-id="1" data-city-name="Hà Nội">
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://gcs.tripi.vn/tripi-assets/mytour/images/locations/hanoi.png"
-                                                alt="Hà Nội">
-                                            <div class="destination-name">Hà Nội</div>
-                                        </div>
-                                        <div class="destination" data-city-id="2" data-city-name="Đà Nẵng">
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://gcs.tripi.vn/tripi-assets/mytour/images/locations/danang.png"
-                                                alt="Đà Nẵng">
-                                            <div class="destination-name">Đà Nẵng</div>
-                                        </div>
-                                        <div class="destination" data-city-id="3" data-city-name="Đà Lạt">
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://gcs.tripi.vn/tripi-assets/mytour/images/locations/da-lat.png"
-                                                alt="Đà Lạt">
-                                            <div class="destination-name">Đà Lạt</div>
-                                        </div>
-                                        <div class="destination" data-city-id="4" data-city-name="Phú Quốc">
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://gcs.tripi.vn/tripi-assets/mytour/images/locations/phu-quoc.png"
-                                                alt="Phú Quốc">
-                                            <div class="destination-name">Phú Quốc</div>
-                                        </div>
-                                        <div class="destination" data-city-id="5" data-city-name="Hội An">
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://gcs.tripi.vn/tripi-assets/mytour/images/locations/hoi-an.png"
-                                                alt="Hội An">
-                                            <div class="destination-name">Hội An</div>
-                                        </div>
+                                        <?php if (!empty($data_city)): ?>
+                                            <?php foreach ($data_city as $city): ?>
+                                                <div class="destination" data-city-id="<?= htmlspecialchars($city['link']) ?>" data-city-name="<?= htmlspecialchars($city['name']) ?>">
+                                                    <img src="<?= $cfg_path_image ?>city/<?= $city['img'] ?>"
+                                                        alt="<?= htmlspecialchars($city['name']) ?>">
+                                                    <div class="destination-name"><?= htmlspecialchars($city['name']) ?></div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
