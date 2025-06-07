@@ -75,3 +75,54 @@
         margin-top: 15px;
     }
 }
+
+        .hotel-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            height: 100%;
+            overflow: hidden;
+            min-height: 450px;
+            max-height: 450px;
+
+        }
+        .card-img-top {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .discount-badge {
+            font-size: 14px;
+        }
+        .favorite-icon i {
+            font-size: 18px;
+        }
+        .box-service {
+            position: relative;
+        }
+.custom-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+        #customPrevBtn, #customNextBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: #ccc;
+    color: #fff;
+    z-index: 1000;
+}
+#customPrevBtn {
+    left: -25px;
+}
+#customNextBtn {
+    right: -25px;
+}

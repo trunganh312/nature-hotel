@@ -1,4 +1,4 @@
-    <div class="ok">
+    <div class="checkout">
         <div class="checkout-container ">
         <h1 class="section-title text-center mb-4">Đặt Phòng</h1>
         <div class="row checkout-grid">
