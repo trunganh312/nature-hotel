@@ -27,7 +27,7 @@ include('data_list.php');
                 // Khởi tạo Owl Carousel cho danh sách khách sạn
                 $(document).ready(function() {
                     // Khởi tạo Owl Carousel cho mỗi khách sạn
-                    $('.owl-carousel').each(function() {
+                    $('.list-carousel').each(function() {
                         $(this).owlCarousel({
                             items: 1,
                             loop: true,

@@ -11,7 +11,7 @@
             <?php foreach ($data_city as $city): 
                     $name = $city['name'];
                     $count = $city['value'];
-                    $img = isset($city_images[$name]) ? $city_images[$name]['img'] : $cfg_default_image;
+                    $img = $cfg_path_image . 'city/' . $city['img'];
                     $link = $city['link'];
                 ?>
                 <div class="col-xl-4 col-lg-4 col-md-6">

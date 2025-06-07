@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="image-container">
-                            <div class="owl-carousel owl-theme" id="carousel-<?= $hotel['hot_id'] ?>">
+                            <div class="owl-carousel owl-theme list-carousel" id="carousel-<?= $hotel['hot_id'] ?>">
                                 <div class="item">
                                     <img src="<?= $cfg_default_image ?>" alt="<?= $hotel['hot_name'] ?>" class="hotel-image">
                                 </div>

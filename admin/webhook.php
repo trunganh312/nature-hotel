@@ -1,8 +1,9 @@
 <?php
-
 use src\Facades\DB;
 use src\Models\Hotel;
+use src\Models\HotelPicture;
 use src\Models\Room;
+use src\Models\RoomPicture;
 use src\Services\HotelService;
 
 define('PATH_ROOT', realpath(__DIR__ .'/..'));
@@ -11,6 +12,61 @@ require_once(PATH_ROOT .'/vendor/autoload.php');
 
 require_once(PATH_CORE . '/Config/constants.php');
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+// Nếu request là POST và có file upload (tên trường là 'file')
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
+    $id = $_POST['id'] ?? null;
+    $type = $_POST['type'] ?? null;
+    if($type == 'hotel') {
+        $hotel_id = $id;
+        // Lấy thông tin khách sạn
+        $hotel = Hotel::where('hot_id_mapping', $hotel_id)->getOne();
+        if(!$hotel) {
+            exit;
+        }
+        $uploadDir = realpath(__DIR__ .'/..') . '/uploads/hotel/' . $hotel['hot_id'] . '/';
+    } else {
+        $room_id = $id;
+        $room = Room::where('roo_id_mapping', $room_id)->getOne();
+        if(!$room) {
+            exit;
+        }
+        $uploadDir = realpath(__DIR__ .'/..') . '/uploads/room/' . $room['roo_id'] . '/';
+    }
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+    $file = $_FILES['file'];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        exit;
+    }
+    if (!in_array($file['type'], $allowedTypes)) {
+        exit;
+    }
+    $filename = basename($file['name']);
+    $targetPath = $uploadDir . $filename;
+    if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
+        exit;
+    }
+    // Upload thành công thì lưu vào DB
+    if($type == 'hotel') {
+        $payload = [
+            'hopi_hotel_id' => $hotel['hot_id'],
+            'hopi_picture'  => $filename,
+        ];
+        HotelPicture::insert($payload);
+    } else {
+        $payload = [
+            'rop_room_id' => $room['roo_id'],
+            'rop_picture' => $filename,
+        ];
+        RoomPicture::insert($payload);
+    }
+    exit;
+}
+// --- Kết thúc xử lý upload file ảnh ---
+
 /**
  * Class Webhook
  * Xử lý các webhook cho hệ thống Vietgoing CRM
@@ -82,6 +138,10 @@ class Webhook {
 
         try {
             switch ($event) {
+                // Nhận và lưu ảnh từ webhook
+                case 'upload_image':
+                    $this->handleUploadImage($data);
+                    break;
                 // Cập nhật thông tin khách sạn
                 case 'update_hotel':
                     $this->handleUpdateHotel($data);
@@ -459,6 +519,39 @@ class Webhook {
         }
     }
 
+    /**
+     * Xử lý upload ảnh từ webhook
+     * @param array $data
+     */
+    protected function handleUploadImage($data)
+    {
+        // Kiểm tra dữ liệu đầu vào
+        if (empty($data['image']) || empty($data['filename'])) {
+            $this->writeLog('Thiếu dữ liệu ảnh hoặc tên file');
+            $this->response(400, ['error' => 'Missing image or filename']);
+        }
+        // Giải mã base64
+        $imageData = base64_decode($data['image']);
+        if ($imageData === false) {
+            $this->writeLog('Lỗi giải mã base64 ảnh');
+            $this->response(400, ['error' => 'Invalid image data']);
+        }
+        // Đường dẫn lưu ảnh (ví dụ: /uploads/webhook/)
+        $uploadDir = PATH_ROOT . '/uploads/webhook/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        $filePath = $uploadDir . basename($data['filename']);
+        // Lưu file
+        if (file_put_contents($filePath, $imageData) === false) {
+            $this->writeLog('Lỗi lưu file ảnh: ' . $filePath);
+            $this->response(500, ['error' => 'Failed to save image']);
+        }
+        $this->writeLog('Đã nhận và lưu ảnh: ' . $filePath);
+        // Trả về đường dẫn ảnh (tùy chỉnh theo domain)
+        $imageUrl = '/uploads/webhook/' . basename($data['filename']);
+        $this->response(200, ['status' => 'success', 'url' => $imageUrl]);
+    }
 }
 $input = file_get_contents('php://input');
 $handler = new Webhook();
