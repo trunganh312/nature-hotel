@@ -24,6 +24,20 @@ function initHomeJS() {
                 let value = parseInt($span.text());
                 value += $(this).hasClass('plus') ? 1 : -1;
                 if (value >= 0) $span.text(value);
+
+                // Nếu là tăng/giảm số phòng thì cập nhật số người lớn tối thiểu = số phòng
+                const $counter = $(this).closest('.counter');
+                const $detailItem = $counter.closest('.detail-item');
+                const label = $detailItem.find('label').text().trim();
+                if (label === 'Số phòng') {
+                    const rooms = parseInt($span.text());
+                    // Tìm đến detail-item người lớn cùng panel
+                    const $adultsSpan = $detailItem.parent().find('.detail-item:nth-child(2) span');
+                    let adults = parseInt($adultsSpan.text());
+                    if (adults < rooms) {
+                        $adultsSpan.text(rooms);
+                    }
+                }
                 updateSelectedOption();
             });
 
@@ -59,6 +73,45 @@ function initHomeJS() {
                 $('#locationInput').val(cityName);
                 $('#selectedLocationId').val(cityId);
                 $('.dropdown-panel').removeClass('show');
+                // Tự động focus và mở datepicker
+                $('input[name="datetimes"]').focus().click();
+            });
+
+            // Sự kiện click nút search
+            $('.btnSreach').on('click', function() {
+                const cityName = $('#locationInput').val();
+                let cityLink = '';
+                $('.destination').each(function() {
+                    if ($(this).data('city-name') === cityName) {
+                        cityLink = $(this).data('link');
+                    }
+                });
+                const startDate = $("#startDateText").text();
+                const endDate = $("#endDateText").text();
+                const roomQty = $('#roomQty').val();
+                if(roomQty == 0) {
+                    alert('Số lượng phòng không được bằng 0');
+                    return;
+                }
+                const adultQty = $('#adultQty').val();
+                const childQty = $('#childQty').val();
+                if (parseInt(adultQty) < parseInt(roomQty)) {
+                    alert('Số người lớn phải lớn hơn hoặc bằng số phòng!');
+                    return;
+                }
+                if (!cityLink) {
+                    $('#locationInput').focus();
+                    return;
+                }
+                // Chuyển trang với tham số
+                const params = new URLSearchParams({
+                    checkin: startDate,
+                    checkout: endDate,
+                    roomQty: roomQty,
+                    adultQty: adultQty,
+                    childQty: childQty
+                });
+                window.location.href = cityLink + '?' + params.toString();
             });
 
             // Date picker
@@ -105,7 +158,7 @@ function initHomeJS() {
             
             $('#locationInput').on('focus click', () => moveIndicator(0));
             $('input[name="datetimes"]').on('focus click', () => moveIndicator(1));
-            $('#select_op').on('click', () => moveIndicator(2));
+            $('.room-selector').on('focus click', () => moveIndicator(2));
             
             $(document).on('click', (e) => {
                 if (!$(e.target).closest('.search-place').length) {

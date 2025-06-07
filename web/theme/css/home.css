@@ -926,8 +926,7 @@ iframe {
 .room-selector .dropdown-menu {
     display: none;
     position: absolute;
-    top: 55px;
-    left: 0;
+    top: 100%;
     width: 300px;
     background: white;
     border: 1px solid #e2e8f0;

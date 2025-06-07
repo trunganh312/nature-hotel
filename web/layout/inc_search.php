@@ -18,7 +18,7 @@
                                     <div class="popular-destinations">
                                         <?php if (!empty($data_city)): ?>
                                             <?php foreach ($data_city as $city): ?>
-                                                <div class="destination" data-city-id="<?= htmlspecialchars($city['link']) ?>" data-city-name="<?= htmlspecialchars($city['name']) ?>">
+                                                <div class="destination" data-link="<?= htmlspecialchars($city['link']) ?>" data-city-name="<?= htmlspecialchars($city['name']) ?>">
                                                     <img src="<?= $cfg_path_image ?>city/<?= $city['img'] ?>"
                                                         alt="<?= htmlspecialchars($city['name']) ?>">
                                                     <div class="destination-name"><?= htmlspecialchars($city['name']) ?></div>
@@ -51,6 +51,9 @@
                     <div class="room-selector">
                         <h6>Số phòng, số khách</h6>
                         <div class="selected-option" id="selectedOption">1 phòng, 2 người lớn, 0 trẻ em</div>
+                        <input type="hidden" id="roomQty" name="roomQty" value="1">
+                        <input type="hidden" id="adultQty" name="adultQty" value="2">
+                        <input type="hidden" id="childQty" name="childQty" value="0">
                         <div class="dropdown-menu">
                             <div class="option">
                                 <h4>Đi một mình</h4>
