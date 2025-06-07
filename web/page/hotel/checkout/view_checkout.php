@@ -1,9 +1,11 @@
-    <div class="checkout-container container">
+    <div class="ok">
+        <div class="checkout-container ">
         <h1 class="section-title text-center mb-4">Đặt Phòng</h1>
         <div class="row checkout-grid">
-            <!-- Bên trái: Thông tin khách sạn và Thông tin liên hệ -->
+            <!-- Thông tin khách sạn và Thông tin liên hệ -->
             <div class="col-lg-8">
                 <!-- Thông tin khách sạn -->
+                 <div class="payment-form">
                 <div class=" mb-4">
                     <div class="card">
                         <div class="card-body">
@@ -35,14 +37,13 @@
                         </div>
                     </div>
                 </div>
+                </div>
                 <!-- Thông tin liên hệ -->
                 <div class="payment-form">
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="mb-3 " style='font-weight: bold;'>Thông tin liên hệ</h2>
-                            <div class="text-center mb-3">
-                                <a href="/login.php" class="text-primary-color">Đăng nhập để đặt phòng nhanh hơn</a>
-                            </div>
+                            
                             <form action="/process_payment.php" method="POST" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -147,7 +148,7 @@
                 </div>
             </div>
 
-            <!-- Bên phải: Thông tin các hạng phòng -->
+            <!-- Thông tin các hạng phòng -->
             <div class="col-lg-4 booking-summary">
                 <div class="card">
                     <div class="card-body">
@@ -184,4 +185,5 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>

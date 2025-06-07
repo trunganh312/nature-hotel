@@ -1,11 +1,17 @@
-/* Container */
+.ok {
+    background: #f7f7f7;
+    padding: 1px 0;
+}
 .checkout-container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 15px;
+        font-family: var(--bs-font-sans-serif, Arial, sans-serif);
+    color: var(--text-color, #1a1a1a);
 }
 
 /* Tiêu đề */
+
 .section-title {
     color: var(--primary-color, #233a1a);
     font-weight: 600;
@@ -43,8 +49,8 @@
 }
 
 .room-image {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    max-height: 100px;
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -84,13 +90,17 @@
 
 /* Form thanh toán */
 .payment-form {
-    background: var(--white, #fff);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .payment-form .card-body {
     padding: 25px;
+    /* background:#b6ee35; */
+    border-radius: 8px;
+
+
 }
 
 .payment-form h2 {
