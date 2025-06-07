@@ -8,9 +8,18 @@
                     <div class="col-md-4">
                         <div class="image-container">
                             <div class="owl-carousel owl-theme list-carousel" id="carousel-<?= $hotel['hot_id'] ?>">
-                                <div class="item">
-                                    <img src="<?= $cfg_default_image ?>" alt="<?= $hotel['hot_name'] ?>" class="hotel-image">
-                                </div>
+                             <!-- Lặp ảnh, nếu không có thì để ảnh mặc định -->
+                             <?php if (!empty($hotel['images'])): ?>
+                                 <?php foreach ($hotel['images'] as $image): ?>
+                                     <div class="item">
+                                         <img src="<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($hotel['hot_name']) ?>" class="hotel-image">
+                                     </div>
+                                 <?php endforeach; ?>
+                             <?php else: ?>
+                                 <div class="item">
+                                     <img src="<?= htmlspecialchars($cfg_default_image) ?>" alt="<?= htmlspecialchars($hotel['hot_name']) ?>" class="hotel-image">
+                                 </div>
+                             <?php endif; ?>
                             </div>
                         </div>
                     </div>

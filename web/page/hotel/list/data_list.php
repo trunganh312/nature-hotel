@@ -1,6 +1,7 @@
 <?
 include('../../../Core/Config/require_web.php');
 use src\Models\Hotel;
+use src\Models\HotelPicture;
 
 $id = getValue('city');
 
@@ -33,6 +34,11 @@ if ($id) {
 foreach ($hotels as &$hotel) {
     $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
     $hotel['utilities'] = [];
+    $images = HotelPicture::where('hopi_hotel_id', $hotel['hot_id'])->toArray();
+    $hotel['images'] = [];
+    foreach ($images as $image) {
+        $hotel['images'][] = $Router->srcHotel($hotel['hot_id'], $image['hopi_picture']);
+    }
     foreach ($attrs as $attr) {
         if ($attr['info']['param'] == 'tien-nghi') {
             $hotel['utilities'] = array_values($attr['data']);
