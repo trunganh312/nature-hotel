@@ -14,3 +14,8 @@ ErrorDocument 404 /404.php
 RewriteRule ^khach-san\.html$ /page/hotel/list/list.php [QSA,L]
 
 RewriteRule ^city-([0-9]+)-([^/]+)\.html$ /page/hotel/list/list.php?city=$1 [QSA,L]
+
+RewriteRule ^thanks\.html$ /page/hotel/thanks/thanks.php [QSA,L]
+
+RewriteRule ^checkout\.html$ /page/hotel/checkout/checkout.php [QSA,L]
+
