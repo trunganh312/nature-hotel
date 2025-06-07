@@ -30,7 +30,7 @@ include('page/home/data_home.php');
     ?>
     
     <?
-    include('page/hotel/list/view_list.php');
+    include('page/hotel/detail/view_detail.php');
     ?>
     <?
     include('layout/inc_footer.php');
