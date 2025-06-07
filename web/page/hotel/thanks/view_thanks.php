@@ -1,4 +1,5 @@
-    <div class="box">
+    <div class='thanks'>
+        <div class="box-thanks">
         <header class="thank">
             <span class="checkmark">✔</span>
             <h1>Cảm ơn Quý khách đã sử dụng dịch vụ tại NatureRetreat.com</h1>
@@ -13,7 +14,7 @@
                     <p><strong>Họ và tên:</strong> Chu Văn Chu</p>
                     <p><strong>Điện thoại:</strong> 0962588925</p>
                     <p><strong>Email:</strong> admin@gmail.com</p>
-                    <p><strong>Vé của riêng:</strong> uef</p>
+                    <p><strong>Vé của riêng:</strong> Superior King</p>
                 </div>
 
                 <div class="hotel-info">
@@ -50,4 +51,5 @@
             <p>Thông tin chi tiết đơn đặt phòng đã được gửi tới địa chỉ Email: <strong>admin@gmail.com</strong></p>
             <a href="#" class="home-link">Quý về trang chủ</a>
         </footer>
+    </div>
     </div>

@@ -1,4 +1,14 @@
-.box {
+.thanks {
+    font-family: 'Roboto', Arial, sans-serif;
+    /* background-color: #e8f5e9;  */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    padding: 1px 0;
+}
+
+.thanks .box-thanks {
     max-width: 1000px;
     margin: 40px auto;
     padding: 30px;
@@ -10,7 +20,7 @@
     overflow: hidden;
 }
 
-.box::before {
+.thanks .box-thanks::before {
     content: '';
     position: absolute;
     top: 0;
@@ -35,7 +45,7 @@
     justify-content: center;
     width: 50px;
     height: 50px;
-    background-color: #4caf50; /* Brighter green for checkmark */
+    background-color: #4caf50; 
     color: #fff;
     font-size: 28px;
     border-radius: 50%;
@@ -43,7 +53,7 @@
 }
 
 .checkmark:hover {
-    transform: scale(1.1); /* Subtle hover effect */
+    transform: scale(1.1); 
 }
 
 h1 {
