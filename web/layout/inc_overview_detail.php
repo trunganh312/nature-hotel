@@ -18,7 +18,9 @@
     <!-- Slideshow hình ảnh và video -->
     <div class="row position-relative">
         <div class="col-12 col-lg-6">
-            <img src="<?= $image_1 ?>" class="img-fluid rounded" alt="Hotel Image 1">
+            <div class="main-image-container">
+                <img src="<?= $image_1 ?>" class="img-fluid rounded w-100 h-100" alt="Hotel Image 1">
+            </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="row hotel-gallery">
@@ -85,3 +87,11 @@
         </div>
     </div>
 </div>
+
+<style>
+    .main-image-container {
+        height: 353px;
+        width: 100%;
+        overflow: hidden;
+    }
+</style>
