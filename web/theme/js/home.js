@@ -244,6 +244,31 @@ function initHomeJS() {
             $img.attr('src', $img.data('src')).removeAttr('data-src');
         });
 
+        var owl = $(".home-carousel");
+
+        owl.owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: false,
+            dots: false,
+            slideBy: 1,
+            responsive: {
+            0: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 },
+            1200: { items: 4 }
+            }
+        });
+
+        // Custom next/prev buttons
+        $("#customNextBtn").click(function() {
+            owl.trigger('next.owl.carousel');
+        });
+
+        $("#customPrevBtn").click(function() {
+            owl.trigger('prev.owl.carousel');
+        });
+
     } catch (error) {
         console.error('Error in home.js:', error);
     }

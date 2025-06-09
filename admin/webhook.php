@@ -1,8 +1,9 @@
 <?php
-
 use src\Facades\DB;
 use src\Models\Hotel;
+use src\Models\HotelPicture;
 use src\Models\Room;
+use src\Models\RoomPicture;
 use src\Services\HotelService;
 
 define('PATH_ROOT', realpath(__DIR__ .'/..'));
@@ -11,6 +12,47 @@ require_once(PATH_ROOT .'/vendor/autoload.php');
 
 require_once(PATH_CORE . '/Config/constants.php');
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+// Nếu request là POST và có file upload (tên trường là 'file')
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
+    $id = $_POST['id'] ?? null;
+    $type = $_POST['type'] ?? null;
+    if($type == 'hotel') {
+        $hotel_id = $id;
+        // Lấy thông tin khách sạn
+        $hotel = Hotel::where('hot_id_mapping', $hotel_id)->getOne();
+        if(!$hotel) {
+            exit;
+        }
+        $uploadDir = realpath(__DIR__ .'/..') . '/uploads/hotel/' . $hotel['hot_id'] . '/';
+    } else {
+        $room_id = $id;
+        $room = Room::where('roo_id_mapping', $room_id)->getOne();
+        if(!$room) {
+            exit;
+        }
+        $uploadDir = realpath(__DIR__ .'/..') . '/uploads/room/' . $room['roo_id'] . '/';
+    }
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+    $file = $_FILES['file'];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        exit;
+    }
+    if (!in_array($file['type'], $allowedTypes)) {
+        exit;
+    }
+    $filename = basename($file['name']);
+    $targetPath = $uploadDir . $filename;
+    if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
+        exit;
+    }
+    exit;
+}
+// --- Kết thúc xử lý upload file ảnh ---
+
 /**
  * Class Webhook
  * Xử lý các webhook cho hệ thống Vietgoing CRM
@@ -82,6 +124,10 @@ class Webhook {
 
         try {
             switch ($event) {
+                // Nhận và lưu ảnh từ webhook
+                case 'update_image':
+                    $this->updateImage($data);
+                    break;
                 // Cập nhật thông tin khách sạn
                 case 'update_hotel':
                     $this->handleUpdateHotel($data);
@@ -104,6 +150,9 @@ class Webhook {
                     break;
                 case 'info_attribute':
                     $this->updateAttribute($data);
+                    break;
+                case 'delete_image':
+                    $this->deleteImage($data);
                     break;
                 default:
                     $this->writeLog('Sự kiện không được hỗ trợ: ' . $event);
@@ -459,6 +508,116 @@ class Webhook {
         }
     }
 
+     /**
+     * Cập nhật ảnh khách sạn   
+     * @param array $data
+     */
+    protected function updateImage($data)
+    {
+        $this->writeLog('update_image: ' . json_encode($data));
+        $type = $data['type'];
+        $id = $data['id'];
+        $picture_main = $data['picture_main'];
+        $list_picture = $data['list_picture'];
+        if ($type == 'hotel') {
+            // Lấy thông tin khách sạn
+            $hotel = DB::query("SELECT * FROM hotel WHERE hot_id_mapping = {$id}")->getOne();
+            if (!$hotel) {
+                $this->writeLog("Không tìm thấy khách sạn với id={$id}");
+                return;
+            }
+            $this->updateHotelImage($hotel['hot_id'], $picture_main, $list_picture);
+        } else {
+            // Lấy thông tin phòng
+            $room = DB::query("SELECT * FROM room WHERE roo_id_mapping = {$id}")->getOne();
+            if (!$room) {
+                $this->writeLog("Không tìm thấy phòng với id={$id}");
+                return;
+            }
+            $this->updateRoomImage($room['roo_id'], $picture_main, $list_picture);
+        }
+    }
+
+    protected function updateHotelImage($id, $picture_main, $list_picture) {
+        // Update ảnh khách sạn
+        $picture_main = $picture_main;
+        DB::query("UPDATE hotel SET hot_picture = '{$picture_main}' WHERE hot_id = {$id}");
+
+        // Update ảnh phụ
+        DB::query("DELETE FROM hotel_picture WHERE  hopi_hotel_id = {$id}");
+        foreach ($list_picture as $picture) {
+            $image = $picture['hopi_picture'];
+            $order = $picture['hopi_order'];
+            $group = $picture['hopi_group'];
+            DB::query("INSERT INTO hotel_picture (hopi_hotel_id, hopi_picture, hopi_order, hopi_group) VALUES ({$id}, '{$image}', {$order}, {$group})");
+        }
+        // Log
+        $this->writeLog("Cập nhật ảnh khách sạn: id={$id}, picture_main={$picture_main}, list_picture=" . json_encode($list_picture));
+    }
+
+    protected function updateRoomImage($id, $picture_main, $list_picture) {
+        $picture_main = $picture_main;
+        // Update ảnh phòng
+        DB::query("UPDATE room SET roo_picture = '{$picture_main}' WHERE roo_id = {$id}");
+
+        // Update ảnh phụ
+        DB::query("DELETE FROM room_picture WHERE  rop_room_id = {$id}");
+        foreach ($list_picture as $picture) {
+            $image = $picture['rop_picture'];
+            $order = $picture['rop_order'];
+            DB::query("INSERT INTO room_picture (rop_room_id, rop_picture, rop_order) VALUES ({$id}, '{$image}', {$order})");
+        }
+        // Log
+        $this->writeLog("Cập nhật ảnh phòng: id={$id}, picture_main={$picture_main}, list_picture=" . json_encode($list_picture));
+    }
+
+      /**
+     * Xóa ảnh hạng phòng và KS
+     * @param array $data
+     */
+    protected function deleteImage($data) {
+        $this->writeLog("Xóa ảnh: " . json_encode($data));
+        $type = $data['type'];
+        $id = $data['id'];
+        $picture = $data['picture'];
+        if ($type == 'hotel') {
+            $this->deleteHotelImage($id, $picture);
+        } else {
+            $this->deleteRoomImage($id, $picture);
+        }
+    }
+
+    protected function deleteHotelImage($id, $picture) {
+        // Lấy khách sạn
+        $hotel = DB::query("SELECT * FROM hotel WHERE hot_id_mapping = {$id}")->getOne();
+        if (!$hotel) {
+            $this->writeLog("Không tìm thấy khách sạn với id={$id}");
+            return;
+        }
+        // Xóa trong DB
+        DB::query("DELETE FROM hotel_picture WHERE hopi_hotel_id = {$hotel['hot_id']} AND hopi_picture = '{$picture}'");
+        // Xóa ảnh trong thư mục
+        $uploadDir = realpath(__DIR__ .'/..') . '/uploads/hotel/' . $hotel['hot_id'] . '/' . $picture;
+        if (file_exists($uploadDir)) {
+            unlink($uploadDir);
+        }
+    }
+
+    protected function deleteRoomImage($id, $picture) {
+        // Lấy phòng
+        $room = DB::query("SELECT * FROM room WHERE roo_id_mapping = {$id}")->getOne();
+        if (!$room) {
+            $this->writeLog("Không tìm thấy phòng với id={$id}");
+            return;
+        }
+        // Xóa trong DB
+        DB::query("DELETE FROM room_picture WHERE rop_room_id = {$room['roo_id']} AND rop_picture = '{$picture}'");
+        // Xóa ảnh trong thư mục
+        $uploadDir = realpath(__DIR__ .'/..') . '/uploads/hotel/' . $room['roo_id'] . '/' . $picture;
+        if (file_exists($uploadDir)) {
+            unlink($uploadDir);
+        }
+    }
 }
 $input = file_get_contents('php://input');
 $handler = new Webhook();

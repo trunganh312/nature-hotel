@@ -9,6 +9,7 @@ if (php_sapi_name() === 'cli' || defined('STDIN')) {
 // Bao gồm file cấu hình
 include('../../../Core/Config/require_web.php');
 use src\Models\Hotel;
+use src\Models\HotelPicture;
 
 // Lấy tham số city từ request
 $id = getValue('city');
@@ -67,6 +68,12 @@ if ($id) {
 foreach ($hotels as &$hotel) {
     $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
     $hotel['utilities'] = [];
+    $images = HotelPicture::where('hopi_hotel_id', $hotel['hot_id'])->toArray();
+    $hotel['images'] = [];
+    $hotel['link'] = '/hotel-' . $hotel['hot_id'] . '-' . to_slug($hotel['hot_name']) . '.html';
+    foreach ($images as $image) {
+        $hotel['images'][] = $Router->srcHotel($hotel['hot_id'], $image['hopi_picture']);
+    }
     foreach ($attrs as $attr) {
         if ($attr['info']['param'] == 'tien-nghi') {
             $hotel['utilities'] = array_values($attr['data']);
@@ -86,7 +93,7 @@ if (!empty($selected_tags)) {
     $hotels = array_values($hotels);
 }
 
-// Lấy danh sách tiện nghi duy nhất
+// Lấy danh sách tiện nghi duy nhất từ tất cả khách sạn đang hoạt động để filter
 $amenity_map = [];
 foreach ($all_hotels as $hotel) {
     $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
@@ -106,5 +113,6 @@ $amenities = [];
 foreach ($amenity_map as $value => $name) {
     $amenities[] = ['tag_id' => $value, 'tag_name' => $name];
 }
+
 
 ?>

@@ -6,19 +6,32 @@
             <div class="hotel-card mb-4">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="image-container">
-                            <div class="owl-carousel owl-theme" id="carousel-<?= $hotel['hot_id'] ?>">
-                                <div class="item">
-                                    <img src="<?= $cfg_default_image ?>" alt="<?= $hotel['hot_name'] ?>" class="hotel-image">
-                                </div>
+                        <a href="<?= $hotel['link'] ?>">
+                          <div class="image-container">
+                            <div class="owl-carousel owl-theme list-carousel" id="carousel-<?= $hotel['hot_id'] ?>">
+                             <!-- Lặp ảnh, nếu không có thì để ảnh mặc định -->
+                             <?php if (!empty($hotel['images'])): ?>
+                                 <?php foreach ($hotel['images'] as $image): ?>
+                                     <div class="item">
+                                         <img src="<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($hotel['hot_name']) ?>" class="hotel-image">
+                                     </div>
+                                 <?php endforeach; ?>
+                             <?php else: ?>
+                                 <div class="item">
+                                     <img src="<?= htmlspecialchars($cfg_default_image) ?>" alt="<?= htmlspecialchars($hotel['hot_name']) ?>" class="hotel-image">
+                                 </div>
+                             <?php endif; ?>
                             </div>
-                        </div>
+                          </div>
+                        </a>
                     </div>
                     <div class="col-md-8">
                         <div class="hotel-content">
                             <div class="hotel-header">
                                 <div class="hotel_name_title d-flex align-items-center">
-                                    <h2 class="hotel-name me-2"><?= $hotel['hot_name'] ?></h2>
+                                    <a href="<?= $hotel['link'] ?>">
+                                        <h2 class="hotel-name me-2"><?= $hotel['hot_name'] ?></h2>
+                                    </a>
                                 </div>
                             </div>
                             <div class="row">
