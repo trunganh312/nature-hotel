@@ -4,8 +4,9 @@
   --secondary-color: #4a6c4c;
 
   /* Màu bổ sung */
-  --accent-color: #6b9c6e; /* Màu nhấn nhá, sáng hơn màu phụ */
-  --accent-color-hover: #cee1ce;
+  --accent-color: #48BB78; /* Màu nhấn nhá, sáng hơn màu phụ */
+  --accent-color-hover: #e8fae8;
+  --boder_bottom: #e2e8f0;
   --background-color: #f5f5f5; /* Màu nền sáng */
   --text-color: #1a1a1a; /* Màu chữ chính */
   --text-light: #666666; /* Màu chữ phụ */
@@ -135,4 +136,10 @@
     padding: 0.875rem 1.75rem;
     font-size: 1rem;
   }
+}
+
+/* Class cho booking-info khi dừng scroll */
+.is-stopped {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
