@@ -13,7 +13,7 @@ $Layout->setTitle($cfg_website['con_meta_title'])
         ->setJS(['page.home']);
 
 $hotels = Hotel::where('hot_active', 1)
-    ->select('cit_name', 'cit_id', 'cit_image', 'hot_id', 'hot_name', 'hot_address_full')
+    ->select('cit_name', 'cit_id', 'cit_image', 'hot_id', 'hot_name', 'hot_address_full', 'hot_picture')
     ->join('cities', 'hot_city', 'cit_id')
     ->toArray();
 
@@ -37,8 +37,7 @@ $data_city = array_values($data_city);
 $data_hotels = [];
 foreach ($hotels as $hotel) {
     // Lấy ảnh đầu tiên của khách sạn từ bảng hotel_picture
-    $picture = HotelPicture::where('hopi_hotel_id', $hotel['hot_id'])->getOne();
-    $img = isset($picture) ? $Router->srcHotel($hotel['hot_id'], $picture['hopi_picture']) : $cfg_default_image;
+    $img = isset($hotel['hot_picture']) ? $Router->srcHotel($hotel['hot_id'], $hotel['hot_picture']) : $cfg_default_image;
 
     $slug = to_slug($hotel['hot_name']);
     $data_hotels[] = [
