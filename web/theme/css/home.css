@@ -913,6 +913,8 @@ iframe {
     color: rgba(255, 255, 255, 0.8);
 }
 
+
+
 .room-selector {
     /* position: relative; */
     cursor: pointer;
@@ -1097,3 +1099,34 @@ iframe {
 .daterangepicker .calendar-table .prev span {
     border-color: var(--primary-color) !important;
 } 
+
+.place {
+    border-right: 1px solid #e2e8f0;
+}
+
+#select_op {
+    border-left: 1px solid #e2e8f0;
+}
+@media (max-width: 875px) {
+  .search-place {
+    flex-direction: column;
+  }
+.place, .date, .room-selector {
+    margin: 10px 0;
+  }
+  .place {
+    border-right: none;
+}
+#select_op {
+    border-left: none;
+}
+.btnSreach {
+    padding: 0 30%;
+}
+
+.daterangepicker {
+    right: -6% !important;
+    top: 101% !important;
+}
+}
+

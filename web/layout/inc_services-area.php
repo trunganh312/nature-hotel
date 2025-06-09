@@ -9,7 +9,7 @@
         <div class="box-service">
             <div class="owl-carousel owl-theme">
             <!-- Hotel 1 -->
-            <div class="item">
+            <div class="item-area">
                 <div class="card-area hotel-card">
                     <div class="position-relative">
                         <img src="https://ak-d.tripcdn.com/images/0203y12000buje9xu57DA_W_1125_2436_R5.webp" class="card-img-top" alt="The Shells Resort & Spa Phú Quốc">
@@ -28,7 +28,7 @@
             </div>
 
             <!-- Hotel 2 -->
-            <div class="item">
+            <div class="item-area">
                 <div class="card-area hotel-card">
                     <div class="position-relative">
                         <img src="https://ak-d.tripcdn.com/images/0203y12000buje9xu57DA_W_1125_2436_R5.webp" class="card-img-top" alt="The Shells Resort & Spa Phú Quốc">
@@ -47,7 +47,7 @@
             </div>
 
             <!-- Hotel 3 -->
-            <div class="item">
+            <div class="item-area">
                 <div class="card-area hotel-card">
                     <div class="position-relative">
                         <img src="https://ak-d.tripcdn.com/images/0203y12000buje9xu57DA_W_1125_2436_R5.webp" class="card-img-top" alt="The Shells Resort & Spa Phú Quốc">
@@ -66,7 +66,7 @@
             </div>
 
             <!-- Hotel 4 -->
-            <div class="item">
+            <div class="item-area">
                 <div class="card-area hotel-card">
                     <div class="position-relative">
                         <img src="https://ak-d.tripcdn.com/images/0203y12000buje9xu57DA_W_1125_2436_R5.webp" class="card-img-top" alt="The Shells Resort & Spa Phú Quốc">

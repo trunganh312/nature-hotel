@@ -1,5 +1,4 @@
 <?php
-// home-video.php
 ?>
 <section class="home-video py-5" style="background-color: var(--background-color);">
     <div class="container">

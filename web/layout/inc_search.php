@@ -3,7 +3,7 @@
         <h2>Khách sạn</h2>
         <div class="baler-info">
             <div class="row search-place">
-                <div class="col-md-4" style="border-right: 1px solid #e2e8f0">
+                <div class="col-md-4">
                     <div class="place">
                         <label for="locationInput">Địa điểm</label>
                         <input type="text" class="search-input ui-widget" id="locationInput"
@@ -47,7 +47,7 @@
                         <input type="text" name="datetimes" style="opacity: 0; position: absolute; width: 100%;" />
                     </div>
                 </div>
-                <div class="col-md-4" id="select_op" style="border-left: 1px solid #e2e8f0; max-width: 250px">
+                 <div class="col-md-4" id="select_op" style=" max-width: 250px; margin-right: 20px;">
                     <div class="room-selector">
                         <h6>Số phòng, số khách</h6>
                         <div class="selected-option" id="selectedOption">1 phòng, 2 người lớn, 0 trẻ em</div>
@@ -145,7 +145,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1">
                     <div class="btnSreach">
                         <i class="fas fa-search"></i>
                     </div>

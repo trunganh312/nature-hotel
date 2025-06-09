@@ -1,10 +1,43 @@
-<?
+<?php
+// File: C:\xampp\htdocs\nature-hotel\web\data_list.php
+
+// Kiểm tra nếu được gọi trực tiếp qua fetch
+if (php_sapi_name() === 'cli' || defined('STDIN')) {
+    exit;
+}
+
+// Bao gồm file cấu hình
 include('../../../Core/Config/require_web.php');
 use src\Models\Hotel;
 
+// Lấy tham số city từ request
 $id = getValue('city');
 
-$all_hotels = Hotel::where('hot_active', 1)->toArray();
+// Lấy tất cả khách sạn
+$all_hotels = Hotel::where('hot_active', 1)
+    ->select('hot_id', 'hot_city', 'hot_name', 'hot_phone', 'hot_email', 'cit_name', 'cit_id', 'cit_image')
+    ->join('cities', 'hot_city', 'cit_id')
+    ->toArray();
+
+// Tạo danh sách thành phố ($data_city)
+$data_city = [];
+foreach ($all_hotels as $hotel) {
+    $name = $hotel['cit_name'];
+    if (!isset($data_city[$name])) {
+        $slug = to_slug($name);
+        $data_city[$name] = [
+            'name' => $name,
+            'value' => 1,
+            'link' => '/city-' . $hotel['cit_id'] . '-' . $slug . '.html',
+            'img' => $hotel['cit_image']
+        ];
+    } else {
+        $data_city[$name]['value']++;
+    }
+}
+$data_city = array_values($data_city);
+
+// Tạo danh sách thành phố ($cities) cho bộ lọc
 $cities = [];
 foreach ($all_hotels as $hotel) {
     $cid = $hotel['hot_city'];
@@ -14,22 +47,23 @@ foreach ($all_hotels as $hotel) {
         $cities[$cid] = ['city_id' => $cid, 'city_name' => $cname, 'city_link' => '/city-' . $cid . '-' . $slug . '.html'];
     }
 }
-$cities = array_values($cities); // Đảm bảo là mảng tuần tự cho JS
+$cities = array_values($cities);
 
 // Lấy filter tags từ URL
-$tags = getValue('tags', 'str', 'GET', ''); // VD: "1,2,3"
+$tags = getValue('tags', 'str', 'GET', '');
 $selected_tags = array_filter(explode(',', $tags));
 
-// Sau đó mới lọc danh sách khách sạn theo tỉnh nếu có
+// Lọc danh sách khách sạn theo tỉnh nếu có
 if ($id) {
     $hotels = Hotel::where('hot_active', 1)
         ->where('hot_city', $id)
+        ->select('hot_id', 'hot_city', 'hot_name', 'hot_phone', 'hot_email')
         ->toArray();
 } else {
     $hotels = $all_hotels;
 }
 
-// Lặp qua từng khách sạn để lấy tiện nghi và dịch vụ
+// Lặp qua từng khách sạn để lấy tiện nghi
 foreach ($hotels as &$hotel) {
     $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
     $hotel['utilities'] = [];
@@ -42,7 +76,7 @@ foreach ($hotels as &$hotel) {
 }
 unset($hotel);
 
-// Lọc tiếp theo tags nếu có
+// Lọc theo tags nếu có
 if (!empty($selected_tags)) {
     $hotels = array_filter($hotels, function($hotel) use ($selected_tags) {
         if (empty($hotel['utilities'])) return false;
@@ -52,19 +86,7 @@ if (!empty($selected_tags)) {
     $hotels = array_values($hotels);
 }
 
-foreach ($hotels as &$hotel) {
-    $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
-    $hotel['utilities'] = [];
-    foreach ($attrs as $attr) {
-        if ($attr['info']['param'] == 'tien-nghi') {
-            $hotel['utilities'] = array_values($attr['data']);
-            break;
-        }
-    }
-}
-unset($hotel);
-
-// Lấy danh sách tiện nghi duy nhất từ tất cả khách sạn đang hoạt động để filter
+// Lấy danh sách tiện nghi duy nhất
 $amenity_map = [];
 foreach ($all_hotels as $hotel) {
     $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);

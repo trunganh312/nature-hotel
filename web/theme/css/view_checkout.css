@@ -210,7 +210,6 @@
     }
 }
 
-/* Thêm vào view_checkout.css */
 .hotel-image {
     width: 90px;
     height: 90px;
@@ -235,3 +234,5 @@
 .box-in div i {
     color: var(--secondary-color);
 }
+
+  
