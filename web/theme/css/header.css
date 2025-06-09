@@ -76,7 +76,7 @@
     }
 }
 
-        .hotel-card {
+        .item-area .hotel-card {
             border: 1px solid #ccc;
             border-radius: 10px;
             height: 100%;
