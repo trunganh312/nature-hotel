@@ -1,20 +1,7 @@
 <div class="intro-section my-4">
-    <h5 class="title-section">Giới thiệu về Seashells Phú Quốc Hotel & Spa</h5>
+    <h5 class="title-section">Giới thiệu về <?= $hotel['hot_name'] ?></h5>
     <div class="intro-content">
-        <p>Seashells Phú Quốc Hotel & Spa là một thiên đường nghỉ dưỡng sang trọng nằm bên bờ biển tuyệt đẹp của Phú
-            Quốc, Việt Nam. Với thiết kế hiện đại kết hợp hài hòa với thiên nhiên, khách sạn mang đến trải nghiệm thư
-            giãn tuyệt vời cho du khách từ khắp nơi trên thế giới.</p>
-        <p>Được xây dựng với tiêu chuẩn 5 sao, chúng tôi tự hào cung cấp các <span class="highlight">dịch vụ cao
-                cấp</span> như spa đẳng cấp, nhà hàng ẩm thực đa dạng, và tiện ích bể bơi vô cực view biển. Đây là điểm
-            đến lý tưởng cho kỳ nghỉ gia đình, tuần trăng mật hoặc chuyến công tác.</p>
-        <p>Với vị trí thuận lợi, cách trung tâm thành phố chỉ 15 phút lái xe, khách sạn là nơi giao thoa hoàn hảo giữa
-            sự yên bình và sự tiện nghi hiện đại.</p>
-    </div>
-    <div class="icon-list">
-        <div class="icon-item"><i class="fas fa-star"></i><span>Đánh giá 4.8/5 từ hơn 1,000 du khách</span></div>
-        <div class="icon-item"><i class="fas fa-award"></i><span>Giải thưởng Khách sạn sang trọng nhất 2024</span></div>
-        <div class="icon-item"><i class="fas fa-map-marker-alt"></i><span>Vị trí ven biển, cách sân bay 10 phút</span>
-        </div>
+        <?= $hotel['hot_description'] ?>
     </div>
 </div>
 <style>
