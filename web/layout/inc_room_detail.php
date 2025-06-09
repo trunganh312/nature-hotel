@@ -30,7 +30,7 @@
                             alt="<?= $room['roo_name'] ?>">
                     </div>
                 </div>
-                <button class="view-details-button">
+                <button class="view-details-button" data-bs-toggle="modal" data-bs-target="#roomModal<?= $room['roo_id'] ?>">
                     Xem chi tiết phòng
                     <svg width="16" height="16" fill="none">
                         <path d="M6 12l4-4-4-4" stroke="#6b9c6e" stroke-width="1.5" stroke-linecap="round"
@@ -167,9 +167,93 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="roomModal<?= $room['roo_id'] ?>" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="roomModalLabel"><?php echo htmlspecialchars($room['roo_name']); ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <!-- Carousel with Thumbnails -->
+                <div class="room-carousel-wrapper col-md-7">
+                    <div class="owl-carousel owl-theme room-carousel">
+                        <?php foreach ($room['images'] as $image): ?>
+                            <div class="item">
+                                <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
+                                    class="img-fluid rounded" style="width: 100%; height: 478px; object-fit: cover;">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <ul class="thumbnail-list d-flex justify-content-center mt-2">
+                        <?php foreach ($room['images'] as $index => $image): ?>
+                            <li class="thumbnail-item <?php echo $index === 0 ? 'active' : ''; ?>"
+                                data-index="<?php echo $index; ?>">
+                                <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
+                                    style="width: 96px; height: 72px; border-radius: 8px; object-fit: cover;">
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
+                <!-- Room Details -->
+                <div class="col-md-5 mt-4 room-details-scroll">
+                    <h6><i class="fas fa-users me-2"></i> Sức chứa</h6>
+                    <ul class="room-details-list">
+                        <li>Sức chứa tối đa: <?php echo $room['roo_max_adult']; ?> người</li>
+                        <li>Số khách tiêu chuẩn: <?php echo $room['roo_adult']; ?> người</li>
+                        <li>Cho phép ở thêm: <?php echo $room['roo_max_children']; ?> trẻ em</li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <h6><i class="fas fa-ruler-combined me-2"></i> Diện tích</h6>
+                            <p class="room-details-text ms-2"><?php echo htmlspecialchars($room['roo_square_meters']); ?></p>
+                        </div>
+                        <div class="col-md-6 d-flex">
+                            <h6><i class="fas fa-eye me-2"></i> Tầm nhìn</h6>
+                            <p class="room-details-text ms-2"><?php echo htmlspecialchars($room['attr_view']); ?></p>
+                        </div>
+                    </div>
+
+                    <!-- <?php if ($room['breakfast_included']): ?>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-utensils me-2 text-success"></i>
+                            <p class="text-success mb-0">Giá đã bao gồm bữa sáng</p>
+                        </div>
+                    <?php endif; ?> -->
+
+                    <div class="d-flex align-items-center mt-3">
+                        <i class="fas fa-check-circle me-2 text-success"></i>
+                        <span>An tâm đặt phòng, Nature hỗ trợ xuất hóa đơn nhanh chóng, tiết kiệm thời gian cho
+                            bạn.</span>
+                    </div>
+
+                    <h6><i class="fas fa-concierge-bell me-2"></i> Tiện nghi phòng</h6>
+                    <div class="row">
+                        <?php foreach ($room['utilities'] as $idx => $utility): ?>
+                            <div class="col-6 mb-3 d-flex align-items-center">
+                                <?php if ($utility['icon']): ?>
+                                    <i class="<?php echo htmlspecialchars($utility['icon']); ?>"></i>
+                                <?php else: ?>
+                                    <i class="fas fa-ban me-2"></i>
+                                <?php endif; ?>
+                                <span><?php echo htmlspecialchars($utility['name']); ?></span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <? endforeach; ?>
 <!-- Điểm dừng của sticky booking info -->
 <div id="end-sticky-point" style="height: 0; overflow: hidden;" class="pt-4"></div>
+
 
 <style>
     .room-card {
@@ -644,12 +728,150 @@
             position: static;
         }
     }
+
+    .room-details-list li {
+        font-size: 14px;
+    }
+
+    .room-details-text {
+        font-size: 14px;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background-color: #f8f9fa;
+    }
+
+    .room-carousel .item img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .owl-nav .owl-prev,
+    .owl-nav .owl-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .owl-nav .owl-prev {
+        left: 10px;
+    }
+
+    .owl-nav .owl-next {
+        right: 10px;
+    }
+
+    .thumbnail-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .thumbnail-item {
+        margin: 0 5px;
+        cursor: pointer;
+        opacity: 0.6;
+    }
+
+    .thumbnail-item.active {
+        opacity: 1;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+    }
+
+    .thumbnail-item img {
+        transition: opacity 0.3s;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    /* Style cho phần chi tiết phòng có thanh cuộn */
+    .room-details-scroll {
+        height: 528px;
+        /* Chiều cao bằng với ảnh carousel */
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+
+    /* Style cho thanh cuộn */
+    .room-details-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .room-details-scroll::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .room-details-scroll::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .room-details-scroll::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 </style>
 
 
 <script>
     function initRoomDetailJS() {
         try {
+            // Lấy tất cả các nút "Xem chi tiết phòng"
+            const viewDetailsButtons = document.querySelectorAll('.view-details-button');
+            // Lấy id khi click để mở modal
+            const roomId = viewDetailsButtons.getAttribute('data-bs-target').split('#')[1];
+
+
+            // Thêm sự kiện click cho từng nút
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Hiển thị modal
+                    const roomModal = new bootstrap.Modal(document.getElementById('roomModal' + roomId));
+                    roomModal.show();
+                });
+            });
+            const carousel = $('.room-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                items: 1,
+                navText: [
+                    '<i class="fas fa-chevron-left"></i>',
+                    '<i class="fas fa-chevron-right"></i>'
+                ]
+            });
+
+            // Thumbnail click to navigate carousel
+            $('.thumbnail-item').click(function () {
+                const index = $(this).data('index');
+                carousel.trigger('to.owl.carousel', index);
+            });
+
+            // Update active thumbnail on carousel change
+            carousel.on('changed.owl.carousel', function (event) {
+                const currentIndex = event.item.index;
+                $('.thumbnail-item').removeClass('active');
+                $('.thumbnail-item[data-index="' + currentIndex + '"]').addClass('active');
+            });
+
+            // Initialize Bootstrap tooltips
+            $('[data-bs-toggle="tooltip"]').tooltip();
             // Xử lý tăng/giảm số lượng phòng
             const quantityControls = document.querySelectorAll('.quantity-control');
 
