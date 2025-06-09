@@ -25,6 +25,7 @@ $selected_tags = array_filter(explode(',', $tags));
 if ($id) {
     $hotels = Hotel::where('hot_active', 1)
         ->where('hot_city', $id)
+        ->select('hot_id', 'hot_city', 'hot_name', 'hot_phone', 'hot_email', 'hot_address_full')
         ->toArray();
 } else {
     $hotels = $all_hotels;
@@ -68,8 +69,12 @@ foreach ($all_hotels as $hotel) {
             foreach ($attr['data'] as $item) {
                 $value = $item['value'];
                 $name = $item['name'];
+                $icon = $item['icon'];
                 if ($value && $name) {
-                    $amenity_map[$value] = $name;
+                    $amenity_map[$value] = [
+                        'name' => $name,
+                        'icon' => $icon
+                    ];
                 }
             }
         }
@@ -77,7 +82,7 @@ foreach ($all_hotels as $hotel) {
 }
 $amenities = [];
 foreach ($amenity_map as $value => $name) {
-    $amenities[] = ['tag_id' => $value, 'tag_name' => $name];
+    $amenities[] = ['tag_id' => $value, 'tag_name' => $name['name'], 'tag_icon' => $name['icon']];
 }
 
 
