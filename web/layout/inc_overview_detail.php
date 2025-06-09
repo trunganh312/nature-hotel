@@ -11,40 +11,37 @@
         <div class="col-12 col-md-6 d-flex align-items-center">
             <i class="far fa-map-marker-alt me-2 text-primary"></i>
             <span><?= $hotel['hot_address_full'] ?></span>
-            <a href="#" class="btn btn-outline ms-3">Xem bản đồ</a>
+            <a href="#map-section" class="btn btn-outline ms-3">Xem bản đồ</a>
         </div>
     </div>
 
     <!-- Slideshow hình ảnh và video -->
     <div class="row position-relative">
         <div class="col-12 col-lg-6">
-            <img src="<?= $image_1 ?>"
-                class="img-fluid rounded" alt="Hotel Image 1">
+            <img src="<?= $image_1 ?>" class="img-fluid rounded" alt="Hotel Image 1">
         </div>
         <div class="col-12 col-lg-6">
             <div class="row hotel-gallery">
                 <div class="col-6 mb-2">
-                    <img src="<?= $image_2 ?>"
-                        class="img-fluid rounded" alt="Hotel Image 2">
+                    <img src="<?= $image_2 ?>" class="img-fluid rounded" alt="Hotel Image 2">
                 </div>
                 <div class="col-6 mb-2">
-                    <img src="<?= $image_3 ?>"
-                        class="img-fluid rounded" alt="Hotel Image 3">
+                    <img src="<?= $image_3 ?>" class="img-fluid rounded" alt="Hotel Image 3">
                 </div>
                 <div class="col-6 mb-2">
-                    <img src="<?= $image_4 ?>"
-                        class="img-fluid rounded" alt="Hotel Image 4">
+                    <img src="<?= $image_4 ?>" class="img-fluid rounded" alt="Hotel Image 4">
                 </div>
                 <div class="col-6 mb-2 position-relative">
-                    <img src="<?= $image_5 ?>"
-                        class="img-fluid rounded" alt="Hotel Image 5">
-                    <?php if (count($images) > 5) : ?>
-                    <div class="gallery-overlay">
-                        <div class="overlay-content">
-                            <span><?= count($images) - 5 ?></span>
-                            <i class="fa-solid fa-images ms-2"></i>
+                    <img src="<?= $image_5 ?>" class="img-fluid rounded" alt="Hotel Image 5">
+                    <?php
+                    $images = $images ?? []; // Khởi tạo mảng rỗng nếu chưa có
+                    if (count($images) > 5): ?>
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <span><?= count($images) - 5 ?></span>
+                                <i class="fa-solid fa-images ms-2"></i>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -64,16 +61,21 @@
                 <!-- Thêm carousel chính -->
                 <div id="galleryCarouselMain" class="owl-carousel owl-theme gallery-main">
                     <!-- Render tử images -->
-                    <?php foreach ($images as $image) : ?>
+                    <?php
+                    $images = $images ?? []; // Khởi tạo mảng rỗng nếu chưa có
+                    foreach ($images as $image): ?>
                         <div class="item">
                             <img src="<?= $image ?>" class="img-fluid rounded" alt="Hotel Image">
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <!-- Thêm thumbnail carousel -->
-                <div id="galleryCarouselThumbs" class="gallery-thumbnails-container owl-carousel owl-theme gallery-thumbs">
+                <div id="galleryCarouselThumbs"
+                    class="gallery-thumbnails-container owl-carousel owl-theme gallery-thumbs">
                     <!-- Render từ images -->
-                    <?php foreach ($images as $image) : ?>
+                    <?php
+                    $images = $images ?? []; // Khởi tạo mảng rỗng nếu chưa có
+                    foreach ($images as $image): ?>
                         <div class="item">
                             <img src="<?= $image ?>" class="img-fluid rounded" alt="Hotel Image">
                         </div>
