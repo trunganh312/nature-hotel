@@ -185,19 +185,21 @@
                         <?php foreach ($room['images'] as $image): ?>
                             <div class="item">
                                 <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
-                                    class="img-fluid rounded" style="width: 100%; height: 478px; object-fit: cover;">
+                                    class="img-fluid rounded carousel-image">
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <ul class="thumbnail-list d-flex justify-content-center mt-2">
-                        <?php foreach ($room['images'] as $index => $image): ?>
-                            <li class="thumbnail-item <?php echo $index === 0 ? 'active' : ''; ?>"
-                                data-index="<?php echo $index; ?>">
-                                <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
-                                    style="width: 96px; height: 72px; border-radius: 8px; object-fit: cover;">
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <div class="thumbnail-container mt-3">
+                        <ul class="thumbnail-list d-flex justify-content-center">
+                            <?php foreach ($room['images'] as $index => $image): ?>
+                                <li class="thumbnail-item <?php echo $index === 0 ? 'active' : ''; ?>"
+                                    data-index="<?php echo $index; ?>">
+                                    <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
+                                        class="thumb-image">
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Room Details -->
@@ -825,6 +827,61 @@
     .room-details-scroll::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+    /* Style cho phần carousel trong modal */
+    .carousel-image {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+    }
+    
+    .owl-carousel {
+        position: relative;
+        height: 450px;
+    }
+    
+    .owl-carousel .owl-stage-outer,
+    .owl-carousel .owl-stage,
+    .owl-carousel .owl-item {
+        height: 100%;
+    }
+    
+    .owl-carousel .item {
+        height: 100%;
+    }
+    
+    .thumbnail-container {
+        overflow-x: auto;
+        padding: 5px 0;
+        margin-top: 10px !important;
+    }
+    
+    .thumbnail-list {
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        gap: 10px;
+    }
+    
+    .thumbnail-item {
+        flex: 0 0 auto;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s ease;
+    }
+    
+    .thumbnail-item.active {
+        border-color: #6b9c6e;
+    }
+    
+    .thumb-image {
+        width: 80px;
+        height: 60px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
 </style>
 
 
@@ -833,41 +890,68 @@
         try {
             // Lấy tất cả các nút "Xem chi tiết phòng"
             const viewDetailsButtons = document.querySelectorAll('.view-details-button');
-            // Lấy id khi click để mở modal
-            const roomId = viewDetailsButtons.getAttribute('data-bs-target').split('#')[1];
-
 
             // Thêm sự kiện click cho từng nút
             viewDetailsButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    // Hiển thị modal
-                    const roomModal = new bootstrap.Modal(document.getElementById('roomModal' + roomId));
-                    roomModal.show();
+                    // Lấy target từ thuộc tính data-bs-target
+                    const target = this.getAttribute('data-bs-target') || this.getAttribute('data-target');
+                    if (target) {
+                        // Hiển thị modal
+                        const roomModal = new bootstrap.Modal(document.querySelector(target));
+                        roomModal.show();
+                        
+                        // Khởi tạo carousel sau khi modal hiển thị
+                        setTimeout(() => {
+                            const modalCarousel = document.querySelector(target + ' .room-carousel');
+                            if (modalCarousel) {
+                                $(modalCarousel).owlCarousel({
+                                    loop: true,
+                                    margin: 10,
+                                    nav: true,
+                                    dots: false,
+                                    items: 1,
+                                    navText: [
+                                        '<i class="fas fa-chevron-left"></i>',
+                                        '<i class="fas fa-chevron-right"></i>'
+                                    ]
+                                });
+                                
+                                // Xử lý thumbnail trong modal hiện tại
+                                const thumbnails = document.querySelectorAll(target + ' .thumbnail-item');
+                                thumbnails.forEach(thumb => {
+                                    thumb.addEventListener('click', function() {
+                                        const index = this.getAttribute('data-index');
+                                        $(modalCarousel).trigger('to.owl.carousel', [parseInt(index), 300]);
+                                        
+                                        // Cập nhật trạng thái active cho thumbnail
+                                        thumbnails.forEach(t => t.classList.remove('active'));
+                                        this.classList.add('active');
+                                    });
+                                });
+                                
+                                // Cập nhật active thumbnail khi carousel thay đổi
+                                $(modalCarousel).on('changed.owl.carousel', function(event) {
+                                    const currentIndex = event.item.index % event.item.count;
+                                    thumbnails.forEach(thumb => {
+                                        if (parseInt(thumb.getAttribute('data-index')) === currentIndex) {
+                                            thumb.classList.add('active');
+                                        } else {
+                                            thumb.classList.remove('active');
+                                        }
+                                    });
+                                });
+                            }
+                        }, 300); // Đợi modal hiển thị hoàn tất
+                    } else {
+                        // Fallback nếu không có target - sử dụng ID mặc định
+                        const roomId = this.closest('.room-card').getAttribute('data-room-id');
+                        if (roomId) {
+                            const roomModal = new bootstrap.Modal(document.getElementById('roomModal' + roomId));
+                            roomModal.show();
+                        }
+                    }
                 });
-            });
-            const carousel = $('.room-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                dots: false,
-                items: 1,
-                navText: [
-                    '<i class="fas fa-chevron-left"></i>',
-                    '<i class="fas fa-chevron-right"></i>'
-                ]
-            });
-
-            // Thumbnail click to navigate carousel
-            $('.thumbnail-item').click(function () {
-                const index = $(this).data('index');
-                carousel.trigger('to.owl.carousel', index);
-            });
-
-            // Update active thumbnail on carousel change
-            carousel.on('changed.owl.carousel', function (event) {
-                const currentIndex = event.item.index;
-                $('.thumbnail-item').removeClass('active');
-                $('.thumbnail-item[data-index="' + currentIndex + '"]').addClass('active');
             });
 
             // Initialize Bootstrap tooltips
