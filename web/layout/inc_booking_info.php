@@ -284,6 +284,13 @@ function initBookingInfoJS() {
                 "Phí tiện ích": 200000
             };
 
+            // Lưu trạng thái mở của các mục hạng phòng
+            const collapseStates = {};
+            document.querySelectorAll('.room-type-section .collapse').forEach(collapse => {
+                const roomId = collapse.id.split('roomDetails-')[1];
+                collapseStates[roomId] = collapse.classList.contains('show');
+            });
+
             // Cập nhật thời gian
             $('.date-range-clickable').text(`${checkIn} - ${checkOut} (${nights} đêm)`);
 
@@ -325,6 +332,8 @@ function initBookingInfoJS() {
                     }
                 }
 
+                // Thêm lớp 'show' nếu mục này đang mở
+                const isExpanded = collapseStates[roomType.roomId] ? 'show' : '';
                 roomSectionsHtml += `
                     <div class="mb-1 room-type-section">
                         <div class="room-type d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#roomDetails-${roomType.roomId}">
@@ -333,15 +342,23 @@ function initBookingInfoJS() {
                                 <p class="info-value">${roomType.roomName} (${roomType.roomCount} phòng)</p>
                             </div>
                             <div class="booking-info_room-type-right">
-                                <i class="fas fa-chevron-down toggle-icon"></i>
+                                <i class="fas fa-chevron-${isExpanded ? 'up' : 'down'} toggle-icon"></i>
                             </div>
                         </div>
-                        <div class="collapse" id="roomDetails-${roomType.roomId}">
+                        <div class="collapse ${isExpanded}" id="roomDetails-${roomType.roomId}">
                             <div class="collapse-details">${roomDetailsHtml}</div>
                         </div>
                     </div>`;
             });
             $('#room-type-sections-container').html(roomSectionsHtml);
+
+            // Khôi phục sự kiện collapse
+            $('.room-type').off('click').on('click', function() {
+                const $icon = $(this).find('.toggle-icon');
+                const $collapse = $(this).next('.collapse');
+                $icon.toggleClass('fa-chevron-down fa-chevron-up');
+                $collapse.collapse('toggle');
+            });
 
             // Tính tổng giá
             let totalRoomPrice = 0;

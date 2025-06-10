@@ -1,3 +1,28 @@
+ <?php
+// // Tạo mảng với 10 ảnh từ link được cung cấp
+// $list_images = [
+//     "https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg",
+//     "https://cdn3.ivivu.com/2014/01/ztq1372403761.jpg",
+//     "https://cdn3.ivivu.com/2014/01/20762698_images1477905_6.jpg",
+//     "https://cdn3.ivivu.com/2014/01/Khach-san-Midtown-Hue-4-Sao-Lobby.jpg",
+//     "https://cdn3.ivivu.com/2014/01/be-boi-horison-hoi-nghi-khach-hang.jpg",
+//     "https://cdn3.ivivu.com/2014/01/ngoai-canh-khach-san-ha-an.jpg", 
+//     "https://cdn3.ivivu.com/2014/01/diemhencafe1.jpg",
+//     "https://cdn3.ivivu.com/2014/01/Deluxe-18687.jpg",
+//     "https://cdn3.ivivu.com/2014/01/khach-san-the-mira-hue-be-boi.jpg",
+//     "https://cdn3.ivivu.com/2014/01/phong-executive-khach-san-golden-river-hue.jpg"
+// ];
+
+// // Gán mảng ảnh giả lập cho từng khách sạn trong danh sách
+// if (isset($hotels) && is_array($hotels)) {
+//     foreach ($hotels as $key => $hotel) {
+//         if (!isset($hotels[$key]['images']) || empty($hotels[$key]['images'])) {
+//             $hotels[$key]['images'] = array_slice($list_images, 0, 5);  // Lấy 5 ảnh đầu tiên cho mỗi khách sạn
+//         }
+//     }
+// }
+?>
+
 <div class="col-md-9">
     <div id="hotels_list">
         <!-- Hotel Card 1 -->
