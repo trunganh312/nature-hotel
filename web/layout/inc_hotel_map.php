@@ -1,9 +1,8 @@
-<div id="map-section" class="map-section mt-4">
+<div id="map-section" class="map-section mt-4 mb-4">
     <h5 class="title-section">Vị trí trên bản đồ</h5>
     <div class="map-iframe">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30697.649823589472!2d108.30572455689075!3d15.898263198686019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31420f0b279e9271%3A0x9dfd665fdfc63e4e!2sHoi%20An%20Town%20Home%20Resort!5e0!3m2!1svi!2s!4v1732959599035!5m2!1svi!2s"
-            width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <iframe width="100%" height="450" style="border: 0" loading="lazy" allowfullscreen
+            src="https://maps.google.com/maps?q=<?= $hotel['hot_lat'] ?>,<?= $hotel['hot_lon'] ?>&hl=vi&z=14&output=embed">
         </iframe>
     </div>
 </div>

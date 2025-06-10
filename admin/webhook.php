@@ -59,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
  */
 class Webhook {
     protected $logFile = 'webhook_log.txt';
-    protected $secret = 'xd7SgxKleXxw2TXXauM5c';
-    protected $app_id = '3075836128630070920';
+    protected $secret = SENNET_SECRET;
+    protected $app_id = SENNET_APP_ID;
 
 
     public function __construct() {

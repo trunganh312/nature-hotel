@@ -1,4 +1,7 @@
-<div class="room-card ">
+<? if(empty($rooms)) return; ?>
+<? foreach($rooms as $idx => $room): ?>
+<div class="room-card mb-4">
+    <? if($idx == 0): ?>
     <div class="room-card-header">
         <span class="recommended-badge">
             <svg width="14" height="14" fill="none" class="star-icon">
@@ -9,24 +12,25 @@
             Được đề xuất
         </span>
     </div>
+    <? endif; ?>
     <div class="room-card-content d-flex col-md-12">
         <div class="row">
             <div class="room-images-section col-md-3">
                 <div class="image-gallery">
                     <div class="main-image">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Deluxe Twin">
+                        <img src="<?= $room['images'][0]?>"
+                            alt="<?= $room['roo_name'] ?>">
                     </div>
                     <div class="thumbnail-images">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 1">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 2">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 3">
+                        <img src="<?= $room['images'][1]?>"
+                            alt="<?= $room['roo_name'] ?>">
+                        <img src="<?= $room['images'][2]?>"
+                            alt="<?= $room['roo_name'] ?>">
+                        <img src="<?= $room['images'][3]?>"
+                            alt="<?= $room['roo_name'] ?>">
                     </div>
                 </div>
-                <button class="view-details-button">
+                <button class="view-details-button" data-bs-toggle="modal" data-bs-target="#roomModal<?= $room['roo_id'] ?>">
                     Xem chi tiết phòng
                     <svg width="16" height="16" fill="none">
                         <path d="M6 12l4-4-4-4" stroke="#6b9c6e" stroke-width="1.5" stroke-linecap="round"
@@ -34,18 +38,18 @@
                     </svg>
                 </button>
                 <div class="amenities-list">
-                    <span class="amenity-item">Áo choàng tắm</span>
-                    <span class="amenity-item">Vòi hoa sen</span>
-                    <span class="amenity-item">Điều hòa nhiệt độ</span>
-                    <span class="amenity-item">Khăn tắm</span>
-                    <span class="amenity-item">Trà, cà phê miễn phí</span>
-                    <span class="amenity-item">Đồ vệ sinh cá nhân miễn phí</span>
-                    <span class="amenity-count">5 tiện ích</span>
+                    <!-- Hiển thị 5 cái tiện ích đầu tiên -->
+                    <? foreach($room['utilities'] as $idx => $utility): ?>
+                    <? if($idx < 6): ?>
+                    <span class="amenity-item"><?= $utility['name'] ?></span>
+                    <? endif; ?>
+                    <? endforeach; ?>
+                    <span class="amenity-count"><?= count($room['utilities']) ?> tiện ích</span>
                 </div>
             </div>
             <div class="room-details-section col-md-8">
                 <div class="row">
-                    <h3 class="room-title">Deluxe Twin</h3>
+                    <h3 class="room-title"><?= $room['roo_name'] ?></h3>
                     <div class=" room_details_room-info pb-3">
                         <div class="info-item">
                             <svg width="16" height="16" fill="none">
@@ -53,7 +57,7 @@
                                     d="M2 14v-1.333A2.667 2.667 0 014.667 10h2.666A2.667 2.667 0 0110 12.667V14m.667-11.913a2.667 2.667 0 010 5.166M14 14v-1.333a2.667 2.667 0 00-2-2.567M8.667 4.667a2.667 2.667 0 11-5.334 0 2.667 2.667 0 015.334 0z"
                                     stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            <span>2 người</span>
+                            <span><?= $room['roo_max_adult'] ?> người</span>
                             <span class="detail-link">(Xem chi tiết)</span>
                         </div>
                         <div class="info-item">
@@ -65,7 +69,7 @@
                                     stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="round"
                                     stroke-linejoin="round"></path>
                             </svg>
-                            <span>36 m²/387 ft²</span>
+                            <span><?= $room['roo_square_meters'] ?> m²</span>
                         </div>
                         <div class="info-item">
                             <svg width="16" height="16" fill="none">
@@ -75,7 +79,7 @@
                                     d="M14.667 8c-1.778 3.111-4 4.667-6.667 4.667S3.11 11.11 1.333 8c1.778-3.111 4-4.667 6.667-4.667S12.889 4.89 14.667 8z"
                                     stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            <span>Hướng Thành Phố</span>
+                            <span><?= $room['attr_view'] ?></span>
                         </div>
                     </div>
                 </div>
@@ -103,15 +107,17 @@
                                     </svg>
                                     Giá đã bao gồm bữa sáng
                                 </span>
-                                <span class="tag">
+                                <? if($room['roo_extra_bed'] == 1): ?>
+                                    <span class="tag">
                                     <svg width="16" height="16" fill="none">
                                         <path d="M12.739 6.478L6.652 15l1.217-5.478H3L9.087 1 7.87 6.478h4.87z"
                                             stroke="#ED8936" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    Xác nhận trong 15 phút
+                                    Có thể kê thêm giường phụ
                                 </span>
+                                <? endif; ?>
                             </div>
-                            <div class="offer-info">
+                            <!-- <div class="offer-info">
                                 <span class="offer-title">Ưu đãi bao gồm</span>
                                 <div class="offer-item">
                                     <svg width="16" height="16" fill="none">
@@ -124,7 +130,7 @@
                                     <span class="info-title">Thông tin bổ sung</span>
                                     <span class="info-text">Đặt phòng không đổi tên khách</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-md-3 room_detail_boder_bed">
@@ -134,7 +140,7 @@
                                     d="M22.5 11.75h-21a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 001.125 1.45.5.5 0 01.375.483v1.067a1 1 0 102 0v-1a.5.5 0 01.5-.5h16a.5.5 0 01.5.5v1a1 1 0 002 0v-1.064a.5.5 0 01.375-.483A1.5 1.5 0 0024 17.25v-4a1.5 1.5 0 00-1.5-1.5zM2.5 10.25a.5.5 0 00.5.5h18a.5.5 0 00.5-.5v-5a2.5 2.5 0 00-2.5-2.5H5a2.5 2.5 0 00-2.5 2.5v5zm4-3h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75H4.767a.5.5 0 01-.433-.75A2.5 2.5 0 016.5 7.25zm9 0h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75h-5.466a.5.5 0 01-.433-.75A2.5 2.5 0 0115.5 7.25z"
                                     fill="#718096"></path>
                             </svg>
-                            <div class="bed-text">2 Giường đơn</div>
+                            <div class="bed-text"><?= $room['attr_bed'] ?></div>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -161,467 +167,95 @@
         </div>
     </div>
 </div>
-<div class="room-card mt-4">
-    <div class="room-card-content d-flex col-md-12">
-        <div class="row">
-            <div class="room-images-section col-md-3">
-                <div class="image-gallery">
-                    <div class="main-image">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Deluxe Twin">
-                    </div>
-                    <div class="thumbnail-images">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 1">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 2">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 3">
-                    </div>
-                </div>
-                <button class="view-details-button">
-                    Xem chi tiết phòng
-                    <svg width="16" height="16" fill="none">
-                        <path d="M6 12l4-4-4-4" stroke="#6b9c6e" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round"></path>
-                    </svg>
+
+<!-- Modal -->
+<div class="modal fade" id="roomModal<?= $room['roo_id'] ?>" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="roomModalLabel"><?php echo htmlspecialchars($room['roo_name']); ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
                 </button>
-                <div class="amenities-list">
-                    <span class="amenity-item">Áo choàng tắm</span>
-                    <span class="amenity-item">Vòi hoa sen</span>
-                    <span class="amenity-item">Điều hòa nhiệt độ</span>
-                    <span class="amenity-item">Khăn tắm</span>
-                    <span class="amenity-item">Trà, cà phê miễn phí</span>
-                    <span class="amenity-item">Đồ vệ sinh cá nhân miễn phí</span>
-                    <span class="amenity-count">5 tiện ích</span>
-                </div>
             </div>
-            <div class="room-details-section col-md-8">
-                <div class="row">
-                    <h3 class="room-title">Deluxe Twin</h3>
-                    <div class=" room_details_room-info pb-3">
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path
-                                    d="M2 14v-1.333A2.667 2.667 0 014.667 10h2.666A2.667 2.667 0 0110 12.667V14m.667-11.913a2.667 2.667 0 010 5.166M14 14v-1.333a2.667 2.667 0 00-2-2.567M8.667 4.667a2.667 2.667 0 11-5.334 0 2.667 2.667 0 015.334 0z"
-                                    stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>2 người</span>
-                            <span class="detail-link">(Xem chi tiết)</span>
-                        </div>
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path d="M12 2H4a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2z"
-                                    stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="square"></path>
-                                <path
-                                    d="M11.333 11.333L5 5M11.334 8.333v3h-3M4.483 2.667L7.586 5.77 5.103 8.253 2 5.149M3.241 13.838l10.552-10.55a5.036 5.036 0 01-1.242 4.965c-2.194 2.194-3.724 2.482-3.724 2.482"
-                                    stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                            </svg>
-                            <span>36 m²/387 ft²</span>
-                        </div>
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path d="M8 9.333a1.333 1.333 0 100-2.666 1.333 1.333 0 000 2.666z" stroke="#4A5568"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path
-                                    d="M14.667 8c-1.778 3.111-4 4.667-6.667 4.667S3.11 11.11 1.333 8c1.778-3.111 4-4.667 6.667-4.667S12.889 4.89 14.667 8z"
-                                    stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>Hướng Thành Phố</span>
-                        </div>
+            <div class="modal-body row">
+                <!-- Carousel with Thumbnails -->
+                <div class="room-carousel-wrapper col-md-7">
+                    <div class="owl-carousel owl-theme room-carousel">
+                        <?php foreach ($room['images'] as $image): ?>
+                            <div class="item">
+                                <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
+                                    class="img-fluid rounded carousel-image">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="thumbnail-container mt-3">
+                        <ul class="thumbnail-list d-flex justify-content-center">
+                            <?php foreach ($room['images'] as $index => $image): ?>
+                                <li class="thumbnail-item <?php echo $index === 0 ? 'active' : ''; ?>"
+                                    data-index="<?php echo $index; ?>">
+                                    <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>"
+                                        class="thumb-image">
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
                 </div>
-                <div class="row pt-3">
-                    <div class="col-md-5">
-                        <div class="option-header">
-                            <div class="option-tags">
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M13.444 6.111H5.667c-.86 0-1.556.696-1.556 1.556v4.666c0 .86.697 1.556 1.556 1.556h7.777c.86 0 1.556-.697 1.556-1.556V7.667c0-.86-.697-1.556-1.556-1.556z"
-                                            stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path
-                                            d="M9.556 11.555a1.556 1.556 0 100-3.11 1.556 1.556 0 000 3.11zM11.889 6.111V4.556A1.556 1.556 0 0010.333 3H2.556A1.556 1.556 0 001 4.556v4.666a1.555 1.555 0 001.556 1.556H4.11"
-                                            stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    Hoàn huỷ một phần
-                                </span>
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M11.31 11.976l1.862 1.862M3.241 3.908l4.966 4.965M4.483 2.667L7.586 5.77 5.103 8.253 2 5.149M3.241 13.838l10.552-10.55a5.036 5.036 0 01-1.242 4.965c-2.194 2.194-3.724 2.482-3.724 2.482"
-                                            stroke="#48BB78" stroke-miterlimit="10" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                    Giá đã bao gồm bữa sáng
-                                </span>
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path d="M12.739 6.478L6.652 15l1.217-5.478H3L9.087 1 7.87 6.478h4.87z"
-                                            stroke="#ED8936" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    Xác nhận trong 15 phút
-                                </span>
-                            </div>
-                            <div class="offer-info">
-                                <span class="offer-title">Ưu đãi bao gồm</span>
-                                <div class="offer-item">
-                                    <svg width="16" height="16" fill="none">
-                                        <path d="M3.333 8l3.333 3.333 6.667-6.666" stroke="#48BB78"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    <span class="info-text">Ăn sáng</span>
-                                </div>
-                                <div class="additional-info">
-                                    <span class="info-title">Thông tin bổ sung</span>
-                                    <span class="info-text">Đặt phòng không đổi tên khách</span>
-                                </div>
-                            </div>
+
+                <!-- Room Details -->
+                <div class="col-md-5 mt-4 room-details-scroll">
+                    <h6><i class="fas fa-users me-2"></i> Sức chứa</h6>
+                    <ul class="room-details-list">
+                        <li>Sức chứa tối đa: <?php echo $room['roo_max_adult']; ?> người</li>
+                        <li>Số khách tiêu chuẩn: <?php echo $room['roo_adult']; ?> người</li>
+                        <li>Cho phép ở thêm: <?php echo $room['roo_max_children']; ?> trẻ em</li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <h6><i class="fas fa-ruler-combined me-2"></i> Diện tích</h6>
+                            <p class="room-details-text ms-2"><?php echo htmlspecialchars($room['roo_square_meters']); ?></p>
+                        </div>
+                        <div class="col-md-6 d-flex">
+                            <h6><i class="fas fa-eye me-2"></i> Tầm nhìn</h6>
+                            <p class="room-details-text ms-2"><?php echo htmlspecialchars($room['attr_view']); ?></p>
                         </div>
                     </div>
-                    <div class="col-md-3 room_detail_boder_bed">
-                        <div class="bed-info">
-                            <svg width="24" height="24" fill="none">
-                                <path
-                                    d="M22.5 11.75h-21a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 001.125 1.45.5.5 0 01.375.483v1.067a1 1 0 102 0v-1a.5.5 0 01.5-.5h16a.5.5 0 01.5.5v1a1 1 0 002 0v-1.064a.5.5 0 01.375-.483A1.5 1.5 0 0024 17.25v-4a1.5 1.5 0 00-1.5-1.5zM2.5 10.25a.5.5 0 00.5.5h18a.5.5 0 00.5-.5v-5a2.5 2.5 0 00-2.5-2.5H5a2.5 2.5 0 00-2.5 2.5v5zm4-3h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75H4.767a.5.5 0 01-.433-.75A2.5 2.5 0 016.5 7.25zm9 0h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75h-5.466a.5.5 0 01-.433-.75A2.5 2.5 0 0115.5 7.25z"
-                                    fill="#718096"></path>
-                            </svg>
-                            <div class="bed-text">2 Giường đơn</div>
+
+                    <!-- <?php if ($room['breakfast_included']): ?>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-utensils me-2 text-success"></i>
+                            <p class="text-success mb-0">Giá đã bao gồm bữa sáng</p>
                         </div>
+                    <?php endif; ?> -->
+
+                    <div class="d-flex align-items-center mt-3">
+                        <i class="fas fa-check-circle me-2 text-success"></i>
+                        <span>An tâm đặt phòng, Nature hỗ trợ xuất hóa đơn nhanh chóng, tiết kiệm thời gian cho
+                            bạn.</span>
                     </div>
-                    <div class="col-md-4">
-                        <div class="pricing">
-                            <div class="final-price">1.200.000 VND</div>
 
-                            <div class="room-quantity">
-                                <div class="quantity-label">Số phòng:</div>
-                                <div class="quantity-control">
-                                    <button class="quantity-decrease"><i class="fa-solid fa-minus"></i></button>
-                                    <input type="number" id="room-quantity" name="room_quantity" class="quantity-input"
-                                        value="0" min="0" max="100">
-                                    <button class="quantity-increase"><i class="fa-solid fa-plus"></i></button>
-                                </div>
+                    <h6><i class="fas fa-concierge-bell me-2"></i> Tiện nghi phòng</h6>
+                    <div class="row">
+                        <?php foreach ($room['utilities'] as $idx => $utility): ?>
+                            <div class="col-6 mb-3 d-flex align-items-center">
+                                <?php if ($utility['icon']): ?>
+                                    <i class="<?php echo htmlspecialchars($utility['icon']); ?>"></i>
+                                <?php else: ?>
+                                    <i class="fas fa-ban me-2"></i>
+                                <?php endif; ?>
+                                <span><?php echo htmlspecialchars($utility['name']); ?></span>
                             </div>
-
-                            <div class="guest-selection-container">
-                                <!-- Sẽ được thêm bằng JS -->
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="room-card mt-4">
-    <div class="room-card-content d-flex col-md-12">
-        <div class="row">
-            <div class="room-images-section col-md-3">
-                <div class="image-gallery">
-                    <div class="main-image">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Deluxe Twin">
-                    </div>
-                    <div class="thumbnail-images">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 1">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 2">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 3">
-                    </div>
-                </div>
-                <button class="view-details-button">
-                    Xem chi tiết phòng
-                    <svg width="16" height="16" fill="none">
-                        <path d="M6 12l4-4-4-4" stroke="#6b9c6e" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <div class="amenities-list">
-                    <span class="amenity-item">Áo choàng tắm</span>
-                    <span class="amenity-item">Vòi hoa sen</span>
-                    <span class="amenity-item">Điều hòa nhiệt độ</span>
-                    <span class="amenity-item">Khăn tắm</span>
-                    <span class="amenity-item">Trà, cà phê miễn phí</span>
-                    <span class="amenity-item">Đồ vệ sinh cá nhân miễn phí</span>
-                    <span class="amenity-count">5 tiện ích</span>
-                </div>
-            </div>
-            <div class="room-details-section col-md-8">
-                <div class="row">
-                    <h3 class="room-title">Deluxe Twin</h3>
-                    <div class=" room_details_room-info pb-3">
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path
-                                    d="M2 14v-1.333A2.667 2.667 0 014.667 10h2.666A2.667 2.667 0 0110 12.667V14m.667-11.913a2.667 2.667 0 010 5.166M14 14v-1.333a2.667 2.667 0 00-2-2.567M8.667 4.667a2.667 2.667 0 11-5.334 0 2.667 2.667 0 015.334 0z"
-                                    stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>2 người</span>
-                            <span class="detail-link">(Xem chi tiết)</span>
-                        </div>
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path d="M12 2H4a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2z"
-                                    stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="square"></path>
-                                <path
-                                    d="M11.333 11.333L5 5M11.334 8.333v3h-3M4.483 2.667L7.586 5.77 5.103 8.253 2 5.149M3.241 13.838l10.552-10.55a5.036 5.036 0 01-1.242 4.965c-2.194 2.194-3.724 2.482-3.724 2.482"
-                                    stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                            </svg>
-                            <span>36 m²/387 ft²</span>
-                        </div>
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path d="M8 9.333a1.333 1.333 0 100-2.666 1.333 1.333 0 000 2.666z" stroke="#4A5568"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path
-                                    d="M14.667 8c-1.778 3.111-4 4.667-6.667 4.667S3.11 11.11 1.333 8c1.778-3.111 4-4.667 6.667-4.667S12.889 4.89 14.667 8z"
-                                    stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>Hướng Thành Phố</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row pt-3">
-                    <div class="col-md-5">
-                        <div class="option-header">
-                            <div class="option-tags">
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M13.444 6.111H5.667c-.86 0-1.556.696-1.556 1.556v4.666c0 .86.697 1.556 1.556 1.556h7.777c.86 0 1.556-.697 1.556-1.556V7.667c0-.86-.697-1.556-1.556-1.556z"
-                                            stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path
-                                            d="M9.556 11.555a1.556 1.556 0 100-3.11 1.556 1.556 0 000 3.11zM11.889 6.111V4.556A1.556 1.556 0 0010.333 3H2.556A1.556 1.556 0 001 4.556v4.666a1.555 1.555 0 001.556 1.556H4.11"
-                                            stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    Hoàn huỷ một phần
-                                </span>
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M11.31 11.976l1.862 1.862M3.241 3.908l4.966 4.965M4.483 2.667L7.586 5.77 5.103 8.253 2 5.149M3.241 13.838l10.552-10.55a5.036 5.036 0 01-1.242 4.965c-2.194 2.194-3.724 2.482-3.724 2.482"
-                                            stroke="#48BB78" stroke-miterlimit="10" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                    Giá đã bao gồm bữa sáng
-                                </span>
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path d="M12.739 6.478L6.652 15l1.217-5.478H3L9.087 1 7.87 6.478h4.87z"
-                                            stroke="#ED8936" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    Xác nhận trong 15 phút
-                                </span>
-                            </div>
-                            <div class="offer-info">
-                                <span class="offer-title">Ưu đãi bao gồm</span>
-                                <div class="offer-item">
-                                    <svg width="16" height="16" fill="none">
-                                        <path d="M3.333 8l3.333 3.333 6.667-6.666" stroke="#48BB78"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    <span class="info-text">Ăn sáng</span>
-                                </div>
-                                <div class="additional-info">
-                                    <span class="info-title">Thông tin bổ sung</span>
-                                    <span class="info-text">Đặt phòng không đổi tên khách</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 room_detail_boder_bed">
-                        <div class="bed-info">
-                            <svg width="24" height="24" fill="none">
-                                <path
-                                    d="M22.5 11.75h-21a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 001.125 1.45.5.5 0 01.375.483v1.067a1 1 0 102 0v-1a.5.5 0 01.5-.5h16a.5.5 0 01.5.5v1a1 1 0 002 0v-1.064a.5.5 0 01.375-.483A1.5 1.5 0 0024 17.25v-4a1.5 1.5 0 00-1.5-1.5zM2.5 10.25a.5.5 0 00.5.5h18a.5.5 0 00.5-.5v-5a2.5 2.5 0 00-2.5-2.5H5a2.5 2.5 0 00-2.5 2.5v5zm4-3h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75H4.767a.5.5 0 01-.433-.75A2.5 2.5 0 016.5 7.25zm9 0h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75h-5.466a.5.5 0 01-.433-.75A2.5 2.5 0 0115.5 7.25z"
-                                    fill="#718096"></path>
-                            </svg>
-                            <div class="bed-text">2 Giường đơn</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="pricing">
-                            <div class="final-price">1.200.000 VND</div>
-
-                            <div class="room-quantity">
-                                <div class="quantity-label">Số phòng:</div>
-                                <div class="quantity-control">
-                                    <button class="quantity-decrease"><i class="fa-solid fa-minus"></i></button>
-                                    <input type="number" id="room-quantity" name="room_quantity" class="quantity-input"
-                                        value="0" min="0" max="100">
-                                    <button class="quantity-increase"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="guest-selection-container">
-                                <!-- Sẽ được thêm bằng JS -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="room-card mt-4">
-    <div class="room-card-content d-flex col-md-12">
-        <div class="row">
-            <div class="room-images-section col-md-3">
-                <div class="image-gallery">
-                    <div class="main-image">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Deluxe Twin">
-                    </div>
-                    <div class="thumbnail-images">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 1">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 2">
-                        <img src="https://img.tripi.vn/cdn-cgi/image/width=840,height=416/https://s3.ap-southeast-1.amazonaws.com/mytourcdn.com/resources/pictures/hotels/2/oOI3pWnSTvWhFRluMXnCOQ-3-Reception%2520Desk%25201.jpeg"
-                            alt="Thumbnail 3">
-                    </div>
-                </div>
-                <button class="view-details-button">
-                    Xem chi tiết phòng
-                    <svg width="16" height="16" fill="none">
-                        <path d="M6 12l4-4-4-4" stroke="#6b9c6e" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <div class="amenities-list">
-                    <span class="amenity-item">Áo choàng tắm</span>
-                    <span class="amenity-item">Vòi hoa sen</span>
-                    <span class="amenity-item">Điều hòa nhiệt độ</span>
-                    <span class="amenity-item">Khăn tắm</span>
-                    <span class="amenity-item">Trà, cà phê miễn phí</span>
-                    <span class="amenity-item">Đồ vệ sinh cá nhân miễn phí</span>
-                    <span class="amenity-count">5 tiện ích</span>
-                </div>
-            </div>
-            <div class="room-details-section col-md-8">
-                <div class="row">
-                    <h3 class="room-title">Deluxe Twin</h3>
-                    <div class=" room_details_room-info pb-3">
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path
-                                    d="M2 14v-1.333A2.667 2.667 0 014.667 10h2.666A2.667 2.667 0 0110 12.667V14m.667-11.913a2.667 2.667 0 010 5.166M14 14v-1.333a2.667 2.667 0 00-2-2.567M8.667 4.667a2.667 2.667 0 11-5.334 0 2.667 2.667 0 015.334 0z"
-                                    stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>2 người</span>
-                            <span class="detail-link">(Xem chi tiết)</span>
-                        </div>
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path d="M12 2H4a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2z"
-                                    stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="square"></path>
-                                <path
-                                    d="M11.333 11.333L5 5M11.334 8.333v3h-3M4.483 2.667L7.586 5.77 5.103 8.253 2 5.149M3.241 13.838l10.552-10.55a5.036 5.036 0 01-1.242 4.965c-2.194 2.194-3.724 2.482-3.724 2.482"
-                                    stroke="#4A5568" stroke-miterlimit="10" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                            </svg>
-                            <span>36 m²/387 ft²</span>
-                        </div>
-                        <div class="info-item">
-                            <svg width="16" height="16" fill="none">
-                                <path d="M8 9.333a1.333 1.333 0 100-2.666 1.333 1.333 0 000 2.666z" stroke="#4A5568"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path
-                                    d="M14.667 8c-1.778 3.111-4 4.667-6.667 4.667S3.11 11.11 1.333 8c1.778-3.111 4-4.667 6.667-4.667S12.889 4.89 14.667 8z"
-                                    stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>Hướng Thành Phố</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row pt-3">
-                    <div class="col-md-5">
-                        <div class="option-header">
-                            <div class="option-tags">
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M13.444 6.111H5.667c-.86 0-1.556.696-1.556 1.556v4.666c0 .86.697 1.556 1.556 1.556h7.777c.86 0 1.556-.697 1.556-1.556V7.667c0-.86-.697-1.556-1.556-1.556z"
-                                            stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path
-                                            d="M9.556 11.555a1.556 1.556 0 100-3.11 1.556 1.556 0 000 3.11zM11.889 6.111V4.556A1.556 1.556 0 0010.333 3H2.556A1.556 1.556 0 001 4.556v4.666a1.555 1.555 0 001.556 1.556H4.11"
-                                            stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    Hoàn huỷ một phần
-                                </span>
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M11.31 11.976l1.862 1.862M3.241 3.908l4.966 4.965M4.483 2.667L7.586 5.77 5.103 8.253 2 5.149M3.241 13.838l10.552-10.55a5.036 5.036 0 01-1.242 4.965c-2.194 2.194-3.724 2.482-3.724 2.482"
-                                            stroke="#48BB78" stroke-miterlimit="10" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                    Giá đã bao gồm bữa sáng
-                                </span>
-                                <span class="tag">
-                                    <svg width="16" height="16" fill="none">
-                                        <path d="M12.739 6.478L6.652 15l1.217-5.478H3L9.087 1 7.87 6.478h4.87z"
-                                            stroke="#ED8936" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    Xác nhận trong 15 phút
-                                </span>
-                            </div>
-                            <div class="offer-info">
-                                <span class="offer-title">Ưu đãi bao gồm</span>
-                                <div class="offer-item">
-                                    <svg width="16" height="16" fill="none">
-                                        <path d="M3.333 8l3.333 3.333 6.667-6.666" stroke="#48BB78"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    <span class="info-text">Ăn sáng</span>
-                                </div>
-                                <div class="additional-info">
-                                    <span class="info-title">Thông tin bổ sung</span>
-                                    <span class="info-text">Đặt phòng không đổi tên khách</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 room_detail_boder_bed">
-                        <div class="bed-info">
-                            <svg width="24" height="24" fill="none">
-                                <path
-                                    d="M22.5 11.75h-21a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 001.125 1.45.5.5 0 01.375.483v1.067a1 1 0 102 0v-1a.5.5 0 01.5-.5h16a.5.5 0 01.5.5v1a1 1 0 002 0v-1.064a.5.5 0 01.375-.483A1.5 1.5 0 0024 17.25v-4a1.5 1.5 0 00-1.5-1.5zM2.5 10.25a.5.5 0 00.5.5h18a.5.5 0 00.5-.5v-5a2.5 2.5 0 00-2.5-2.5H5a2.5 2.5 0 00-2.5 2.5v5zm4-3h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75H4.767a.5.5 0 01-.433-.75A2.5 2.5 0 016.5 7.25zm9 0h2a2.5 2.5 0 012.166 1.25.5.5 0 01-.433.75h-5.466a.5.5 0 01-.433-.75A2.5 2.5 0 0115.5 7.25z"
-                                    fill="#718096"></path>
-                            </svg>
-                            <div class="bed-text">2 Giường đơn</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="pricing">
-                            <div class="final-price">1.200.000 VND</div>
-
-                            <div class="room-quantity">
-                                <div class="quantity-label">Số phòng:</div>
-                                <div class="quantity-control">
-                                    <button class="quantity-decrease"><i class="fa-solid fa-minus"></i></button>
-                                    <input type="number" id="room-quantity" name="room_quantity" class="quantity-input"
-                                        value="0" min="0" max="100">
-                                    <button class="quantity-increase"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="guest-selection-container">
-                                <!-- Sẽ được thêm bằng JS -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<? endforeach; ?>
 <!-- Điểm dừng của sticky booking info -->
 <div id="end-sticky-point" style="height: 0; overflow: hidden;" class="pt-4"></div>
+
 
 <style>
     .room-card {
@@ -1096,12 +730,232 @@
             position: static;
         }
     }
+
+    .room-details-list li {
+        font-size: 14px;
+    }
+
+    .room-details-text {
+        font-size: 14px;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background-color: #f8f9fa;
+    }
+
+    .room-carousel .item img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .owl-nav .owl-prev,
+    .owl-nav .owl-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .owl-nav .owl-prev {
+        left: 10px;
+    }
+
+    .owl-nav .owl-next {
+        right: 10px;
+    }
+
+    .thumbnail-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .thumbnail-item {
+        margin: 0 5px;
+        cursor: pointer;
+        opacity: 0.6;
+    }
+
+    .thumbnail-item.active {
+        opacity: 1;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+    }
+
+    .thumbnail-item img {
+        transition: opacity 0.3s;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    /* Style cho phần chi tiết phòng có thanh cuộn */
+    .room-details-scroll {
+        height: 528px;
+        /* Chiều cao bằng với ảnh carousel */
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+
+    /* Style cho thanh cuộn */
+    .room-details-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .room-details-scroll::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .room-details-scroll::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .room-details-scroll::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Style cho phần carousel trong modal */
+    .carousel-image {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+    }
+    
+    .owl-carousel {
+        position: relative;
+        height: 450px;
+    }
+    
+    .owl-carousel .owl-stage-outer,
+    .owl-carousel .owl-stage,
+    .owl-carousel .owl-item {
+        height: 100%;
+    }
+    
+    .owl-carousel .item {
+        height: 100%;
+    }
+    
+    .thumbnail-container {
+        overflow-x: auto;
+        padding: 5px 0;
+        margin-top: 10px !important;
+    }
+    
+    .thumbnail-list {
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        gap: 10px;
+    }
+    
+    .thumbnail-item {
+        flex: 0 0 auto;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s ease;
+    }
+    
+    .thumbnail-item.active {
+        border-color: #6b9c6e;
+    }
+    
+    .thumb-image {
+        width: 80px;
+        height: 60px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
 </style>
 
 
 <script>
     function initRoomDetailJS() {
         try {
+            // Lấy tất cả các nút "Xem chi tiết phòng"
+            const viewDetailsButtons = document.querySelectorAll('.view-details-button');
+
+            // Thêm sự kiện click cho từng nút
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Lấy target từ thuộc tính data-bs-target
+                    const target = this.getAttribute('data-bs-target') || this.getAttribute('data-target');
+                    if (target) {
+                        // Hiển thị modal
+                        const roomModal = new bootstrap.Modal(document.querySelector(target));
+                        roomModal.show();
+                        
+                        // Khởi tạo carousel sau khi modal hiển thị
+                        setTimeout(() => {
+                            const modalCarousel = document.querySelector(target + ' .room-carousel');
+                            if (modalCarousel) {
+                                $(modalCarousel).owlCarousel({
+                                    loop: true,
+                                    margin: 10,
+                                    nav: true,
+                                    dots: false,
+                                    items: 1,
+                                    navText: [
+                                        '<i class="fas fa-chevron-left"></i>',
+                                        '<i class="fas fa-chevron-right"></i>'
+                                    ]
+                                });
+                                
+                                // Xử lý thumbnail trong modal hiện tại
+                                const thumbnails = document.querySelectorAll(target + ' .thumbnail-item');
+                                thumbnails.forEach(thumb => {
+                                    thumb.addEventListener('click', function() {
+                                        const index = this.getAttribute('data-index');
+                                        $(modalCarousel).trigger('to.owl.carousel', [parseInt(index), 300]);
+                                        
+                                        // Cập nhật trạng thái active cho thumbnail
+                                        thumbnails.forEach(t => t.classList.remove('active'));
+                                        this.classList.add('active');
+                                    });
+                                });
+                                
+                                // Cập nhật active thumbnail khi carousel thay đổi
+                                $(modalCarousel).on('changed.owl.carousel', function(event) {
+                                    const currentIndex = event.item.index % event.item.count;
+                                    thumbnails.forEach(thumb => {
+                                        if (parseInt(thumb.getAttribute('data-index')) === currentIndex) {
+                                            thumb.classList.add('active');
+                                        } else {
+                                            thumb.classList.remove('active');
+                                        }
+                                    });
+                                });
+                            }
+                        }, 300); // Đợi modal hiển thị hoàn tất
+                    } else {
+                        // Fallback nếu không có target - sử dụng ID mặc định
+                        const roomId = this.closest('.room-card').getAttribute('data-room-id');
+                        if (roomId) {
+                            const roomModal = new bootstrap.Modal(document.getElementById('roomModal' + roomId));
+                            roomModal.show();
+                        }
+                    }
+                });
+            });
+
+            // Initialize Bootstrap tooltips
+            $('[data-bs-toggle="tooltip"]').tooltip();
             // Xử lý tăng/giảm số lượng phòng
             const quantityControls = document.querySelectorAll('.quantity-control');
 

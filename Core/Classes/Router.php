@@ -36,5 +36,20 @@ class Router {
         
         return $src;
     }
+
+     /**
+     * Router::srcHotel()
+     * 
+     * @param mixed $hotel_id
+     * @param mixed $image_name
+     * @param string $size
+     * @return
+     */
+    function srcRoom($room_id, $image_name) {
+        
+        $src    =   DOMAIN_STATIC . '/room/' . $room_id . '/' . $image_name;
+        
+        return $src;
+    }
     
 }

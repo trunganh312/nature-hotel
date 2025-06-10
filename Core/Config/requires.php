@@ -13,6 +13,7 @@ require_once(PATH_CORE .'/Classes/Image.php');
 require_once(PATH_CORE .'/Classes/Upload.php');
 require_once(PATH_CORE .'/Classes/GenerateForm.php');
 require_once(PATH_CORE .'/Model/LogModel.php');
+require_once(PATH_CORE .'/Model/HotelModel.php');
 require_once(PATH_CORE .'/Classes/DataTable.php');
 require_once(PATH_CORE .'/Model/UserModel.php');
 include_once(PATH_CORE . '/Config/constants.php');
@@ -29,5 +30,6 @@ if (empty($cfg_website)) {
 }
 
 $Router         =   new Router;
+$HotelModel     =   new HotelModel;
 $cfg_time_start =  get_microtime();
 ?>

@@ -15,6 +15,9 @@ define('DOMAIN_STATIC', Utils::env('APP_DOMAIN_STATIC'));
 define('BRAND_NAME', Utils::env('BRAND_NAME'));
 define('BRAND_DOMAIN', Utils::env('BRAND_DOMAIN'));
 define('DOMAIN_WEB', Utils::env('DOMAIN_WEB'));
+define('DOMAIN_SENNET', Utils::env('DOMAIN_SENNET'));
+define('SENNET_SECRET', Utils::env('SENNET_SECRET'));
+define('SENNET_APP_ID', Utils::env('SENNET_APP_ID'));
 
 Utils::cors();
 
