@@ -1,5 +1,5 @@
-  /* Custom CSS cho section */
-  #hotel-overview {
+/* Custom CSS cho section */
+#hotel-overview {
     background-color: var(--white);
     padding: 20px 0;
 }
@@ -12,155 +12,98 @@
     color: #222;
 }
 
-/* Đánh giá và điểm */
-#hotel-overview .badge.bg-warning {
-    background-color: #ff5722 !important;
-    color: white !important;
-    padding: 5px 8px;
-    border-radius: 4px;
-}
-
-.text-primary {
+/* Địa chỉ và biểu tượng bản đồ */
+#hotel-overview .fa-map-marker-alt {
     color: var(--primary-color) !important;
 }
 
-#hotel-overview .fw-bold.text-primary {
-    color: var(--primary-color) !important;
-    font-size: 16px;
-    margin-left: 8px;
-}
-
-/* Địa chỉ */
-#hotel-overview .fa-location-dot {
-    color: var(--primary-color) !important;
-}
-
-#hotel-overview .btn-outline {
-    border: 1px solid #ddd;
-    color: var(--primary-color);
-    padding: 3px 12px;
-    border-radius: 4px;
+#hotel-overview .address {
     font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    color: #4A5568;
 }
 
-#hotel-overview .btn-outline:hover {
-    background-color: #f5f5f5;
-}
-
-/* Phần giá và giảm giá */
-.price-section {
-    text-align: right;
-    margin-bottom: 15px;
-}
-
-.original-price {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 14px;
-}
-
-.discount-badge {
-    background-color: #f85757;
-    color: white;
-    font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-left: 10px;
-    font-size: 14px;
-}
-
-.current-price {
-    font-size: 24px;
-    font-weight: 700;
-    color: #f85757;
-    margin-top: 5px;
-    display: block;
-}
-
-.book-now-btn {
-    background-color: #f85757;
-    color: white;
-    font-weight: 600;
-    padding: 10px 25px;
-    border-radius: 6px;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.book-now-btn:hover {
-    background-color: #e04848;
-}
-
-/* Phần video và gallery */
-.hotel-video {
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.hotel-video video {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    display: flex;
+#hotel-overview .map-icon {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.play-icon i {
-    color: white;
-    font-size: 24px;
+#hotel-overview .map-icon:hover svg path {
+    stroke: #0096d3;
 }
 
-.play-icon:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+/* Phần ảnh cho PC */
+.hotel-gallery .main-image-container {
+    height: 353px;
+    width: 100%;
+    overflow: hidden;
 }
 
-/* Gallery ảnh */
-.hotel-gallery {
-    margin: 0 0;
+.hotel-gallery .main-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.hotel-gallery .col-6 {
-    padding: 0 4px;
+.hotel-gallery .main-image-container img:hover {
+    transform: scale(1.02);
 }
 
-.hotel-gallery img {
+.hotel-gallery .pc-gallery img {
     width: 100%;
     height: 172px;
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 0;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.hotel-gallery img:hover {
+.hotel-gallery .pc-gallery img:hover {
     transform: scale(1.02);
 }
 
+/* Phần ảnh cho mobile */
+@media (max-width: 991.98px) {
+    .hotel-gallery .main-image-container {
+        height: 250px;
+    }
+
+    .thumbnail-gallery {
+        width: 100%;
+    }
+
+    .thumbnail-item {
+        flex: 1;
+        max-width: 24%;
+        height: 60px;
+        overflow: hidden;
+    }
+
+    .thumbnail-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .thumbnail-item img:hover {
+        transform: scale(1.02);
+    }
+}
+
+/* Gallery overlay */
 .gallery-overlay {
     position: absolute;
     top: 0;
-    left: 4px;
-    right: 4px;
+    left: 0;
+    right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -199,6 +142,7 @@
     font-size: 20px;
 }
 
+/* Room Card */
 .room-card {
     background: #fff;
     border-radius: 8px;
@@ -252,25 +196,72 @@
     height: 140px;
 }
 
-.main-image img {
-    width: 100%;
+.main-image-carousel .owl-carousel {
     height: 100%;
+}
+
+.main-image-carousel .item img {
+    width: 100%;
+    height: 140px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+.main-image-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.main-image-carousel .owl-nav button {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.main-image-carousel .owl-nav button:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.main-image-carousel .owl-nav button i {
+    color: #000;
+    font-size: 14px;
+}
+
+.main-image-carousel .owl-nav .owl-prev {
+    left: 10px;
+}
+
+.main-image-carousel .owl-nav .owl-next {
+    right: 10px;
 }
 
 .thumbnail-images {
     display: flex;
     gap: 2px;
-    width: 70px;
-    height: 53px;
+    margin-top: 2px;
 }
 
 .thumbnail-images img {
-    width: 100%;
-    height: 100%;
+    width: 70px;
+    height: 53px;
     object-fit: cover;
     border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-images img:hover {
+    transform: scale(1.05);
 }
 
 .view-details-button {
@@ -283,6 +274,7 @@
     font-weight: 500;
     padding: 6px 0;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .view-details-button svg {
@@ -317,11 +309,20 @@
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room-capacity {
+    font-size: 14px;
+    color: #4A5568;
+    font-weight: 500;
 }
 
 .room_details_room-info {
     border-bottom: 1px solid var(--boder_bottom);
-    display: flex !important;
+    display: flex;
     flex-direction: row;
     gap: 8px;
 }
@@ -408,7 +409,7 @@
 .pricing {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 4px;
 }
 
 .final-price {
@@ -429,11 +430,13 @@
     align-items: center;
     gap: 8px;
 }
+
 .quantity-input-hidden {
     display: none;
 }
+
 .quantity-display {
-    width: 60px; /* Độ rộng tương tự input */
+    width: 60px;
     text-align: center;
     padding: 5px;
     border: 1px solid var(--boder_bottom);
@@ -445,6 +448,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .quantity-control button {
     width: 30px;
     height: 30px;
@@ -527,7 +531,7 @@
     text-align: right;
 }
 
-.price-breakdown>span {
+.price-breakdown > span {
     font-size: 16px;
     font-weight: 600;
     color: #2d3748;
@@ -653,7 +657,6 @@
     opacity: 0;
 }
 
-/* Thêm position relative cho container của indicator */
 .guest-selection {
     position: relative;
 }
@@ -666,7 +669,6 @@ input:focus {
     outline: none;
 }
 
-/* Ẩn mũi tên tăng giảm mặc định */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -677,13 +679,101 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-@media (max-width: 768px) {
+/* Responsive cho mobile */
+@media (max-width: 991.98px) {
+    .room-title {
+        margin-top: 10px;
+    }
+    #hotelGalleryModal .modal-dialog {
+        max-width: 100%;
+        height: 90%;
+    }
+    .no_padding_mobile {
+        padding: 0 !important;
+    }
+    .display-none_mobile {
+        display: none;
+    }
+    .room-quantity {
+        padding-bottom: 10px;
+    }
+    .room-images-section {
+        position: static;
+        width: 100%;
+    }
+
+    .main-image-carousel {
+        height: 200px;
+    }
+
+    .main-image-carousel .item img {
+        height: 200px;
+    }
+
+    .thumbnail-images {
+        display: none;
+    }
+
     .room-card-content {
         flex-direction: column;
     }
 
-    .room-images-section {
-        position: static;
+    .room-details-section {
+        width: 100%;
+    }
+
+    .room-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .room-capacity {
+        margin-top: 5px;
+    }
+
+    .room_details_room-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .bed-info {
+        display: none; /* Ẩn phần giường trên mobile để đơn giản */
+    }
+
+    .option-header {
+        margin-top: 10px;
+    }
+    
+    /* CSS mới cho layout guest-selection trên mobile */
+    .guest-selection .row {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin: 0 -5px;
+    }
+    
+    .guest-selection .guest-input {
+        flex: 1;
+        min-width: 0;
+        padding: 0 5px;
+    }
+    
+    .guest-selection .col-md-5,
+    .guest-selection .col-md-4,
+    .guest-selection .col-md-3 {
+        width: auto;
+        max-width: none;
+    }
+    
+    .guest-input .guest-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .guest-input input {
+        width: 30px;
+        text-align: center;
     }
 }
 
@@ -708,15 +798,12 @@ input[type="number"] {
     cursor: pointer;
 }
 
-/* Style cho phần chi tiết phòng có thanh cuộn */
 .room-details-scroll {
     height: 528px;
-    /* Chiều cao bằng với ảnh carousel */
     overflow-y: auto;
     padding-right: 15px;
 }
 
-/* Style cho thanh cuộn */
 .room-details-scroll::-webkit-scrollbar {
     width: 6px;
 }

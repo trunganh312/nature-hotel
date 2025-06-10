@@ -1,22 +1,22 @@
 <?php
-// // Tạo mảng với nhiều ảnh khác nhau
-// $images = [
-//     "https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg",
-//     "https://cdn3.ivivu.com/2014/01/ztq1372403761.jpg",
-//     "https://cdn3.ivivu.com/2014/01/20762698_images1477905_6.jpg",
-//     "https://cdn3.ivivu.com/2014/01/Khach-san-Midtown-Hue-4-Sao-Lobby.jpg",
-//     "https://cdn3.ivivu.com/2014/01/be-boi-horison-hoi-nghi-khach-hang.jpg",
-//     "https://cdn3.ivivu.com/2014/01/ngoai-canh-khach-san-ha-an.jpg", 
-//     "https://cdn3.ivivu.com/2014/01/diemhencafe1.jpg",
-//     "https://cdn3.ivivu.com/2014/01/Deluxe-18687.jpg",
-//     "https://cdn3.ivivu.com/2014/01/khach-san-the-mira-hue-be-boi.jpg",
-//     "https://cdn3.ivivu.com/2014/01/phong-executive-khach-san-golden-river-hue.jpg"
-// ];
+// Tạo mảng với nhiều ảnh khác nhau
+$images = [
+    "https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg",
+    "https://cdn3.ivivu.com/2014/01/ztq1372403761.jpg",
+    "https://cdn3.ivivu.com/2014/01/20762698_images1477905_6.jpg",
+    "https://cdn3.ivivu.com/2014/01/Khach-san-Midtown-Hue-4-Sao-Lobby.jpg",
+    "https://cdn3.ivivu.com/2014/01/be-boi-horison-hoi-nghi-khach-hang.jpg",
+    "https://cdn3.ivivu.com/2014/01/ngoai-canh-khach-san-ha-an.jpg",
+    "https://cdn3.ivivu.com/2014/01/diemhencafe1.jpg",
+    "https://cdn3.ivivu.com/2014/01/Deluxe-18687.jpg",
+    "https://cdn3.ivivu.com/2014/01/khach-san-the-mira-hue-be-boi.jpg",
+    "https://cdn3.ivivu.com/2014/01/phong-executive-khach-san-golden-river-hue.jpg"
+];
 
-// // Gán mảng ảnh cho từng phòng
-// foreach ($rooms as $key => $room) {
-//     $rooms[$key]['images'] = $images;
-// }
+// Gán mảng ảnh cho từng phòng
+foreach ($rooms as $key => $room) {
+    $rooms[$key]['images'] = $images;
+}
 ?>
 
 <?php if (empty($rooms)) return; ?>
@@ -37,15 +37,19 @@
     <div class="room-card-content">
         <div class="row">
             <div class="room-images-section col-md-3">
-                <div class="image-gallery">
-                    <div class="main-image">
-                        <img src="<?php echo htmlspecialchars($room['images'][0]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
-                    </div>
-                    <div class="thumbnail-images">
-                        <img src="<?php echo htmlspecialchars($room['images'][1]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
-                        <img src="<?php echo htmlspecialchars($room['images'][2]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
-                        <img src="<?php echo htmlspecialchars($room['images'][3]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
-                    </div>
+                <!-- Carousel cho ảnh chính -->
+                <div class="main-image-carousel owl-carousel owl-theme">
+                    <?php foreach ($room['images'] as $image): ?>
+                        <div class="item">
+                            <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>" class="img-fluid">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <!-- Ẩn thumbnail-images trên mobile -->
+                <div class="thumbnail-images d-none d-md-flex">
+                    <img src="<?php echo htmlspecialchars($room['images'][1]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
+                    <img src="<?php echo htmlspecialchars($room['images'][2]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
+                    <img src="<?php echo htmlspecialchars($room['images'][3]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
                 </div>
                 <button class="view-details-button" data-bs-toggle="modal" data-bs-target="#roomModal<?php echo $room['roo_id']; ?>">
                     Xem chi tiết phòng
@@ -65,7 +69,7 @@
             <div class="room-details-section col-md-9">
                 <div class="row">
                     <h3 class="room-title"><?php echo htmlspecialchars($room['roo_name']); ?></h3>
-                    <div class="room_details_room-info pb-3">
+                    <div class="room_details_room-info pb-1">
                         <div class="info-item">
                             <svg width="16" height="16" fill="none">
                                 <path
@@ -98,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt-3">
+                <div class="no_padding_mobile row py-3">
                     <div class="col-md-5">
                         <div class="option-header">
                             <div class="option-tags">
@@ -129,7 +133,7 @@
                                             stroke="#ED8936" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     Có thể kê thêm giường phụ
-                                </span>
+                                    </span>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -186,7 +190,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <div class="thumbnail-container mt-3">
+                    <div class="thumbnail-container mt-3 display-none_mobile">
                         <ul class="thumbnail-list d-flex justify-content-center">
                             <?php foreach ($room['images'] as $index => $image): ?>
                                 <li class="thumbnail-item <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>">
@@ -502,6 +506,19 @@ function initRoomDetailJS() {
                 }
             });
         }
+
+        // Khởi tạo carousel
+        $('.main-image-carousel').owlCarousel({
+            loop: false,
+            margin: 10,
+            nav: true,
+            dots: false,
+            items: 1,
+            navText: [
+                '<i class="fas fa-chevron-left"></i>',
+                '<i class="fas fa-chevron-right"></i>'
+            ]
+        });
 
         document.querySelectorAll('.room-card').forEach((card, index) => {
             if (!card.id) {

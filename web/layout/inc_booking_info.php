@@ -11,6 +11,10 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
 
 <div class="card_booking-info booking-info_booking-info shadow-sm border-0 p-0">
     <div class="card-body">
+        <!-- Toggle button cho mobile -->
+        <button class="toggle-details-btn d-block d-md-none" style="display: none;">
+            <i class="fas fa-chevron-down"></i> Xem chi tiết
+        </button>
         <h5 class="text-center booking_info-title">Thông tin đặt phòng</h5>
         <!-- Tiêu đề khách sạn -->
         <h4 class="hotel-name"><?php echo $hotel_name; ?></h4>
@@ -26,7 +30,7 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
         </div>
 
         <!-- Các khối hạng phòng sẽ được thêm bằng JS -->
-        <div id="room-type-sections-container"></div>
+        <div id="room-type-sections-container" class="room-type-sections"></div>
 
         <!-- Tổng tiền phòng -->
         <div class="mb-1">
@@ -37,7 +41,7 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
         <hr>
 
         <!-- Tổng hợp chi phí -->
-        <div class="mb-1">
+        <div class="mb-1 additional-info">
             <?php if ($discount_code): ?>
             <div class="d-flex justify-content-between mb-2">
                 <span class="font-14">Mã giảm giá (<?php echo $discount_code; ?>)</span>
@@ -87,8 +91,8 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
         margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid var(--boder_bottom);
-    }   
-    .booking-info_booking-info{
+    }
+    .booking-info_booking-info {
         width: 100%;
         max-width: 306px;
     }
@@ -100,13 +104,13 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
         max-width: 306px;
         box-sizing: border-box;
         position: sticky;
-        top: -29px
+        top: -29px;
     }
     .booking-info_booking-info .hotel-name {
         color: var(--text-color);
         font-weight: 700;
         margin-bottom: 10px;
-        font-size: 14px;    
+        font-size: 14px;
     }
     .booking-info_booking-info .info-label {
         color: var(--text-light);
@@ -166,21 +170,165 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
         padding: 12px 0;
         transition: all 0.3s ease;
         box-shadow: 0 4px 8px var(--secondary-color);
+        width: 100%;
     }
     .booking-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 12px var(--accent-color);
     }
-    @media (max-width: 576px) {
-        .booking-info_booking-info .hotel-name {
-            font-size: 1.25rem;
+
+    /* Toggle button cho mobile */
+    .toggle-details-btn {
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        font-size: 14px;
+        padding: 5px 0;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        display: none;
+    }
+    .toggle-details-btn i {
+        transition: transform 0.3s ease;
+    }
+    .toggle-details-btn.active i {
+        transform: rotate(180deg);
+    }
+
+    /* Responsive cho mobile */
+    @media (max-width: 991.98px) {
+        
+        .booking-info_booking-info hr {
+            display: none;
         }
+        .booking-info_booking-info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            border-radius: 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+            background-color: var(--white);
+        }
+
+        .booking-info_booking-info .hotel-name,
+        .booking-info_booking-info .booking_info-title,
+        .booking-info_booking-info .time-section,
+        #room-type-sections-container,
+        .additional-info {
+            display: none;
+        }
+
+        .toggle-details-btn {
+            display: block;
+        }
+
+        .booking-info_booking-info .info-label,
         .booking-info_booking-info .info-value {
-            font-size: 0.9375rem;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        .booking-info_booking-info .total-price-text,
+        .booking-info_booking-info .total-price {
+            font-size: 14px;
+        }
+
+        .booking-button {
+            font-size: 14px;
+            padding: 8px 0;
+        }
+
+        /* Hiển thị khi toggle */
+        .booking-info_booking-info.active .hotel-name,
+        .booking-info_booking-info.active .booking_info-title,
+        .booking-info_booking-info.active .time-section,
+        .booking-info_booking-info.active #room-type-sections-container,
+        .booking-info_booking-info.active .additional-info {
+            display: block;
+        }
+
+        .booking-info_booking-info.active .toggle-details-btn i {
+            transform: rotate(180deg);
         }
     }
+
     .time-section .daterangepicker {
         left: -600px !important;
+    }
+
+    /* CSS Responsive cho daterangepicker trên mobile */
+    @media (max-width: 991.98px) {
+        .time-section .daterangepicker {
+            left: 201px !important;
+        }
+        .daterangepicker {
+            position: fixed !important;
+            top: 46% !important;
+            left: 50% !important;
+            right: auto !important;
+            bottom: auto !important;
+            transform: translate(-50%, -50%) !important;
+            z-index: 1100 !important;
+            width: 95% !important;
+            max-width: 300px !important;
+            margin: 0 !important;
+        }
+
+        /* Hiển thị cả hai bảng tháng với kích thước nhỏ hơn */
+        .daterangepicker .drp-calendar {
+            width: 48% !important;
+            max-width: 48% !important;
+            margin: 0 1% !important;
+            font-size: 11px !important;
+        }
+        
+        /* Hiển thị bảng tháng thứ hai */
+        .daterangepicker .drp-calendar.right {
+            display: block !important;
+        }
+
+        /* Điều chỉnh kích thước của các ô ngày */
+        .daterangepicker td, 
+        .daterangepicker th {
+            width: 25px !important;
+            height: 25px !important;
+            min-width: 25px !important;
+            line-height: 25px !important;
+            font-size: 10px !important;
+            padding: 0 !important;
+        }
+
+        /* Bo gọn padding của bảng lịch */
+        .daterangepicker .drp-calendar.left,
+        .daterangepicker .drp-calendar.right {
+            padding: 5px !important;
+            border-right: none !important;
+        }
+
+        /* Thu nhỏ tiêu đề tháng */
+        .daterangepicker th.month {
+            font-size: 12px !important;
+            padding: 0 !important;
+        }
+        
+        /* Thu nhỏ nút prev/next */
+        .daterangepicker .prev,
+        .daterangepicker .next {
+            width: 20px !important;
+            height: 20px !important;
+            line-height: 20px !important;
+            font-size: 12px !important;
+        }
     }
 </style>
 
@@ -211,15 +359,18 @@ function initBookingInfoJS() {
             }
         };
 
-        window.addEventListener('scroll', handleStickyBooking);
-        window.addEventListener('resize', handleStickyBooking);
-        handleStickyBooking();
+        // Chỉ áp dụng sticky top trên PC
+        if (window.innerWidth > 991.98) {
+            window.addEventListener('scroll', handleStickyBooking);
+            window.addEventListener('resize', handleStickyBooking);
+            handleStickyBooking();
+        }
 
         // Khởi tạo daterange picker
         $('.date-range-input').daterangepicker({
-            parentEl: '.time-section', // Đặt lịch bên trong time-section
-            opens: 'left', // Mở lịch sang bên trái
-            autoApply: true, // Tự động áp dụng khi chọn ngày
+            parentEl: '.time-section',
+            opens: 'left',
+            autoApply: true,
             locale: {
                 format: 'YYYY-MM-DD',
                 separator: ' - ',
@@ -234,7 +385,7 @@ function initBookingInfoJS() {
                 ],
                 firstDay: 1
             },
-            minDate: moment().startOf('day'), // Không cho chọn ngày quá khứ
+            minDate: moment().startOf('day'),
             startDate: '<?php echo $check_in; ?>',
             endDate: '<?php echo $check_out; ?>'
         });
@@ -270,6 +421,17 @@ function initBookingInfoJS() {
             $icon.toggleClass('fa-chevron-down fa-chevron-up');
             $collapse.collapse('toggle');
         });
+
+        // Toggle chi tiết trên mobile
+        const toggleBtn = document.querySelector('.toggle-details-btn');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                const bookingInfo = document.querySelector('.booking-info_booking-info');
+                bookingInfo.classList.toggle('active');
+                this.classList.toggle('active');
+                this.textContent = bookingInfo.classList.contains('active') ? 'Ẩn chi tiết' : 'Xem chi tiết';
+            });
+        }
 
         // Lắng nghe sự kiện từ room_detail để cập nhật thông tin
         window.addEventListener('roomSelectionChange', function(e) {
