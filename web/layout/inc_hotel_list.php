@@ -27,7 +27,7 @@
                             <div class="hotel-content">
                                 <div class="hotel-header">
                                     <div class="hotel_name_title d-flex align-items-center">
-                                        <a href="<?= $hotel['link'] ?>">
+                                        <a href="<?= $hotel['link'] ?>" style='text-decoration: none;'>
                                             <h2 class="hotel-name me-2"><?= $hotel['hot_name'] ?></h2>
                                         </a>
                                     </div>
