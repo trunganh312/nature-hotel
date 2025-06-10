@@ -1,3 +1,31 @@
+<?php
+
+use src\Models\Hotel;
+use src\Models\HotelPicture;
+
+
+$search = Hotel::where('hot_active', 1)
+    ->select('cit_name', 'cit_id', 'cit_image', 'hot_id', 'hot_name', 'hot_address_full', 'hot_picture')
+    ->join('cities', 'hot_city', 'cit_id')
+    ->toArray();
+$data_city = [];
+foreach ($search as $hotel) {
+    $name = $hotel['cit_name'];
+    if (!isset($data_city[$name])) {
+        $slug = to_slug($name);
+        $data_city[$name] = [
+            'name' => $name,
+            'value' => 1,
+            'link' => '/city-' . $hotel['cit_id'] . '-' . $slug . '.html',
+            'img' => $hotel['cit_image']
+        ];
+    } else {
+        $data_city[$name]['value']++;
+    }
+}
+$data_city = array_values($data_city);
+?>
+
 <div class="baler-box">
     <div class="container">
         <h2>Khách sạn</h2>

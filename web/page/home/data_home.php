@@ -1,5 +1,4 @@
-<?
-
+<?php
 use src\Models\Hotel;
 use src\Models\HotelPicture;
 
@@ -17,39 +16,31 @@ $hotels = Hotel::where('hot_active', 1)
     ->join('cities', 'hot_city', 'cit_id')
     ->toArray();
 
-$data_city = [];
-foreach ($hotels as $hotel) {
-    $name = $hotel['cit_name'];
-    if (!isset($data_city[$name])) {
-        $slug = to_slug($name);
-        $data_city[$name] = [
-            'name' => $name,
-            'value' => 1,
-            'link' => '/city-' . $hotel['cit_id'] . '-' . $slug . '.html',
-            'img' => $hotel['cit_image']
-        ];
-    } else {
-        $data_city[$name]['value']++;
-    }
-}
-$data_city = array_values($data_city);
-
 $data_hotels = [];
 foreach ($hotels as $hotel) {
-    // Lấy ảnh đầu tiên của khách sạn từ bảng hotel_picture
     $img = isset($hotel['hot_picture']) ? $Router->srcHotel($hotel['hot_id'], $hotel['hot_picture']) : $cfg_default_image;
 
     $slug = to_slug($hotel['hot_name']);
+    
+    // Lấy dịch vụ của khách sạn
+    $attrs = $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
+    $services = [];
+    foreach ($attrs as $attr) {
+        if ($attr['info']['param'] == 'tien-nghi') {
+            $services = array_values($attr['data']);
+            break;
+        }
+    }
+
     $data_hotels[] = [
         'name' => $hotel['hot_name'],
         'city' => $hotel['cit_name'],
         'address' => $hotel['hot_address_full'],
         'link' => '/hotel-' . $hotel['hot_id'] . '-' . $slug . '.html',
         'img'  => $img,
-        'price' => format_number(123456)
+        'price' => format_number(123456),
+        'services' => $services  
     ];
 }
 $data_hotels = array_values($data_hotels);
-
-
 ?>

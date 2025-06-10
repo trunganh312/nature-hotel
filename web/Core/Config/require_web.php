@@ -1,5 +1,7 @@
 <?
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 mb_internal_encoding('UTF-8');
 error_reporting(E_ALL);
 ob_start();

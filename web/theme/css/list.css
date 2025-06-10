@@ -424,33 +424,13 @@
     flex-wrap: nowrap;
   }
 
-@media (max-width: 1200px) {
-  .list_hotel {
-    margin-top: 25% !important;
-  }
-}
 
-@media (max-width: 990px) {
-  .list_hotel {
-    margin-top: 40% !important;
-  }
-}
-
-@media (max-width: 758px) {
-  .list_hotel {
-    margin-top: 40% !important;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
 /* Reponse bộ lọc */
 @media (max-width: 755px) {
     .filter-list {
         margin-top: 25%;
     }
 }
-
-
 
 .place {
     border-right: 1px solid #e2e8f0;

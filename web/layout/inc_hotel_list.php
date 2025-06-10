@@ -56,7 +56,10 @@
                                                 <div class="amenities">
                                                     <?php if (!empty($hotel['utilities'])): ?>
                                                         <?php foreach ($hotel['utilities'] as $uti): ?>
-                                                            <div class="amenity mb-1"><i class="<?= htmlspecialchars($uti['icon']) ?>"></i><?= htmlspecialchars($uti['name']) ?></div>
+                                                            <div class="amenity mb-1" style='display: flex;'>
+                                                                <div><i class="<?= htmlspecialchars($uti['icon']) ?>"></i></div>
+                                                                <div style='margin-left: 5px;'><?= htmlspecialchars($uti['name']) ?></div>
+                                                            </div>
                                                         <?php endforeach; ?>
                                                     <?php else: ?>
                                                         <div class="amenity mb-1 text-muted">Đang cập nhật</div>

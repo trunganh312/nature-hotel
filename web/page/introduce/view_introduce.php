@@ -112,7 +112,7 @@ $nearby = [
     </div>
     <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
         <div class="text-center text-white">
-            <h1 class="display-3 fw-bold"><i class="fa fa-hotel me-2"></i>Chào Mừng Đến Với Nature Hotel</h1>
+            <h1 class="display-3 fw-bolds"><i class="fa fa-hotel me-2"></i>Chào Mừng Đến Với Nature Hotel</h1>
             <p class="lead fs-4">Trải nghiệm nghỉ dưỡng độc đáo tại các thành phố du lịch hàng đầu Việt Nam</p>
         </div>
     </div>
@@ -122,7 +122,7 @@ $nearby = [
 <div class="container py-5">
     <!-- Giới thiệu chuỗi -->
     <section class="mb-5">
-        <h2 class="fw-bold mb-3"></i>Về Nature Hotel</h2>
+        <h2 class="fw-bolds mb-3"></i>Về Nature Hotel</h2>
         <p class="text-muted lead"><?php echo nl2br(htmlspecialchars($chain_info['intro'])); ?></p>
         <p class="text-muted"><?php echo nl2br(htmlspecialchars($chain_info['mission'])); ?></p>
         <div class="row mt-4">
@@ -155,14 +155,14 @@ $nearby = [
         <div class="col-lg-8">
             <!-- Giới thiệu chi nhánh -->
             <section class="mb-5">
-                <h2 class="fw-bold mb-3"><i class="fa fa-hotel me-2"></i>Nature Hotel - Nam Kỳ Khởi Nghĩa</h2>
+                <h2 class="fw-bolds mb-3"><i class="fa fa-hotel me-2"></i>Nature Hotel - Nam Kỳ Khởi Nghĩa</h2>
                 <p class="text-muted lead"><?php echo nl2br(htmlspecialchars($hotel['hot_intro'])); ?></p>
                 <p class="text-muted"><?php echo nl2br(htmlspecialchars($hotel['hot_description'])); ?></p>
             </section>
 
             <!-- Tiện nghi -->
             <section class="mb-5">
-                <h2 class="fw-bold mb-3"><i class="fa fa-concierge-bell me-2"></i>Tiện nghi & Dịch vụ</h2>
+                <h2 class="fw-bolds mb-3"><i class="fa fa-concierge-bell me-2"></i>Tiện nghi & Dịch vụ</h2>
                 <div class="row">
                     <?php foreach ($amenities as $amenity): ?>
                         <div class="col-md-6 mb-3">
@@ -177,7 +177,7 @@ $nearby = [
 
             <!-- Khu vực xung quanh -->
             <section class="mb-5">
-                <h2 class="fw-bold mb-3"><i class="fa fa-map-signs me-2"></i>Khám phá khu vực xung quanh</h2>
+                <h2 class="fw-bolds mb-3"><i class="fa fa-map-signs me-2"></i>Khám phá khu vực xung quanh</h2>
                 <div class="row">
                     <?php foreach ($nearby as $place): ?>
                         <div class="col-md-4 mb-4">
@@ -195,7 +195,7 @@ $nearby = [
 
             <!-- Chính sách -->
             <section class="mb-5">
-                <h2 class="fw-bold mb-3"><i class="fa fa-file-alt me-2"></i>Chính sách khách sạn</h2>
+                <h2 class="fw-bolds mb-3"><i class="fa fa-file-alt me-2"></i>Chính sách khách sạn</h2>
                 <p class="text-muted"><?php echo nl2br(htmlspecialchars($hotel['hot_policy'])); ?></p>
             </section>
         </div>
@@ -206,7 +206,7 @@ $nearby = [
                 <!-- Liên hệ -->
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h3 class="fw-bold mb-3"><i class="fa fa-address-book me-2"></i>Liên hệ</h3>
+                        <h3 class="fw-bolds mb-3"><i class="fa fa-address-book me-2"></i>Liên hệ</h3>
                         <p><i class="fa fa-phone me-2"></i><strong>Điện thoại:</strong> <?php echo htmlspecialchars($hotel['hot_phone']); ?></p>
                         <p><i class="fa fa-envelope me-2"></i><strong>Email:</strong> <?php echo htmlspecialchars($hotel['hot_email']); ?></p>
                         <p><i class="fa fa-facebook me-2"></i><strong>Facebook:</strong> <a href="https://www.facebook.com/Nature/" target="_blank">naturehotel.vn</a></p>
