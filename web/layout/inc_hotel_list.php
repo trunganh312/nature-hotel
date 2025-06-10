@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="image-container">
-                                <div class="owl-carousel owl-theme list-carousel" id="carousel-<?= $hotel['hot_id'] ?>">
+                                <div class="owl-carousel owl-theme hotel-list-carousel list-carousel" id="carousel-<?= $hotel['hot_id'] ?>">
                                     <!-- Lặp ảnh, nếu không có thì để ảnh mặc định -->
                                     <?php if (!empty($hotel['images'])): ?>
                                         <?php foreach ($hotel['images'] as $image): ?>

@@ -17,7 +17,7 @@
 
     <!-- Slideshow hình ảnh và video -->
     <div class="row position-relative">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 pe-0">
             <div class="main-image-container">
                 <img src="<?= $image_1 ?>" class="img-fluid rounded w-100 h-100" alt="Hotel Image 1">
             </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="modal-body p-0">
                 <!-- Thêm carousel chính -->
-                <div id="galleryCarouselMain" class="owl-carousel owl-theme gallery-main">
+                <div id="galleryCarouselMain" class="owl-carousel owl-theme overview-carousel gallery-main">
                     <!-- Render tử images -->
                     <?php
                     $images = $images ?? []; // Khởi tạo mảng rỗng nếu chưa có

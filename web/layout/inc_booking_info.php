@@ -88,6 +88,10 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
         padding-bottom: 10px;
         border-bottom: 1px solid var(--boder_bottom);
     }   
+    .booking-info_booking-info{
+        width: 100%;
+        max-width: 306px;
+    }
     .card_booking-info .booking-info_booking-info {
         background-color: var(--white);
         border-radius: 0.5rem;

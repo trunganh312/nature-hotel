@@ -192,11 +192,7 @@
                             <p class="room-details-text ms-2"><?php echo htmlspecialchars($room['attr_view']); ?></p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mt-3">
-                        <i class="fas fa-check-circle me-2 text-success"></i>
-                        <span>An tâm đặt phòng, Nature hỗ trợ xuất hóa đơn nhanh chóng, tiết kiệm thời gian cho bạn.</span>
-                    </div>
-                    <h6><i class="fas fa-concierge-bell me-2"></i> Tiện nghi phòng</h6>
+                    <h6 class="mb-3"><i class="fas fa-concierge-bell me-2"></i> Tiện nghi phòng</h6>
                     <div class="row">
                         <?php foreach ($room['utilities'] as $idx => $utility): ?>
                             <div class="col-6 mb-3 d-flex align-items-center">
@@ -205,7 +201,7 @@
                                 <?php else: ?>
                                     <i class="fas fa-ban me-2"></i>
                                 <?php endif; ?>
-                                <span><?php echo htmlspecialchars($utility['name']); ?></span>
+                                <span class="room-details-text ms-2"><?php echo htmlspecialchars($utility['name']); ?></span>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -234,7 +230,6 @@ function initRoomDetailJS() {
                 timeout = setTimeout(() => func.apply(this, args), wait);
             };
         };
-
         const initializeModal = (button) => {
             const target = button.getAttribute('data-bs-target');
             if (!target) {
@@ -258,7 +253,7 @@ function initRoomDetailJS() {
 
             if (carousel && !carouselInitialized) {
                 $(carousel).owlCarousel({
-                    loop: true,
+                    loop: false,
                     margin: 10,
                     nav: true,
                     dots: false,
