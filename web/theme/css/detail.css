@@ -282,3 +282,644 @@
         height: 45px;
     }
 }
+
+
+.room-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid var(--accent-color);
+}
+
+.room-card-header {
+    padding: 10px 20px;
+    background: var(--accent-color-hover);
+}
+
+.recommended-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.recommended-badge .star-icon {
+    margin-right: 4px;
+}
+
+.room-card-content {
+    padding: 20px;
+    gap: 20px;
+}
+
+.room-images-section {
+    position: sticky;
+    top: 170px;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-areas:
+        "main main main"
+        "thumb1 thumb2 thumb3";
+    gap: 2px;
+}
+
+.main-image {
+    grid-area: main;
+    width: 100%;
+    height: 140px;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.thumbnail-images {
+    display: flex;
+    gap: 2px;
+    width: 70px;
+    height: 53px;
+}
+
+.thumbnail-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.view-details-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.view-details-button svg {
+    margin-left: 4px;
+}
+
+.amenities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.amenity-item {
+    background: #f1f5f9;
+    border-radius: 20px;
+    margin: 0 2px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.amenity-count {
+    font-size: 12px;
+    color: var(--accent-color);
+}
+
+.room-details-section {
+    flex: 1;
+}
+
+.room-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.room_details_room-info {
+    border-bottom: 1px solid var(--boder_bottom);
+    display: flex !important;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.info-item svg {
+    margin-right: 6px;
+}
+
+.detail-link {
+    color: var(--accent-color);
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.room-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.room-option {
+    border-bottom: 1px solid #edf2f7;
+    padding-bottom: 20px;
+}
+
+.option-header {
+    margin-bottom: 10px;
+}
+
+.option-title {
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.option-tags {
+    gap: 12px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.tag svg {
+    margin-right: 4px;
+}
+
+.option-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bed-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bed-info span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.bed-info svg {
+    margin-right: 8px;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.final-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: right;
+}
+
+.room-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.quantity-input-hidden {
+    display: none;
+}
+.quantity-display {
+    width: 60px; /* Độ rộng tương tự input */
+    text-align: center;
+    padding: 5px;
+    border: 1px solid var(--boder_bottom);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-color, #4A5568);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quantity-control button {
+    width: 30px;
+    height: 30px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-control button i {
+    font-size: 12px;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    margin: 0 5px;
+    padding: 5px;
+    border: 1px solid var(--boder_bottom);
+    border-radius: 4px;
+}
+
+.guest-selection-container {
+    border-top: 1px solid var(--boder_bottom);
+}
+
+.discount {
+    background: #ffedd5;
+    color: #ed8936;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.price-details {
+    text-align: right;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #718096;
+    font-size: 14px;
+}
+
+.discounted-price {
+    color: #2d3748;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.coupon {
+    background: #e6f7ff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.coupon strong {
+    color: #00b6f3;
+}
+
+.book-now-button {
+    background: #00b6f3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.price-breakdown {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.price-breakdown>span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.breakdown-details {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #4a5568;
+}
+
+.room_detail_boder_bed {
+    border-left: 1px solid var(--boder_bottom);
+    border-right: 1px solid var(--boder_bottom);
+}
+
+.breakdown-details div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.quantity-label {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.view-more-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #00b6f3;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 0;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.view-more-button svg {
+    margin-left: 4px;
+}
+
+.hidden {
+    display: none;
+}
+
+.offer-info {
+    margin-top: 10px;
+    background-color: #F7FAFC;
+    padding: 10px;
+    border-left: 2px solid var(--accent-color);
+    border-radius: 0 10px 10px 0;
+}
+
+.offer-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.offer-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.offer-item svg {
+    margin-right: 8px;
+}
+
+.info-title {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+}
+
+.info-text {
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.guest-label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.guest-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 6px 0;
+}
+
+.guest-input {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+}
+
+.guest-input .guest-label label {
+    cursor: pointer;
+}
+
+.guest-input input {
+    width: 20px;
+    border: none;
+    background: transparent;
+    font-size: 12px;
+}
+
+.guest-indicator {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background-color: var(--accent-color);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+/* Thêm position relative cho container của indicator */
+.guest-selection {
+    position: relative;
+}
+
+.guest-input {
+    position: relative;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Ẩn mũi tên tăng giảm mặc định */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 768px) {
+    .room-card-content {
+        flex-direction: column;
+    }
+
+    .room-images-section {
+        position: static;
+    }
+}
+
+.room-details-list li {
+    font-size: 14px;
+}
+
+.room-details-text {
+    font-size: 14px;
+}
+
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+}
+
+.room-carousel .item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.owl-nav .owl-prev,
+.owl-nav .owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.owl-nav .owl-prev {
+    left: 10px;
+}
+
+.owl-nav .owl-next {
+    right: 10px;
+}
+
+.thumbnail-list {
+    list-style: none;
+    padding: 0;
+}
+
+.thumbnail-item {
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.thumbnail-item.active {
+    opacity: 1;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+}
+
+.thumbnail-item img {
+    transition: opacity 0.3s;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Style cho phần chi tiết phòng có thanh cuộn */
+.room-details-scroll {
+    height: 528px;
+    /* Chiều cao bằng với ảnh carousel */
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* Style cho thanh cuộn */
+.room-details-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.room-details-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.room-details-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.room-details-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Style cho phần carousel trong modal */
+.carousel-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+.owl-carousel {
+    position: relative;
+    height: 450px;
+}
+
+.owl-carousel .owl-stage-outer,
+.owl-carousel .owl-stage,
+.owl-carousel .owl-item {
+    height: 100%;
+}
+
+.owl-carousel .item {
+    height: 100%;
+}
+
+.thumbnail-container {
+    overflow-x: auto;
+    padding: 5px 0;
+    margin-top: 10px !important;
+}
+
+.thumbnail-list {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 10px;
+}
+
+.thumbnail-item {
+    flex: 0 0 auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.thumbnail-item.active {
+    border-color: #6b9c6e;
+}
+
+.thumb-image {
+    width: 80px;
+    height: 60px;
+    border-radius: 4px;
+    object-fit: cover;
+}
