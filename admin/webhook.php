@@ -404,6 +404,7 @@ class Webhook {
             $this->writeLog('Dữ liệu updatePrice không hợp lệ: ' . json_encode($data));
             return;
         }
+        $id = 0;
         foreach ($data as $room_id_mapping => $dates) {
             $room = DB::query("SELECT roo_id, roo_hotel_id, roo_quantity FROM room WHERE roo_id_mapping = {$room_id_mapping}")->getOne();
             if (!$room) {
@@ -412,6 +413,7 @@ class Webhook {
             }
             $broken = $dates['broken_rooms'] ?? 0;
             $roo_id = $room['roo_id'];
+            $id = $room['roo_hotel_id'];
             $hotel_id = $room['roo_hotel_id'];
             $qty = $room['roo_quantity'] - $broken;
             foreach ($dates['prices'] as $timestamp => $price) {
@@ -429,6 +431,7 @@ class Webhook {
                 }
             }
         }
+        $this->updatePriceByMonth($id);
     }
 
     protected function processAttributeName($data, $mode)
@@ -616,6 +619,47 @@ class Webhook {
         $uploadDir = realpath(__DIR__ .'/..') . '/uploads/hotel/' . $room['roo_id'] . '/' . $picture;
         if (file_exists($uploadDir)) {
             unlink($uploadDir);
+        }
+    }
+
+    protected function updatePriceByMonth ($hotel_id) {
+        $field_select = "hot_id, hot_price_m1, hot_price_m2, hot_price_m3,hot_price_m4, hot_price_m5, hot_price_m6, hot_price_m7, hot_price_m8, hot_price_m9, hot_price_m10, hot_price_m11, hot_price_m12";
+
+        $row = DB::query("SELECT {$field_select} FROM hotel WHERE hot_id = {$hotel_id}")->getOne();
+
+        // Xử lý lấy giá nhỏ nhất & > 0 của 12 tháng
+        for ($month = 1; $month <= 12; $month++) {
+            $field_name = "hot_price_m".$month;
+
+            // Tính thời gian nếu thấp hơn tháng hiện tại thì các giá của năm tiếp theo
+            if ($month < date("m")) {
+                $month = str_pad($month, 2, "0", STR_PAD_LEFT);
+                $dt = (date("Y")+1) ."-{$month}-01";
+            } else {
+                $month = str_pad($month, 2, "0", STR_PAD_LEFT);
+                $dt = date("Y") ."-{$month}-01";
+            }
+            $time_range = [
+                "from"=> strtotime(date("Y-m-01", strtotime($dt))),
+                "to"=> strtotime(date("Y-m-t H:i", strtotime($dt)))
+            ];
+
+            $table = HotelService::getTablePartitionRoomPrice('room_price', $hotel_id, $time_range["from"]);
+            if (!HotelService::existTableRoomPrice($table)) continue;
+
+            // Lấy giá nhỏ nhất
+            $min_price = DB::query("SELECT rop_price
+                            FROM $table
+                            WHERE rop_hotel_id = {$hotel_id} AND rop_price > 0
+                            ORDER BY rop_price ASC
+                            LIMIT 1")
+                        ->getOne();
+
+            if (empty($min_price)) continue;
+
+            if ($row[$field_name] < 1 || $min_price["rop_price"] < $row[$field_name]) {
+                DB::query("UPDATE hotel SET {$field_name} = {$min_price['rop_price']} WHERE hot_id = {$hotel_id}");
+            }
         }
     }
 }

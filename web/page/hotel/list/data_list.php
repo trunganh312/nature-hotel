@@ -2,6 +2,7 @@
 include('../../../Core/Config/require_web.php');
 use src\Models\Hotel;
 use src\Models\HotelPicture;
+use src\Services\HotelService;
 
 $id = getValue('city');
 
@@ -47,6 +48,7 @@ foreach ($hotels as &$hotel) {
             break;
         }
     }
+    $hotel['price'] = format_number(HotelService::getRoomPriceByMonth($hotel['hot_id']));
 }
 unset($hotel);
 

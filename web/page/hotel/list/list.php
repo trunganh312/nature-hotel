@@ -57,8 +57,8 @@ include('data_list.php');
                     // Dữ liệu tiện nghi động từ PHP
                     const tags = <?php echo json_encode($amenities, JSON_UNESCAPED_UNICODE); ?>;
 
-                    let offsetCities = 3; // Hiển thị 3 thành phố ban đầu
-                    let offsetTags = 3; // Hiển thị 3 tags ban đầu
+                    let offsetCities = 100; // Hiển thị 3 thành phố ban đầu
+                    let offsetTags = 100; // Hiển thị 3 tags ban đầu
 
                     // Hàm render ban đầu
                     function renderCities() {
@@ -88,11 +88,11 @@ include('data_list.php');
                         tags.slice(0, offsetTags).forEach(tag => {
                             const checked = checkedTags.includes(String(tag.tag_id)) ? 'checked' : '';
                             const checkbox = `
-        <div class="form-check mb-2">
-            <input class="form-check-input" type="checkbox" name="tags[]" id="tag_${tag.tag_id}" value="${tag.tag_id}" ${checked}>
-            <label class="form-check-label" for="tag_${tag.tag_id}">${tag.tag_name}</label>
-        </div>
-        `;
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" name="tags[]" id="tag_${tag.tag_id}" value="${tag.tag_id}" ${checked}>
+                                                <label class="form-check-label" for="tag_${tag.tag_id}">${tag.tag_name}</label>
+                                            </div>
+                                            `;
                             tagsDiv.append(checkbox);
                         });
                         // Hiển thị nút Xóa tiện ích nếu có ít nhất 1 tiện ích được chọn

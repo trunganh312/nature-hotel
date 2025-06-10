@@ -106,7 +106,7 @@ foreach ($rooms as $key => $room) {
                     <div class="col-md-5">
                         <div class="option-header">
                             <div class="option-tags">
-                                <span class="tag">
+                                <!-- <span class="tag">
                                     <svg width="16" height="16" fill="none">
                                         <path
                                             d="M13.444 6.111H5.667c-.86 0-1.556.696-1.556 1.556v4.666c0 .86.697 1.556 1.556 1.556h7.777c.86 0 1.556-.697 1.556-1.556V7.667c0-.86-.697-1.556-1.556-1.556z"
@@ -116,7 +116,7 @@ foreach ($rooms as $key => $room) {
                                             stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     Hoàn huỷ một phần
-                                </span>
+                                </span> -->
                                 <span class="tag">
                                     <svg width="16" height="16" fill="none">
                                         <path
@@ -150,15 +150,15 @@ foreach ($rooms as $key => $room) {
                     </div>
                     <div class="col-md-4">
                         <div class="pricing">
-                            <div class="final-price"><?php echo number_format($room['price'] ?? 1200000, 0, ',', '.'); ?> VND</div>
+                            <div class="final-price"><?php echo $room['price']; ?>VNĐ</div>
 
                             <div class="room-quantity">
                                 <div class="quantity-label">Số phòng:</div>
                                 <div class="quantity-control">
-                                    <button class="quantity-decrease"><i class="fa-solid fa-minus"></i></button>
-                                    <span class="quantity-display" id="quantity-display-<?php echo $room['roo_id']; ?>">0 / <?php echo isset($room['roo_max_rooms']) ? $room['roo_max_rooms'] : 10; ?></span>
-                                    <input type="number" id="room-quantity-<?php echo $room['roo_id']; ?>" name="room_quantity" class="quantity-input-hidden" value="0" min="0" max="<?php echo isset($room['roo_max_rooms']) ? $room['roo_max_rooms'] : 10; ?>" style="display: none;">
-                                    <button class="quantity-increase"><i class="fa-solid fa-plus"></i></button>
+                                    <button class="quantity-decrease"><i class="far fa-minus"></i></button>
+                                    <span class="quantity-display" id="quantity-display-<?php echo $room['roo_id']; ?>">0 / <?php echo $room['min_qty']; ?></span>
+                                    <input type="number" id="room-quantity-<?php echo $room['roo_id']; ?>" name="room_quantity" class="quantity-input-hidden" value="0" min="0" max="<?php echo $room['min_qty']; ?>" style="display: none;">
+                                    <button class="quantity-increase"><i class="far fa-plus"></i></button>
                                 </div>
                             </div>
 
@@ -338,7 +338,7 @@ function initRoomDetailJS() {
             const roomName = roomCard.querySelector('.room-title').textContent;
             const quantityInput = roomCard.querySelector(`#room-quantity-${roomId}`);
             const roomCount = parseInt(quantityInput.value) || 0;
-            const maxRooms = parseInt(quantityInput.getAttribute('max')) || 10;
+            const maxRooms = parseInt(quantityInput.getAttribute('max')) || 0;
             const guestContainer = roomCard.querySelector(`#guest-selection-${roomId}`);
             const guestInputs = guestContainer.querySelectorAll('.guest-input-field');
 
@@ -358,7 +358,7 @@ function initRoomDetailJS() {
             }
 
             const finalPriceText = roomCard.querySelector('.final-price').textContent;
-            const roomPrice = parseInt(finalPriceText.replace(/[^0-9]/g, '')) || 1200000;
+            const roomPrice = parseInt(finalPriceText.replace(/[^0-9]/g, ''));
 
             // Cập nhật mảng selectedRooms
             const existingRoomIndex = selectedRooms.findIndex(room => room.roomId === roomId);
@@ -385,9 +385,14 @@ function initRoomDetailJS() {
             }
 
             // Lấy ngày check-in và check-out
-            const checkIn = document.querySelector('input[name="check_in"]')?.value || '2025-06-10';
-            const checkOut = document.querySelector('input[name="check_out"]')?.value || '2025-06-13';
-            const nights = Math.ceil((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)) || 1;
+            const value = document.querySelector('input.date-range-input')?.value;
+            const checkIn = value.split(' - ')[0];
+            const checkOut = value.split(' - ')[1];
+            const [day, month, year] = checkIn.split('/').map(Number);
+            const checkInDate = new Date(year, month - 1, day);
+            const [dayOut, monthOut, yearOut] = checkOut.split('/').map(Number);
+            const checkOutDate = new Date(yearOut, monthOut - 1, dayOut);
+            const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)) || 1;
 
             // Kích hoạt sự kiện để cập nhật booking_info
             const event = new CustomEvent('roomSelectionChange', {

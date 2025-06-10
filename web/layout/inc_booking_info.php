@@ -1,9 +1,5 @@
 <?php
-// Khởi tạo các biến mặc định
-$hotel_name = isset($hotel_name) ? htmlspecialchars($hotel_name) : "Khách sạn Sunrise";
-$check_in = isset($check_in) ? htmlspecialchars($check_in) : date('Y-m-d');
-$check_out = isset($check_out) ? htmlspecialchars($check_out) : date('Y-m-d', strtotime('+1 day'));
-$nights = isset($nights) ? $nights : 1;
+$hotel_name = $hotel['hot_name'];
 $tax_service_fee = isset($tax_service_fee) ? $tax_service_fee : 300000;
 $discount_code = isset($discount_code) ? htmlspecialchars($discount_code) : "SUMMER25";
 $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
@@ -38,10 +34,10 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
             <p class="info-value" id="total-room-price">0 VND</p>
         </div>
 
-        <hr>
+        <!-- <hr> -->
 
         <!-- Tổng hợp chi phí -->
-        <div class="mb-1 additional-info">
+        <!-- <div class="mb-1 additional-info">
             <?php if ($discount_code): ?>
             <div class="d-flex justify-content-between mb-2">
                 <span class="font-14">Mã giảm giá (<?php echo $discount_code; ?>)</span>
@@ -56,7 +52,7 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
                 <span class="font-14">Thuế và phí dịch vụ</span>
                 <span class="font-14" id="tax-service-fee"><?php echo number_format($tax_service_fee, 0, ',', '.'); ?> VND</span>
             </div>
-        </div>
+        </div> -->
 
         <!-- Tổng tiền -->
         <div class="pt-1 border-top">
@@ -372,7 +368,7 @@ function initBookingInfoJS() {
             opens: 'left',
             autoApply: true,
             locale: {
-                format: 'YYYY-MM-DD',
+                format: 'DD/MM/YYYY',
                 separator: ' - ',
                 applyLabel: 'Áp dụng',
                 cancelLabel: 'Hủy',
@@ -385,9 +381,9 @@ function initBookingInfoJS() {
                 ],
                 firstDay: 1
             },
-            minDate: moment().startOf('day'),
-            startDate: '<?php echo $check_in; ?>',
-            endDate: '<?php echo $check_out; ?>'
+            minDate: moment().startOf('day'), // Không cho chọn ngày quá khứ
+            startDate: '<?php echo str_replace('-', '/', $check_in); ?>',
+            endDate: '<?php echo str_replace('-', '/', $check_out); ?>'
         });
 
         // Xử lý nhấp vào phần thời gian
@@ -397,9 +393,14 @@ function initBookingInfoJS() {
 
         // Cập nhật hiển thị khi thay đổi ngày
         $('.date-range-input').on('apply.daterangepicker', function(ev, picker) {
-            const checkIn = picker.startDate.format('YYYY-MM-DD');
-            const checkOut = picker.endDate.format('YYYY-MM-DD');
+            const checkIn = picker.startDate.format('DD/MM/YYYY');
+            const checkOut = picker.endDate.format('DD/MM/YYYY');
             const nights = picker.endDate.diff(picker.startDate, 'days');
+            // Lưu vào cookies
+            document.cookie = `search_checkin=${checkIn}; path=/`;
+            document.cookie = `search_checkout=${checkOut}; path=/`;
+            document.cookie = `search_nights=${nights}; path=/`;
+
             $(this).siblings('.date-range-clickable').text(`${checkIn} - ${checkOut} (${nights} đêm)`);
 
             // Gửi sự kiện để cập nhật thông tin đặt phòng

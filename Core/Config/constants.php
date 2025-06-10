@@ -170,7 +170,7 @@ define('CURRENCY_VND', 1); //Đồng Việt Nam
 define('CURRENCY_USD', 2); //Đồng đô la
 
 /** --- Các biến khác --- **/
-define('CFG_PARTITION_TABLE', 0);
+define('CFG_PARTITION_TABLE', 2);
 
 /** Các nguồn đặt Booking **/
 define('SOURCE_TA', 1);   //TA
