@@ -20,10 +20,7 @@ function initOverviewDetailJS() {
             nav: true,
             dots: false,
             margin: 10,
-            navText: [
-                '<i class="fa fa-chevron-left"></i>',
-                '<i class="fa fa-chevron-right"></i>'
-            ],
+            navText: false,
             responsive: {
                 0: { items: 3 },
                 600: { items: 4 },
