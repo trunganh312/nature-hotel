@@ -127,6 +127,30 @@
     padding: 15px;
 }
 
+/* Cố định kích thước cho item trong gallery thumbnails */
+#galleryCarouselThumbs .item {
+    height: 12vh;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* Đảm bảo tất cả ảnh trong thumbnails có cùng kích thước và tỉ lệ */
+#galleryCarouselThumbs .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy container và cắt nếu cần */
+    border-radius: 4px;
+    transition: all 0.3s;
+    opacity: 0.6;
+    border: 2px solid transparent;
+}
+
+#galleryCarouselThumbs .owl-item.current .item img {
+    opacity: 1;
+    border-color: #ff5722;
+}
+
 .overview-carousel .gallery-thumbs .item {
     cursor: pointer;
 }
@@ -142,21 +166,6 @@
 .overview-carousel .gallery-thumbs .owl-item.current .item img {
     opacity: 1;
     border-color: #ff5722;
-}
-
-@media (max-width: 991px) {
-    .overview-carousel .item img {
-        height: 50vh;
-    }
-}
-
-@media (max-width: 767px) {
-    .overview-carousel .item img {
-        height: 40vh;
-    }
-    .overview-carousel .gallery-thumbs .item img {
-        height: 45px;
-    }
 }
 
 /* Carousel trong inc_room_detail.php */
@@ -236,4 +245,19 @@
     height: 60px;
     border-radius: 4px;
     object-fit: cover;
+}
+
+@media (max-width: 991px) {
+    .overview-carousel .item img {
+        height: 50vh;
+    }
+}
+
+@media (max-width: 767px) {
+    .overview-carousel .item img {
+        height: 40vh;
+    }
+    .overview-carousel .gallery-thumbs .item img {
+        height: 45px;
+    }
 }
