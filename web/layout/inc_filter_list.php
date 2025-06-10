@@ -8,7 +8,6 @@
       </div>
       <div class="cities">
       </div>
-      <button id="load-more-cities" class="btn btn-link">Xem thêm</button>
     </div>
 
     <!-- Bộ lọc Tiện nghi và Dịch vụ đi kèm (Tags) -->
@@ -18,7 +17,6 @@
       </div>
       <div class="tags">
       </div>
-      <button id="load-more-tags" class="btn btn-link">Xem thêm</button>
     </div>
   </div>
 </div>

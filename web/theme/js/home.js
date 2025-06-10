@@ -47,6 +47,10 @@ function initHomeJS() {
                     const rooms = activeOption.find('.detail-item:nth-child(1) span').text();
                     const adults = activeOption.find('.detail-item:nth-child(2) span').text();
                     const children = activeOption.find('.detail-item:nth-child(3) span')?.text() || '0';
+                    // Set value
+                    $('#roomQty').val(rooms);
+                    $('#adultQty').val(adults);
+                    $('#childQty').val(children);
                     $('.selected-option').text(`${rooms} phòng, ${adults} người lớn, ${children} trẻ em`);
                 }
             }
@@ -103,6 +107,16 @@ function initHomeJS() {
                     $('#locationInput').focus();
                     return;
                 }
+
+                // Lưu thông tin vào cookies trước khi chuyển trang
+                const expirationDays = 1; // Cookie sẽ hết hạn sau 30 ngày
+                setCookie('search_city', cityName, expirationDays);
+                setCookie('search_checkin', startDate, expirationDays);
+                setCookie('search_checkout', endDate, expirationDays);
+                setCookie('search_room_qty', roomQty, expirationDays);
+                setCookie('search_adult_qty', adultQty, expirationDays);
+                setCookie('search_child_qty', childQty, expirationDays);
+
                 // Chuyển trang với tham số
                 const params = new URLSearchParams({
                     checkin: startDate,
@@ -113,6 +127,29 @@ function initHomeJS() {
                 });
                 window.location.href = cityLink + '?' + params.toString();
             });
+
+            // Hàm helper để set cookie
+            function setCookie(name, value, days) {
+                let expires = "";
+                if (days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+            }
+
+            // Hàm helper để get cookie
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+                }
+                return null;
+            }
 
             // Date picker
             $('input[name="datetimes"]').daterangepicker({
@@ -145,12 +182,53 @@ function initHomeJS() {
                 $("#endDateText").text(end.format("DD/MM/YYYY"));
                 $(".moon").html(`${nights} <i class='fas fa-moon'></i>`);
             });
+
+            // Load saved search parameters from cookies when page loads
+            function loadSavedSearchParams() {
+                const savedCity = getCookie('search_city');
+                const savedCheckin = getCookie('search_checkin');
+                const savedCheckout = getCookie('search_checkout');
+                const savedRoomQty = getCookie('search_room_qty');
+                const savedAdultQty = getCookie('search_adult_qty');
+                const savedChildQty = getCookie('search_child_qty');
+
+                if (savedCity) $('#locationInput').val(savedCity);
+                if (savedRoomQty) $('#roomQty').val(savedRoomQty);
+                if (savedAdultQty) $('#adultQty').val(savedAdultQty);
+                if (savedChildQty) $('#childQty').val(savedChildQty);
+
+                // Update selected option text if we have room and guest data
+                if (savedRoomQty && savedAdultQty && savedChildQty) {
+                    $('.selected-option').text(`${savedRoomQty} phòng, ${savedAdultQty} người lớn, ${savedChildQty} trẻ em`);
+                }
+
+                // Update date picker if we have dates
+                if (savedCheckin && savedCheckout) {
+                    const start = moment(savedCheckin, "DD/MM/YYYY");
+                    const end = moment(savedCheckout, "DD/MM/YYYY");
+                    if (start.isValid() && end.isValid()) {
+                        const picker = $('input[name="datetimes"]').data('daterangepicker');
+                        if (picker) {
+                            picker.setStartDate(start);
+                            picker.setEndDate(end);
+                            $("#startDateText").text(start.format("DD/MM/YYYY"));
+                            $("#endDateText").text(end.format("DD/MM/YYYY"));
+                            const nights = end.diff(start, "days");
+                            $(".moon").html(`${nights} <i class='fas fa-moon'></i>`);
+                        }
+                    }
+                }
+            }
+
             // Default display for initial date
             const start = moment().startOf("day");
             const end = moment().add(1, "day").startOf("day");
             $("#startDateText").text(start.format("DD/MM/YYYY"));
             $("#endDateText").text(end.format("DD/MM/YYYY"));
             $(".moon").html(`1 <i class='fas fa-moon'></i>`);
+
+            // Load saved parameters after daterangepicker is initialized
+            setTimeout(loadSavedSearchParams, 100);
 
             // Indicator handling
             const $indicator = $('.indicator');

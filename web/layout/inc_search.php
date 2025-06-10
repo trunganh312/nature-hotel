@@ -1,8 +1,15 @@
 <?php
 
 use src\Models\Hotel;
-use src\Models\HotelPicture;
 
+// Lấy dữ liệu từ cookies
+$search_location = $_COOKIE['search_location'] ?? '';
+$search_location_id = $_COOKIE['search_location_id'] ?? '';
+$search_checkin = $_COOKIE['search_checkin'] ?? $cfg_date_checkin;
+$search_checkout = $_COOKIE['search_checkout'] ?? $cfg_date_checkout;
+$search_room_qty = $_COOKIE['search_room_qty'] ?? '1';
+$search_adult_qty = $_COOKIE['search_adult_qty'] ?? '2';
+$search_child_qty = $_COOKIE['search_child_qty'] ?? '0';
 
 $search = Hotel::where('hot_active', 1)
     ->select('cit_name', 'cit_id', 'cit_image', 'hot_id', 'hot_name', 'hot_address_full', 'hot_picture')
@@ -24,6 +31,9 @@ foreach ($search as $hotel) {
     }
 }
 $data_city = array_values($data_city);
+
+
+
 ?>
 
 <div class="baler-box">
@@ -78,10 +88,10 @@ $data_city = array_values($data_city);
                  <div class="col-md-4" id="select_op" style=" max-width: 250px; margin-right: 20px;">
                     <div class="room-selector">
                         <h6>Số phòng, số khách</h6>
-                        <div class="selected-option" id="selectedOption">1 phòng, 2 người lớn, 0 trẻ em</div>
-                        <input type="hidden" id="roomQty" name="roomQty" value="1">
-                        <input type="hidden" id="adultQty" name="adultQty" value="2">
-                        <input type="hidden" id="childQty" name="childQty" value="0">
+                        <div class="selected-option" id="selectedOption"><?= htmlspecialchars($search_room_qty) ?> phòng, <?= htmlspecialchars($search_adult_qty) ?> người lớn, <?= htmlspecialchars($search_child_qty) ?> trẻ em</div>
+                        <input type="hidden" id="roomQty" name="roomQty" value="<?= htmlspecialchars($search_room_qty) ?>">
+                        <input type="hidden" id="adultQty" name="adultQty" value="<?= htmlspecialchars($search_adult_qty) ?>">
+                        <input type="hidden" id="childQty" name="childQty" value="<?= htmlspecialchars($search_child_qty) ?>">
                         <div class="dropdown-menu">
                             <div class="option">
                                 <h4>Đi một mình</h4>

@@ -30,7 +30,7 @@
             <?php foreach ($hotels as $hotel): ?>
                 <div class="hotel-card mb-4">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4" style="z-index: -1;">
                             <div class="image-container">
                                 <div class="owl-carousel owl-theme hotel-list-carousel list-carousel" id="carousel-<?= $hotel['hot_id'] ?>">
                                     <!-- Lặp ảnh, nếu không có thì để ảnh mặc định -->
@@ -81,9 +81,9 @@
                                                 <div class="amenities">
                                                     <?php if (!empty($hotel['utilities'])): ?>
                                                         <?php foreach ($hotel['utilities'] as $uti): ?>
-                                                            <div class="amenity mb-1" style='display: flex;'>
-                                                                <div><i class="<?= htmlspecialchars($uti['icon']) ?>"></i></div>
-                                                                <div style='margin-left: 5px;'><?= htmlspecialchars($uti['name']) ?></div>
+                                                            <div class="amenity mb-1">
+                                                                <i class="<?= htmlspecialchars($uti['icon']) ?>" style="width: 20px;"></i>
+                                                                <?= htmlspecialchars(trim($uti['name'])) ?>
                                                             </div>
                                                         <?php endforeach; ?>
                                                     <?php else: ?>
@@ -97,10 +97,10 @@
                                     <div class="col-md-6">
                                         <div class="price-section">
                                             <div class="price-container">
-                                                <span class="price-value"><?= number_format(100000, 0, ',', '.') ?> đ</span>
+                                                <span class="price-value"><?= $hotel['price'] ?> đ</span>
                                             </div>
                                             <div class="button-detail">
-                                                <a href="#" class="btn-detail">Xem chi tiết</a>
+                                                <a href="<?= $hotel['link'] ?>" class="btn-detail">Xem chi tiết</a>
                                             </div>
 
                                         </div>
