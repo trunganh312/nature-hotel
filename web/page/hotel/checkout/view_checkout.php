@@ -156,6 +156,11 @@
                             <span class="total-label">Tổng tiền thanh toán:</span>
                             <span class="price-sale" id="discountAmountDisplay"><?= $total_price ?>₫</span>
                         </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary btn-lg" style="width: 100%; max-width: 300px;">
+                                Thanh toán ngay
+                            </button>
+                        </div>
                         <!-- <div class="payment-note">
                             <i class="fa fa-info-circle"></i>
                             <span>Đã bao gồm thuế và phí</span>
