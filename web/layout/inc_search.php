@@ -39,7 +39,7 @@ $data_city = array_values($data_city);
                 <div class="col-md-4 search_width_100 search-padding_tablet">
                     <div class="place">
                         <label for="locationInput">Địa điểm</label>
-                        <input type="text" class="search-input ui-widget" id="locationInput" placeholder="Thành phố"
+                        <input class="search-input ui-widget" id="locationInput" placeholder="Thành phố"
                             value="">
                         <input type="hidden" id="selectedLocationId" name="locationId">
                     </div>
@@ -57,7 +57,7 @@ $data_city = array_values($data_city);
                             <h6>Ngày về</h6>
                             <div id="endDateText"><?php echo $cfg_date_checkout; ?></div>
                         </div>
-                        <input type="text" name="datetimes" style="opacity: 0; position: absolute; width: 100%;" />
+                        <input name="datetimes" style="opacity: 0; position: absolute; width: 100%;" />
                     </div>
                 </div>
                 <div class="col-md-3 col-12 mb-3 mb-md-0 nopadding_mobile search_width_100" id="select_op">
@@ -798,7 +798,7 @@ $data_city = array_values($data_city);
     }
     .daterangepicker {
         position: fixed !important;
-        top: -15% !important;
+        top: 50% !important;
         left: 50% !important;
         right: auto !important;
         bottom: auto !important;

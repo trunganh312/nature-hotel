@@ -1186,3 +1186,10 @@ input[type="checkbox"]:checked+label::after {
 .btn-close {
     filter: none;
 }
+
+/* Ngăn bàn phím ảo trên mobile/tablet */
+input.no-keyboard {
+    caret-color: transparent;
+    pointer-events: none;
+    user-select: none;
+}
