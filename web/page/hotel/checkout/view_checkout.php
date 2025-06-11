@@ -71,9 +71,11 @@
                     <!-- Tags -->
                     <div class="hotel-tags">
                         <h4 class="h6 mb-2">Tiện nghi phòng</h4>
-                        <?php foreach($room['tags'] as $tag) { ?>
-                            <span class="tag"><i class="<?= $tag['icon'] ?> me-2"></i> <?= $tag['name'] ?></span>
-                        <?php } ?>
+                        <div class="d-flex flex-wrap justify-content-start">
+                            <?php foreach($room['tags'] as $tag) { ?>
+                                <span class="tag me-4"><i class="<?= $tag['icon'] ?> me-2"></i> <?= $tag['name'] ?></span>
+                            <?php } ?>
+                        </div>
                     </div>
                 <?php } ?>
             </div>
@@ -203,6 +205,11 @@
                         <div class="payment-note">
                             <i class="fa fa-info-circle"></i>
                             <span>Đã bao gồm thuế và phí</span>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary btn-lg" style="width: 100%; max-width: 300px;">
+                                Thanh toán ngay
+                            </button>
                         </div>
                     </div>
                 </div>
