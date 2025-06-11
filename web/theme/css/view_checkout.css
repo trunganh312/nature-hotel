@@ -1160,3 +1160,29 @@ input[type="checkbox"]:checked+label::after {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Toast Notification Styles */
+.toast-container {
+    min-width: 300px;
+    position: fixed !important;
+    top: 60px !important;
+    z-index: 1100 !important;
+}
+
+.toast {
+    border: none;
+    border-left: 4px solid #dc3545;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: white;
+    color: #333;
+}
+
+.toast-header {
+    border-bottom: none;
+    background-color: white;
+    color: #333;
+}
+
+.btn-close {
+    filter: none;
+}

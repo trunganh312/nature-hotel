@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body mb-3">
+            <div class="card-body card mb-3">
                 <h2 class="h5 mb-3">Thông tin phòng</h2>
                 <?php foreach ($roomTypeGuests as $room) { ?>
                     <div class="position-relative mb-2 d-flex card_booking_left1">
@@ -88,18 +88,18 @@
                 <div class="card-body">
                     <h2>Thông tin liên hệ</h2>
                     <div class="contact">
-                        <label for="username">Họ và tên</label>
-                        <input type="text" id="username" name="username" value="" placeholder="Nhập họ và tên">
+                        <label for="username">Họ và tên <span class="text-danger">*</span></label>
+                        <input type="text" id="username" name="username" value="" placeholder="Nhập họ và tên" required>
                     </div>
                     <div class="email-phone">
                         <div class="email">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="" placeholder="Nhập email">
+                            <label for="email">Email <span class="text-danger">*</span></label>
+                            <input type="email" id="email" name="email" value="" placeholder="Nhập email" required>
                         </div>
                         <div id="phoneForm" class="phone">
-                            <label for="phone">Số điện thoại</label>
+                            <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
                             <input id="phone" type="tel" name="phone" value=""
-                                placeholder="Nhập số điện thoại">
+                                placeholder="Nhập số điện thoại" required>
                         </div>
                     </div>
                     <!-- <div class="check">
@@ -157,9 +157,21 @@
                             <span class="price-sale" id="discountAmountDisplay"><?= $total_price ?>₫</span>
                         </div>
                         <div class="text-center mt-4">
-                            <button class="btn btn-primary btn-lg" style="width: 100%; max-width: 300px;">
+                            <button id="btnPayment" class="btn btn-primary btn-lg" style="width: 100%; max-width: 300px;">
                                 Thanh toán ngay
                             </button>
+                        </div>
+                        <!-- Toast Notification -->
+                        <div id="toastNotification" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+                            <div id="toastAlert" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <strong class="me-auto">Thông báo</strong>
+                                    <button type="button" class="btn-close" onclick="closeToast()"></button>
+                                </div>
+                                <div class="toast-body" id="toastMessage">
+                                    Vui lòng điền đầy đủ thông tin trước khi thanh toán
+                                </div>
+                            </div>
                         </div>
                         <!-- <div class="payment-note">
                             <i class="fa fa-info-circle"></i>
@@ -173,19 +185,61 @@
 </div>
 
 <script>
-    // Handle phone input
-    const phoneInput = document.querySelector("#phone");
-    const iti = window.intlTelInput(phoneInput, {
-        initialCountry: "vn",
-        preferredCountries: ["vn", "us"],
-        separateDialCode: true,
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    // Form validation and toast notification
+    document.getElementById('btnPayment').addEventListener('click', function(e) {
+        console.log('click');
+        e.preventDefault();
+        
+        // Kiểm tra tất cả các trường bắt buộc
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        
+        if (!username || !email || !phone) {
+            showToast('Vui lòng điền đầy đủ thông tin trước khi thanh toán');
+            return false;
+        }
+        console.log('username', username);
+        
+        // Kiểm tra định dạng email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showToast('Email không hợp lệ');
+            return false;
+        }
+        
+        // Nếu tất cả đều hợp lệ, có thể submit form hoặc chuyển hướng
+        alert('Thông tin hợp lệ. Chuyển đến trang thanh toán!');
+        // window.location.href = 'trang-thanh-toan.php'; 
     });
-
-    // Show guest name input
-    const checkbox = document.getElementById("checkbox");
-    const nameInput = document.getElementById("nameInput");
-    checkbox.addEventListener("change", function() {
-        nameInput.style.display = this.checked ? "block" : "none";
-    });
+    
+    // Hiển thị toast notification
+    function showToast(message) {
+        console.log('Hiển thị toast với nội dung:', message);
+        const toastContainer = document.getElementById('toastNotification');
+        const toast = document.getElementById('toastAlert');
+        const toastMessage = document.getElementById('toastMessage');
+        
+        // Cập nhật nội dung
+        toastMessage.textContent = message;
+        
+        // Hiển thị toast
+        toast.classList.add('show');
+        toastContainer.style.display = 'block';
+        
+        // Tự động ẩn toast sau 3 giây
+        setTimeout(function() {
+            closeToast();
+        }, 3000);
+    }
+    
+    // Đóng toast
+    function closeToast() {
+        const toastContainer = document.getElementById('toastNotification');
+        const toast = document.getElementById('toastAlert');
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toastContainer.style.display = 'none';
+        }, 150);
+    }
 </script>
