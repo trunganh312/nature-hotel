@@ -8,7 +8,7 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
 <div class="card_booking-info booking-info_booking-info shadow-sm border-0 p-0">
     <div class="card-body">
         <!-- Toggle button cho mobile -->
-        <button class="toggle-details-btn d-block d-md-none" style="display: none;">
+        <button class="toggle-details-btn d-block" style="display: none;">
             <i class="fas fa-chevron-down"></i> Xem chi tiết
         </button>
         <h5 class="text-center booking_info-title">Thông tin đặt phòng</h5>

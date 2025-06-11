@@ -679,8 +679,16 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-/* Responsive cho mobile */
-@media (max-width: 991.98px) {
+/* Mobile */
+@media (max-width: 575.98px) {
+    /* CSS cho mobile */
+    .main-image-carousel {
+        height: 200px;
+    }
+    
+    .main-image-carousel .item img {
+        height: 200px;
+    }
     .room-title {
         margin-top: 10px;
     }
@@ -701,15 +709,6 @@ input[type="number"] {
         position: static;
         width: 100%;
     }
-
-    .main-image-carousel {
-        height: 200px;
-    }
-
-    .main-image-carousel .item img {
-        height: 200px;
-    }
-
     .thumbnail-images {
         display: none;
     }
@@ -738,6 +737,115 @@ input[type="number"] {
 
     .bed-info {
         display: none; /* Ẩn phần giường trên mobile để đơn giản */
+    }
+
+    .option-header {
+        margin-top: 10px;
+    }
+    
+    /* CSS mới cho layout guest-selection trên mobile */
+    .guest-selection .row {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin: 0 -5px;
+    }
+    
+    .guest-selection .guest-input {
+        flex: 1;
+        min-width: 0;
+        padding: 0 5px;
+    }
+    
+    .guest-selection .col-md-5,
+    .guest-selection .col-md-4,
+    .guest-selection .col-md-3 {
+        width: auto;
+        max-width: none;
+    }
+    
+    .guest-input .guest-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .guest-input input {
+        width: 30px;
+        text-align: center;
+    }
+}
+
+/* Responsive cho tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .main-image-container {
+        height: 550px;
+    }
+    .main-image-container img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .thumbnail-gallery {
+        gap: 10px;
+    }
+    .thumbnail-item {
+        width: 32%;
+        height: 100px;
+    }
+    .thumbnail-item img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .room-title {
+        margin-top: 10px;
+    }
+    #hotelGalleryModal .modal-dialog {
+        max-width: 100%;
+        height: 90%;
+    }
+    .display-none_mobile {
+        display: none;
+    }
+    .room-quantity {
+        padding-bottom: 10px;
+    }
+    .room-images-section {
+        position: static;
+        width: 100%;
+    }
+
+    .main-image-carousel {
+        height: 350px;
+    }
+
+    .main-image-carousel .item img {
+        height: 350px;
+    }
+
+    .thumbnail-images {
+        display: none;
+    }
+
+    .room-card-content {
+        flex-direction: column;
+    }
+
+    .room-details-section {
+        width: 100%;
+    }
+
+    .room-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .room-capacity {
+        margin-top: 5px;
+    }
+
+    .room_details_room-info {
+        flex-direction: column;
+        gap: 5px;
     }
 
     .option-header {

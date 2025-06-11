@@ -38,7 +38,7 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Carousel */
+/* Carousel
 .carousel-item img {
     transition: transform 0.5s;
 }
@@ -48,7 +48,7 @@
 .carousel-control-prev, .carousel-control-next {
     width: 5%;
     background: rgba(0, 0, 0, 0.3);
-}
+} */
 
 /* Typography */
 h2.fw-bolds {

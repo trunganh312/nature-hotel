@@ -45,8 +45,8 @@ foreach ($rooms as $key => $room) {
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <!-- Ẩn thumbnail-images trên mobile -->
-                <div class="thumbnail-images d-none d-md-flex">
+                <!-- Ẩn thumbnail-images trên mobile và tablet -->
+                <div class="thumbnail-images d-none d-lg-flex">
                     <img src="<?php echo htmlspecialchars($room['images'][1]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
                     <img src="<?php echo htmlspecialchars($room['images'][2]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
                     <img src="<?php echo htmlspecialchars($room['images'][3]); ?>" alt="<?php echo htmlspecialchars($room['roo_name']); ?>">
