@@ -1,237 +1,943 @@
-.checkout {
-    background: #f7f7f7;
-    padding: 1px 0;
-}
-.checkout-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 15px;
-        font-family: var(--bs-font-sans-serif, Arial, sans-serif);
-    color: var(--text-color, #1a1a1a);
-}
-
-/* Tiêu đề */
-
-.section-title {
-    color: var(--primary-color, #233a1a);
-    font-weight: 600;
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-/* Grid */
-.checkout-grid {
-    display: flex;
-}
-
-/* Tóm tắt đặt phòng */
-.booking-summary {
-    background: var(--white, #fff);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.booking-summary .card-body {
-    padding: 25px;
-}
-
-.booking-summary h2 {
-    color: var(--primary-color, #233a1a);
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.hotel-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary-color, #233a1a);
-    margin-bottom: 10px;
-}
-
-.room-image {
+body {
+    background-color: #edf2f7;
     width: 100%;
-    max-height: 100px;
-    border-radius: 8px;
-    margin-bottom: 15px;
 }
 
-.hotel-address {
-    font-size: 0.875rem;
-    color: var(--text-light, #666);
-    margin-bottom: 15px;
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-.rating .badge {
-    font-size: 0.875rem;
-    padding: 5px 10px;
-}
-
-.summary-item {
+.flex {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-}
-.card {
-    border: none;
-}
-.summary-item i {
-    margin-right: 8px;
-    color: var(--accent-color, #6b9c6e);
 }
 
-.summary-item.total {
-    font-weight: 700;
-    border-top: 2px solid var(--text-light, #666);
-    padding-top: 15px;
-    margin-top: 15px;
-    font-size: 1.1rem;
+.btn-danger {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-/* Form thanh toán */
-.payment-form {
-    border-radius: 8px;
-    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
-
+.card_body_booking1 {
+    border-bottom: 1px solid #d2d2d2;
 }
 
-.payment-form .card-body {
-    padding: 25px;
-    /* background:#b6ee35; */
-    border-radius: 8px;
-
-
+.btn-danger:hover,
+.btn-danger:focus {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-.payment-form h2 {
-    color: var(--primary-color, #233a1a);
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.payment-form .text-primary-color {
-    color: var(--accent-color, #6b9c6e);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.payment-form .text-primary-color:hover {
-    color: var(--primary-color, #233a1a);
-}
-
-.form-group label {
-    font-weight: 500;
-    color: var(--text-color, #1a1a1a);
-}
-
-.form-group .input-group-text,
-.form-group .form-select,
-.form-group .form-control {
-    border-color: var(--text-light, #666);
-    border-radius: 0.375rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group .input-group-text {
-    background-color: var(--background-color, #f5f5f5);
-    color: var(--accent-color, #6b9c6e);
-}
-
-.form-group .form-control:focus,
-.form-group .form-select:focus {
-    border-color: var(--primary-color, #233a1a);
-    box-shadow: 0 0 0 0.2rem rgba(35, 58, 26, 0.25);
-}
-
-.payment-methods .form-check {
-    padding-left: 2.5em;
-    margin-bottom: 10px;
-}
-
-.payment-methods .form-check-input {
-    margin-left: -2.5em;
-}
-
-.payment-methods .form-check-label i {
-    margin-right: 8px;
-    color: var(--accent-color, #6b9c6e);
-}
-
-.credit-card-info .form-control,
-.invoice-details .form-control {
-    font-size: 0.9rem;
-}
-
-.submit-button {
-    background-color: var(--primary-color, #233a1a);
-    border-color: var(--primary-color, #233a1a);
-    padding: 12px;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: var(--secondary-color, #4a6c4c);
-    border-color: var(--secondary-color, #4a6c4c);
-}
-
-/* Responsive */
-@media (max-width: 991px) {
-    .checkout-grid {
-        flex-direction: column-reverse; 
-    }
-
-    .booking-summary,
-    .payment-form {
-        padding: 20px;
-    }
-
-    .section-title {
-        font-size: 1.75rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .booking-summary h2,
-    .payment-form h2 {
-        font-size: 1.25rem;
-    }
-
-    .summary-item {
-        font-size: 0.875rem;
-    }
-
-    .submit-button {
-        font-size: 1rem;
-    }
-
-    .hotel-name {
-        font-size: 1.125rem;
-    }
-}
-
-/* Thêm vào view_checkout.css */
-.hotel-image {
+.booking_img_firt {
     width: 90px;
     height: 90px;
     object-fit: cover;
-    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
-/* Định nghĩa màu cho sao */
-.text-warning-star {
+.card_booking_title_text {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.card_booking_title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.booking_user_login {
+    font-size: 16px;
+    color: #00b6f3;
+}
+
+.black-color {
+    color: #000;
+}
+
+.text-warning {
+    background: #ffbc39 !important;
+}
+
+.text-warning_star {
     color: #ffbc39;
     font-size: 16px;
 }
 
-/* Responsive cho hình ảnh khách sạn */
-@media (max-width: 576px) {
-    .hotel-image {
-        width: 70px;
-        height: 70px;
-    }
+.bg-warning {
+    background-color: #ffd54f !important;
 }
 
-.box-in div i {
-    color: var(--secondary-color);
+.card_booking_left_discount {
+    background-color: var(--primary-color);
+    top: 0;
+    left: 3px;
+    color: var(--white-color);
+    font-size: 18px;
+    padding: 3px 10px;
+    font-weight: 500;
+    border-radius: 10px 0 10px 0;
+}
+
+.rounded-circle {
+    width: 2px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_booking_left1 {
+    align-items: center;
+    justify-content: center;
+}
+.list-unstyled_list {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+.img_booking_right1 {
+    width: 693px;
+    height: 230px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.alert-info_booking {
+    background: rgba(0, 182, 243, 0.1);
+    padding: 10px 20px;
+}
+
+.icon_booking_right1 {
+    font-size: 14px;
+    width: 23px;
+}
+
+.items_booking_r1 {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.li_content_text1 {
+    font-size: 13px;
+}
+
+.list-unstyled_items {
+    display: flex;
+}
+
+.discound-list-unstyled {
+    background-color: #f7fafc;
+    padding: 12px 16px;
+    border-left: 2px solid #48bb78;
+}
+
+.list-unstyled_items_text {
+    color: #1a202c;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.card-body_clock {
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #00b6f3;
+    background: #e5f8fe;
+    margin-top: 20px;
+    display: flex;
+}
+
+.card-body_clock2 {
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 24px;
+    background: #fff !important;
+    /* margin-bottom: 20px;  */
+    border-radius: 10px;
+}
+
+.price-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.discount-badge {
+    background-color: #ff385c;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.promo-code {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 14px;
+}
+
+.discount-amount {
+    color: #28a745;
+}
+
+.savings-banner {
+    background-color: #ffe8ef;
+    color: #ff385c;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.savings-banner i {
+    color: #ff385c;
+    margin-right: 8px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.total-price_num {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.alert-warning {
+    background-color: #fff8e1;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.text-success {
+    font-size: 12px;
+    padding-top: 4px !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.insurance-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.insurance-header {
+    margin-bottom: 20px;
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.title-container h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.title-container p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.insurance-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.price-container {
+    gap: 10px;
+}
+
+.discount-badge {
+    background: #ff3366;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.final-price {
+    font-weight: 600;
+    color: #333;
+}
+
+.benefits-list {
+    padding: 5px 0;
+    line-height: 1.2;
+}
+
+.benefits-list p {
+    margin: 0 0 10px;
+}
+
+.benefits-list ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.benefits-list ul li {
+    position: relative;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+.benefits-list ul li:before {
+    content: "✓";
+    color: #28a745;
+    position: absolute;
+    left: -20px;
+}
+
+.see-more {
+    color: #ff3366;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.promo-code-section {
+    margin-top: 20px;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 25px;
+}
+
+.promo-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.promo-icon {
+    color: #28a745;
+}
+
+.promo-badge {
+    background: #e9ecef;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: #0d6efd;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.copy-btn:hover {
+    opacity: 0.8;
+}
+
+.payment-method-item {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 4px;
+    padding: 8px 10px 0 10px;
+}
+
+.payment-method-item:hover {
+    border-color: #3182ce;
+    background-color: #f7fafc;
+}
+
+.payment-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    background: #f7fafc;
+    border-radius: 0.5rem;
+}
+
+.payment-icon i {
+    font-size: 1.25rem;
+    color: #4a5568;
+}
+
+.card-types img {
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.form-check-input:checked {
+    background-color: #3182ce;
+    border-color: #3182ce;
+}
+
+.btn-primary {
+    background-color: #ff3366;
+    border-color: #ff3366;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #ff1a53;
+    border-color: #ff1a53;
+}
+
+.d-flex.card-types.mt-2 img {
+    width: 48px;
+    border: 1px solid #e2e8f0;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+.title_pay {
+    font-size: 18px;
+}
+
+.separate {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 12px;
+}
+
+.separate_2 {
+    border-bottom: 3px solid #e6e6e6;
+    padding-bottom: 12px;
+}
+
+.price-row_after_disc {
+    font-weight: 600;
+}
+
+.type_bed {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.special_request {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon_special_request {
+    font-size: 14px;
+}
+
+.bill_text {
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.benefits_box {
+    border: 1px solid #edf2f7;
+    padding: 5px 16px;
+    margin-top: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f7fafc;
+}
+
+.promo-badge_deal {
+    border: 1px solid #48bb78;
+    color: #48bb78;
+    border-radius: 10px;
+    padding: 6px 15px;
+}
+
+.svgFillAll {
+    color: #00b6f3;
+}
+
+.update_disc {
+    margin: 4px 0 0 20px;
+}
+
+.text-success_Payment-method {
+    font-size: 16px;
+    color: #48bb78;
+}
+
+.btn_payment {
+    width: 120px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_payment_div {
+    display: flex;
+    justify-content: end;
+}
+
+.column-right {
+    margin-top: 20px;
+    position: sticky;
+    top: 20px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Thanh toán */
+h2 {
+    font-weight: 600;
+
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.payment-method {
+    margin-bottom: 20px;
+}
+
+.payment-method label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.payment-method input {
+    margin-right: 10px;
+}
+
+.bank-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.bank-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.bank-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.bank-item:hover {
+    background-color: #f0f8ff;
+    border-color: #007bff;
+}
+
+.bank-item.selected {
+    background-color: #007bff;
+    border-color: #0056b3;
+    color: #fff;
+}
+
+#nameInput {
+    margin-top: 10px;
+}
+
+.footer {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.pay {
+    display: flex;
+    justify-content: end;
+}
+
+.pay .btn-pay {
+    display: block;
+    /* width: 100%; */
+    padding: 10px 20px;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    /* margin-top: 20px; */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Information contact */
+.email-phone {
+    display: flex;
+    /* width: 100%; */
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center !important;
+}
+
+.card-body label {
+    margin-top: 2px;
+    border-radius: 8px;
+    margin-bottom: 0;
+    display: block;
+}
+
+.contact input,
+.email input,
+.phone input {
+    border: 1px solid #c1c1c1;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.contact input {
+    width: 100%;
+}
+
+.email input,
+.phone input {
+    margin-bottom: 25px;
+    width: 345px;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.alert {
+    background-color: #fff7e6;
+    border: 1px solid #ffe4b2;
+    padding: 10px;
+    border-radius: 4px;
+    color: #e59819;
+    margin-bottom: 20px;
+}
+
+.room-option {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.room-option:hover {
+    border-color: var(--primary-color);
+}
+
+/* .a > span {
+    display: inline-block;
+  } */
+
+.room-option label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.room-option label div {
+    margin-left: 15px;
+}
+
+/* .room-option label>div > input[type="radio"] {
+    display: inline;
+  } */
+
+.form-group {
+    margin-top: 20px;
+}
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+/* YÊu cầu đặc biệt khác */
+.card-body .special-request {
+    margin-top: 20px;
+    background-color: #edf2f7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.toggle-btn {
+    /* color: #007bff; */
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.special-requests {
+    display: none;
+}
+
+.form-group {
+    margin-top: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Tạo một checkbox giả để hiển thị */
+input[type="checkbox"]+label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Tạo vòng tròn checkbox */
+input[type="checkbox"]+label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Khi checkbox được chọn (checked) */
+input[type="checkbox"]:checked+label::before {
+    background-color: var(--primary-color);
+    /* Màu nền hồng */
+    border-color: var(--primary-color);
+    /* Thay đổi màu viền */
+}
+
+/* Tạo dấu tích */
+input[type="checkbox"]:checked+label::after {
+    content: "✔";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 14px;
+}
+
+/* Xuất hóa đơn */
+.invoicing {}
+
+.invoicing>h2 {
+    font-weight: 700;
+    font-size: 19px !important;
+    /* margin-bottom: 16px !important; */
+    color: #333 !important;
+}
+
+.invoicing>h3 {
+    font-weight: 700;
+    font-size: 16px !important;
+    /* margin-bottom: 16px !important; */
+    color: #333 !important;
+}
+
+.invoicing>p {
+    font-size: 14px !important;
+    font-weight: 500;
+    color: #333 !important;
+    margin-bottom: 0 !important;
+}
+
+.box-arrival-time {
+    position: relative;
+}
+
+.box-arrival-time .oclock {
+    top: 35px;
+    position: absolute;
+    left: 14px;
+}
+
+.box-arrival-time #arrival_time {
+    padding-left: 38px;
+}
+
+.box-arrival-time .down {
+    top: 35px;
+    position: absolute;
+    right: 20px;
+}
+
+/* discount */
+.pen {
+    margin-left: 12px;
+    transform: translateY(5px);
+    cursor: pointer;
+}
+
+.badge {
+    background-color: #f4f9f4;
+    color: #28a745;
+    border: 1px solid #28a745;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.badge:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* CHi tiết giá */
+.text-end .promotion {
+    display: inline-block;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    color: #fff;
+    padding: 0 6px;
+    font-size: 12px;
+}
+
+.price-card .original-price {
+    font-weight: 600;
+    color: #333;
+    font-size: 17px;
+    text-align: right;
+}
+
+.discount-sale .name-sale {
+    border-radius: 9px;
+    border: 2px solid #ccc;
+    padding: 0px 4px;
+    display: inline-block;
+    margin-left: 5px;
 }

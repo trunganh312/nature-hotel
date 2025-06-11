@@ -6,8 +6,8 @@ use src\Models\Room;
 include('../../../Core/Config/require_web.php');
 
 
-$hotel_id   = getValue('hotel_id', GET_INT, GET_SESSION, 5191);
-$rooms      = getValue('rooms', GET_ARRAY, GET_SESSION, [10, 11]);
+$hotel_id   = getValue('hotel_id', GET_INT, GET_SESSION, 5189);
+$rooms      = getValue('rooms', GET_ARRAY, GET_SESSION, [2, 3]);
 
 // Lấy thông tin khách sạn
 $hotel_info = Hotel::where(['hot_id' => $hotel_id, 'hot_active' => STATUS_ACTIVE])->getOne();
