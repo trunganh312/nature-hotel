@@ -8,7 +8,7 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
 <div class="card_booking-info booking-info_booking-info shadow-sm border-0 p-0">
     <div class="card-body">
         <!-- Toggle button cho mobile -->
-        <button class="toggle-details-btn d-block" style="display: none;">
+        <button class="toggle-details-btn" style="display: none;">
             <i class="fas fa-chevron-down"></i> Xem chi tiết
         </button>
         <h5 class="text-center booking_info-title">Thông tin đặt phòng</h5>
@@ -194,7 +194,9 @@ $discount_amount = isset($discount_amount) ? $discount_amount : 500000;
 
     /* Responsive cho mobile */
     @media (max-width: 991.98px) {
-        
+        .toggle-details-btn {
+            display: block !important;
+        }
         .booking-info_booking-info hr {
             display: none;
         }
