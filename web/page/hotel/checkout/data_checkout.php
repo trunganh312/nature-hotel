@@ -28,7 +28,9 @@ $roomTypeGuests = []; // Mảng lưu tổng số người từng hạng phòng
 $total_adult = 0;
 $total_child = 0;
 $total_infant = 0;
-
+$total_room = 0;
+$total_price = 0;
+$total_discount = 0;
 foreach($rooms as $roomType) {
     $adult = 0;
     $child = 0;
@@ -42,7 +44,7 @@ foreach($rooms as $roomType) {
     $total_adult += $adult;
     $total_child += $child;
     $total_infant += $infant;
-
+    $total_room += $roomType['roomCount'];
     $room_info = Room::where(['roo_id' => $room_id, 'roo_active' => STATUS_ACTIVE])->getOne();
     // Lấy view
     $image = isset($room_info['roo_picture']) ? $Router->srcRoom($room_id, $room_info['roo_picture']) : $cfg_default_image;
@@ -55,6 +57,8 @@ foreach($rooms as $roomType) {
             break;
         }
     }
+    $total_price += $roomType['roomPrice'];
+    $total_discount += ($roomType['roomPrice'] * 15 / 100);
     $room_info['view'] = $HotelModel->showRoomView($room_info, true);
     $room_info['bed'] = $HotelModel->showRoomBed($room_info, false);
     $roomTypeGuests[] = [
@@ -68,9 +72,15 @@ foreach($rooms as $roomType) {
         'adult' => $adult,
         'child' => $child,
         'infant' => $infant,
-        'tags' => $services
+        'tags' => $services,
+        'price' => format_number($roomType['roomPrice'])
     ];
 }
+
+$total_discount = $total_price - ($total_price * (15 / 100));
+$total_price = format_number($total_price);
+$total_discount = format_number($total_discount);
+
 
 
 

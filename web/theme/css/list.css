@@ -168,7 +168,6 @@
 
   .original-price {
     color: var(--text-lighter);
-    text-decoration: line-through;
     font-size: 16px;
   }
 

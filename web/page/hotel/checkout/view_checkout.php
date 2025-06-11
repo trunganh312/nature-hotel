@@ -71,7 +71,7 @@
                     <!-- Tags -->
                     <div class="hotel-tags">
                         <h4 class="h6 mb-2">Tiện nghi phòng</h4>
-                        <?php foreach($room['tags'] as $tag) { ?>
+                        <?php foreach ($room['tags'] as $tag) { ?>
                             <span class="tag"><i class="<?= $tag['icon'] ?> me-2"></i> <?= $tag['name'] ?></span>
                         <?php } ?>
                     </div>
@@ -87,23 +87,23 @@
                     <h2>Thông tin liên hệ</h2>
                     <div class="contact">
                         <label for="username">Họ và tên</label>
-                        <input type="text" id="username" name="username" value="Nguyễn Văn A">
+                        <input type="text" id="username" name="username" value="" placeholder="Nhập họ và tên">
                     </div>
                     <div class="email-phone">
                         <div class="email">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="nguyenvana@example.com">
+                            <input type="email" id="email" name="email" value="" placeholder="Nhập email">
                         </div>
                         <div id="phoneForm" class="phone">
                             <label for="phone">Số điện thoại</label>
-                            <input id="phone" type="tel" name="phone" value="+84 123 456 789"
+                            <input id="phone" type="tel" name="phone" value=""
                                 placeholder="Nhập số điện thoại">
                         </div>
                     </div>
-                    <div class="check">
+                    <!-- <div class="check">
                         <input type="checkbox" id="checkbox">
                         <label for="checkbox">Tôi đặt phòng giúp cho người khác.</label>
-                    </div>
+                    </div> -->
                     <div id="nameInput" style="display: none;">
                         <label for="guestName" style="font-weight: 500; font-size: 17px; margin: 13px 0 5px;">Thông tin
                             khách nhận phòng</label>
@@ -115,95 +115,49 @@
             </div>
             <!-- Chi tiết giá -->
             <div class="price-card">
-                <div class="price-card-header">
-                    <h2 class="title_pay">Chi tiết giá</h2>
-                    <div class="booking-dates">
-                        <i class="fa fa-calendar"></i>
-                        <span>10/06/2025 - 12/06/2025</span>
-                    </div>
-                </div>
-                
                 <!-- Thông tin phòng -->
                 <div class="room-detail-section">
                     <div class="room-type-header">
                         <h3>Thông tin phòng</h3>
-                        <span class="room-count">2 phòng</span>
+                        <span class="room-count"><?= $total_room ?> phòng</span>
                     </div>
-                    
-                    <div class="room-item">
-                        <div class="room-info">
-                            <div class="room-name">Phòng Deluxe</div>
-                            <div class="room-specs">
-                                <span><i class="fa fa-user"></i> 2 người lớn</span>
-                                <span><i class="fa fa-bed"></i> 1 giường đôi</span>
+                    <?php foreach ($roomTypeGuests as $room) { ?>
+                        <div class="room-item">
+                            <div class="room-info">
+                                <div class="room-name"><?= $room['roomName'] ?></div>
+                                <div class="room-specs">
+                                    <span><i class="fa fa-user"></i> <?= $room['adult'] ?> người lớn</span>
+                                </div>
+                            </div>
+                            <div class="room-price">
+                                <div class="price-amount"><?= $room['price'] ?>₫</div>
+                                <div class="night-count">x <?= $nights ?> đêm</div>
                             </div>
                         </div>
-                        <div class="room-price">
-                            <div class="price-amount">2,000,000₫</div>
-                            <div class="night-count">x 2 đêm</div>
-                        </div>
-                    </div>
-                    
-                    <div class="room-item">
-                        <div class="room-info">
-                            <div class="room-name">Phòng Superior</div>
-                            <div class="room-specs">
-                                <span><i class="fa fa-user"></i> 2 người lớn</span>
-                                <span><i class="fa fa-bed"></i> 2 giường đơn</span>
-                            </div>
-                        </div>
-                        <div class="room-price">
-                            <div class="price-amount">2,000,000₫</div>
-                            <div class="night-count">x 2 đêm</div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
-                
+
                 <!-- Chi tiết giá -->
                 <div class="price-summary-section">
                     <div class="price-row">
                         <div><span>Tổng giá phòng</span></div>
                         <div class="text-end">
                             <span class="promotion">-15%</span>
-                            <span class="old-price ms-2">4,000,000₫</span>
+                            <span class="old-price ms-2"><?= $total_discount ?>₫</span>
                         </div>
                     </div>
-                    <div class="original-price">3,400,000₫</div>
-                    
-                    <!-- Dịch vụ thêm -->
-                    <div class="extra-services-section">
-                        <h3>Dịch vụ thêm</h3>
-                        <div class="service-item">
-                            <div class="service-name">Đón sân bay</div>
-                            <div class="service-price">Miễn phí</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-name">Bữa sáng</div>
-                            <div class="service-price">Đã bao gồm</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Mã giảm giá -->
-                    <div class="discount-section">
-                        <div class="discount-sale flex">
-                            <div class="name-sale-info">
-                                <span class="info-sale">Mã giảm giá</span>
-                                <span class="name-sale" id="discountCodeDisplay">SAVE10</span>
-                            </div>
-                            <span class="reduce-price">-340,000₫</span>
-                        </div>
-                    </div>
-                    
+                    <div class="original-price"><?= $total_price ?>₫</div>
+
                     <!-- Tổng tiền thanh toán -->
                     <div class="total-price-section">
                         <div class="price-row">
                             <span class="total-label">Tổng tiền thanh toán:</span>
-                            <span class="price-sale" id="discountAmountDisplay">3,060,000₫</span>
+                            <span class="price-sale" id="discountAmountDisplay"><?= $total_price ?>₫</span>
                         </div>
-                        <div class="payment-note">
+                        <!-- <div class="payment-note">
                             <i class="fa fa-info-circle"></i>
                             <span>Đã bao gồm thuế và phí</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
