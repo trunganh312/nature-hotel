@@ -88,7 +88,7 @@ include('data_list.php');
                         tags.slice(0, offsetTags).forEach(tag => {
                             const checked = checkedTags.includes(String(tag.tag_id)) ? 'checked' : '';
                             const checkbox = `
-                                            <div class="form-check mb-2">
+                                            <div class="form-check mb-2" style="padding-left: 0;">
                                                 <input class="form-check-input" type="checkbox" name="tags[]" id="tag_${tag.tag_id}" value="${tag.tag_id}" ${checked}>
                                                 <label class="form-check-label" for="tag_${tag.tag_id}">${tag.tag_name}</label>
                                             </div>
