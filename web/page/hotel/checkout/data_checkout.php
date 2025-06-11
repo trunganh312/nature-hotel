@@ -97,6 +97,6 @@ $paymentLink = $payOS->createBookingPayment(
 );
 $redirect_url = $paymentLink['checkoutUrl'];
 
-$total_discount = $total_price - ($total_price * (15 / 100));
+$total_discount = $total_price + ($total_price * (15 / 100));
 $total_price = format_number($total_price);
 $total_discount = format_number($total_discount);
