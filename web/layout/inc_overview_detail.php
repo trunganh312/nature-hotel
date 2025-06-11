@@ -1,25 +1,25 @@
 <?php
-// Tạo mảng với 10 ảnh từ link được cung cấp
-$overview_images = [
-    "https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg",
-    "https://cdn3.ivivu.com/2014/01/ztq1372403761.jpg",
-    "https://cdn3.ivivu.com/2014/01/20762698_images1477905_6.jpg",
-    "https://cdn3.ivivu.com/2014/01/Khach-san-Midtown-Hue-4-Sao-Lobby.jpg",
-    "https://cdn3.ivivu.com/2014/01/be-boi-horison-hoi-nghi-khach-hang.jpg",
-    "https://cdn3.ivivu.com/2014/01/ngoai-canh-khach-san-ha-an.jpg",
-    "https://cdn3.ivivu.com/2014/01/diemhencafe1.jpg",
-    "https://cdn3.ivivu.com/2014/01/Deluxe-18687.jpg",
-    "https://cdn3.ivivu.com/2014/01/khach-san-the-mira-hue-be-boi.jpg",
-    "https://cdn3.ivivu.com/2014/01/phong-executive-khach-san-golden-river-hue.jpg"
-];
+// // Tạo mảng với 10 ảnh từ link được cung cấp
+// $overview_images = [
+//     "https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg",
+//     "https://cdn3.ivivu.com/2014/01/ztq1372403761.jpg",
+//     "https://cdn3.ivivu.com/2014/01/20762698_images1477905_6.jpg",
+//     "https://cdn3.ivivu.com/2014/01/Khach-san-Midtown-Hue-4-Sao-Lobby.jpg",
+//     "https://cdn3.ivivu.com/2014/01/be-boi-horison-hoi-nghi-khach-hang.jpg",
+//     "https://cdn3.ivivu.com/2014/01/ngoai-canh-khach-san-ha-an.jpg",
+//     "https://cdn3.ivivu.com/2014/01/diemhencafe1.jpg",
+//     "https://cdn3.ivivu.com/2014/01/Deluxe-18687.jpg",
+//     "https://cdn3.ivivu.com/2014/01/khach-san-the-mira-hue-be-boi.jpg",
+//     "https://cdn3.ivivu.com/2014/01/phong-executive-khach-san-golden-river-hue.jpg"
+// ];
 
-// Gán 5 ảnh đầu tiên cho các biến riêng lẻ
-$image_1 = $overview_images[0];
-$image_2 = $overview_images[1];
-$image_3 = $overview_images[2];
-$image_4 = $overview_images[3];
-$image_5 = $overview_images[4];
-$images = array_slice($overview_images, 5);
+// // Gán 5 ảnh đầu tiên cho các biến riêng lẻ
+// $image_1 = $overview_images[0];
+// $image_2 = $overview_images[1];
+// $image_3 = $overview_images[2];
+// $image_4 = $overview_images[3];
+// $image_5 = $overview_images[4];
+// $images = array_slice($overview_images, 5);
 ?>
 
 <section id="hotel-overview" class="container py-5">
@@ -95,7 +95,7 @@ $images = array_slice($overview_images, 5);
                         <div class="gallery-overlay" data-bs-toggle="modal" data-bs-target="#hotelGalleryModal">
                             <div class="overlay-content">
                                 <span>+<?= count($images) ?></span>
-                                <i class="fa-solid fa-images ms-2"></i>
+                                <i class="far fa-images ms-2"></i>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -129,7 +129,7 @@ $images = array_slice($overview_images, 5);
                         <div class="gallery-overlay" data-bs-toggle="modal" data-bs-target="#hotelGalleryModal">
                             <div class="overlay-content">
                                 <span>+<?= count($images) ?></span>
-                                <i class="fa-solid fa-images ms-2"></i>
+                                <i class="far fa-images ms-2"></i>
                             </div>
                         </div>
                     <?php endif; ?>
