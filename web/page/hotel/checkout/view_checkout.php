@@ -196,18 +196,18 @@
         const phone = document.getElementById('phone').value.trim();
         const email = document.getElementById('email').value.trim();
 
-        // if (!username || !phone) {
-        //     showToast('Vui lòng điền đầy đủ thông tin trước khi thanh toán');
-        //     return false;
-        // }
-        // // Kiểm tra định dạng email
-        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        // if (email) {
-        //     if (!emailRegex.test(email)) {
-        //         showToast('Email không hợp lệ');
-        //         return false;
-        //     }
-        // }
+        if (!username || !phone) {
+            showToast('Vui lòng điền đầy đủ thông tin trước khi thanh toán');
+            return false;
+        }
+        // Kiểm tra định dạng email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email) {
+            if (!emailRegex.test(email)) {
+                showToast('Email không hợp lệ');
+                return false;
+            }
+        }
         // Call api
         const checkIn = document.querySelector('input[name="checkIn"]').value;
         const checkOut = document.querySelector('input[name="checkOut"]').value;
