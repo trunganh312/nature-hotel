@@ -69,7 +69,7 @@ $rooms = array_map(function($room) use($Router, $cfg_default_image, $AttributeMo
     $room['attr_view']        = $HotelModel->showRoomView($room, true);
     $room['attr_bed']         = $HotelModel->showRoomBed($room, false);
     $info = HotelService::getRoomPriceAndAvailability($room['roo_hotel_id'], $daterange, $room['roo_id']);
-    $room['price']            = format_number($info['min_price']);
+    $room['price']            = format_number($info['total_price']);
     $room['min_qty']          = $info['min_qty'];
     return $room;
 }, $rooms);

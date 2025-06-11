@@ -64,7 +64,7 @@
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <span><?= count($images) ?></span>
-                                <i class="fa-solid fa-images ms-2"></i>
+                                <i class="far fa-images ms-2"></i>
                             </div>
                         </div>
                     <?php endif; ?>

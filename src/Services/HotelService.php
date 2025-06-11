@@ -69,35 +69,37 @@ class HotelService {
      * @param integer $room_id
      * @return array [
      *   'min_qty' => số phòng trống nhỏ nhất,
-     *   'min_price' => giá phòng thấp nhất trong khoảng
+     *   'total_price' => tổng giá trị của từng đêm trong khoảng
      * ]
      */
     public static function getRoomPriceAndAvailability($hotel_id, $daterange = null, $room_id = null) {
         if(empty($room_id)) return [
             'min_qty' => 0,
-            'min_price' => 0
+            'total_price' => 0
         ];
         $result = self::getTableRoomPrice($hotel_id, $daterange);
         $daterange_int = $result["daterange_int"];
         $tables = $result["tables"];
-
+        if($daterange_int['to'] == $daterange_int['from']) {
+            $daterange_int['to'] += 86400;
+        }
         $min_qty = PHP_INT_MAX;
-        $min_price = 0;
+        $total_price = 0;
         foreach ($tables as $table) {
             if(!self::existTableRoomPrice($table)) continue;
             // Lấy số phòng trống nhỏ nhất và giá cao nhất trong khoảng ngày
-            $row = DB::query("SELECT MIN(tbl.rop_qty) AS quantity, MIN(tbl.rop_price) AS min_price
+            $from = $daterange_int['from'];
+            $to = $daterange_int['to'] - 86400;
+            
+            $row = DB::query("SELECT *
                                 FROM {$table} AS tbl
                                 WHERE tbl.rop_hotel_id = $hotel_id 
                                   AND tbl.rop_room_id = $room_id 
-                                  AND tbl.rop_day BETWEEN ". $daterange_int['from'] ." AND ". $daterange_int['to'])
-                                ->getOne();
-                                
-            if (!empty($row)) {
-                if (isset($row['quantity']) && $row['quantity'] < $min_qty) {
-                    $min_qty = $row['quantity'];
-                }
-                $min_price = $row['min_price'];
+                                  AND tbl.rop_day BETWEEN $from AND $to")
+                                ->toArray();
+            foreach ($row as $v) {
+                $min_qty = min($min_qty, $v['rop_qty']);
+                $total_price += $v['rop_price'];
             }
         }
 
@@ -118,32 +120,25 @@ class HotelService {
 
         return [
             'min_qty' => $min_qty,
-            'min_price' => $min_price
+            'total_price' => $total_price
         ];
     }
 
     static function getTableRoomPrice($hotel_id = 0, $daterange = null)
     {
         $daterange_int  = generate_time_from_date_range($daterange, false);
-        // Trừ đi một ngày để tính theo số đêm
-        if($daterange_int['to'] != $daterange_int['from']) {
-            $daterange_int['from']  -=  3600;
-            $daterange_int['to']    -=  3600;
-        } else {
-            $daterange_int['from']  -=  3600;
-            $daterange_int['to']    +=  3600;
-        }
-        
         // Lấy ra tất cả table chứa data của ks
         $tmp = [];
         $partition  = ($hotel_id%CFG_PARTITION_TABLE)+1;
-        for($i = 1;$i <= ceil($daterange_int['to'] == $daterange_int['from'] ? 1 : ($daterange_int['to']-$daterange_int['from'])/86400); $i++) {
+        $num_nights = ($daterange_int['to'] - $daterange_int['from']) / 86400;
+        for($i = 0; $i < $num_nights; $i++) {
+            $day = $daterange_int['from'] + $i * 86400;
             if($hotel_id < 1) {
                 for ($partition=1; $partition <= CFG_PARTITION_TABLE; $partition++) { 
-                    $tmp[] = "room_price_". date('ym', $daterange_int['from']+$i*86400) .$partition;
+                    $tmp[] = "room_price_". date('ym', $day) .$partition;
                 }
             } else {
-                $tmp[] = "room_price_". date('ym', $daterange_int['from']+$i*86400) .$partition;
+                $tmp[] = "room_price_". date('ym', $day) .$partition;
             }
         }
         $tmp = array_unique($tmp); // Loại bỏ các table trùng tên

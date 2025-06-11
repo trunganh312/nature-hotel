@@ -146,7 +146,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="pricing">
-                            <div class="final-price"><?php echo $room['price']; ?>VNĐ</div>
+                            <div class="final-price" id="room-price-<?php echo $room['roo_id']; ?>"><?php echo $room['price']; ?>VNĐ</div>
 
                             <div class="room-quantity">
                                 <div class="quantity-label">Số phòng:</div>
@@ -421,7 +421,7 @@ function initRoomDetailJS() {
             });
 
             increaseBtn.addEventListener('click', () => {
-                const maxRooms = parseInt(input.getAttribute('max')) || 10;
+                const maxRooms = parseInt(input.getAttribute('max'));
                 if (parseInt(input.value) < maxRooms) {
                     input.value = parseInt(input.value) + 1;
                     updateGuestSelection(input, container); // Cập nhật guest selection
@@ -430,7 +430,7 @@ function initRoomDetailJS() {
             });
 
             input.addEventListener('change', () => {
-                const maxRooms = parseInt(input.getAttribute('max')) || 10;
+                const maxRooms = parseInt(input.getAttribute('max'));
                 if (parseInt(input.value) > maxRooms) {
                     input.value = maxRooms;
                 } else if (parseInt(input.value) < 0) {
@@ -513,6 +513,91 @@ function initRoomDetailJS() {
                 card.id = 'room-card-' + (index + 1);
             }
         });
+
+        // Change ô daterange thì call api để tính lại tổng tiền
+        $('.date-range-input').on('apply.daterangepicker', function(ev, picker) {
+                const checkIn = picker.startDate.format('DD/MM/YYYY');
+                const checkOut = picker.endDate.format('DD/MM/YYYY');
+                const nights = picker.endDate.diff(picker.startDate, 'days');
+                // Lưu vào cookies
+                document.cookie = `search_checkin=${checkIn}; path=/`;
+                document.cookie = `search_checkout=${checkOut}; path=/`;
+                document.cookie = `search_nights=${nights}; path=/`;
+                // Call api để tính lại tổng tiền
+                $.ajax({
+                    url: 'ajax/get_rooms.php',
+                    type: 'POST',
+                    data: {
+                        checkIn: checkIn,
+                        checkOut: checkOut,
+                        hotel_id: <?php echo $hotel['hot_id']; ?>
+                    },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        let totalPrice = 0;
+                        data.forEach(room => {
+                            $('#room-price-' + room.room_id).text(room.price + 'VNĐ');
+                        });
+                        data.forEach(room => {
+                            const $input = $('#room-quantity-' + room.room_id);
+                            const $display = $('#quantity-display-' + room.room_id);
+                            const $guest = $('#guest-selection-' + room.room_id);
+
+                            let currentQty = parseInt($input.val()) || 0;
+                            let newMax = room.min_qty;
+
+                            // Nếu số phòng đã chọn > số phòng trống mới
+                            if (currentQty > newMax) {
+                                currentQty = newMax;
+                                $input.val(currentQty);
+                                // Cập nhật lại guest selection chỉ giữ lại số phòng hợp lệ
+                                let guestHtml = '';
+                                for (let i = 1; i <= currentQty; i++) {
+                                    guestHtml += `
+                                        <div class="guest-selection">
+                                            <div class="guest-title">Phòng ${i}</div>
+                                            <div class="row">
+                                                <div class="col-md-5 guest-input pe-0">
+                                                    <div class="guest-label"><label for="adults${room.room_id}_${i}">Người lớn:</label></div>
+                                                    <input id="adults${room.room_id}_${i}" type="number" min="1" max="4" value="2" class="guest-input-field">
+                                                    <div class="guest-indicator"></div>
+                                                </div>
+                                                <div class="col-md-4 guest-input px-0">
+                                                    <div class="guest-label"><label for="children${room.room_id}_${i}">Trẻ em:</label></div>
+                                                    <input id="children${room.room_id}_${i}" type="number" min="0" max="3" value="0" class="guest-input-field">
+                                                    <div class="guest-indicator"></div>
+                                                </div>
+                                                <div class="col-md-3 guest-input px-0">
+                                                    <div class="guest-label"><label for="babies${room.room_id}_${i}">Em bé:</label></div>
+                                                    <input id="babies${room.room_id}_${i}" type="number" min="0" max="2" value="0" class="guest-input-field">
+                                                    <div class="guest-indicator"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                                $guest.html(guestHtml);
+                            }
+
+                            // Cập nhật lại max và hiển thị
+                            $input.attr('max', newMax);
+                            $display.text(currentQty + ' / ' + newMax);
+
+                            // Cộng dồn tổng tiền
+                            totalPrice += (room.total_price * currentQty);
+                        });
+
+                        // Cập nhật tổng tiền ra UI
+                        $('#total-price').text(`${new Intl.NumberFormat('vi-VN').format(totalPrice)} VND`);
+                        // Nếu có chỗ khác hiển thị tổng tiền phòng, cũng cập nhật tương tự
+                        $('#total-room-price').text(`${new Intl.NumberFormat('vi-VN').format(totalPrice)} VND`);
+
+                        // Reset thông tin chọn nếu cần
+                        selectedRooms = [];
+                        return;
+                    }
+                });
+            });
 
         $('[data-bs-toggle="tooltip"]').tooltip();
     } catch (error) {
