@@ -5,79 +5,77 @@
             <div class="card mb-3">
                 <div class="card-body p-4">
                     <div class="d-flex mb-4 card_body_booking1">
-                        <img src="https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg" alt="Hotel"
+                        <img src="<?= $image_hotel ?>" alt="<?= $hotel_info['hot_name'] ?>"
                             class="rounded me-3 booking_img_firt">
                         <div>
-                            <h1 class="card_booking_title">Khách sạn Grand Ocean</h1>
+                            <h1 class="card_booking_title"><?= $hotel_info['hot_name'] ?></h1>
                             <div class="mb-2">
-                                <i class="fas fa-star text-warning_star"></i>
-                                <i class="fas fa-star text-warning_star"></i>
-                                <i class="fas fa-star text-warning_star"></i>
-                                <i class="fas fa-star text-warning_star"></i>
-                                <i class="fas fa-star text-warning_star"></i>
+                                <!-- Dựa vào số sao để render -->
+                                <?php for ($i = 0; $i < $hotel_info['hot_star']; $i++) { ?>
+                                    <i class="fas fa-star text-warning_star"></i>
+                                <?php } ?>
                             </div>
-                            <p class="card_booking_title_text">123 Đường Biển, Quận 1, TP. Hồ Chí Minh</p>
+                            <p class="card_booking_title_text"><?= $hotel_info['hot_address_full'] ?></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <p class="fw-bold mb-0">Nhận phòng</p>
-                            <span>14:00, 15/06/2025</span>
+                            <span><?= $hotel_info['hot_checkin'] ?>, <?= $checkIn ?></span>
                         </div>
                         <div class="col-md-4">
                             <p class="fw-bold mb-0">Trả phòng</p>
-                            <span>12:00, 17/06/2025</span>
+                            <span><?= $hotel_info['hot_checkout'] ?>, <?= $checkOut ?></span>
                         </div>
                         <div class="col-md-4">
                             <p class="fw-bold mb-0">Số đêm</p>
-                            <p>2</p>
+                            <p><?= $nights ?></p>
                         </div>
                     </div>
                     <div>
                         <p class="fw-bold mb-0">Số phòng</p>
-                        <p><span style="color: var(--primary-color);">2x</span> Deluxe Ocean View</p>
+                        <?php foreach ($rooms as $room) { ?>
+                            <p><span style="color: var(--primary-color);"><?= $room['roomCount'] ?>x</span> <?= $room['roomName'] ?></p>
+                        <?php } ?>
                     </div>
                     <div>
                         <p class="fw-bold mb-0">Đủ chỗ ngủ cho</p>
-                        <div>4 người lớn</div>
-                        <div>2 trẻ em</div>
+                        <div><?= $total_adult ?> người lớn</div>
+                        <?php if ($total_child > 0) { ?>
+                            <div><?= $total_child ?> trẻ em</div>
+                        <?php } ?>
+                        <?php if ($total_infant > 0) { ?>
+                            <div><?= $total_infant ?> em bé</div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <h2 class="h5 mb-3">Thông tin phòng</h2>
-                <div class="position-relative mb-2 d-flex card_booking_left1">
-                    <span class="position-absolute card_booking_left_discount">Giảm giá 15%</span>
-                    <img src="https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg" alt="Room" class="img_booking_right1">
-                </div>
-                <h3 class="h5 mb-1">Deluxe Ocean View</h3>
-                <div class="list-unstyled mb-3">
-                    <li class="mb-1 items_booking_r1">
-                        <i class="fas fa-users icon_booking_right1"></i>4 người
-                    </li>
-                    <li class="mb-1 items_booking_r1">
-                        <i class="fas fa-eye icon_booking_right1"></i>Hướng biển
-                    </li>
-                    <li class="mb-1 items_booking_r1">
-                        <i class="fas fa-bed icon_booking_right1"></i>2 giường đôi
-                    </li>
-                </div>
-                <!-- Tags -->
-                <div class="hotel-tags">
-                    <h4 class="h6 mb-2">Ưu đãi bao gồm</h4>
-                    <span class="tag"><i class="fas fa-wifi me-2"></i> Wi-Fi miễn phí</span>
-                    <span class="tag"><i class="fas fa-swimming-pool me-2"></i> Hồ bơi</span>
-                    <span class="tag"><i class="fas fa-coffee me-2"></i> Bữa sáng miễn phí</span>
-                </div>
-                <!-- Ưu đãi bao gồm -->
-                <div class="discound-list-unstyled">
-                    <h4 class="h6 mb-2">Ưu đãi bao gồm</h4>
-                    <ul class="list-unstyled_list ps-2">
-                        <li><i class="fas fa-check text-success me-2 pt-1"></i>Bữa sáng miễn phí</li>
-                        <li><i class="fas fa-check text-success me-2 pt-1"></i>Wi-Fi tốc độ cao</li>
-                        <li><i class="fas fa-check text-success me-2 pt-1"></i>Miễn phí sử dụng hồ bơi</li>
-                    </ul>
-                </div>
+                <?php foreach ($roomTypeGuests as $room) { ?>
+                    <div class="position-relative mb-2 d-flex card_booking_left1">
+                        <img src="<?= $room['image'] ?>" alt="<?= $room['roomName'] ?>" class="img_booking_right1">
+                    </div>
+                    <h3 class="h5 mb-1"><?= $room['roomName'] ?></h3>
+                    <div class="list-unstyled mb-3">
+                        <li class="mb-1 items_booking_r1">
+                            <i class="fas fa-users icon_booking_right1"></i><?= $room['total_adult'] ?> người lớn
+                        </li>
+                        <li class="mb-1 items_booking_r1">
+                            <i class="fas fa-eye icon_booking_right1"></i><?= $room['view'] ?>
+                        </li>
+                        <li class="mb-1 items_booking_r1">
+                            <i class="fas fa-bed icon_booking_right1"></i><?= $room['bed'] ?>
+                        </li>
+                    </div>
+                    <!-- Tags -->
+                    <div class="hotel-tags">
+                        <h4 class="h6 mb-2">Tiện nghi phòng</h4>
+                        <?php foreach($room['tags'] as $tag) { ?>
+                            <span class="tag"><i class="<?= $tag['icon'] ?> me-2"></i> <?= $tag['name'] ?></span>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
             </div>
             <!-- Thông tin liên hệ -->
             <div class="card mt-3">
@@ -158,7 +156,7 @@
     // Show guest name input
     const checkbox = document.getElementById("checkbox");
     const nameInput = document.getElementById("nameInput");
-    checkbox.addEventListener("change", function () {
+    checkbox.addEventListener("change", function() {
         nameInput.style.display = this.checked ? "block" : "none";
     });
 </script>

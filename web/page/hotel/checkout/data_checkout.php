@@ -11,7 +11,8 @@ $rooms = $booking_data['selectedRooms'];
 $checkIn = $booking_data['checkIn'];
 $checkOut = $booking_data['checkOut'];
 $hotel_id = $booking_data['hotel_id'];
-dump($rooms);
+
+$nights = (str_totime($checkOut) - str_totime($checkIn)) / 86400;
 
 // Lấy thông tin khách sạn
 $hotel_info = Hotel::where(['hot_id' => $hotel_id, 'hot_active' => STATUS_ACTIVE])->getOne();
@@ -21,38 +22,54 @@ if(empty($hotel_info)) {
     exit;
 }
 $image_hotel = isset($hotel_info['hot_picture']) ? $Router->srcHotel($hotel_id, $hotel_info['hot_picture']) : $cfg_default_image;
-$booking_info = [
-    'checkin_date' => '2025-06-10',
-    'checkout_date' => '2025-06-11',
-    'adult_qty' => 2,
-    'child_qty' => 1,
-    'baby_qty' => 0,
-];
 
-// Lấy thông tin hạng phòng đặt
-$room_book = [];
+$roomTypeGuests = []; // Mảng lưu tổng số người từng hạng phòng
+
+$total_adult = 0;
+$total_child = 0;
+$total_infant = 0;
+
 foreach($rooms as $roomType) {
-    $room_id = $roomType['roomId'];
-    $room_name = $roomType['roomName'];
-    $room_count = $roomType['roomCount'];
-    $room_price = $roomType['roomPrice'];
-    $room_guests = $roomType['rooms'];
+    $adult = 0;
+    $child = 0;
+    $infant = 0;
+    $room_id = (int) $roomType['roomId'];
+    foreach($roomType['rooms'] as $room) {
+        $adult += $room['adults'];
+        $child += $room['children'];
+        $infant += $room['infants'];
+    }
+    $total_adult += $adult;
+    $total_child += $child;
+    $total_infant += $infant;
 
     $room_info = Room::where(['roo_id' => $room_id, 'roo_active' => STATUS_ACTIVE])->getOne();
     // Lấy view
     $image = isset($room_info['roo_picture']) ? $Router->srcRoom($room_id, $room_info['roo_picture']) : $cfg_default_image;
     $room_info['image'] = $image;
+    $attrs = $AttributeModel->getAttributeOfId($room_id, GROUP_ROOM);
+    $services = [];
+    foreach ($attrs as $attr) {
+        if ($attr['info']['param'] == 'tien-nghi-phong') {
+            $services = array_values($attr['data']);
+            break;
+        }
+    }
     $room_info['view'] = $HotelModel->showRoomView($room_info, true);
     $room_info['bed'] = $HotelModel->showRoomBed($room_info, false);
-
-    // Duyệt từng phòng đã đặt
-    foreach($room_guests as $guest) {
-        $adults = $guest['adults'];
-        $children = $guest['children'];
-        $infants = $guest['infants'];
-    }
-
-    $room_book[] = $room_info;
+    $roomTypeGuests[] = [
+        'roomId' => $room_info['roo_id'],
+        'roomName' => $room_info['roo_name'],
+        'roomCount' => $roomType['roomCount'],
+        'total_adult' => $room_info['roo_adult'],
+        'image' => $image,
+        'view' => $room_info['view'],
+        'bed' => $room_info['bed'],
+        'adult' => $adult,
+        'child' => $child,
+        'infant' => $infant,
+        'tags' => $services
+    ];
 }
 
 
