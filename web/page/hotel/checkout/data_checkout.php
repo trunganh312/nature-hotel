@@ -19,7 +19,7 @@ $rooms = $booking_data['selectedRooms'];
 $checkIn = $booking_data['checkIn'];
 $checkOut = $booking_data['checkOut'];
 $hotel_id = $booking_data['hotel_id'];
-
+$date_range = $checkIn . ' - ' . $checkOut;
 $nights = (str_totime($checkOut) - str_totime($checkIn)) / 86400;
 
 // Lấy thông tin khách sạn
