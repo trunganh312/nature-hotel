@@ -5,8 +5,8 @@
             <div class="card mb-3">
                 <div class="card-body p-4">
                     <div class="d-flex mb-4 card_body_booking1">
-                        <img src="https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg" alt="Hotel"
-                            class="rounded me-3 booking_img_firt">
+                        <img src="https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg"
+                            alt="Hotel" class="rounded me-3 booking_img_firt">
                         <div>
                             <h1 class="card_booking_title">Khách sạn Grand Ocean</h1>
                             <div class="mb-2">
@@ -44,11 +44,12 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body mb-3">
                 <h2 class="h5 mb-3">Thông tin phòng</h2>
                 <div class="position-relative mb-2 d-flex card_booking_left1">
                     <span class="position-absolute card_booking_left_discount">Giảm giá 15%</span>
-                    <img src="https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg" alt="Room" class="img_booking_right1">
+                    <img src="https://gcs.tripi.vn/hms_prod/photo/img/456705ZyJMIQ/z3097370517030_de87172ad8397d5d257dfa80310804b9.jpg"
+                        alt="Room" class="img_booking_right1">
                 </div>
                 <h3 class="h5 mb-1">Deluxe Ocean View</h3>
                 <div class="list-unstyled mb-3">
@@ -79,8 +80,12 @@
                     </ul>
                 </div>
             </div>
+        </div>
+
+        <!-- Thông tin phòng -->
+        <div class="col-lg-5 column-right">
             <!-- Thông tin liên hệ -->
-            <div class="card mt-3">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h2>Thông tin liên hệ</h2>
                     <div class="contact">
@@ -111,34 +116,98 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Thông tin phòng -->
-        <div class="col-lg-5 column-right">
             <!-- Chi tiết giá -->
-            <div class="price-card p-4">
-                <h2 class="mb-2 title_pay">Chi tiết giá</h2>
-                <div class="price-row">
-                    <div><span>2 phòng x 2 đêm</span></div>
-                    <div class="text-end">
-                        <span class="promotion">-15%</span>
-                        <span class="old-price ms-2">4,000,000₫</span>
+            <div class="price-card">
+                <div class="price-card-header">
+                    <h2 class="title_pay">Chi tiết giá</h2>
+                    <div class="booking-dates">
+                        <i class="fa fa-calendar"></i>
+                        <span>10/06/2025 - 12/06/2025</span>
                     </div>
                 </div>
-                <div class="original-price">3,400,000₫</div>
-                <hr>
-                <div class="discount-sale flex">
-                    <div class="name-sale-info">
-                        <span class="info-sale">Mã giảm giá</span>
-                        <span class="name-sale" id="discountCodeDisplay">SAVE10</span>
+                
+                <!-- Thông tin phòng -->
+                <div class="room-detail-section">
+                    <div class="room-type-header">
+                        <h3>Thông tin phòng</h3>
+                        <span class="room-count">2 phòng</span>
                     </div>
-                    <span class="reduce-price" style="color: rgb(72, 187, 120);">-340,000₫</span>
+                    
+                    <div class="room-item">
+                        <div class="room-info">
+                            <div class="room-name">Phòng Deluxe</div>
+                            <div class="room-specs">
+                                <span><i class="fa fa-user"></i> 2 người lớn</span>
+                                <span><i class="fa fa-bed"></i> 1 giường đôi</span>
+                            </div>
+                        </div>
+                        <div class="room-price">
+                            <div class="price-amount">2,000,000₫</div>
+                            <div class="night-count">x 2 đêm</div>
+                        </div>
+                    </div>
+                    
+                    <div class="room-item">
+                        <div class="room-info">
+                            <div class="room-name">Phòng Superior</div>
+                            <div class="room-specs">
+                                <span><i class="fa fa-user"></i> 2 người lớn</span>
+                                <span><i class="fa fa-bed"></i> 2 giường đơn</span>
+                            </div>
+                        </div>
+                        <div class="room-price">
+                            <div class="price-amount">2,000,000₫</div>
+                            <div class="night-count">x 2 đêm</div>
+                        </div>
+                    </div>
                 </div>
-                <hr>
-                <div class="price-row pt-2">
-                    <span style="font-size: 18px; font-weight: 600;">Tổng tiền thanh toán:</span>
-                    <span class="price-sale" id="discountAmountDisplay"
-                        style="font-size: 18px; font-weight: 600;">3,060,000₫</span>
+                
+                <!-- Chi tiết giá -->
+                <div class="price-summary-section">
+                    <div class="price-row">
+                        <div><span>Tổng giá phòng</span></div>
+                        <div class="text-end">
+                            <span class="promotion">-15%</span>
+                            <span class="old-price ms-2">4,000,000₫</span>
+                        </div>
+                    </div>
+                    <div class="original-price">3,400,000₫</div>
+                    
+                    <!-- Dịch vụ thêm -->
+                    <div class="extra-services-section">
+                        <h3>Dịch vụ thêm</h3>
+                        <div class="service-item">
+                            <div class="service-name">Đón sân bay</div>
+                            <div class="service-price">Miễn phí</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Bữa sáng</div>
+                            <div class="service-price">Đã bao gồm</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mã giảm giá -->
+                    <div class="discount-section">
+                        <div class="discount-sale flex">
+                            <div class="name-sale-info">
+                                <span class="info-sale">Mã giảm giá</span>
+                                <span class="name-sale" id="discountCodeDisplay">SAVE10</span>
+                            </div>
+                            <span class="reduce-price">-340,000₫</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tổng tiền thanh toán -->
+                    <div class="total-price-section">
+                        <div class="price-row">
+                            <span class="total-label">Tổng tiền thanh toán:</span>
+                            <span class="price-sale" id="discountAmountDisplay">3,060,000₫</span>
+                        </div>
+                        <div class="payment-note">
+                            <i class="fa fa-info-circle"></i>
+                            <span>Đã bao gồm thuế và phí</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
