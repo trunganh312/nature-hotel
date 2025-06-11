@@ -69,11 +69,11 @@ function initHomeJS() {
             }
         }
 
-        // Dropdown/Slide menu handling
+        // Dropdown/Slide menu handling for location
         $('#locationInput').on('click', function(e) {
             e.stopPropagation();
             if (window.innerWidth <= 991.98) {
-                // Mobile/Tablet: Show slide menu
+                // Mobile/Tablet: Show full-screen slide menu
                 $('#slideMenu').addClass('show');
                 $('#slideMenuContent .location-content').show();
                 $('#slideMenuContent .room-selector-content').hide();
@@ -99,10 +99,10 @@ function initHomeJS() {
         // Destination selection
         $('.destination').on('click', function(e) {
             e.stopPropagation();
-            const cityId = $(this).data('city-id');
             const cityName = $(this).data('city-name');
             $('#locationInput').val(cityName);
-            $('#selectedLocationId').val(cityId);
+            // Note: cityId is not provided in data attributes, assuming it's not needed or handled elsewhere
+            $('#selectedLocationId').val(''); // Update if cityId is available
             if (window.innerWidth <= 991.98) {
                 $('#slideMenu').removeClass('show');
             } else {
