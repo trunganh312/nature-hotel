@@ -4,6 +4,14 @@ use src\Models\Hotel;
 use src\Models\Room;
 
 include('../../../Core/Config/require_web.php');
+require_once('../../../libraries/payos/vendor/autoload.php');
+include('../../../libraries/payos/src/PayOSWrapper.php');
+use Lib\PayOS\PayOSWrapper;
+$payOS = new PayOSWrapper(
+    PAYOS_CLIENT_ID,
+    PAYOS_API_KEY, 
+    PAYOS_CHECKSUM_KEY
+);
 
 // Lấy thông tin từ session
 $booking_data = getValue('booking_data', GET_ARRAY, GET_SESSION, []);
@@ -76,14 +84,19 @@ foreach($rooms as $roomType) {
         'price' => format_number($roomType['roomPrice'])
     ];
 }
+// Mặc định là 5p
+$time_limit = CURRENT_TIME + 5 * 60;
+$paymentLink = $payOS->createBookingPayment(
+    intval(substr(strval(microtime(true) * 10000), -6)),
+    (int)$total_price,
+    'TT TIEN PHONG NATURE',
+    DOMAIN_WEB."/checkout.html",
+    DOMAIN_WEB."/checkout.html",
+    [],
+    $time_limit
+);
+$redirect_url = $paymentLink['checkoutUrl'];
 
 $total_discount = $total_price - ($total_price * (15 / 100));
 $total_price = format_number($total_price);
 $total_discount = format_number($total_discount);
-
-
-
-
-
-
-

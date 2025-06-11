@@ -1,5 +1,5 @@
 <?php
-namespace Vietgoing\PayOS;
+namespace Lib\PayOS;
 
 use PayOS\PayOS;
 use Exception;
