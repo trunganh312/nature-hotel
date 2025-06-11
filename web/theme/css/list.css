@@ -348,9 +348,6 @@
   .search-place {
     flex-direction: column;
   }
-.place, .date, .room-selector {
-    margin: 10px 0;
-  }
   .place {
     border-right: none;
 }

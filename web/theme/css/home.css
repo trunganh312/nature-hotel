@@ -1,9 +1,10 @@
-/* Custom styles for banner */
+/* Base styles (áp dụng cho tất cả thiết bị) */
 .banner-area-modern {
     position: relative;
     overflow: hidden;
     background-color: var(--background-color);
 }
+
 .carousel-inner img {
     object-fit: cover;
     height: 90vh;
@@ -47,24 +48,6 @@
     padding: 20px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .carousel-inner img {
-        height: 60vh;
-    }
-}
-
-@media (max-width: 576px) {
-    .carousel-inner img {
-        height: 60vh;
-    }
-
-    .carousel-indicators button {
-        width: 10px;
-        height: 10px;
-    }
-}
-/* Custom styles for location area */
 .location-area {
     background-color: var(--background-color);
 }
@@ -92,7 +75,8 @@
     color: var(--text-light);
 }
 
-.form-select, .form-control {
+.form-select,
+.form-control {
     border: 1px solid var(--text-light);
     border-radius: 0.375rem;
     padding: 0.5rem 1rem;
@@ -100,7 +84,8 @@
     transition: border-color 0.3s ease;
 }
 
-.form-select:focus, .form-control:focus {
+.form-select:focus,
+.form-control:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(35, 58, 26, 0.25);
 }
@@ -137,35 +122,6 @@
     border-color: #1c2e14;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .banner-location-single {
-        min-width: 100%;
-    }
-
-    .banner-location-flex {
-        flex-direction: column;
-    }
-
-    .banner-location-single-search {
-        width: 100%;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
-}
-
-@media (max-width: 576px) {
-    .banner-location {
-        padding: 1.5rem;
-    }
-
-    .form-select, .form-control {
-        font-size: 0.875rem;
-    }
-}
-/* Custom styles for home-video */
 .home-video {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -186,29 +142,6 @@ iframe {
     height: 100%;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .home-video {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-
-    h2 {
-        font-size: 1.75rem;
-    }
-
-    p {
-        font-size: 0.875rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .ratio-16x9 {
-        border-radius: 0.5rem;
-    }
-}
-
-/* Custom styles for destinations area */
 .destinations-area {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -282,44 +215,9 @@ iframe {
     font-size: 0.875rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .destinations-area {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-
-    .section-title h2 {
-        font-size: 1.75rem;
-    }
-
-    .destination-card-img img {
-        height: 180px;
-    }
-}
-
-@media (max-width: 576px) {
-    .destination-card-img img {
-        height: 160px;
-    }
-
-    .destination-title a {
-        font-size: 1.125rem;
-    }
-}
-/* Custom styles for services area */
 .services-area {
     padding-top: 20px;
     padding-bottom: 50px;
-}
-
-.section-title h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.section-title p {
-    font-size: 1rem;
 }
 
 .service-card {
@@ -388,12 +286,12 @@ iframe {
     background-color: var(--white);
     padding: 12px;
     height: auto;
-    min-height: 80px; /* Đảm bảo có đủ không gian cho 2 dòng */
+    min-height: 80px;
 }
 
 .service-title a {
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Giới hạn hiển thị 2 dòng */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -401,56 +299,17 @@ iframe {
     font-weight: 600;
     text-decoration: none;
     transition: color 0.3s ease;
-    line-height: 1.4; /* Tăng line-height để chữ không bị dính */
-    max-height: 3em; /* 2 dòng x 1.4 line-height */
+    line-height: 1.4;
+    max-height: 3em;
 }
 
 .service-title a:hover {
     color: var(--primary-color);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .services-area {
-        padding-top: 15px;
-        padding-bottom: 30px;
-    }
-
-    .section-title h2 {
-        font-size: 1.75rem;
-    }
-
-    .service-card-img img {
-        height: 160px;
-    }
-}
-
-@media (max-width: 576px) {
-    .service-card-img img {
-        height: 140px;
-    }
-
-    .service-title a {
-        font-size: 1rem;
-    }
-
-    .service-icon {
-        font-size: 1.5rem;
-    }
-}
-/* Custom styles for attraction area */
 .attraction-area {
     padding-top: 50px;
     padding-bottom: 50px;
-}
-
-.section-title h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.section-title p {
-    font-size: 1rem;
 }
 
 .section-title {
@@ -563,48 +422,9 @@ iframe {
     color: var(--primary-color);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .attraction-area {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-
-    .section-title h2 {
-        font-size: 1.75rem;
-    }
-
-    .attraction-card-img img {
-        height: 180px;
-    }
-}
-
-@media (max-width: 576px) {
-    .attraction-card-img img {
-        height: 160px;
-    }
-
-    .attraction-title a {
-        font-size: 1rem;
-    }
-
-    .attraction-icon {
-        font-size: 1.25rem;
-    }
-}
-/* Custom styles for news area */
 .news-area {
     padding-top: 50px;
     padding-bottom: 50px;
-}
-
-.section-title h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.section-title p {
-    font-size: 1rem;
 }
 
 .news-card {
@@ -688,10 +508,120 @@ iframe {
 .news-title a:hover {
     color: var(--primary-color);
 }
+.daterangepicker {
+    position: absolute !important;
+    width: 800px !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 8px !important;
+    top: 108% !important;
+}
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .news-area {
+.daterangepicker .applyBtn {
+    display: none !important;
+}
+
+.daterangepicker .drp-selected,
+.daterangepicker .drp-buttons .drp-selected {
+    display: none !important;
+}
+
+.daterangepicker .drp-calendar {
+    width: 400px !important;
+    max-width: 400px !important;
+}
+
+.daterangepicker .calendar-table th,
+.daterangepicker .calendar-table td {
+    min-width: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    font-size: 14px !important;
+    padding: 0 !important;
+}
+
+.daterangepicker .drp-calendar.left,
+.daterangepicker .drp-calendar.right {
+    padding: 15px !important;
+}
+
+.daterangepicker td.off,
+.daterangepicker td.off.in-range,
+.daterangepicker td.off.start-date,
+.daterangepicker td.off.end-date {
+    background: none !important;
+    color: #ccc !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: transparent !important;
+    color: var(--white) !important;
+}
+
+.daterangepicker td.available:hover,
+.daterangepicker th.available:hover {
+    background-color: var(--secondary-color) !important;
+    color: var(--white) !important;
+}
+
+.daterangepicker th.month {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+
+.daterangepicker .calendar-table .next span,
+.daterangepicker .calendar-table .prev span {
+    border-color: var(--primary-color) !important;
+}
+
+/* Desktop (PC) - Các kiểu cơ bản áp dụng và thêm kiểu đặc thù nếu cần */
+@media (min-width: 992px) {
+    /* Hiện tại không có kiểu đặc thù cho desktop trong code gốc, 
+       tất cả kiểu cơ bản ở trên áp dụng cho PC */
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .carousel-inner img {
+        height: 60vh;
+    }
+
+    .banner-location-single {
+        min-width: 100%;
+    }
+
+    .banner-location-flex {
+        flex-direction: column;
+    }
+
+    .banner-location-single-search {
+        width: 100%;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .home-video {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    p {
+        font-size: 0.875rem;
+    }
+
+    .destinations-area {
         padding-top: 30px;
         padding-bottom: 30px;
     }
@@ -700,12 +630,166 @@ iframe {
         font-size: 1.75rem;
     }
 
+    .destination-card-img img {
+        height: 180px;
+    }
+
+    .services-area {
+        padding-top: 15px;
+        padding-bottom: 30px;
+    }
+
+    .service-card-img img {
+        height: 160px;
+    }
+
+    .attraction-area {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .attraction-card-img img {
+        height: 180px;
+    }
+
+    .news-area {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
     .news-card-img img {
         height: 180px;
     }
 }
 
-@media (max-width: 576px) {
+/* Mobile */
+@media (max-width: 575.98px) {
+
+    /* Từ @media (max-width: 768px) - áp dụng cho cả tablet và mobile */
+    .carousel-inner img {
+        height: 60vh;
+    }
+
+    .banner-location-single {
+        min-width: 100%;
+    }
+
+    .banner-location-flex {
+        flex-direction: column;
+    }
+
+    .banner-location-single-search {
+        width: 100%;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .home-video {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    p {
+        font-size: 0.875rem;
+    }
+
+    .destinations-area {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .section-title h2 {
+        font-size: 1.75rem;
+    }
+
+    .destination-card-img img {
+        height: 180px;
+    }
+
+    .services-area {
+        padding-top: 15px;
+        padding-bottom: 30px;
+    }
+
+    .service-card-img img {
+        height: 160px;
+    }
+
+    .attraction-area {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .attraction-card-img img {
+        height: 180px;
+    }
+
+    .news-area {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .news-card-img img {
+        height: 180px;
+    }
+
+    /* Từ @media (max-width: 576px) - chỉ áp dụng cho mobile */
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
+    }
+
+    .banner-location {
+        padding: 1.5rem;
+    }
+
+    .form-select,
+    .form-control {
+        font-size: 0.875rem;
+    }
+
+    .ratio-16x9 {
+        border-radius: 0.5rem;
+    }
+
+    .destination-card-img img {
+        height: 160px;
+    }
+
+    .destination-title a {
+        font-size: 1.125rem;
+    }
+
+    .service-card-img img {
+        height: 140px;
+    }
+
+    .service-title a {
+        font-size: 1rem;
+    }
+
+    .service-icon {
+        font-size: 1.5rem;
+    }
+
+    .attraction-card-img img {
+        height: 160px;
+    }
+
+    .attraction-title a {
+        font-size: 1rem;
+    }
+
+    .attraction-icon {
+        font-size: 1.25rem;
+    }
+
     .news-card-img img {
         height: 160px;
     }
@@ -718,382 +802,3 @@ iframe {
         font-size: 1.25rem;
     }
 }
-
-
-
-.baler-box {
-    position: absolute;
-    top: 87%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    width: 100%;
-    z-index: 1;
-}
-
-.baler-box h2 {
-    color: white;
-    font-size: 38px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    padding-left: 62px;
-}
-
-.baler-info {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    max-width: 1200px;
-    position: relative;
-}
-
-.search-place {
-    padding: 12px 26px;
-    display: flex;
-    align-items: center;
-}
-
-.place>label {
-    color: #4A5568;
-    font-size: 14px;
-    line-height: 14px;
-}
-
-.place>input {
-    font-size: 18px;
-    font-weight: 600;
-    border: 0;
-    height: 1.6em;
-    width: 100%;
-    margin: 0;
-    display: block;
-    padding: 0 !important;
-    background: none;
-    color: #333;
-}
-
-.place input::placeholder {
-    font-size: 18px;
-    color: #888888;
-    opacity: 0.9;
-    font-weight: 500;
-}
-
-.place>input:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.dropdown-panel {
-    display: none;
-    position: absolute;
-    top: 110%;
-    left: 0.2%;
-    width: 800px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10001;
-}
-
-.dropdown-panel .box {
-    display: flex;
-}
-
-.recent-title {
-    padding: 0 12px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    color: #333;
-    align-items: center;
-}
-
-.recent-title span {
-    font-size: 18px;
-}
-
-.popular-destinations {
-    gap: 4px;
-    display: grid;
-    margin-top: 8px;
-    grid-template-columns: repeat(6, 1fr);
-}
-
-.destination {
-    width: 120px;
-    gap: 6px;
-    cursor: pointer;
-    display: flex;
-    padding: 4px 8px;
-    transition: all 0.3s;
-    align-items: center;
-    border-radius: 8px;
-    flex-direction: column;
-}
-
-.destination img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.destination-name {
-    margin-top: 5px;
-    font-size: 14px;
-}
-
-.date {
-    gap: 10px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: center;
-    border: none;
-}
-
-.travel-date,
-.return-date {
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-}
-
-.moon {
-    color: #666;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.travel-date>h6,
-.return-date>h6,
-.room-selector>h6 {
-    color: #4a5568;
-    font-size: 14px;
-    line-height: 14px;
-    margin: 5px 0 3px;
-}
-
-.travel-date>div,
-.return-date>div,
-.room-selector>div {
-    font-weight: 700;
-    font-size: 17px;
-}
-
-.btnSreach {
-    margin-left: 10px;
-    width: 88px;
-    height: 45px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-.btnSreach>i {
-    font-size: 25px;
-    color: white;
-}
-
-.btnSreach:hover {
-    background: var(--secondary-color);
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.room-selector {
-    /* position: relative; */
-    cursor: pointer;
-}
-
-.selected-option {
-    max-width: 16px;
-    white-space: nowrap;
-}
-
-.room-selector .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    width: 300px;
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    margin-top: 5px;
-}
-
-.option {
-    padding: 12px 16px;
-    border-bottom: 1px solid #e2e8f0;
-    transition: background 0.2s;
-}
-
-.option:last-child {
-    border-bottom: none;
-}
-
-.option:hover {
-    background: #f8fafc;
-}
-
-.option h4 {
-    margin: 0;
-    font-size: 14px;
-    color: #1a202c;
-    font-weight: 500;
-}
-
-.option p {
-    margin: 4px 0 0;
-    font-size: 12px;
-    color: #64748b;
-}
-
-.dropdown-menu.show {
-    display: block;
-}
-
-.detail-panel {
-    display: none;
-    padding: 15px;
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-    margin-top: 10px;
-}
-
-.detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.detail-item:last-child {
-    margin-bottom: 0;
-}
-
-.detail-item label {
-    font-size: 14px;
-    color: #4a5568;
-}
-
-.counter {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.counter button {
-    width: 28px;
-    height: 28px;
-    border: 1px solid #e2e8f0;
-    border-radius: 4px;
-    background: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.counter button:hover {
-    background: #f1f5f9;
-}
-
-.counter span {
-    min-width: 20px;
-    text-align: center;
-}
-
-.option.active .detail-panel {
-    display: block;
-}
-
-.indicator {
-    border-radius: 1px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    background-color: var(--primary-color);
-    transition: all 0.3s ease;
-    width: 0;
-    opacity: 0;
-}
-.daterangepicker {
-    position: absolute !important;
-    width: 800px !important;
-    border: none !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-    border-radius: 8px !important;
-    top: 108% !important;
-}
-.daterangepicker .applyBtn { display: none !important; }
-.daterangepicker .drp-selected, .daterangepicker .drp-buttons .drp-selected { display: none !important; }
-.daterangepicker .drp-calendar {
-    width: 400px !important;
-    max-width: 400px !important; /* Tăng từ 270px lên */
-}
-.daterangepicker .calendar-table th,
-.daterangepicker .calendar-table td {
-    min-width: 40px !important;
-    width: 40px !important;
-    height: 40px !important;
-    line-height: 40px !important;
-    font-size: 14px !important;
-    padding: 0 !important;
-}
-.daterangepicker .drp-calendar.left,
-.daterangepicker .drp-calendar.right {
-    padding: 15px !important;
-}
-/* Không highlight ngày không thuộc tháng hiện tại */
-.daterangepicker td.off,
-.daterangepicker td.off.in-range,
-.daterangepicker td.off.start-date,
-.daterangepicker td.off.end-date {
-    background: none !important;
-    color: #ccc !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-.daterangepicker td.active, .daterangepicker td.active:hover {
-    background-color: var(--secondary-color) !important;
-    border-color: transparent !important;
-    color: var(--white) !important;
-}
-
-/* .daterangepicker td.in-range {
-    background-color: var(--accent-color-hover) !important;
-    color: var(--black) !important;
-} */
-
-.daterangepicker td.available:hover, .daterangepicker th.available:hover {
-    background-color: var(--secondary-color) !important;
-    color: var(--white) !important;
-}
-
-
-.daterangepicker th.month {
-    color: var(--primary-color) !important;
-    font-weight: bold !important;
-    font-size: 18px !important;
-}
-
-.daterangepicker .calendar-table .next span, 
-.daterangepicker .calendar-table .prev span {
-    border-color: var(--primary-color) !important;
-} 

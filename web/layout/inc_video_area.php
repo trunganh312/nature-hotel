@@ -12,3 +12,11 @@
         </div>
     </div>
 </section>
+
+<style>
+    @media (max-width: 992px) {
+        .home-video {
+            margin-top: 80px;
+        }
+    }
+</style>
