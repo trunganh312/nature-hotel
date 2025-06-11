@@ -18,6 +18,9 @@ define('DOMAIN_WEB', Utils::env('DOMAIN_WEB'));
 define('DOMAIN_SENNET', Utils::env('DOMAIN_SENNET'));
 define('SENNET_SECRET', Utils::env('SENNET_SECRET'));
 define('SENNET_APP_ID', Utils::env('SENNET_APP_ID'));
+define('PAYOS_CLIENT_ID', Utils::env('PAYOS_CLIENT_ID'));
+define('PAYOS_API_KEY', Utils::env('PAYOS_API_KEY'));
+define('PAYOS_CHECKSUM_KEY', Utils::env('PAYOS_CHECKSUM_KEY'));
 
 Utils::cors();
 

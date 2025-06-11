@@ -82,11 +82,6 @@ h1 {
     padding: 0 20px;
 }
 
-
-.booking-info:hover, .room-info:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
-}
-
 .booking-info h2, .room-info h2 {
     font-size: 20px;
     color: #2e7d32;
