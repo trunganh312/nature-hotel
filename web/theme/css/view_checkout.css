@@ -830,9 +830,9 @@ input[type="checkbox"]+label::before {
 
 /* Khi checkbox được chọn (checked) */
 input[type="checkbox"]:checked+label::before {
-    background-color: var(--primary-color);
+    background-color: #3182ce;
     /* Màu nền hồng */
-    border-color: var(--primary-color);
+    border-color: #3182ce;
     /* Thay đổi màu viền */
 }
 
@@ -840,7 +840,7 @@ input[type="checkbox"]:checked+label::before {
 input[type="checkbox"]:checked+label::after {
     content: "✔";
     position: absolute;
-    left: 5px;
+    left: 0px;
     top: 50%;
     transform: translateY(-50%);
     color: white;
