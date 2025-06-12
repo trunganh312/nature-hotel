@@ -208,9 +208,42 @@
             return false;
         }
         
-        // Nếu tất cả đều hợp lệ, có thể submit form hoặc chuyển hướng
-        alert('Thông tin hợp lệ. Chuyển đến trang thanh toán!');
-        // window.location.href = 'trang-thanh-toan.php'; 
+        // Nếu tất cả đều hợp lệ, gọi AJAX để lấy dữ liệu đặt phòng
+        // Tạo FormData để gửi thông tin người dùng
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('phone', phone);
+        
+        fetch('/ajax/ajax_checkout.php', {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.log('Dữ liệu đặt phòng:', data);
+                // Hiển thị thông báo thành công
+                showToast('Lấy dữ liệu đặt phòng thành công!');
+                
+                // Ở đây bạn có thể thực hiện các bước tiếp theo
+                // Ví dụ: hiển thị modal chứa thông tin đặt phòng, chuyển hướng, v.v.
+            } else {
+                showToast('Lỗi: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Đã xảy ra lỗi khi xử lý yêu cầu');
+        });
     });
     
     // Hiển thị toast notification

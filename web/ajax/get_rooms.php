@@ -30,6 +30,7 @@ foreach($rooms as $room) {
         'price' => format_number($info['total_price']),
         'min_qty' => $info['min_qty'],
         'total_price' => $info['total_price'],
+        'price_per_day' => $info['price_per_day'] // Thêm giá phòng theo từng ngày
     ];
 }
 

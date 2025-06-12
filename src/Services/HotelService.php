@@ -69,13 +69,15 @@ class HotelService {
      * @param integer $room_id
      * @return array [
      *   'min_qty' => số phòng trống nhỏ nhất,
-     *   'total_price' => tổng giá trị của từng đêm trong khoảng
+     *   'total_price' => tổng giá trị của từng đêm trong khoảng,
+     *   'price_per_day' => mảng chứa giá theo từng ngày [ngày => giá]
      * ]
      */
     public static function getRoomPriceAndAvailability($hotel_id, $daterange = null, $room_id = null) {
         if(empty($room_id)) return [
             'min_qty' => 0,
-            'total_price' => 0
+            'total_price' => 0,
+            'price_per_day' => []
         ];
         $result = self::getTableRoomPrice($hotel_id, $daterange);
         $daterange_int = $result["daterange_int"];
@@ -85,6 +87,8 @@ class HotelService {
         }
         $min_qty = PHP_INT_MAX;
         $total_price = 0;
+        $price_per_day = []; // Mảng lưu giá theo từng ngày
+        
         foreach ($tables as $table) {
             if(!self::existTableRoomPrice($table)) continue;
             // Lấy số phòng trống nhỏ nhất và giá cao nhất trong khoảng ngày
@@ -100,6 +104,10 @@ class HotelService {
             foreach ($row as $v) {
                 $min_qty = min($min_qty, $v['rop_qty']);
                 $total_price += $v['rop_price'];
+                
+                // Lưu giá theo từng ngày
+                $day_key = date('d/m/Y', $v['rop_day']);
+                $price_per_day[$day_key] = $v['rop_price'];
             }
         }
 
@@ -120,7 +128,8 @@ class HotelService {
 
         return [
             'min_qty' => $min_qty,
-            'total_price' => $total_price
+            'total_price' => $total_price,
+            'price_per_day' => $price_per_day // Trả về giá theo từng ngày
         ];
     }
 
