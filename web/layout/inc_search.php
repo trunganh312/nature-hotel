@@ -739,9 +739,110 @@ $data_city = array_values($data_city);
     .search_width_100 {
         width: 100% !important;
     }
+    .baler-box {
+        top: 35%;
+    }
+    .search-responsive {
+        display: flex;
+        flex-direction: column;
+    }
+    .btnSreach {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 15px;
+        margin: 0;
+    }
+    .search-place {
+        padding: 6px 12px 12px 12px;
+    }
+    .nopadding_mobile {
+        padding: 0;
+    }
+    .dropdown-panel,
+    .dropdown-menu {
+        display: none !important;
+    }
+    .date {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: white;
+    }
+    .travel-date,
+    .return-date {
+        width: auto !important;
+        margin: 0 !important;
+        flex: 1;
+    }
+    .moon {
+        width: auto !important;
+        margin: 0 15px !important;
+    }
+    .room-selector {
+        padding: 10px;
+        border-bottom: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: white;
+        width: 100%;
+    }
+    #select_op {
+        max-width: 100%;
+        margin-right: 0 !important;
+    }
+    .daterangepicker {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translate(-50%, -50%) !important;
+        width: 95% !important;
+        max-width: 800px !important;
+        margin: 0 !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    .daterangepicker .drp-calendar {
+        width: 48% !important;
+        max-width: 48% !important;
+        margin: 0 1% !important;
+        font-size: 11px !important;
+    }
+    .daterangepicker .drp-calendar.right {
+        display: block !important;
+    }
+    .daterangepicker td,
+    .daterangepicker th {
+        width: 25px !important;
+        height: 25px !important;
+        min-width: 25px !important;
+        line-height: 25px !important;
+        font-size: 10px !important;
+        padding: 0 !important;
+    }
+    .daterangepicker .drp-calendar.left,
+    .daterangepicker .drp-calendar.right {
+        padding: 5px !important;
+        border-right: none !important;
+    }
+    .daterangepicker th.month {
+        font-size: 12px !important;
+        padding: 0 !important;
+    }
+    .daterangepicker .prev,
+    .daterangepicker .next {
+        width: 20px !important;
+        height: 20px !important;
+        line-height: 20px !important;
+        font-size: 12px !important;
+    }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 576px) {
     .baler-box {
         top: 35%;
     }
