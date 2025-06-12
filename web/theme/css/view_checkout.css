@@ -840,7 +840,7 @@ input[type="checkbox"]:checked+label::before {
 input[type="checkbox"]:checked+label::after {
     content: "✔";
     position: absolute;
-    left: 5px;
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     color: white;
