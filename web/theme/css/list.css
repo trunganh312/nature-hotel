@@ -316,7 +316,7 @@
   }
 
   .hotel-list-search .baler-box {
-   top: 10%;
+   top: 17%;
 }
 .hotel-list-search .search-container {
     background: #f0f0f0;
@@ -324,7 +324,7 @@
 }
 
 .list_hotel {
-    margin-top: 15% !important;
+    margin-top: 12% !important;
     flex-wrap: nowrap;
   }
 
@@ -368,7 +368,7 @@
 }
 
 /* Ẩn filter-container trên mobile */
-@media (max-width: 760px) {
+/* @media (max-width: 760px) {
   .filter-container {
     display: none;
   }
@@ -377,7 +377,7 @@
     width: 100%;
     margin-bottom: 15px;
   }
-}
+} */
 
 /* Style cho modal */
 #filterModal .modal-dialog {
