@@ -22,10 +22,12 @@
                         <div class="col-md-4">
                             <p class="fw-bold mb-0">Nhận phòng</p>
                             <span><?= $hotel_info['hot_checkin'] ?>, <?= $checkIn ?></span>
+                            <input type="hidden" name="checkIn" value="<?= $checkIn ?>">
                         </div>
                         <div class="col-md-4">
                             <p class="fw-bold mb-0">Trả phòng</p>
                             <span><?= $hotel_info['hot_checkout'] ?>, <?= $checkOut ?></span>
+                            <input type="hidden" name="checkOut" value="<?= $checkOut ?>">
                         </div>
                         <div class="col-md-4">
                             <p class="fw-bold mb-0">Số đêm</p>
@@ -72,7 +74,7 @@
                     <div class="hotel-tags">
                         <h4 class="h6 mb-2">Tiện nghi phòng</h4>
                         <div class="d-flex flex-wrap justify-content-start">
-                            <?php foreach($room['tags'] as $tag) { ?>
+                            <?php foreach ($room['tags'] as $tag) { ?>
                                 <span class="tag me-4"><i class="<?= $tag['icon'] ?> me-2"></i> <?= $tag['name'] ?></span>
                             <?php } ?>
                         </div>
@@ -93,8 +95,8 @@
                     </div>
                     <div class="email-phone">
                         <div class="email">
-                            <label for="email">Email <span class="text-danger">*</span></label>
-                            <input type="email" id="email" name="email" value="" placeholder="Nhập email" required>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="" placeholder="Nhập email">
                         </div>
                         <div id="phoneForm" class="phone">
                             <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
@@ -187,85 +189,89 @@
 <script>
     // Form validation and toast notification
     document.getElementById('btnPayment').addEventListener('click', function(e) {
-        console.log('click');
         e.preventDefault();
-        
+
         // Kiểm tra tất cả các trường bắt buộc
         const username = document.getElementById('username').value.trim();
-        const email = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
-        
-        if (!username || !email || !phone) {
+        const email = document.getElementById('email').value.trim();
+
+        if (!username || !phone) {
             showToast('Vui lòng điền đầy đủ thông tin trước khi thanh toán');
             return false;
         }
-        console.log('username', username);
-        
         // Kiểm tra định dạng email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showToast('Email không hợp lệ');
-            return false;
+        if (email) {
+            if (!emailRegex.test(email)) {
+                showToast('Email không hợp lệ');
+                return false;
+            }
         }
-        
-        // Nếu tất cả đều hợp lệ, gọi AJAX để lấy dữ liệu đặt phòng
-        // Tạo FormData để gửi thông tin người dùng
-        const formData = new FormData();
-        formData.append('username', username);
-        formData.append('email', email);
-        formData.append('phone', phone);
-        
-        fetch('/ajax/ajax_checkout.php', {
-            method: 'POST',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
+        // Call api
+        const checkIn = document.querySelector('input[name="checkIn"]').value;
+        const checkOut = document.querySelector('input[name="checkOut"]').value;
+        $.ajax({
+            url: 'ajax/get_rooms.php',
+            type: 'POST',
+            data: {
+                checkIn: checkIn,
+                checkOut: checkOut,
+                hotel_id: <?= $hotel_info['hot_id'] ?>
             },
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            success: function(response) {
+                // Dữ liệu phòng trống thực tế từ DB
+                const data = JSON.parse(response);
+                // Dữ liệu phòng đã chọn từ session
+                const roomTypeGuests = <?= json_encode($roomTypeGuests) ?>;
+
+                let isValid = true;
+                let errorMsg = '';
+
+                roomTypeGuests.forEach(selected => {
+                    // Tìm phòng tương ứng trong data trả về từ DB
+                    const dbRoom = data.find(r => parseInt(r.room_id) === parseInt(selected.roomId));
+                    if (!dbRoom) {
+                        isValid = false;
+                        errorMsg += `Không tìm thấy dữ liệu phòng ${selected.roomName}.\n`;
+                        return;
+                    }
+                    if (selected.roomCount > dbRoom.min_qty) {
+                        isValid = false;
+                        errorMsg += `Số phòng "${selected.roomName}" bạn chọn (${selected.roomCount}) vượt quá số phòng còn lại (${dbRoom.min_qty}).\n`;
+                    }
+                });
+
+                if (!isValid) {
+                    showToast(errorMsg || 'Có lỗi về số lượng phòng. Vui lòng kiểm tra lại!');
+                    return;
+                }
+
+                // Nếu hợp lệ, tiếp tục chuyển hướng hoặc xử lý thanh toán
+                window.location.href = '<?= $redirect_url ?>';
             }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                console.log('Dữ liệu đặt phòng:', data);
-                // Hiển thị thông báo thành công
-                showToast('Lấy dữ liệu đặt phòng thành công!');
-                
-                // Ở đây bạn có thể thực hiện các bước tiếp theo
-                // Ví dụ: hiển thị modal chứa thông tin đặt phòng, chuyển hướng, v.v.
-            } else {
-                showToast('Lỗi: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            showToast('Đã xảy ra lỗi khi xử lý yêu cầu');
         });
     });
-    
+
     // Hiển thị toast notification
     function showToast(message) {
-        console.log('Hiển thị toast với nội dung:', message);
         const toastContainer = document.getElementById('toastNotification');
         const toast = document.getElementById('toastAlert');
         const toastMessage = document.getElementById('toastMessage');
-        
+
         // Cập nhật nội dung
         toastMessage.textContent = message;
-        
+
         // Hiển thị toast
         toast.classList.add('show');
         toastContainer.style.display = 'block';
-        
+
         // Tự động ẩn toast sau 3 giây
         setTimeout(function() {
             closeToast();
         }, 3000);
     }
-    
+
     // Đóng toast
     function closeToast() {
         const toastContainer = document.getElementById('toastNotification');
