@@ -13,6 +13,7 @@ include('../../Core/Config/require_web.php');
     <?php include($path_root . 'layout/inc_header.php'); ?>
     <?php include('view_introduce.php'); ?>
     <?php include($path_root . 'layout/inc_footer.php'); ?>
+    
     <?= $Layout->loadFooter() ?>
 </body>
 
