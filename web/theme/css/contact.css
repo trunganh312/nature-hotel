@@ -1,0 +1,359 @@
+.contact-hero {
+    display: flex;
+    align-items: center;
+    height: 350px;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.contact-hero__image {
+    padding: 0;
+    height: 100%;
+}
+
+.contact-hero__image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+.contact-hero__content {
+    padding: 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-hero__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contact-hero__title:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 70px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+.contact-hero__text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .contact-hero {
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    
+    .contact-hero__image {
+        width: 100%;
+        max-height: 400px;
+    }
+    
+    .contact-hero__content {
+        padding: 30px 20px;
+    }
+    
+    .contact-hero__title {
+        font-size: 2rem;
+    }
+}
+
+/* Style cho khối phương thức liên hệ */
+.contact-methods {
+    margin-bottom: 50px;
+}
+
+.contact-method {
+    padding: 30px;
+    text-align: left;
+    background: var(--white);
+    border-radius: 15px;
+    height: 100%;
+}
+
+.contact-method__icon {
+    width: 70px;
+    height: 70px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover .contact-method__icon {
+    background: var(--accent-color);
+    color: var(--white);
+}
+
+.contact-method__title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.contact-method__subtitle {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.6;
+    min-height: 50px;
+}
+
+.contact-method__info {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.contact-method__link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.contact-method__link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.contact-method__social {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: var(--accent-color-hover);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Responsive cho khối liên hệ */
+@media (max-width: 991.98px) {
+    .contact-method {
+        margin-bottom: 30px;
+    }
+    
+    .contact-method:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Style cho khối tìm cửa hàng */
+.contact-store {
+    margin: 50px 0;
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.contact-store__info {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-store__title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contact-store__title:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 70px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+.contact-store__description {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.contact-store__link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-store__link i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact-store__link:hover {
+    color: var(--primary-color);
+}
+
+.contact-store__link:hover i {
+    transform: translateX(5px);
+}
+
+.contact-store__map {
+    padding: 0;
+}
+
+.map-placeholder {
+    height: 100%;
+    min-height: 400px;
+    background: #f8f9fa;
+}
+
+.map-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .contact-store__info {
+        padding: 30px;
+    }
+    
+    .contact-store__title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Style cho form liên hệ */
+.contact-form {
+    background: var(--white);
+    padding: 40px;
+    width: 800px;
+    margin: 50px auto;
+    border-radius: 15px;
+}
+.border-none{
+    border: none !important;
+    border-bottom: 1px solid #ccc !important;
+}
+.border-none:focus {
+    outline: none !important;
+}
+.contact-form__title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contact-form__title:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 70px;
+    height: 3px;
+    background: var(--accent-color);
+    transform: translateX(-50%);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--boder_bottom);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .contact-form__title {
+        font-size: 1.8rem;
+    }
+}
+
+.contact-title h2 {
+    font-size: 44px;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 0 auto;
+    padding: 15px 0;
+    position: relative;
+    width: fit-content;
+}
