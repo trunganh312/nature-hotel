@@ -1,97 +1,383 @@
-
-.hero-section {
-    overflow: hidden;
-}
-.hero-overlay {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
-}
-.text-primary {
-    color: #2ecc71 !important;
-}
-.btn-primary {
-    background-color: #2ecc71;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    transition: background-color 0.3s;
-}
-.btn-primary:hover {
-    background-color: #27ae60;
-}
-.btn-outline-primary {
-    border-color: #2ecc71;
-    color: #2ecc71;
-}
-.btn-outline-primary:hover {
-    background-color: #2ecc71;
-    color: white;
-}
-
-/* Hiệu ứng thẻ */
-.card {
-    border: none;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Carousel
-.carousel-item img {
-    transition: transform 0.5s;
-}
-.carousel-item img:hover {
-    transform: scale(1.05);
-}
-.carousel-control-prev, .carousel-control-next {
-    width: 5%;
-    background: rgba(0, 0, 0, 0.3);
-} */
-
-/* Typography */
-h2.fw-bolds {
-    color: #2c3e50;
-    border-bottom: 3px solid #2ecc71;
-    padding-bottom: 12px;
+/* CSS cho trang giới thiệu Nature Hotel */
+:root {
+    /* Màu chính và phụ */
+    --primary-color: #233a1a;
+    --secondary-color: #4a6c4c;
+  
+    /* Màu bổ sung */
+    --accent-color: #48BB78; /* Màu nhấn nhá, sáng hơn màu phụ */
+    --accent-color-hover: #e8fae8;
+    --boder_bottom: #e2e8f0;
+    --background-color: #f5f5f5; /* Màu nền sáng */
+    --text-color: #1a1a1a; /* Màu chữ chính */
+    --text-light: #666666; /* Màu chữ phụ */
+    --white: #ffffff; /* Màu trắng */
+    --black: #000000; /* Màu đen */
+    --error-color: #d32f2f; /* Màu lỗi */
+    --success-color: #388e3c; /* Màu thành công */
+    --warning-color: #f57c00; /* Màu cảnh báo */
+  
+    /* Màu gradient (dựa trên màu chính và phụ) */
+    --gradient-primary: linear-gradient(135deg, #233a1a, #4a6c4c);
+  }
+.introduce-banner {
     position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    margin-bottom: 60px;
 }
-h2.fw-bolds::after {
+
+.introduce-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+}
+
+.banner-overlay h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-overlay p {
+    font-size: 20px;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.introduce-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.about-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 80px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.about-text h2:after {
     content: '';
     position: absolute;
-    width: 50px;
-    height: 3px;
-    background: #2ecc71;
-    bottom: -3px;
+    bottom: 0;
     left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color); /* Màu xanh lá đậm */
 }
-.text-muted {
+
+.about-text p {
+    font-size: 16px;
     line-height: 1.8;
-    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-/* Video section */
-.home-video {
-    background-color: #f8f9fa;
+.about-image {
+    flex: 1;
+    min-width: 300px;
 }
-.home-video iframe {
+
+.about-image img {
+    width: 100%;
+    height: auto;
     border-radius: 8px;
-}
-
-/* Sidebar */
-.sticky-top {
-    z-index: 100;
-}
-#map-namkykhoinghia, .branch-map {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive */
+.feature-section {
+    margin-bottom: 80px;
+}
+
+.feature-section h2 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.feature-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color); /* Màu xanh lá đậm */
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.feature-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    text-align: center;
+    padding: 30px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 40px;
+    color: var(--primary-color); /* Màu xanh lá đậm */
+    margin-bottom: 20px;
+}
+
+.feature-item h3 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.locations-section {
+    margin-bottom: 80px;
+}
+
+.locations-section h2 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.locations-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color); /* Màu xanh lá đậm */
+}
+
+.hotel-locations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.location-item {
+    flex: 1;
+    min-width: 300px;
+    max-width: 380px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.location-image {
+    height: 250px;
+    overflow: hidden;
+}
+
+.location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.location-item:hover .location-image img {
+    transform: scale(1.05);
+}
+
+.location-info {
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+.location-info h3 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.location-info p {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.location-info .location-contact {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.cta-section {
+    background-color: var(--background-color);
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 18px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.introduce-cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.introduce-cta-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .introduce-banner {
+        height: 400px;
+    }
+    
+    .banner-overlay h1 {
+        font-size: 40px;
+    }
+}
+
 @media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2.5rem;
+    .introduce-banner {
+        height: 350px;
     }
-    .hero-section p.lead {
-        font-size: 1.2rem;
+    
+    .banner-overlay h1 {
+        font-size: 34px;
     }
-    .carousel-item img {
+    
+    .banner-overlay p {
+        font-size: 18px;
+    }
+    
+    .about-section {
+        flex-direction: column;
+    }
+    
+    .about-image {
+        order: 1;
+        margin-bottom: 20px;
+    }
+    
+    .about-text {
+        order: 2;
+    }
+    
+    .about-text h2, .feature-section h2, .locations-section h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .introduce-banner {
         height: 300px;
+    }
+    
+    .banner-overlay h1 {
+        font-size: 30px;
+    }
+    
+    .banner-overlay p {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    
+    .cta-content h2 {
+        font-size: 30px;
+    }
+    
+    .cta-content p {
+        font-size: 16px;
+    }
+    
+    .introduce-cta-button {
+        padding: 12px 25px;
+        font-size: 16px;
     }
 }

@@ -21,3 +21,7 @@ RewriteRule ^checkout\.html$ /page/hotel/checkout/checkout.php [QSA,L]
 
 RewriteRule ^hotel-([0-9]+)-([^/]+)\.html$ /page/hotel/detail/detail.php?id=$1 [QSA,L]
 
+RewriteRule ^introduce\.html$ /page/introduce/introduce.php [QSA,L]
+
+RewriteRule ^contact\.html$ /page/contact/contact.php [QSA,L]
+
