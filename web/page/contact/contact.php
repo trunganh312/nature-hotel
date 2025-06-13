@@ -11,9 +11,8 @@ include('../../Core/Config/require_web.php');
 
 <body>
     <?php include($path_root . 'layout/inc_header.php'); ?>
-    <?php include('view_introduce.php'); ?>
+    <?php include('view_contact.php'); ?>
     <?php include($path_root . 'layout/inc_footer.php'); ?>
-    
     <?= $Layout->loadFooter() ?>
 </body>
 
