@@ -111,6 +111,30 @@ $data_cities = array_values($data_cities);
                     <li class="nav-item">
                         <a class="nav-link" href="/introduce.html">Giới thiệu</a>
                     </li>
+                    
+                    <!-- Service -->
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dịch vụ
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dich-vu-tour">Dịch vụ Tour</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dua-don-van-chuyen">Dịch vụ đưa đón sân bay</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dich-vu-cho-thue-xe-may">Dịch vụ thuê xe máy</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/page/dich-vu-giat-la">Dịch vụ giặt là</a></li>
+                        </ul>
+                    </li> -->
+
+                    <!-- News -->
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="newsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tin tức & Sự kiện
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="newsDropdown">
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/posts/tuyen-dung">Tuyển dụng</a></li>
+                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/posts/tin-tuc">Tin tức</a></li>
+                        </ul>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="/contact.html">Liên hệ</a>
                     </li>
