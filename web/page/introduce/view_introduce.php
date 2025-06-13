@@ -26,7 +26,7 @@ $glob['title'] = "Giới thiệu - Nature Hotel | Chuỗi khách sạn cao cấp
             <p>Mỗi khách sạn trong chuỗi NATURE HOTEL đều được thiết kế và trang bị đầy đủ tiện nghi hiện đại, kết hợp với không gian thanh bình hòa hợp với thiên nhiên, tạo nên trải nghiệm nghỉ dưỡng tuyệt vời cho quý khách hàng.</p>
         </div>
         <div class="about-image">
-            <img src="https://img.tripi.vn/cdn-cgi/image/width=1280,height=1280/https://gcs.tripi.vn/hms_prod/photo/img/474562FVZ/20230223-20230223_091640.jpg" alt="Nature Hotel - Khách sạn hòa mình với thiên nhiên">
+            <img src="../../nature-hotel.jpg" alt="Nature Hotel - Khách sạn hòa mình với thiên nhiên">
         </div>
     </div>
     
@@ -64,7 +64,8 @@ $glob['title'] = "Giới thiệu - Nature Hotel | Chuỗi khách sạn cao cấp
     <div class="hotel-locations">
         <?php foreach ($data_hotels as $hotel): ?>
             <div class="location-item">
-                <div class="location-image">
+                <a href="<?= $hotel['link'] ?>">
+                    <div class="location-image">
                     <img src="<?= htmlspecialchars($hotel['img']) ?>" alt="<?= htmlspecialchars($hotel['name']) ?>">
                 </div>
                 <div class="location-info">
@@ -73,6 +74,7 @@ $glob['title'] = "Giới thiệu - Nature Hotel | Chuỗi khách sạn cao cấp
                     <p>Địa chỉ: <?= htmlspecialchars($hotel['address']) ?></p>
                     <p class="location-contact">Liên hệ: <?= htmlspecialchars($hotel['phone']) ?></p>
                 </div>
+                </a>
             </div>
         <?php endforeach; ?>
     </div>
