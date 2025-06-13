@@ -1,5 +1,7 @@
 <?php
 include('../../Core/Config/require_web.php');
+include('data_introduce.php');
+
 ?>
 
 <!DOCTYPE html>

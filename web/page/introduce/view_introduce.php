@@ -58,45 +58,25 @@ $glob['title'] = "Giới thiệu - Nature Hotel | Chuỗi khách sạn cao cấp
         </div>
     </div>
     
-    <!-- Phần Các chi nhánh -->
-    <div class="locations-section">
-        <h2>Các Chi Nhánh NATURE HOTEL</h2>
-        <div class="hotel-locations">
+<!-- Phần Các chi nhánh -->
+<div class="locations-section">
+    <h2>Các Chi Nhánh NATURE HOTEL</h2>
+    <div class="hotel-locations">
+        <?php foreach ($data_hotels as $hotel): ?>
             <div class="location-item">
                 <div class="location-image">
-                    <img src="https://img.tripi.vn/cdn-cgi/image/width=1280,height=1280/https://gcs.tripi.vn/hms_prod/photo/img/474562FVZ/20230223-20230223_091640.jpg" alt="Nature Hotel Hà Nội">
+                    <img src="<?= htmlspecialchars($hotel['img']) ?>" alt="<?= htmlspecialchars($hotel['name']) ?>">
                 </div>
                 <div class="location-info">
-                    <h3>NATURE HOTEL HÀ NỘI</h3>
-                    <p>Tọa lạc tại trung tâm thủ đô, thiết kế hiện đại kết hợp với nét văn hóa truyền thống.</p>
-                    <p>Địa chỉ: 62 Khúc Thừa Dụ, Dịch Vọng, Cầu Giấy, Hà Nội</p>
-                    <p class="location-contact">Liên hệ: 024 322 32253</p>
+                    <h3><?= htmlspecialchars($hotel['name']) ?></h3>
+                    <p><?= htmlspecialchars($hotel['intro']) ?></p>
+                    <p>Địa chỉ: <?= htmlspecialchars($hotel['address']) ?></p>
+                    <p class="location-contact">Liên hệ: <?= htmlspecialchars($hotel['phone']) ?></p>
                 </div>
             </div>
-            <div class="location-item">
-                <div class="location-image">
-                    <img src="https://img.tripi.vn/cdn-cgi/image/width=1280,height=1280/https://gcs.tripi.vn/hms_prod/photo/img/474562FVZ/20230223-20230223_091640.jpg" alt="Nature Hotel Đà Nẵng">
-                </div>
-                <div class="location-info">
-                    <h3>NATURE HOTEL ĐÀ NẴNG</h3>
-                    <p>Khách sạn view biển tuyệt đẹp, không gian nghỉ dưỡng lý tưởng tại thành phố biển xinh đẹp.</p>
-                    <p>Địa chỉ: 07 Phạm Văn Đồng, Sơn Trà, Đà Nẵng</p>
-                    <p class="location-contact">Liên hệ: 0236 3836 799</p>
-                </div>
-            </div>
-            <div class="location-item">
-                <div class="location-image">
-                    <img src="https://img.tripi.vn/cdn-cgi/image/width=1280,height=1280/https://gcs.tripi.vn/hms_prod/photo/img/474562FVZ/20230223-20230223_091640.jpg" alt="Nature Hotel Đà Lạt">
-                </div>
-                <div class="location-info">
-                    <h3>NATURE HOTEL ĐÀ LẠT</h3>
-                    <p>Không gian lãng mạn giữa thành phố ngàn hoa, kiến trúc độc đáo hòa quyện với thiên nhiên.</p>
-                    <p>Địa chỉ: 52 Lương Thế Vinh, P3, Đà Lạt</p>
-                    <p class="location-contact">Liên hệ: 0332 084 868</p>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
+</div>
     
     <!-- Phần Call to Action -->
     <div class="cta-section">
