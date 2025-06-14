@@ -85,7 +85,7 @@ $glob['title'] = "Giới thiệu - Nature Hotel | Chuỗi khách sạn cao cấp
         <div class="cta-content">
             <h2>Trải Nghiệm Kỳ Nghỉ Tuyệt Vời Cùng NATURE HOTEL</h2>
             <p>Hãy đến với chuỗi thương hiệu NATURE HOTEL để trải nghiệm những kỳ nghỉ dưỡng độc đáo và thư thái nhất! Đặt phòng ngay hôm nay để nhận được những ưu đãi hấp dẫn.</p>
-            <button class="introduce-cta-button">ĐẶT PHÒNG NGAY</button>
+            <button class="introduce-cta-button"><a href="/khach-san.html" style="color: #fff;">ĐẶT PHÒNG NGAY</a></button>
         </div>
     </div>
     

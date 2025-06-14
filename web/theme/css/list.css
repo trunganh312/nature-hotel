@@ -251,13 +251,10 @@
 
 
   .button-detail {
-    z-index: 1;
     position: relative;
-    /* color: var(--secondary-color); */
     color: #fff !important;
     outline: none;
     border: 1px solid var(--secondary-color);
-    /* background-color: transparent; */
     background-color: var(--secondary-color);
     overflow: hidden;
     transition: color 0.4s ease-in-out;
