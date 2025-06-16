@@ -128,14 +128,14 @@
                     <?php foreach ($roomTypeGuests as $room) { ?>
                         <div class="room-item">
                             <div class="room-info">
-                                <div class="room-name"><?= $room['roomName'] ?></div>
+                                <div class="room-name"><?= $room['roomName'] ?> x<?= $room['roomCount'] ?> phòng</div>
                                 <div class="room-specs">
                                     <span><i class="fa fa-user"></i> <?= $room['adult'] ?> người lớn</span>
                                 </div>
                             </div>
                             <div class="room-price">
                                 <div class="price-amount"><?= $room['price'] ?>₫</div>
-                                <div class="night-count">x <?= $nights ?> đêm</div>
+                                <div class="night-count">cho <?= $nights ?> đêm</div>
                             </div>
                         </div>
                     <?php } ?>
@@ -187,7 +187,6 @@
 </div>
 
 <script>
-    // Form validation and toast notification
     document.getElementById('btnPayment').addEventListener('click', function(e) {
         e.preventDefault();
 
@@ -196,19 +195,24 @@
         const phone = document.getElementById('phone').value.trim();
         const email = document.getElementById('email').value.trim();
 
-        if (!username || !phone) {
-            showToast('Vui lòng điền đầy đủ thông tin trước khi thanh toán');
+        if (!username) {
+            showToast('Vui lòng nhập họ và tên');
             return false;
         }
-        // Kiểm tra định dạng email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (email) {
-            if (!emailRegex.test(email)) {
-                showToast('Email không hợp lệ');
-                return false;
-            }
+        
+        if (!phone) {
+            showToast('Vui lòng nhập số điện thoại');
+            return false;
+        } else if (!/^(0|\+84)\d{9,10}$/.test(phone)) {
+            showToast('Số điện thoại không hợp lệ');
+            return false;
         }
-        // Call api
+        
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showToast('Email không hợp lệ');
+            return false;
+        }
+
         const checkIn = document.querySelector('input[name="checkIn"]').value;
         const checkOut = document.querySelector('input[name="checkOut"]').value;
         $.ajax({
@@ -220,16 +224,15 @@
                 hotel_id: <?= $hotel_info['hot_id'] ?>
             },
             success: function(response) {
-                // Dữ liệu phòng trống thực tế từ DB
-                const data = JSON.parse(response);
-                // Dữ liệu phòng đã chọn từ session
+                const responseData = typeof response === 'string' ? JSON.parse(response) : response;
+                const data = responseData.data || []; // Lấy mảng phòng từ thuộc tính data
+                
                 const roomTypeGuests = <?= json_encode($roomTypeGuests) ?>;
 
                 let isValid = true;
                 let errorMsg = '';
 
                 roomTypeGuests.forEach(selected => {
-                    // Tìm phòng tương ứng trong data trả về từ DB
                     const dbRoom = data.find(r => parseInt(r.room_id) === parseInt(selected.roomId));
                     if (!dbRoom) {
                         isValid = false;
@@ -247,8 +250,37 @@
                     return;
                 }
 
-                // Nếu hợp lệ, tiếp tục chuyển hướng hoặc xử lý thanh toán
-                window.location.href = '<?= $redirect_url ?>';
+                $.ajax({
+                    url: 'ajax/hold_room.php',
+                    type: 'POST',
+                    data: {
+                        username: username,
+                        phone: phone,
+                        email: email,
+                        checkIn: checkIn,
+                        checkOut: checkOut,
+                        hotel_id: <?= $hotel_info['hot_id'] ?>,
+                        rooms: JSON.stringify(roomTypeGuests)
+                    },
+                    success: function(response) {
+                        try {
+                            const result = JSON.parse(response);
+                            if (result.error) {
+                                showToast(result.error);
+                            } else if (result.redirect_url) {
+                                window.location.href = result.redirect_url; // Chuyển hướng đến PayOS
+                            }
+                        } catch (e) {
+                            showToast('Lỗi xử lý phản hồi từ server.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        showToast('Lỗi khi gửi yêu cầu. Vui lòng thử lại.');
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                showToast('Lỗi khi kiểm tra phòng trống. Vui lòng thử lại.');
             }
         });
     });
