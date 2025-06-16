@@ -1,5 +1,5 @@
 <?php
-namespace Lib\PayOS;
+namespace Vietgoing\PayOS;
 
 use PayOS\PayOS;
 use Exception;
@@ -51,7 +51,7 @@ class PayOSWrapper
             return $this->payOS->createPaymentLink($paymentData);
             
         } catch (Exception $e) {
-            throw new Exception("PAYOS_ERROR: " . $e->getMessage());
+            return [];
         }
     }
 
@@ -64,6 +64,15 @@ class PayOSWrapper
             return $this->payOS->verifyPaymentWebhookData($data);
         } catch (Exception $e) {
             throw new Exception("WEBHOOK_ERROR: " . $e->getMessage());
+        }
+    }
+
+    // Lấy thông tin payment
+    public function getPaymentLinkInformation(string|int $code):array {
+        try {
+            return $this->payOS->getPaymentLinkInformation($code);
+        } catch (Exception $e) {
+            return [];
         }
     }
 }
