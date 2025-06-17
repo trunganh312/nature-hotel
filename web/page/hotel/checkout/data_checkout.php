@@ -91,7 +91,10 @@ foreach($rooms as $roomType) {
 $cancel = getValue('cancel', GET_STRING, GET_GET, '');
 $status = getValue('status', GET_STRING, GET_GET, '');
 $booking_id = getValue('booking_completed', GET_INT, GET_GET, 0);
-
+$payment_data = getValue('payment_data', GET_ARRAY, GET_SESSION, []);
+if (!empty($payment_data) && $payment_data['status'] == 'PENDING' && $payment_data['expiredAt'] > CURRENT_TIME) {
+    $redirect_url = $payment_data['checkoutUrl'];
+}
 $status_cancel = STT_CANCEL;
 
 if ($cancel == 'true' && $status == 'CANCELLED' && $booking_id > 0) {

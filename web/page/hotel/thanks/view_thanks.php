@@ -39,10 +39,15 @@
                         $total_child += isset($room['child']) ? $room['child'] : 0;
                         $total_infant += isset($room['infant']) ? $room['infant'] : 0;
                         $total_price += isset($room['totalPrice']) ? $room['totalPrice'] : 0;
+                        //TODO: đang hardcode
+                        // Định dạng giá nếu không có priceFormatted
+                        $priceDisplay = isset($room['priceFormatted']) 
+                            ? $room['priceFormatted'] 
+                            : number_format($room['totalPrice'] ?? 0, 0, ',', '.') . 'đ';
                     ?>
                     <div class="room-type">
                         <p><strong><?php echo $room['roomName']; ?></strong></p>
-                        <p><?php echo $room['roomCount']; ?> phòng x <?php echo $nights; ?> đêm: <?php echo $room['priceFormatted']; ?>đ</p>
+                        <p><?php echo $room['roomCount']; ?> phòng x <?php echo $nights; ?> đêm: <?php echo $priceDisplay; ?></p>
                     </div>
                     <?php } ?>
                     
