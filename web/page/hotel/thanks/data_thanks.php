@@ -1,7 +1,6 @@
 <?
 
 use src\Services\HotelService;
-header('Content-Type: application/json; charset=UTF-8');
 
 include('../../../Core/Config/require_web.php');
 use src\Facades\DB;

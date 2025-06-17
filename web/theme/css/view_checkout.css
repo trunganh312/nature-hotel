@@ -241,8 +241,8 @@ body {
 }
 
 .form-check-input:checked {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .text-success {
@@ -433,11 +433,6 @@ body {
 .card-types img {
     height: 20px;
     margin-right: 0.5rem;
-}
-
-.form-check-input:checked {
-    background-color: #3182ce;
-    border-color: #3182ce;
 }
 
 .btn-primary {
@@ -835,6 +830,8 @@ input[type="checkbox"]:checked+label::before {
     border-color: var(--primary-color);
     /* Thay đổi màu viền */
 }
+
+
 
 /* Tạo dấu tích */
 input[type="checkbox"]:checked+label::after {

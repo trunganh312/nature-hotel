@@ -43,13 +43,16 @@ $total_price = 0;
 $total_discount = 0;
 
 foreach($rooms as $roomType) {
-    $adult = $roomType['adult'] * $roomType['roomCount'];
-    $child = $roomType['child'] * $roomType['roomCount'];
-    $infant = $roomType['infant'] * $roomType['roomCount'];
+    // lặp qua rooms
+    foreach($roomType['rooms'] as $room) {
+        $adult = $room['adults'];
+        $child = $room['children'];
+        $infant = $room['infants'];
+        $total_adult += $adult;
+        $total_child += $child;
+        $total_infant += $infant;
+    }
     
-    $total_adult += $adult;
-    $total_child += $child;
-    $total_infant += $infant;
     $total_room += $roomType['roomCount'];
     $total_price += $roomType['roomPrice'] * $roomType['roomCount'];
     
@@ -67,7 +70,6 @@ foreach($rooms as $roomType) {
             break;
         }
     }
-    $total_price += $roomType['roomPrice'] * $roomType['roomCount'];
     $total_discount += ($total_price * 15 / 100);
     $room_info['view'] = $HotelModel->showRoomView($room_info, true);
     $room_info['bed'] = $HotelModel->showRoomBed($room_info, false);
@@ -83,10 +85,7 @@ foreach($rooms as $roomType) {
         'child' => $child,
         'infant' => $infant,
         'tags' => $services,
-        'price' => format_number($roomType['roomPrice'] * $roomType['roomCount']),
-        'roomPrice' => (float)$roomType['roomPrice'], // Lưu giá phòng gốc
-        'totalPrice' => (float)($roomType['roomPrice'] * $roomType['roomCount']), // Lưu tổng giá
-        'priceFormatted' => format_number($roomType['roomPrice'] * $roomType['roomCount'])
+        'price' => format_number($roomType['roomPrice'] * $roomType['roomCount'])
     ];
 }
 // Mặc định là 5p

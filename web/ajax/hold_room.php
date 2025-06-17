@@ -14,10 +14,6 @@ $payOS = new PayOSWrapper(
     PAYOS_CHECKSUM_KEY
 );
 $BookingModel = new BookingModel();
-// Thêm header CORS
-header("Access-Control-Allow-Origin: http://nature-hotel.local");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
 
 $username = $_POST['username'] ?? '';
 $phone = $_POST['phone'] ?? '';
@@ -163,10 +159,9 @@ if ($booking_info['bkho_status'] != STT_SUCCESS) {
 
         $time_limit = CURRENT_TIME + 5 * 60;
         $orderCode = intval(substr(strval(microtime(true) * 10000), -6));
-        // (int)$total_price        
         $paymentLink = $payOS->createBookingPayment(
             $orderCode,
-            10000,
+            (int)$total_price,
             'TT TIEN PHONG NATURE',
             DOMAIN_WEB . "/thanks.html?booking_completed=$booking_id", 
             DOMAIN_WEB . "/checkout.html?booking_completed=$booking_id",

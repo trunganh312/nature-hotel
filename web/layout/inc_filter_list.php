@@ -29,7 +29,7 @@
             <h5>Tiện ích</h5>
             <div class="filter-options">
                 <?php foreach ($amenities as $amenity): ?>
-                    <div class="form-check">
+                    <div class="form-check p-0">
                         <input class="form-check-input" type="checkbox" name="tags[]" id="tag_<?= $amenity['tag_id'] ?>" value="<?= $amenity['tag_id'] ?>" <?= in_array($amenity['tag_id'], $selected_tags) ? 'checked' : '' ?> onchange="applyFilter()">
                         <label class="form-check-label" for="tag_<?= $amenity['tag_id'] ?>">
                             <?= htmlspecialchars($amenity['tag_name']) ?>
@@ -70,7 +70,7 @@
                         <h6>Tiện ích</h6>
                         <div class="filter-options">
                             <?php foreach ($amenities as $amenity): ?>
-                                <div class="form-check">
+                                <div class="form-check p-0">
                                     <input class="form-check-input" type="checkbox" name="tags_modal[]" id="tag_modal_<?= $amenity['tag_id'] ?>" value="<?= $amenity['tag_id'] ?>" <?= in_array($amenity['tag_id'], $selected_tags) ? 'checked' : '' ?> onchange="applyFilterModal()">
                                     <label class="form-check-label" for="tag_modal_<?= $amenity['tag_id'] ?>">
                                         <?= htmlspecialchars($amenity['tag_name']) ?>
@@ -93,7 +93,7 @@
     }
 
     .list_hotel { 
-        margin-top: 50% !important;
+        margin-top: 55% !important;
     }
   }
 
@@ -108,7 +108,7 @@
         }
         .list_hotel {
             flex-direction: column !important;
-            margin-top: 70% !important;
+            margin-top: 80% !important;
         }
 
         .hotel-list-search .baler-box { 
@@ -165,10 +165,6 @@
 
     .filter-section {
         margin-bottom: 20px;
-    }
-
-    .form-check-label {
-        margin-left: 8px;
     }
 
 </style>

@@ -4,9 +4,9 @@ namespace src\Services;
 use Exception;
 class Sennet
 {
-    private static $key = 'V65hMKh3qb1q6RpK2PYw0';
-    private static $app_id = '4738773754589267877';
-    private static $base_url = 'http://hub.sennet.local';
+    private static $key = SENNET_SECRET;
+    private static $app_id = SENNET_APP_ID;
+    private static $base_url = DOMAIN_SENNET;
 
     private static function request($path, $option = [], $signature = '')
     {

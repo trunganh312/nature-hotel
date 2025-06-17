@@ -550,7 +550,7 @@ function initRoomDetailJS() {
                         hotel_id: <?php echo $hotel['hot_id']; ?>
                     },
                     success: function(response) {
-                        const data = JSON.parse(response);
+                        const data = response['data'];
                         let totalPrice = 0;
                         data.forEach(room => {
                             $('#room-price-' + room.room_id).text(room.price + 'VNĐ');
