@@ -1,5 +1,8 @@
 <?php
 $hotel_name = $hotel['hot_name'];
+$tax_service_fee = isset($tax_service_fee) ? $tax_service_fee : 300000;
+$discount_code = isset($discount_code) ? htmlspecialchars($discount_code) : "SUMMER25";
+$discount_amount = isset($discount_amount) ? $discount_amount : 500000;
 ?>
 
 <div class="card_booking-info booking-info_booking-info shadow-sm border-0 p-0">
@@ -19,7 +22,8 @@ $hotel_name = $hotel['hot_name'];
                 <?php echo $check_in; ?> - <?php echo $check_out; ?> (<?php echo $nights; ?> đêm)
             </p>
             <!-- Input ẩn để lưu giá trị ngày -->
-            <input type="text" class="date-range-input" style="display: none;" value="<?php echo $check_in; ?> - <?php echo $check_out; ?>">
+            <input type="text" class="date-range-input" style="display: none;"
+                value="<?php echo $check_in; ?> - <?php echo $check_out; ?>">
         </div>
 
         <!-- Các khối hạng phòng sẽ được thêm bằng JS -->
@@ -87,8 +91,9 @@ $hotel_name = $hotel['hot_name'];
         margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid var(--boder_bottom);
-    }   
-    .booking-info_booking-info{
+    }
+
+    .booking-info_booking-info {
         width: 100%;
         max-width: 306px;
     }
@@ -187,10 +192,69 @@ $hotel_name = $hotel['hot_name'];
         transform: translateY(-2px);
         box-shadow: 0 6px 12px var(--accent-color);
     }
-    @media (max-width: 576px) {
-        .booking-info_booking-info .hotel-name {
-            font-size: 1.25rem;
+
+    /* Toggle button cho mobile */
+    .toggle-details-btn {
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        font-size: 14px;
+        padding: 5px 0;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        display: none;
+    }
+
+    .toggle-details-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .toggle-details-btn.active i {
+        transform: rotate(180deg);
+    }
+
+    /* Responsive cho mobile */
+    @media (max-width: 991.98px) {
+        .toggle-details-btn {
+            display: block !important;
         }
+
+        .booking-info_booking-info hr {
+            display: none;
+        }
+
+        .booking-info_booking-info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            border-radius: 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+            background-color: var(--white);
+        }
+
+        .booking-info_booking-info .hotel-name,
+        .booking-info_booking-info .booking_info-title,
+        .booking-info_booking-info .time-section,
+        #room-type-sections-container,
+        .additional-info {
+            display: none;
+        }
+
+        .toggle-details-btn {
+            display: block;
+        }
+
+        .booking-info_booking-info .info-label,
         .booking-info_booking-info .info-value {
             font-size: 12px;
             margin-bottom: 2px;
@@ -229,6 +293,7 @@ $hotel_name = $hotel['hot_name'];
         .time-section .daterangepicker {
             left: 201px !important;
         }
+
         .daterangepicker {
             position: fixed !important;
             top: 46% !important;
@@ -249,14 +314,14 @@ $hotel_name = $hotel['hot_name'];
             margin: 0 1% !important;
             font-size: 11px !important;
         }
-        
+
         /* Hiển thị bảng tháng thứ hai */
         .daterangepicker .drp-calendar.right {
             display: block !important;
         }
 
         /* Điều chỉnh kích thước của các ô ngày */
-        .daterangepicker td, 
+        .daterangepicker td,
         .daterangepicker th {
             width: 25px !important;
             height: 25px !important;
@@ -278,7 +343,7 @@ $hotel_name = $hotel['hot_name'];
             font-size: 12px !important;
             padding: 0 !important;
         }
-        
+
         /* Thu nhỏ nút prev/next */
         .daterangepicker .prev,
         .daterangepicker .next {
@@ -317,41 +382,44 @@ $hotel_name = $hotel['hot_name'];
                 }
             };
 
-        window.addEventListener('scroll', handleStickyBooking);
-        window.addEventListener('resize', handleStickyBooking);
-        handleStickyBooking();
+            // Chỉ áp dụng sticky top trên PC
+            if (window.innerWidth > 991.98) {
+                window.addEventListener('scroll', handleStickyBooking);
+                window.addEventListener('resize', handleStickyBooking);
+                handleStickyBooking();
+            }
 
-        // Khởi tạo daterange picker
-        $('.date-range-input').daterangepicker({
-            parentEl: '.time-section', // Đặt lịch bên trong time-section
-            opens: 'left', // Mở lịch sang bên trái
-            autoApply: true, // Tự động áp dụng khi chọn ngày
-            locale: {
-                format: 'DD/MM/YYYY',
-                separator: ' - ',
-                applyLabel: 'Áp dụng',
-                cancelLabel: 'Hủy',
-                fromLabel: 'Từ',
-                toLabel: 'Đến',
-                daysOfWeek: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
-                monthNames: [
-                    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
-                    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
-                ],
-                firstDay: 1
-            },
-            minDate: moment().startOf('day'), // Không cho chọn ngày quá khứ
-            startDate: '<?php echo str_replace('-', '/', $check_in); ?>',
-            endDate: '<?php echo str_replace('-', '/', $check_out); ?>'
-        });
+            // Khởi tạo daterange picker
+            $('.date-range-input').daterangepicker({
+                parentEl: '.time-section',
+                opens: 'left',
+                autoApply: true,
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    separator: ' - ',
+                    applyLabel: 'Áp dụng',
+                    cancelLabel: 'Hủy',
+                    fromLabel: 'Từ',
+                    toLabel: 'Đến',
+                    daysOfWeek: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    monthNames: [
+                        'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+                    ],
+                    firstDay: 1
+                },
+                minDate: moment().startOf('day'), // Không cho chọn ngày quá khứ
+                startDate: '<?php echo str_replace('-', '/', $check_in); ?>',
+                endDate: '<?php echo str_replace('-', '/', $check_out); ?>'
+            });
 
             // Xử lý nhấp vào phần thời gian
-            $('.date-range-clickable').on('click', function() {
+            $('.date-range-clickable').on('click', function () {
                 $(this).siblings('.date-range-input').trigger('click');
             });
 
             // Cập nhật hiển thị khi thay đổi ngày
-            $('.date-range-input').on('apply.daterangepicker', function(ev, picker) {
+            $('.date-range-input').on('apply.daterangepicker', function (ev, picker) {
                 const checkIn = picker.startDate.format('DD/MM/YYYY');
                 const checkOut = picker.endDate.format('DD/MM/YYYY');
                 const nights = picker.endDate.diff(picker.startDate, 'days');
@@ -374,16 +442,27 @@ $hotel_name = $hotel['hot_name'];
                 window.dispatchEvent(event);
             });
 
-        // Xử lý click vào phần room-type
-        $(document).on('click', '.room-type', function() {
-            const $icon = $(this).find('.toggle-icon');
-            const $collapse = $(this).next('.collapse');
-            $icon.toggleClass('fa-chevron-down fa-chevron-up');
-            $collapse.collapse('toggle');
-        });
+            // Xử lý click vào phần room-type
+            $(document).on('click', '.room-type', function () {
+                const $icon = $(this).find('.toggle-icon');
+                const $collapse = $(this).next('.collapse');
+                $icon.toggleClass('fa-chevron-down fa-chevron-up');
+                $collapse.collapse('toggle');
+            });
+
+            // Toggle chi tiết trên mobile
+            const toggleBtn = document.querySelector('.toggle-details-btn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    const bookingInfo = document.querySelector('.booking-info_booking-info');
+                    bookingInfo.classList.toggle('active');
+                    this.classList.toggle('active');
+                    this.textContent = bookingInfo.classList.contains('active') ? 'Ẩn chi tiết' : 'Xem chi tiết';
+                });
+            }
 
             // Lắng nghe sự kiện từ room_detail để cập nhật thông tin
-            window.addEventListener('roomSelectionChange', function(e) {
+            window.addEventListener('roomSelectionChange', function (e) {
                 const selectedRooms = e.detail.selectedRooms;
                 const checkIn = e.detail.checkIn;
                 const checkOut = e.detail.checkOut;
@@ -464,7 +543,7 @@ $hotel_name = $hotel['hot_name'];
                 $('#room-type-sections-container').html(roomSectionsHtml);
 
                 // Khôi phục sự kiện collapse
-                $('.room-type').off('click').on('click', function() {
+                $('.room-type').off('click').on('click', function () {
                     const $icon = $(this).find('.toggle-icon');
                     const $collapse = $(this).next('.collapse');
                     $icon.toggleClass('fa-chevron-down fa-chevron-up');
