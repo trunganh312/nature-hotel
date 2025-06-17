@@ -36,7 +36,7 @@ $data_city = array_values($data_city);
     <div class="container">
         <div class="baler-info">
             <div class="row search-place search-responsive">
-                <div class="col-md-4 search_width_100 search-padding_tablet">
+                <div class="col-md-4 search_width_100 search-padding_tablet indicator_search">
                     <div class="place">
                         <label for="locationInput">Địa điểm</label>
                         <input class="search-input ui-widget" id="locationInput" placeholder="Thành phố"
@@ -44,7 +44,7 @@ $data_city = array_values($data_city);
                         <input type="hidden" id="selectedLocationId" name="locationId">
                     </div>
                 </div>
-                <div class="col-md-4 nopadding_mobile search_width_100">
+                <div class="col-md-4 nopadding_mobile search_width_100 indicator_search">
                     <div class="date search-padding_tablet">
                         <div class="travel-date col-md-5 me-3">
                             <h6>Ngày đến</h6>
@@ -60,7 +60,7 @@ $data_city = array_values($data_city);
                         <input name="datetimes" style="opacity: 0; position: absolute; width: 100%;" />
                     </div>
                 </div>
-                <div class="col-md-3 col-12 mb-3 mb-md-0 nopadding_mobile search_width_100" id="select_op">
+                <div class="col-md-3 col-12 mb-3 mb-md-0 nopadding_mobile search_width_100 indicator_search" id="select_op">
                     <div class="room-selector search-padding_tablet">
                         <h6>Số phòng, số khách</h6>
                         <div class="selected-option" id="selectedOption"><?= htmlspecialchars($search_room_qty) ?>
@@ -843,6 +843,12 @@ $data_city = array_values($data_city);
 }
 
 @media (max-width: 576px) {
+    .baler-info {
+        padding: 5px 20px;
+    }
+    .page_home .baler-box { 
+        top: 50% !important;
+    }
     .baler-box {
         top: 35%;
     }

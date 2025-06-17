@@ -76,7 +76,7 @@
 
         <footer class="footer-note">
             <p>Thông tin chi tiết đơn đặt phòng đã được gửi tới địa chỉ Email: <strong><?php echo $booking_info['bkho_email']; ?></strong></p>
-            <a href="#" class="home-link">Quý về trang chủ</a>
+            <a href="<?php echo DOMAIN_WEB; ?>" class="home-link">Quay về trang chủ</a>
         </footer>
     </div>
     </div>

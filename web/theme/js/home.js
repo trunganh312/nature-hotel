@@ -252,7 +252,7 @@ function initHomeJS() {
 
         // Indicator handling
         const $indicator = $('.indicator');
-        const $columns = $('.search-place .col-md-4');
+        const $columns = $('.search-place .indicator_search');
 
         $('#locationInput').on('focus click', () => moveIndicator(0));
         $('input[name="datetimes"]').on('focus click', () => moveIndicator(1));

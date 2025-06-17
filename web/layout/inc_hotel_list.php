@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="hotels_content ">
-                                    <div class="row align-items-start">
+                                    <div class="row align-items-start col-md-6">
                                         <div class="col-md-4">
                                             <div class="utilities">
                                                 <div class="amenities">
@@ -97,10 +97,10 @@
                                     <div class="col-md-6">
                                         <div class="price-section">
                                             <div class="price-container">
-                                                <span class="price-value"><?= $hotel['price'] ?> đ</span>
+                                                <span class="price-value fs-5 fs-md-5"><?= $hotel['price'] ?> đ</span>
                                             </div>
-                                            <div class="button-detail">
-                                                <a href="<?= $hotel['link'] ?>" class="btn-detail">Xem chi tiết</a>
+                                            <div class="button-detail d-none d-lg-block">
+                                                <a href="<?= $hotel['link'] ?>" class="btn-detail btn-sm">Xem chi tiết</a>
                                             </div>
 
                                         </div>

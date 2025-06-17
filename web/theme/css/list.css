@@ -251,7 +251,6 @@
 
 
   .button-detail {
-    z-index: 1;
     position: relative;
     /* color: var(--secondary-color); */
     color: #fff !important;
@@ -403,4 +402,17 @@
 .form-check-input:checked {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
+}
+/* Mobile */
+@media (max-width: 575.98px) {
+  .hotels_content {
+    padding: 5px 9px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .hotels_content {
+    padding: 5px 12px;
+  }
 }
