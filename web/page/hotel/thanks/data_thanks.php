@@ -44,6 +44,15 @@ $nights = ($checkOutTimestamp - $checkInTimestamp) / 86400;
 
 $booking_id = getValue('booking_completed', GET_INT, GET_GET, 0);
 
+$received_token = getValue('token', GET_STRING, GET_GET, '');
+$session_token = getValue('payment_token', GET_STRING, GET_SESSION, '');
+
+if (empty($received_token) || $received_token !== $session_token) {
+    $error_message = "Yêu cầu không hợp lệ";
+    http_response_code(403);
+    exit;
+}
+
 if ($booking_id > 0) {
     $booking_info = $DB->query("SELECT booking_hotel.*, hot_id, hot_name, hot_picture, hot_checkin, hot_checkout, 
                                 hot_type, hot_address_full, hot_star, hot_id_mapping

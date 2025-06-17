@@ -91,12 +91,47 @@ foreach($rooms as $roomType) {
 $cancel = getValue('cancel', GET_STRING, GET_GET, '');
 $status = getValue('status', GET_STRING, GET_GET, '');
 $booking_id = getValue('booking_completed', GET_INT, GET_GET, 0);
-$payment_data = getValue('payment_data', GET_ARRAY, GET_SESSION, []);
-if (!empty($payment_data) && $payment_data['status'] == 'PENDING' && $payment_data['expiredAt'] > CURRENT_TIME) {
-    $redirect_url = $payment_data['checkoutUrl'];
-}
+$booking_id_session = getValue('booking_completed', GET_INT, GET_SESSION, 0);
 $status_cancel = STT_CANCEL;
 
+// Xử lý hủy booking (từ session hoặc query cancel)
+$booking_to_cancel = 0;
+if ($booking_id_session > 0) {
+    $booking_to_cancel = $booking_id_session;
+} elseif ($cancel == 'true' && $status == 'CANCELLED' && $booking_id > 0) {
+    $booking_to_cancel = $booking_id;
+}
+
+if ($booking_to_cancel > 0) {
+    $booking_info = DB::query("SELECT booking_hotel.*, hot_id, hot_name, hot_id_mapping 
+                               FROM booking_hotel 
+                               INNER JOIN hotel ON bkho_hotel_id = hot_id 
+                               WHERE bkho_id = $booking_to_cancel AND bkho_hotel_id = $hotel_id")->getOne();
+
+    if (!empty($booking_info) && $booking_info['bkho_status'] != STT_SUCCESS) {
+        $result = $BookingModel->unholdBookingHotel($booking_info);
+        DB::query("UPDATE booking_hotel SET bkho_status = $status_cancel WHERE bkho_id = $booking_to_cancel");
+        if (is_array($result) && isset($result['error']) && $result['error'] == 1) {
+            $error_message = $result['message'];
+        } else {
+            unset($_SESSION['booking_completed']);
+            unset($_SESSION['time_limit']);
+            unset($_SESSION['payment_data']);
+            unset($_SESSION['payment_token']);
+            $success_message = "Đã hủy booking thành công";
+        }
+    } elseif (empty($booking_info)) {
+        $error_message = "Booking không tồn tại";
+    }
+}
+
+// Kiểm tra payment_data
+$payment_data = getValue('payment_data', GET_ARRAY, GET_SESSION, []);
+if (!empty($payment_data) && $payment_data['status'] == 'PENDING' && $payment_data['expiredAt'] > CURRENT_TIME && $booking_id_session == 0) {
+    $redirect_url = $payment_data['checkoutUrl'];
+} else {
+    $redirect_url = '';
+}
 if ($cancel == 'true' && $status == 'CANCELLED' && $booking_id > 0) {
     $booking_info = DB::query("SELECT booking_hotel.*, hot_id, hot_name, hot_id_mapping 
                                FROM booking_hotel INNER JOIN hotel ON bkho_hotel_id = hot_id 

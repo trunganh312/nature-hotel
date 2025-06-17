@@ -159,6 +159,10 @@ if ($booking_info['bkho_status'] != STT_SUCCESS) {
 
         $time_limit = CURRENT_TIME + 5 * 60;
         $orderCode = intval(substr(strval(microtime(true) * 10000), -6));
+
+        $payment_token = bin2hex(random_bytes(16));
+        $_SESSION['payment_token'] = $payment_token;
+        
         $paymentLink = $payOS->createBookingPayment(
             $orderCode,
             (int)$total_price,
