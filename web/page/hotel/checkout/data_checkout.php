@@ -88,19 +88,6 @@ foreach($rooms as $roomType) {
         'price' => format_number($roomType['roomPrice'] * $roomType['roomCount'])
     ];
 }
-// Mặc định là 5p
-// $time_limit = CURRENT_TIME + 5 * 60;
-// $paymentLink = $payOS->createBookingPayment(
-//     intval(substr(strval(microtime(true) * 10000), -6)),
-//     (int)$total_price,
-//     'TT TIEN PHONG NATURE',
-//     DOMAIN_WEB."/checkout.html",
-//     DOMAIN_WEB."/checkout.html",
-//     [],
-//     $time_limit
-// );
-// $redirect_url = $paymentLink['checkoutUrl'];
-// Xử lý callback PayOS cho trạng thái CANCELLED
 $cancel = getValue('cancel', GET_STRING, GET_GET, '');
 $status = getValue('status', GET_STRING, GET_GET, '');
 $booking_id = getValue('booking_completed', GET_INT, GET_GET, 0);
