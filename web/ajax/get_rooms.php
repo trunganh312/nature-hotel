@@ -1,6 +1,7 @@
 <?
 
 use src\Facades\DB;
+use src\Services\CommonService;
 use src\Services\HotelService;
 
 include('../Core/Config/require_web.php');
@@ -8,18 +9,26 @@ include('../Core/Config/require_web.php');
 // Nhận vào CI CO
 $checkIn = getValue('checkIn', GET_STRING, GET_POST, getValue('search_checkin', GET_STRING, GET_COOKIE, ''));
 $checkOut = getValue('checkOut', GET_STRING, GET_POST, getValue('search_checkout', GET_STRING, GET_COOKIE, ''));
-$hotel_id = getValue('hotel_id', GET_STRING, GET_POST, 0);
+$hotel_id = getValue('hotel_id', GET_INT, GET_POST, 0);
 
-if(empty($checkIn) || empty($checkOut) || empty($hotel_id)) {
-    echo json_encode(['error' => 'Invalid request']);
-    exit;
+if (empty($checkIn) || empty($checkOut) || $hotel_id <= 0) {
+    CommonService::resJson(['error' => 'Dữ liệu đầu vào không hợp lệ']);
+}
+
+// Kiểm tra ngày hợp lệ
+$checkInTime = strtotime(str_replace('/', '-', $checkIn));
+$checkOutTime = strtotime(str_replace('/', '-', $checkOut));
+if (!$checkInTime || !$checkOutTime || $checkOutTime <= $checkInTime) {
+    CommonService::resJson(['error' => 'Ngày trả phòng phải sau ngày nhận phòng']);
 }
 
 $daterange = $checkIn . ' - ' . $checkOut;
 
 // Lây các hạng phòng của KS
 $rooms = DB::query("SELECT * FROM room WHERE roo_hotel_id = $hotel_id AND roo_active = 1")->toArray();
-
+if (empty($rooms)) {
+    CommonService::resJson(['error' => 'Không tìm thấy phòng nào cho khách sạn này']);
+}
 // Trả về mảng mỗi hạng phòng sẽ có thông tin: giá phòng, số lượng phòng trống
 $data = [];
 foreach($rooms as $room) {
@@ -34,4 +43,4 @@ foreach($rooms as $room) {
     ];
 }
 
-echo json_encode($data);
+CommonService::resJson($data);
