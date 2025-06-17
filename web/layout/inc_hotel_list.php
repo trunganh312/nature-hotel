@@ -97,7 +97,7 @@
                                     <div class="col-md-6">
                                         <div class="price-section">
                                             <div class="price-container">
-                                                <span class="price-value fs-5 fs-md-5"><?= $hotel['price'] ?> đ</span>
+                                                <span class="price-value fs-6 fs-md-5"><?= $hotel['price'] ?> đ</span>
                                             </div>
                                             <div class="button-detail d-none d-lg-block">
                                                 <a href="<?= $hotel['link'] ?>" class="btn-detail btn-sm">Xem chi tiết</a>
