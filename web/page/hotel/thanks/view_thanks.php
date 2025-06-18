@@ -17,9 +17,9 @@
                 </div>
 
                 <div class="hotel-info">
-                    <img src="https://cdn3.ivivu.com/2014/01/SUPER-DELUXE2.jpg" alt="Nature Retreat Vũng Tàu">
-                    <h3><?php echo $booking_info['hot_name']; ?></h3>
-                    <p class="location"><?php echo $booking_info['hot_address_full']; ?></p>
+                    <img src="<?php echo $image_hotel ?? $cfg_default_image; ?>" alt="<?php echo htmlspecialchars($booking_info['hot_name']); ?>" style="max-width: 200px; height: auto; object-fit: cover;">
+                    <h3><?php echo htmlspecialchars($booking_info['hot_name']); ?></h3>
+                    <p class="location"><?php echo htmlspecialchars($booking_info['hot_address_full']); ?></p>
                 </div>
             </section>
 
@@ -27,46 +27,43 @@
                 <h2>Thông tin phòng</h2>
                 <div class="room-details">
                     <?php
-                    // Tính tổng số người và tiền
-                    $total_adult = 0;
-                    $total_child = 0;
-                    $total_infant = 0;
-                    $total_price = 0;
-                    
                     // Hiển thị thông tin từng phòng
                     foreach($rooms as $room) {
-                        $total_adult += isset($room['adult']) ? $room['adult'] : 0;
-                        $total_child += isset($room['child']) ? $room['child'] : 0;
-                        $total_infant += isset($room['infant']) ? $room['infant'] : 0;
-                        $total_price += isset($room['totalPrice']) ? $room['totalPrice'] : 0;
-                        //TODO: đang hardcode
-                        // Định dạng giá nếu không có priceFormatted
-                        $priceDisplay = isset($room['priceFormatted']) 
-                            ? $room['priceFormatted'] 
-                            : number_format($room['totalPrice'] ?? 0, 0, ',', '.') . 'đ';
+                        // Tính giá riêng cho từng phòng
+                        $roomPrice = isset($room['totalPrice']) ? $room['totalPrice'] : ((isset($room['roomPrice']) ? $room['roomPrice'] : 0) * (int)$room['roomCount']);
+                        $priceDisplay = number_format($roomPrice, 0, ',', '.') . 'đ';
+
                     ?>
-                    <div class="room-type">
-                        <p><strong><?php echo $room['roomName']; ?></strong></p>
-                        <p><?php echo $room['roomCount']; ?> phòng x <?php echo $nights; ?> đêm: <?php echo $priceDisplay; ?></p>
+                    <div class="room-type" style='display: flex; justify-content: space-between; '>
+                        <div>
+                            <p><strong><?php echo htmlspecialchars($room['roomName'] ?? 'Không xác định'); ?></strong></p>
+                        <p><?php echo (int)($room['roomCount'] ?? 1); ?> phòng x <?php echo (int)$nights; ?> đêm: <?php echo htmlspecialchars($priceDisplay); ?></p>
+                        </div>
+                        <div>
+                            <img src="<?php echo $image_room ?? $cfg_default_image; ?>" alt="<?php echo htmlspecialchars($room['roomName'] ?? 'Không xác định'); ?>"  style="max-width: 200px; height: auto; object-fit: cover;">
+                        </div>
                     </div>
                     <?php } ?>
-                    
-                    <p><strong>Nhận phòng:</strong> <?php echo $checkInFormatted ?? $checkIn; ?></p>
-                    <p><strong>Trả phòng:</strong> <?php echo $checkOutFormatted ?? $checkOut; ?></p>
-                    <p><strong>Người lớn:</strong> <?php echo $total_adult; ?></p>
-                    <?php if ($total_child > 0) { ?>
-                    <p><strong>Trẻ em:</strong> <?php echo $total_child; ?></p>
+
+                    <p><strong>Nhận phòng:</strong> <?php echo htmlspecialchars($checkInFormatted ?? $checkIn); ?></p>
+                    <p><strong>Trả phòng:</strong> <?php echo htmlspecialchars($checkOutFormatted ?? $checkOut); ?></p>
+                    <p><strong>Người lớn:</strong> <?php echo (int)$booking_info['bkho_adult']; ?></p>
+                    <?php if ($booking_info['bkho_children'] > 0) { ?>
+                        <p><strong>Trẻ em:</strong> <?php echo (int)$booking_info['bkho_children']; ?></p>
                     <?php } ?>
-                    <?php if ($total_infant > 0) { ?>
-                    <p><strong>Em bé:</strong> <?php echo $total_infant; ?></p>
+                    <?php if ($booking_info['bkho_baby'] > 0) { ?>
+                        <p><strong>Em bé:</strong> <?php echo (int)$booking_info['bkho_baby']; ?></p>
                     <?php } ?>
                     
                     <?php
+                    // Lấy tổng tiền từ booking_info
+                    $total_price = ($booking_info['bkho_money_total'] ?? 0) * 1.15;
+                    
                     // Tính giảm giá 15%
-                    $total_discount = $total_price * 0.15;
+                    $total_discount = $booking_info['bkho_money_total'] * 0.15;
                     $final_price = $total_price - $total_discount;
                     ?>
-                    
+
                     <p><strong>Tổng tiền:</strong> <?php echo format_number($total_price); ?>đ</p>
                     <p><strong>Giảm trừ:</strong> <?php echo format_number($total_discount); ?>đ</p>
                     <p class="total"><strong>Thanh toán:</strong> <?php echo format_number($final_price); ?>đ</p>
