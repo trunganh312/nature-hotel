@@ -14,7 +14,6 @@ use src\Services\BookingModel;
 
 $BookingModel = new BookingModel();
 use Lib\PayOS\PayOSWrapper;
-
 $payOS = new PayOSWrapper(
     PAYOS_CLIENT_ID,
     PAYOS_API_KEY, 
@@ -57,7 +56,6 @@ if (empty($received_token) || $received_token !== $session_token) {
     exit;
 }
 
-
 if ($booking_id > 0) {
     $booking_info = $DB->query("SELECT booking_hotel.*, hot_id, hot_name, hot_picture, hot_checkin, hot_checkout, 
                                 hot_type, hot_address_full, hot_star, hot_id_mapping
@@ -82,8 +80,8 @@ if ($booking_id > 0) {
         } else {
             // Kiểm tra trạng thái qua API PayOS
                 $payment_info = $payOS->getPaymentLinkInformation($code);
-                if ($payment_info['status'] == 'PAID') {
 
+                if ($payment_info['status'] == 'PAID') {
                     // Chuẩn bị payload để gửi tới SenNet API
                     $hotel_info = Hotel::where(['hot_id' => $hotel_id, 'hot_active' => STATUS_ACTIVE])->getOne();
 
@@ -153,7 +151,6 @@ if ($booking_id > 0) {
                                 'infants' => $room['infants']
                             ];
                         }
-
                     }
 
                     $total_adults = 0;

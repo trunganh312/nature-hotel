@@ -63,7 +63,7 @@
                     $total_discount = $booking_info['bkho_money_total'] * 0.15;
                     $final_price = $total_price - $total_discount;
                     ?>
-
+                    
                     <p><strong>Tổng tiền:</strong> <?php echo format_number($total_price); ?>đ</p>
                     <p><strong>Giảm trừ:</strong> <?php echo format_number($total_discount); ?>đ</p>
                     <p class="total"><strong>Thanh toán:</strong> <?php echo format_number($final_price); ?>đ</p>
