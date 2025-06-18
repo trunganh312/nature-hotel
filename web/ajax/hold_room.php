@@ -159,15 +159,27 @@ if ($booking_info['bkho_status'] != STT_SUCCESS) {
 
         $time_limit = CURRENT_TIME + 5 * 60;
         $orderCode = intval(substr(strval(microtime(true) * 10000), -6));
+
+        $payment_token = bin2hex(random_bytes(16));
+        $_SESSION['payment_token'] = $payment_token;
+        
         $paymentLink = $payOS->createBookingPayment(
             $orderCode,
             (int)$total_price,
+            // 10000,
             'TT TIEN PHONG NATURE',
             DOMAIN_WEB . "/thanks.html?booking_completed=$booking_id", 
             DOMAIN_WEB . "/checkout.html?booking_completed=$booking_id",
             $room_items,
             $time_limit
         );
+        // Lưu paymentLink vào session
+        $_SESSION['payment_data'] = [
+            'orderCode' => $orderCode,
+            'checkoutUrl' => $paymentLink['checkoutUrl'],
+            'status' => 'PENDING',
+            'expiredAt' => $time_limit
+        ];
         
         // Trả về JSON thay vì redirect trực tiếp
         echo json_encode(['redirect_url' => $paymentLink['checkoutUrl']]);

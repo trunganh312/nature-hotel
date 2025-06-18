@@ -61,9 +61,9 @@ $data_cities = array_values($data_cities);
             </button>
 
             <!-- Mobile right icon -->
-            <a href="javascript:void(0)" class="click-nav-right-icon d-lg-none ms-2">
+            <!-- <a href="javascript:void(0)" class="click-nav-right-icon d-lg-none ms-2">
                 <i class="fas fa-ellipsis-v"></i>
-            </a>
+            </a> -->
 
             <!-- Navbar Menu -->
             <div class="collapse navbar-collapse" id="hotel_booking_menu">

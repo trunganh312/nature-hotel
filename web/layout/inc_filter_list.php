@@ -112,8 +112,9 @@
         }
 
         .hotel-list-search .baler-box { 
-            top: 11% !important;
+            top: 13% !important;
         }
+
         .daterangepicker { 
             top: 130% !important;
         }
