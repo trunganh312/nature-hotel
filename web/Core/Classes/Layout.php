@@ -291,6 +291,7 @@ class Layout extends Model {
         // Load toastr JS
         $footer .= toastr();
         
+        
         return $footer;
     }
     
