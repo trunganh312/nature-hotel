@@ -7,7 +7,7 @@ module.exports = {
     entry: "./index.js",
     output: {
         filename: "[name].[contenthash].js",
-        path: path.resolve(__dirname, "admin/public/theme/bundle"),
+        path: path.resolve(__dirname, "../admin/public/theme/bundle"),
         clean: true
     },
     resolve: {
@@ -16,9 +16,7 @@ module.exports = {
             vue$: path.resolve(__dirname, "node_modules/vue/dist/vue.esm-browser.prod.js"),
             "@lib": path.resolve(__dirname, "node_modules"),
             "@root": path.resolve(__dirname),
-            "@app": path.resolve(__dirname, "../app"),
-            "@admin": path.resolve(__dirname, "../admin"),
-            "@components": path.resolve(__dirname, "../app/components")
+            "@admin": path.resolve(__dirname, "../admin")
         }
     },
     module: {

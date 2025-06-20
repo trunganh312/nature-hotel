@@ -125,11 +125,6 @@ window.app = function (options) {
 
     // CRM
     app.component('crm-hotel-list', CrmHotelList);
-    app.component('crm-hotel-daily', CrmHotelDaily);
-    app.component('crm-hotel-service-list', CrmHotelServiceList);
-    app.component('crm-hotel-surcharge-list', CrmHotelSurchargeList);
-    app.component('crm-hotel-bed-list', CrmHotelBedList);
-    app.component('crm-area-list', CrmArea);
     app.component('crm-general-attribute-list', CrmGeneraAttributelList);
     app.component('crm-general-application', CrmGeneraApplication);
     app.component('crm-general-city', CrmGeneraCity);
@@ -140,13 +135,10 @@ window.app = function (options) {
     app.component('crm-general-document-create', CrmGeneraDocumentCreate);
     app.component('crm-general-document-edit', CrmGeneraDocumentEdit);
     app.component('crm-general-config', CrmGeneraConfig);
-    app.component('crm-account-user-list', CrmAccountUserlList);
     app.component('crm-account-admin-list', CrmAccountAdminlList);
     app.component('crm-account-permission-list', CrmAccountPermissionlList);
     app.component('crm-account-group-list', CrmAccountGroupList);
     app.component('crm-account-department-list', CrmAccountDepartmentList);
-    app.component('crm-account-company-create', CrmAccountCompanyCreate);
-    app.component('crm-account-company-list', CrmAccountCompanyList);
     app.component('crm-account-profile', CrmAccountProfile);
     app.component('crm-system-module-list', CrmSystemModuleList);
     app.component('crm-system-table-list', CrmSystemTableList);

@@ -224,12 +224,12 @@ export default {
             });
         },
         async getHeader() {
-            let res = await $.ajax({
-                url: '/common/get_header.php'
-            });
-            if (res.success === 1) {
-                this.notification = res.data;
-            }
+            // let res = await $.ajax({
+            //     url: '/common/get_header.php'
+            // });
+            // if (res.success === 1) {
+            //     this.notification = res.data;
+            // }
         },
         openRoute(row) {
             let route = row.item.originItemValue.route;
