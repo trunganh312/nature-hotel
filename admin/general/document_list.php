@@ -20,7 +20,7 @@ $Table  =   new DataTable('document', 'doc_id');
 
 $Table->column('doc_name', 'Tên danh mục', TAB_TEXT);
 $Table->column('doc_parent_id', 'Tên danh mục cha', TAB_SELECT);
-
+$Table->column('doc_img', 'Ảnh', TAB_TEXT);
 
 $Table->column('doc_active', 'Act', TAB_CHECKBOX, false, true);
 $parent_id = getValue('doc_parent_id');

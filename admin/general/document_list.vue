@@ -41,6 +41,9 @@
             <template v-if="column.dataIndex === 'stt'">
                 {{ index + 1 }}
             </template>
+             <template v-if="column.dataIndex === 'doc_img'">
+                <img v-if="record.doc_img" :src="record.doc_img" alt="Ảnh" style="max-width: 60px; max-height: 60px;" />
+            </template>
             <template v-if="column.dataIndex == 'active'">
                 <a-checkbox
                     v-model:checked="record.doc_active"
@@ -97,6 +100,11 @@ export default {
                 title: '#',
                 dataIndex: 'stt',
                 width: '30px',
+                align: 'center'
+            },
+            {
+                title: 'Ảnh',
+                dataIndex: 'doc_img',
                 align: 'center'
             },
             {
