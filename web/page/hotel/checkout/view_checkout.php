@@ -71,7 +71,7 @@
                         </li>
                     </div>
                     <!-- Tags -->
-                    <div class="hotel-tags">
+                    <div class="hotel-tags mb-3">
                         <h4 class="h6 mb-2">Tiện nghi phòng</h4>
                         <div class="d-flex flex-wrap justify-content-start">
                             <?php foreach ($room['tags'] as $tag) { ?>
