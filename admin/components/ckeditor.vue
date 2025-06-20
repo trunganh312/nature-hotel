@@ -105,7 +105,7 @@ export default {
                     styles: ['inline', 'block', 'side']
                 },
                 simpleUpload: {
-                    uploadUrl: '/upload_image_ckeditor', // API nhận file upload
+                    uploadUrl: '/general/upload_image_ckeditor.php', // API nhận file upload
                     maxFileSize: 10 * 1024 * 1024,
                     errorHandler: function (error) {
                         console.error('Upload failed:', error);

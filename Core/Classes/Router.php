@@ -92,5 +92,26 @@ class Router {
         
         return $this->path_theme_image . 'avatar.png';
     }
+
+
+    /**
+     * Router::srcDocument()
+     * 
+     * @param mixed $image_name
+     * @param string $size
+     * @return
+     */
+    function srcDocument($image_name, $size = '') {
+        
+        if (!empty($image_name)) {
+        
+            if ($size != '')    $size   .=  '/';
+            
+            return  $this->domain . '/document/' . $size . $image_name;
+        
+        }
+        
+        return $this->path_theme_image . 'avatar.png';
+    }
     
 }
