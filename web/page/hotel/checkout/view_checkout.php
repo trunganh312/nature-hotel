@@ -8,7 +8,7 @@
                         <img src="<?= $image_hotel ?>" alt="<?= $hotel_info['hot_name'] ?>"
                             class="rounded me-3 booking_img_firt">
                         <div>
-                            <h1 class="card_booking_title"><?= $hotel_info['hot_name'] ?></h1>
+                            <h1 class="card_booking_title"><a href="<?= $hotel_info['link'] ?>" style="color: #2e7d32"><?= $hotel_info['hot_name'] ?></a></h1>
                             <div class="mb-2">
                                 <!-- Dựa vào số sao để render -->
                                 <?php for ($i = 0; $i < $hotel_info['hot_star']; $i++) { ?>

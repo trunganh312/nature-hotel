@@ -51,8 +51,9 @@ $received_token = getValue('token', GET_STRING, GET_GET, '');
 $session_token = getValue('payment_token', GET_STRING, GET_SESSION, '');
 
 if (empty($received_token) || $received_token !== $session_token) {
-    $error_message = "Yêu cầu không hợp lệ";
-    http_response_code(403);
+    // $error_message = "Yêu cầu không hợp lệ";
+    // http_response_code(403);
+      header('Location: ' . "/");
     exit;
 }
 
@@ -63,8 +64,9 @@ if ($booking_id > 0) {
                                 INNER JOIN hotel ON bkho_hotel_id = hot_id
                                 WHERE bkho_id = " . $booking_id)->getOne();
 
-    if (empty($booking_info)) {
-        $error_message = "Booking không tồn tại";
+    if (empty($booking_info) ) {
+        // $error_message = "Booking không tồn tại";
+          header('Location: ' . "/");
     } else {
 
         // Lấy 1 ảnh khách sạn

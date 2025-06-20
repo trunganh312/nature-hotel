@@ -27,10 +27,14 @@ $nights = (str_totime($checkOut) - str_totime($checkIn)) / 86400;
 // Lấy thông tin khách sạn
 $hotel_info = Hotel::where(['hot_id' => $hotel_id, 'hot_active' => STATUS_ACTIVE])->getOne();
 
-if(empty($hotel_info)) {
+if(empty($hotel_info) && empty($booking_data)) {
     dump('Không tìm thấy khách sạn');
-    exit;
+    // Chuyển hướng về trang chủ
+    header('Location: ' . "/");
+    
 }
+$hotel_info['link'] = '/hotel-' . $hotel_info['hot_id'] . '-' . to_slug($hotel_info['hot_name']) . '.html';
+
 $image_hotel = isset($hotel_info['hot_picture']) ? $Router->srcHotel($hotel_id, $hotel_info['hot_picture']) : $cfg_default_image;
 
 $roomTypeGuests = []; // Mảng lưu tổng số người từng hạng phòng
