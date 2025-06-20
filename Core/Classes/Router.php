@@ -51,5 +51,46 @@ class Router {
         
         return $src;
     }
+
+     /**
+     * Router::srcUserAvatar()
+     * 
+     * @param mixed $image_name
+     * @param string $size
+     * @return
+     */
+    function srcUserAvatar($image_name, $size = '') {
+        
+        if (!empty($image_name)) {
+        
+            if ($size != '')    $size   .=  '/';
+            
+            return  $this->domain . '/image/user/' . $size . $image_name;
+        
+        }
+        
+        return $this->path_theme_image . 'avatar.png';
+    }
+
+
+     /**
+     * Router::srcAdminAvatar()
+     * 
+     * @param mixed $image_name
+     * @param string $size
+     * @return
+     */
+    function srcAdminAvatar($image_name, $size = '') {
+        
+        if (!empty($image_name)) {
+        
+            if ($size != '')    $size   .=  '/';
+            
+            return  $this->domain . '/image/admin/' . $size . $image_name;
+        
+        }
+        
+        return $this->path_theme_image . 'avatar.png';
+    }
     
 }
