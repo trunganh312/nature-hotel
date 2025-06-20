@@ -6,7 +6,7 @@ require_once(PATH_CORE . '/Classes/Image.php');
 require_once(PATH_CORE . '/Classes/Router.php');
 $Router         =   new Router;
 
-$path_picture_hotel = PATH_ROOT . '/static/image/document/';
+$path_picture_hotel = PATH_ROOT . '/uploads/document/';
 
 // Nếu chưa có thư mục thì tạo mới
 if (!is_dir($path_picture_hotel)) {
