@@ -66,7 +66,7 @@ class Sennet
             'post_data' => $data_encode
         ], $signature);
         error_log($response);
-        return json_decode($response, true) ?: ['error' => 0, 'message' => 'Phản hồi không hợp lệ'];
+        return json_decode($response, true) ?: ['error' => 1, 'message' => 'Phản hồi không hợp lệ'];
     }
 
     /**
@@ -103,7 +103,7 @@ class Sennet
             'post_data' => $data_encode
         ], $signature);
         error_log($response);
-        return json_decode($response, true) ?: ['error' => 0, 'message' => 'Phản hồi không hợp lệ'];
+        return json_decode($response, true) ?: ['error' => 1, 'message' => 'Phản hồi không hợp lệ'];
     }
     
 }

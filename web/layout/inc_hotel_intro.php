@@ -1,7 +1,7 @@
 <div class="intro-section my-4">
-    <h5 class="title-section">Giới thiệu về <?= $hotel['hot_name'] ?></h5>
+    <h5 class="title-section">Giới thiệu về <?= $hotel_detail['hot_name'] ?></h5>
     <div class="intro-content">
-        <?= $hotel['hot_description'] ?>
+        <?= $hotel_detail['hot_description'] ?>
     </div>
 </div>
 <style>

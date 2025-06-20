@@ -167,7 +167,7 @@ if ($booking_info['bkho_status'] != STT_SUCCESS) {
             $orderCode,
             (int)$total_price,
             // 10000, 
-                'TT TIEN PHONG NATURE',
+            'TT TIEN PHONG NATURE',
             DOMAIN_WEB . "/thanks.html?booking_completed=$booking_id&token=$payment_token", 
             DOMAIN_WEB . "/checkout.html?booking_completed=$booking_id",
             $room_items,

@@ -26,7 +26,7 @@
     <!-- Tiêu đề khách sạn -->
     <div class="row">
         <div class="col-12">
-            <h1 class="display-5 fw-bold text-dark"><?= $hotel['hot_name'] ?></h1>
+            <h1 class="display-5 fw-bold text-dark"><?= $hotel_detail['hot_name'] ?></h1>
         </div>
     </div>
     <div class="overview-icon-start"><svg width="14" height="14" fill="none" class="svgFillAll jss93"
@@ -55,7 +55,7 @@
     <div class="row mb-4">
         <div class="col-12 d-flex align-items-center flex-wrap">
             <i class="far fa-map-marker-alt me-2 text-primary"></i>
-            <span class="address"><?= $hotel['hot_address_full'] ?></span>
+            <span class="address"><?= $hotel_detail['hot_address_full'] ?></span>
             <a href="#map-section" class="ms-3 map-icon" aria-label="Xem bản đồ">
                 <svg width="24" height="24" fill="none" class="svgFillAll jss61">
                     <path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7zM9 4v13M15 7v13" stroke="#00B6F3" stroke-width="1.5"
@@ -145,7 +145,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="hotelGalleryModalLabel"><?= $hotel['hot_name'] ?></h5>
+                <h5 class="modal-title" id="hotelGalleryModalLabel"><?= $hotel_detail['hot_name'] ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-0">

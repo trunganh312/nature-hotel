@@ -547,7 +547,7 @@ function initRoomDetailJS() {
                     data: {
                         checkIn: checkIn,
                         checkOut: checkOut,
-                        hotel_id: <?php echo $hotel['hot_id']; ?>
+                        hotel_id: <?php echo $hotel_detail['hot_id']; ?>
                     },
                     success: function(response) {
                         const data = response['data'];

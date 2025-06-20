@@ -1,17 +1,17 @@
 <div class="hotel-policy shadow-sm border-0 mb-4">
-    <h5 class="title-section" id="box_hotel_policy">Chính sách tại <?= $hotel['hot_name'] ?></h5>
+    <h5 class="title-section" id="box_hotel_policy">Chính sách tại <?= $hotel_detail['hot_name'] ?></h5>
     <div class="policy-list">
     <div class="checkin_checkout d-flex">
         <!-- Nhận phòng -->
         <div class="checkin-section pe-3 me-3 checkin_section_border">
             <div class="checkin-label"><i class="fas fa-sign-in-alt"></i> Nhận phòng</div>
-            <div class="checkin-time">Từ <?= $hotel['hot_checkin'] ?></div>
+            <div class="checkin-time">Từ <?= $hotel_detail['hot_checkin'] ?></div>
         </div>
 
         <!-- Trả phòng -->
         <div class="checkout-section">
             <div class="checkout-label"><i class="fas fa-sign-out-alt"></i> Trả phòng</div>
-            <div class="checkout-time">Trước <?= $hotel['hot_checkout'] ?></div>
+            <div class="checkout-time">Trước <?= $hotel_detail['hot_checkout'] ?></div>
         </div>
     </div>
         <!-- Chính sách chung -->
@@ -21,7 +21,7 @@
                 <i class="fas fa-file-alt"></i>Chính sách chung
             </div>
             <div class="collapse policy-value" id="generalPolicy">
-                <?= $hotel['hot_policy_general'] ?>
+                <?= $hotel_detail['hot_policy_general'] ?>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
                 <i class="fas fa-ban"></i>Chính sách hủy
             </div>
             <div class="collapse policy-value" id="cancelPolicy">
-                <?= $hotel['hot_policy_cancel'] ?>
+                <?= $hotel_detail['hot_policy_cancel'] ?>
             </div>
         </div>
     </div>
