@@ -291,6 +291,11 @@ class Layout extends Model {
         // Load toastr JS
         $footer .= toastr();
         
+        // Nếu kp trang checkout.html và thanks.html thì reset session
+        if (!in_array($_SERVER['REQUEST_URI'], ['/checkout.html', '/thanks.html'])) {
+            unset($_SESSION['booking_data']);
+            unset($_SESSION['payment_data']);
+        }
         
         return $footer;
     }

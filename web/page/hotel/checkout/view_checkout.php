@@ -187,9 +187,12 @@
 </div>
 
 <script>
-    document.getElementById('btnPayment').addEventListener('click', function(e) {
+    let clicked = false;
+
+    document.getElementById('btnPayment').addEventListener('click', function (e) {
         e.preventDefault();
 
+        if (clicked) return;
         // Kiểm tra tất cả các trường bắt buộc
         const username = document.getElementById('username').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -197,20 +200,20 @@
 
         if (!username) {
             showToast('Vui lòng nhập họ và tên');
-            return false;
+            return;
         }
         
         if (!phone) {
             showToast('Vui lòng nhập số điện thoại');
-            return false;
+            return;
         } else if (!/^(0|\+84)\d{9,10}$/.test(phone)) {
             showToast('Số điện thoại không hợp lệ');
-            return false;
+            return;
         }
         
         if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             showToast('Email không hợp lệ');
-            return false;
+            return;
         }
 
         const checkIn = document.querySelector('input[name="checkIn"]').value;
@@ -250,6 +253,12 @@
                     return;
                 }
 
+                // Nếu hợp lệ thì chỉ cho bấm 1 lần
+                const btn = document.getElementById('btnPayment');
+                btn.disabled = true;
+                btn.innerText = 'Đang xử lý...';
+                clicked = true;
+
                 $.ajax({
                     url: 'ajax/hold_room.php',
                     type: 'POST',
@@ -267,19 +276,28 @@
                             const result = JSON.parse(response);
                             if (result.error) {
                                 showToast(result.error);
+                                btn.disabled = false;
+                                btn.innerText = 'Thanh toán ngay';
+                                clicked = false;
                             } else if (result.redirect_url) {
                                 window.location.href = result.redirect_url; // Chuyển hướng đến PayOS
                             }
                         } catch (e) {
                             showToast('Lỗi xử lý phản hồi từ server.');
+                            btn.disabled = false;
+                            btn.innerText = 'Thanh toán ngay';
+                            clicked = false;
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function () {
                         showToast('Lỗi khi gửi yêu cầu. Vui lòng thử lại.');
+                        btn.disabled = false;
+                        btn.innerText = 'Thanh toán ngay';
+                        clicked = false;
                     }
                 });
             },
-            error: function(xhr, status, error) {
+            error: function () {
                 showToast('Lỗi khi kiểm tra phòng trống. Vui lòng thử lại.');
             }
         });

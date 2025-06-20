@@ -802,3 +802,6 @@ iframe {
         font-size: 1.25rem;
     }
 }
+.navbar-expand-lg .navbar-nav {
+    gap: 55px;
+}

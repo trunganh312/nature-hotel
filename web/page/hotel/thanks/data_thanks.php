@@ -1,6 +1,8 @@
 <?php
 use src\Services\HotelService;
 use src\Services\Sennet;
+use src\Models\HotelPicture;
+use src\Models\RoomPicture;
 
 include('../../../Core/Config/require_web.php');
 require_once('../../../libraries/payos/vendor/autoload.php');
@@ -44,6 +46,7 @@ $nights = ($checkOutTimestamp - $checkInTimestamp) / 86400;
 
 $booking_id = getValue('booking_completed', GET_INT, GET_GET, 0);
 
+//token
 $received_token = getValue('token', GET_STRING, GET_GET, '');
 $session_token = getValue('payment_token', GET_STRING, GET_SESSION, '');
 
@@ -63,15 +66,19 @@ if ($booking_id > 0) {
     if (empty($booking_info)) {
         $error_message = "Booking không tồn tại";
     } else {
+
+        // Lấy 1 ảnh khách sạn
+        $hotel_picture = HotelPicture::where('hopi_hotel_id', $booking_info['hot_id'])->getOne(); 
+        $image_hotel = $hotel_picture ? $Router->srcHotel($booking_info['hot_id'], $hotel_picture['hopi_picture']) : $cfg_default_image;
+
         // Lấy payment_data từ session
         $payment_data = getValue('payment_data', GET_ARRAY, GET_SESSION, []);
         $code = $payment_data['orderCode'] ?? '';
 
-        if (empty($code) || empty($payment_data['checkoutUrl']) || $payment_data['expiredAt'] < CURRENT_TIME) {
+        if (empty($code) || empty($payment_data) ) {
             $error_message = "Link thanh toán không hợp lệ hoặc đã hết hạn";
         } else {
             // Kiểm tra trạng thái qua API PayOS
-            try {
                 $payment_info = $payOS->getPaymentLinkInformation($code);
 
                 if ($payment_info['status'] == 'PAID') {
@@ -102,7 +109,7 @@ if ($booking_id > 0) {
                     $total_amount = 0;
                     $room_details = [];
 
-                    foreach ($rooms as &$roomType) {
+                    foreach ($rooms as $roomType) {
                         $room_id = (int) $roomType['roomId'];
                         $room_count = (int) $roomType['roomCount'];
                         $room_price = (float) $roomType['roomPrice'];
@@ -110,7 +117,7 @@ if ($booking_id > 0) {
                         //TODO: cái này hơi đần
                         // Thêm priceFormatted nếu chưa có
                         if (!isset($roomType['priceFormatted'])) {
-                            $roomType['priceFormatted'] = number_format($room_price, 0, ',', '.');
+                            $roomType['priceFormatted'] = format_number($room_price);
                         }
                         
                         // Thêm totalPrice nếu chưa có
@@ -118,8 +125,9 @@ if ($booking_id > 0) {
                             $roomType['totalPrice'] = $room_price * $room_count;
                         }
 
+                        // Lấy ảnh phòng
                         $room_info = Room::where(['roo_id' => $room_id, 'roo_active' => STATUS_ACTIVE])->getOne();
-
+                        $image_room = $room_info ? $Router->srcRoom($room_id, $room_info['roo_picture']) : $cfg_default_image;
                         if (empty($room_info)) {
                             throw new Exception("Không tìm thấy thông tin phòng ID: $room_id");
                         }
@@ -236,32 +244,13 @@ if ($booking_id > 0) {
                             throw new Exception($model_response['message']);
                         }
                         // Xóa session sau khi thành công
-                        unset($_SESSION['payment_data']);
                         unset($_SESSION['time_limit']);
                         unset($_SESSION['booking_completed']);
                     } else {
                         throw new Exception($sennet_response['message'] ?? 'Lỗi không xác định từ Sennet');
                     }
-                } elseif ($payment_info['status'] == 'CANCELLED') {
-                    // Hủy giữ phòng
-                    $result = $BookingModel->unholdBookingHotel($booking_info);
-                    DB::query("UPDATE booking_hotel SET bkho_status = $stt_cancel WHERE bkho_id = $booking_id");
-                    unset($_SESSION['payment_data']);
-                    unset($_SESSION['time_limit']);
-                    unset($_SESSION['booking_completed']);
-                    $error_message = "Thanh toán đã bị hủy";
-                } elseif ($payment_info['status'] == 'PENDING' && $payment_data['expiredAt'] >= CURRENT_TIME) {
-                    // Link vẫn hợp lệ, chuyển hướng lại
-                    $redirect_url = $payment_data['checkoutUrl'];
-                } else {
-                    // Link hết hạn
-                    unset($_SESSION['payment_data']);
-                    unset($_SESSION['time_limit']);
-                    $error_message = "Link thanh toán đã hết hạn";
-                }
-            } catch (Exception $e) {
-                $error_message = "Lỗi xử lý thanh toán: " . $e->getMessage();
-            }
+                } 
+            
         }
     }
 }

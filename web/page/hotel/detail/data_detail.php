@@ -36,7 +36,7 @@ if ($cookie_checkin && $cookie_checkout) {
 $daterange = $check_in . ' - ' . $check_out;
 
 // lấy thông tin khách sạn
-$hotel = Hotel::where('hot_id', $id)->getOne();
+$hotel_detail = Hotel::where('hot_id', $id)->getOne();
 
 // Lấy ảnh KS
 $hotel_picture = HotelPicture::where('hopi_hotel_id', $id)->toArray();
@@ -74,6 +74,6 @@ $rooms = array_map(function($room) use($Router, $cfg_default_image, $AttributeMo
     return $room;
 }, $rooms);
 
-$hotel_attribute    =   $AttributeModel->getAttributeOfId($hotel['hot_id'], GROUP_HOTEL);
+$hotel_attribute    =   $AttributeModel->getAttributeOfId($hotel_detail['hot_id'], GROUP_HOTEL);
 
 ?>

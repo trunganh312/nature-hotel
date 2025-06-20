@@ -9,36 +9,37 @@
             <div class="owl-carousel owl-theme home-carousel" style='height: 375px;'>
             <!-- Hotel 1 -->
             <?php foreach ($data_hotels as $hotel): ?>
-                <div class="item">
-                <div class="card-area hotel-card">
-                    <div class="position-relative" style='height: 190px;'>
-                        <img src="<?= htmlspecialchars($hotel['img']) ?>" class="card-img-top" alt="<?= htmlspecialchars($hotel['name']) ?>">
-                    </div>
-                    <div class="card-body p-3">
-                        <h5 class="card-title"><?= htmlspecialchars($hotel['name']) ?></h5>
-                        <p class="card-text text-muted"><i class="fas fa-map-marker-alt me-1"></i><?= htmlspecialchars($hotel['address']) ?></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                             <div class="utilities-list">
-                                <?php if (!empty($hotel['services'])): ?>
-                                    <div class="amenities d-flex">
-                                        <?php foreach (array_slice($hotel['services'], 0, 3) as $service): ?>
-                                            <div class="amenity me-2" style="display: flex; align-items: center;" title="<?= htmlspecialchars($service['name'] ?? 'Tiện nghi') ?>">
-                                                <i class="<?= htmlspecialchars($service['icon'] ?? 'fas fa-info-circle') ?> me-1"></i>
-                                                <span class="utility-name"><?= htmlspecialchars($service['name'] ?? 'Tiện nghi') ?></span>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php else: ?>
-                                    <div class="amenity text-muted">Đang cập nhật</div>
-                                <?php endif; ?>
-                            </div>                           
-                            <p class="card-text price text-danger fw-bold mb-0"><?= htmlspecialchars($hotel['price']) ?>đ</p>
-
-                        </div>
+    <div class="item">
+        <a href="<?= htmlspecialchars($hotel['link']) ?>" style="text-decoration: none; color: inherit;">
+            <div class="card-area hotel-card">
+                <div class="position-relative" style='height: 190px;'>
+                    <img src="<?= htmlspecialchars($hotel['img']) ?>" class="card-img-top" alt="<?= htmlspecialchars($hotel['name']) ?>">
+                </div>
+                <div class="card-body p-3">
+                    <h5 class="card-title"><?= htmlspecialchars($hotel['name']) ?></h5>
+                    <p class="card-text text-muted"><i class="fas fa-map-marker-alt me-1"></i><?= htmlspecialchars($hotel['address']) ?></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="utilities-list">
+                            <?php if (!empty($hotel['services'])): ?>
+                                <div class="amenities d-flex">
+                                    <?php foreach (array_slice($hotel['services'], 0, 3) as $service): ?>
+                                        <div class="amenity me-2" style="display: flex; align-items: center;" title="<?= htmlspecialchars($service['name'] ?? 'Tiện nghi') ?>">
+                                            <i class="<?= htmlspecialchars($service['icon'] ?? 'fas fa-info-circle') ?> me-1"></i>
+                                            <span class="utility-name"><?= htmlspecialchars($service['name'] ?? 'Tiện nghi') ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="amenity text-muted">Đang cập nhật</div>
+                            <?php endif; ?>
+                        </div>                           
+                        <p class="card-text price text-danger fw-bold mb-0"><?= htmlspecialchars($hotel['price']) ?>đ</p>
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>   
+        </a>
+    </div>
+<?php endforeach; ?>
         </div>
         <div class="text-end mb-3 d-flex custom-nav" style='z-index: 100;'>
             <button class="btn btn-outline-primary me-2" id="customPrevBtn"><i class="fas fa-chevron-left"></i></button>

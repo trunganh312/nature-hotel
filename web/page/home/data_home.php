@@ -42,5 +42,24 @@ foreach ($hotels as $hotel) {
         'services' => $services  
     ];
 }
+
+// Lấy danh sách thành phố duy nhất từ $hotels
+$cities = [];
+$city_ids = [];
+foreach ($hotels as $hotel) {
+    if (!in_array($hotel['cit_id'], $city_ids)) {
+        $city_ids[] = $hotel['cit_id'];
+        // Tạo URL đầy đủ cho cit_image
+        $city_image = isset($hotel['cit_image']) 
+            ? '/theme/images/city/' . $hotel['cit_image'] 
+            : $cfg_default_image;
+        $cities[] = [
+            'cit_id' => $hotel['cit_id'],
+            'cit_name' => $hotel['cit_name'],
+            'cit_image' => $city_image,
+        ];
+    }
+}
+
 $data_hotels = array_values($data_hotels);
 ?>

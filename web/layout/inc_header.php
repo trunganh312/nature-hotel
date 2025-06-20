@@ -20,10 +20,28 @@ foreach ($cities_with_hotels as $city) {
 $data_cities = [];
 foreach ($unique_cities as $city) {
     $slug = to_slug($city['cit_name']);
+    // Lấy danh sách khách sạn cho thành phố này
+    $city_hotels = Hotel::where('hot_active', 1)
+        ->where('hot_city', $city['cit_id'])
+        ->select('hot_id', 'hot_name')
+        ->toArray();
+
+    // Loại bỏ khách sạn trùng tên (hoặc trùng id tuỳ ý bạn)
+    $unique_hotels = [];
+    $hotel_names = [];
+    foreach ($city_hotels as $hotel) {
+        if (!in_array($hotel['hot_name'], $hotel_names)) {
+            $hotel_names[] = $hotel['hot_name'];
+            $hotel['link'] = '/hotel-' . $hotel['hot_id'] . '-' . to_slug($hotel['hot_name']) . '.html';
+            $unique_hotels[] = $hotel;
+        }
+    }
+
     $data_cities[] = [
         'id' => $city['cit_id'],
         'name' => $city['cit_name'],
         'link' => '/city-' . $city['cit_id'] . '-' . $slug . '.html',
+        'hotels' => $unique_hotels,
     ];
 }
 $data_cities = array_values($data_cities);
@@ -34,7 +52,7 @@ $data_cities = array_values($data_cities);
         <div class="container custom-container-one">
             <!-- Logo -->
             <a class="navbar-brand" href="/">
-                <img src="<?=$cfg_path_image?>logo.png" alt="Nature Hotel Logo" class="img-fluid" style="max-height: 50px;">
+                <img src="<?= $cfg_path_image ?>logo.png" alt="Nature Hotel Logo" class="img-fluid" style="max-height: 50px;">
             </a>
 
             <!-- Toggler for mobile -->
@@ -53,35 +71,47 @@ $data_cities = array_values($data_cities);
                     <li class="nav-item">
                         <a class="nav-link" href="/">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/khach-san.html">Khách sạn</a>
-                    </li>
-
-                                        <!-- Place -->
+                    <!-- Place -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             Địa điểm
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="locationDropdown" style=''>
+                        <ul class="dropdown-menu" aria-labelledby="locationDropdown">
                             <?php if (empty($data_cities)): ?>
                                 <li><a class="dropdown-item" href="#">Chưa có địa điểm</a></li>
                             <?php else: ?>
                                 <?php foreach ($data_cities as $city): ?>
-                                    <li>
-                                        <a class="dropdown-item" href="<?php echo htmlspecialchars($city['link']); ?>">
+                                    
+                                    <?php $has_submenu = !empty($city['hotels']); ?>
+                                    <li class="<?php echo $has_submenu ? 'dropdown-submenu' : ''; ?>">
+                                        <a class="dropdown-item <?php echo $has_submenu ? 'dropdown-toggle' : ''; ?>" href="<?php echo htmlspecialchars($city['link']); ?>">
                                             <?php echo htmlspecialchars($city['name']); ?>
                                         </a>
+                                        <?php if ($has_submenu): ?>
+                                            <ul class="dropdown-menu">
+                                                <?php foreach ($city['hotels'] as $index => $hotel): 
+                                                    ?>
+                                                    <li>
+                                                        <a class="dropdown-item" href="<?php echo htmlspecialchars($hotel['link']); ?>">
+                                                            <?php echo htmlspecialchars($hotel['hot_name']); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php endif; ?>
                                     </li>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </ul>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="/khach-san.html">Khách sạn</a>
+                    </li>
                     <!-- introduce -->
                     <li class="nav-item">
                         <a class="nav-link" href="/introduce.html">Giới thiệu</a>
                     </li>
-
+                    
                     <!-- Service -->
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false">

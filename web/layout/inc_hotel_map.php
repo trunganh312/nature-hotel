@@ -2,7 +2,7 @@
     <h5 class="title-section">Vị trí trên bản đồ</h5>
     <div class="map-iframe">
         <iframe width="100%" height="450" style="border: 0" loading="lazy" allowfullscreen
-            src="https://maps.google.com/maps?q=<?= $hotel['hot_lat'] ?>,<?= $hotel['hot_lon'] ?>&hl=vi&z=14&output=embed">
+            src="https://maps.google.com/maps?q=<?= $hotel_detail['hot_lat'] ?>,<?= $hotel_detail['hot_lon'] ?>&hl=vi&z=14&output=embed">
         </iframe>
     </div>
 </div>
