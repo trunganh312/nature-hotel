@@ -28,7 +28,6 @@ $nights = (str_totime($checkOut) - str_totime($checkIn)) / 86400;
 $hotel_info = Hotel::where(['hot_id' => $hotel_id, 'hot_active' => STATUS_ACTIVE])->getOne();
 
 if(empty($hotel_info) && empty($booking_data)) {
-    dump('Không tìm thấy khách sạn');
     // Chuyển hướng về trang chủ
     header('Location: ' . "/");
     

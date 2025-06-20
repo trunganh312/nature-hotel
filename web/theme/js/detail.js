@@ -105,9 +105,8 @@ if (window.jQuery) {
     }, 100);
 }
 
-// Luôn reload lại trang khi quay lại 
-// window.addEventListener('pageshow', function(event) {
-//     if (event.persisted || (window.performance && window.performance.getEntriesByType('navigation')[0]?.type === 'back_forward')) {
-//         window.location.reload();
-//     }
-// });
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted || (window.performance && window.performance.getEntriesByType('navigation')[0]?.type === 'back_forward')) {
+        window.location.reload();
+    }
+});
