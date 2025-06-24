@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: row;
     gap: 32px;
-    box-shadow: none; 
 }
 .document-detail .col-md-8 {
     flex: 2;
@@ -31,7 +30,6 @@
 }
 .document-detail .content {
     overflow-x: auto;
-    flex-direction: column;
     max-width: 100%;
     word-break: break-word;
     font-size: 1.15rem;
@@ -49,12 +47,16 @@
 }
 .document-detail .content img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 18px;
-    margin-bottom: 18px;
+    margin: 18px auto;
     max-width: 100%;
     height: auto;
+}
+.document-detail .content p:only-child > img,
+.document-detail .content p > img:only-child,
+.document-detail .content img:only-child {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .document-detail aside {
     border-radius: 16px;
@@ -69,19 +71,12 @@
     padding: 0;
     text-align: center;
 }
-.document-detail aside h3 .arrow {
-    font-size: 1.2rem;
-    margin-left: 8px;
-    color: #888;
-    transition: transform 0.2s;
-}
 .document-detail aside ul {
     padding-left: 0;
     margin: 0;
 }
 .document-detail aside li {
     display: flex;
-    /* align-items: center; */
     gap: 16px;
     margin-bottom: 18px;
     padding-bottom: 14px;
@@ -99,8 +94,6 @@
     background: #eee;
     flex-shrink: 0;
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
 }
 .document-detail aside .thumb img {
     width: 100%;
@@ -113,7 +106,15 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    overflow: hidden;
+}
+.document-detail aside .info .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    font-weight: 700;
+    font-size: 1.08rem;
 }
 .document-detail aside a {
     color: #222;
@@ -140,24 +141,6 @@
 figure.image_resized {
     margin: 0 auto;
 }
-/* Ảnh trong nội dung luôn căn giữa */
-.document-detail .content img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 18px;
-    margin-bottom: 18px;
-    max-width: 100%;
-    height: auto;
-}
-/* Nếu ảnh nằm trong thẻ p hoặc là phần tử duy nhất */
-.document-detail .content p:only-child > img,
-.document-detail .content p > img:only-child,
-.document-detail .content img:only-child {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 /* Responsive cho layout */
 @media (max-width: 1200px) {
@@ -179,7 +162,7 @@ figure.image_resized {
         padding: 12px 4px;
         gap: 0;
         justify-content: center;
-        align-items: anchor-center;
+        align-items: center;
     }
     .document-detail .col-md-8, .document-detail .col-md-4 {
         padding: 0;
@@ -194,13 +177,11 @@ figure.image_resized {
     }
     .document-detail aside {
         width: 100%;
-        align-items: center;
         text-align: center;
     }
     .document-detail aside ul {
         width: 100%;
     }
-
     .document-detail h1 {
         font-size: 2rem;
     }

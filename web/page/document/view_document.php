@@ -24,7 +24,7 @@
                             <img src="<?= !empty($item['doc_thumb']) ? htmlspecialchars($item['doc_thumb']) : '/assets/img/no-image.png' ?>" alt="<?= htmlspecialchars($item['doc_name']) ?>">
                         </div>
                         <div class="info">
-                            <?= htmlspecialchars($item['doc_name']) ?>
+                            <span class="title"><?= htmlspecialchars($item['doc_name']) ?></span>
                             <div class="small text-muted"><?= date('d/m/Y', strtotime($item['created_at'])) ?></div>
                         </div>
                     </a>
