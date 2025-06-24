@@ -62,16 +62,16 @@
             <div class="copyright-contents d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <ul class="footer-social list-unstyled d-flex mb-3 mb-md-0">
                     <li class="me-3">
-                        <a href="javascript:void(0)" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NaturehoteHanoi/" target="_blank" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
                     </li>
                     <li class="me-3">
-                        <a href="javascript:void(0)" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.tiktok.com/@naturehotelandresort" target="_blank" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
                     </li>
                     <li class="me-3">
-                        <a href="javascript:void(0)" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/naturehotelvietnam/" target="_blank" class="footer-social-link"><i class="fab fa-instagram"></i></a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@naturehotel" target="_blank" class="footer-social-link"><i class="fab fa-youtube"></i></a>
                     </li>
                 </ul>
                 <span class="copyright-text" style="color: var(--white);">© 2025 Công ty cổ phần Nature Hospitality</span>

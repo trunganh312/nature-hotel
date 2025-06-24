@@ -41,10 +41,10 @@
             <h3 class="contact-method__title">Mạng xã hội</h3>
             <p class="contact-method__subtitle">Theo dõi chúng tôi trên các mạng xã hội để nhận thông tin mới nhất</p>
             <div class="contact-method__social">
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/NaturehoteHanoi/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/naturehotelvietnam/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@naturehotel" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@naturehotelandresort" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
     </div>
