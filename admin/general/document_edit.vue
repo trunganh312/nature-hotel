@@ -14,6 +14,17 @@
         >
             <a-input style="width: 100%" v-model:value="formState.doc_name" />
         </a-form-item>
+        <a-form-item class="mb-3" name="doc_img" label="">
+            <image-upload
+                :urlImage="previewImage"
+                @handle-change="handleChangeImage"
+                @before-upload="beforeUploadImage"
+                :fileList="fileList"
+                :name="'doc_img'"
+                :action="'/'"
+                :label="'Ảnh bài viết'"
+            ></image-upload>
+        </a-form-item>
         <a-form-item class="mb-3" name="doc_slug" label="Slug">
             <a-input style="width: 100%" v-model:value="formState.doc_slug" disabled />
         </a-form-item>
@@ -55,6 +66,7 @@ import { ref } from '@lib/vue';
 import utils from '@root/utils';
 import Ckeditor from '../components/ckeditor.vue';
 import SelectCustom from '@admin/components/select-custom.vue';
+import ImageUpload from '@admin/components/ImageUpload.vue';
 export default {
     components: {
         AUpload: Upload,
@@ -62,7 +74,8 @@ export default {
         LoadingOutlined,
         ASwitch: Switch,
         Ckeditor,
-        SelectCustom
+        SelectCustom,
+        ImageUpload,
     },
     data: () => ({
         loading: false,
@@ -77,14 +90,16 @@ export default {
         },
         formRef: null,
         others: {},
-        id: 0
+        id: 0,
+        fileList: [],
+        previewImage: null,
     }),
     watch: {
         'formState.doc_name': {
             handler(newValue) {
                 this.formState.doc_slug = utils.toSlug(newValue);
             },
-            immediate: true // Cập nhật ngay khi component được khởi tạo
+            immediate: true
         }
     },
     computed: {},
@@ -95,17 +110,60 @@ export default {
             ...window.appData.row,
             doc_parent_id: window.appData.row.doc_parent_id ? window.appData.row.doc_parent_id : null
         };
+        // Gán ảnh preview
+        this.previewImage = this.others.doc_img_url || null;
     },
     methods: {
+        async handleChangeImage(info, name) {
+            if (info.file.status === 'uploading') {
+                this.loading = true;
+                return;
+            }
+            if (info.file.status === 'done') {
+                this.getBase64(info.file.originFileObj, (base64Url) => {
+                    if (name === 'doc_img') {
+                        this.previewImage = base64Url;
+                        this.fileList = info.fileList;
+                    }
+                    this.loading = false;
+                });
+            }
+            if (info.file.status === 'error') {
+                this.loading = false;
+            }
+        },
+        beforeUploadImage(file) {
+            const isType = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/webp';
+            if (!isType) {
+                message.error('Vui lòng chọn file ảnh (JPEG, PNG, WEBP)!');
+            }
+            return isType;
+        },
+        getBase64(img, callback) {
+            const reader = new FileReader();
+            reader.addEventListener('load', () => callback(reader.result));
+            reader.readAsDataURL(img);
+        },
         // Tạo mới request
         async onSubmit() {
             this.loading = true;
+            const formData = new FormData();
+            
+            Object.keys(this.formState).forEach(key => {
+                formData.append(key, this.formState[key]);
+            });
+            if (this.fileList.length > 0) {
+                this.fileList.forEach((file) => {
+                    formData.append('doc_image', file.originFileObj);
+                });
+            } 
             let res = await $.ajax({
                 type: 'POST',
                 url: `document_edit.php?id=${this.formState.doc_id}`,
-                data: this.formState,
-                dataType: 'json',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json'
             });
             if (this.lodash.toNumber(res.success) === 1) {
                 notification.success({

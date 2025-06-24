@@ -24,6 +24,21 @@ $Query->add('doc_name', DATA_STRING, '', 'Bạn chưa nhập tên danh mục')
     ->add('doc_content', DATA_STRING, '')
     ->add('doc_parent_id', DATA_INTEGER, 0)
     ->setRemoveHTML(false);
+//xử lý ảnh
+$doc_img = isset($_POST['doc_img']) ? addslashes($_POST['doc_img']) : '';
+if (!file_exists($path_image_document)) {
+    mkdir($path_image_document, 0777, true); 
+}
+$imagePath = $doc_img;
+if (isset($_FILES['doc_img']) && $_FILES['doc_img']['error'] === UPLOAD_ERR_OK) {
+    $Upload = new Upload('doc_img', $path_image_document, 450, 450);
+    if ($Upload->error) {
+        $Query->addError($Upload->error);
+    } else {
+        $imagePath = addslashes($Upload->new_name);
+    }
+}
+$Query->add('doc_img', DATA_STRING, $imagePath);
 /** --- End of Class query để insert dữ liệu --- **/
 
 /** --- Submit form --- **/
@@ -49,6 +64,8 @@ foreach ($categories as $k => $v) {
         "label" => $v
     ];
 }
+// truyền URL ảnh mặc định 
+$res['others']['doc_img_url'] = $imagePath ? '/uploads/document/' . $imagePath : '';
 
 Vue::setData($res);
 Vue::setTitle($page_title);

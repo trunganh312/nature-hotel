@@ -40,6 +40,8 @@ $Table->addSQL("SELECT * FROM document WHERE 1 $sql_where ORDER BY doc_parent_id
 $data   =   DB::pass()->query($Table->sql_table)->toArray();
 $data = array_map(function($item) {
     $item['doc_parent_name'] = DB::pass()->query('SELECT * FROM document WHERE doc_id = ' . $item['doc_parent_id'])->getOne()['doc_name'] ?? '';
+    global $Router;
+    $item['doc_img_url'] = $item['doc_img'] ? $Router->srcDocument($item['doc_img']) : '';
     return $item;
 }, $data);
 

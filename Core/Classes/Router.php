@@ -52,6 +52,34 @@ class Router {
         return $src;
     }
 
+    function srcCity($image_name, $size = '') {
+        
+        if (!empty($image_name)) {
+        
+            if ($size != '')    $size   .=  '/';
+            
+            return  $this->domain . '/city/' . $size . $image_name;
+        
+        }
+        
+        return $this->path_theme_image . 'avatar.png';
+    }
+
+    function srcDistrict($image_name, $size = '') {
+        
+        if (!empty($image_name)) {
+        
+            if ($size != '')    $size   .=  '/';
+            
+            return  $this->domain . '/district/' . $size . $image_name;
+        
+        }
+        
+        return $this->path_theme_image . 'avatar.png';
+    }
+
+
+
      /**
      * Router::srcUserAvatar()
      * 

@@ -32,6 +32,29 @@ $Query->add('doc_name', DATA_STRING, '', 'Bạn chưa nhập tên danh mục')
     ->add('doc_content', DATA_STRING, '')
     ->add('doc_parent_id', DATA_INTEGER, 0)
     ->setRemoveHTML(false);
+// xử lý ảnh
+$doc_img = isset($_POST['doc_img']) ? addslashes($_POST['doc_img']) : '';
+if (!file_exists($path_image_document)) {
+    mkdir($path_image_document, 0777, true);
+}
+$old_record = $DB->query("SELECT * FROM document WHERE doc_id = $record_id")->getOne();
+$imagePath = $old_record['doc_img'];
+if (isset($_FILES['doc_image']) && $_FILES['doc_image']['error'] === UPLOAD_ERR_OK) {
+    $Upload = new Upload('doc_image', $path_image_document, 450, 450);
+    if ($Upload->error) {
+        $Query->addError($Upload->error);
+
+    } else {
+        $imagePath = addslashes($Upload->new_name);
+    }
+} elseif (!empty($doc_img)) {
+    $imagePath = $doc_img;
+
+} else {
+    $imagePath = '';
+}
+$_POST['doc_img'] = $imagePath; 
+$Query->add('doc_img', DATA_STRING, $imagePath);
 /** --- End of Class query để insert dữ liệu --- **/
 
 /** --- Submit form --- **/
@@ -58,6 +81,7 @@ foreach ($categories as $k => $v) {
         "label" => $v
     ];
 }
+$res['others']['doc_img_url'] = $record_info['doc_img'] ? '/uploads/document/' . $record_info['doc_img'] : '';
 
 Vue::setData($res);
 Vue::setTitle($page_title);

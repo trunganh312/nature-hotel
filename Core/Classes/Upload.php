@@ -90,12 +90,25 @@ class Upload {
         	mkdir($path_upload, 0777, true);
         }
         
-        //Tên của file sau khi được upload (Ko bao gồm extension)
-        $new_name   =   $this->generateFileName();
-        
+        $origin_name = $_FILES[$name_control]['name'];
+        // Loại bỏ ký tự đặc biệt, chỉ giữ lại chữ, số, dấu gạch dưới, dấu chấm
+        $origin_name = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $origin_name);
+        // Nếu tên file quá dài, cắt ngắn lại
+        if (strlen($origin_name) > 100) {
+            $origin_name = substr($origin_name, -100);
+        }
+        $extension   = get_extension($origin_name);
+        $new_name = pathinfo($origin_name, PATHINFO_FILENAME);
+
+        // Nếu file đã tồn tại thì thêm timestamp để tránh ghi đè
+        $final_name = $new_name . '.' . $extension;
+        if (file_exists($path_upload . $final_name)) {
+            $new_name = $new_name . '_' . time();
+            $final_name = $new_name . '.' . $extension;
+        }
         if ($extension == 'webp') {
      		//Đổi tên file upload
-     		$this->new_name  =	$new_name . '.' . $extension;
+     		$this->new_name  =	$final_name;
             
             //Đường dẫn đầy đủ của file mới
             $file_uploaded  =   $path_upload . $this->new_name;
@@ -104,12 +117,10 @@ class Upload {
      		move_uploaded_file($_FILES[$name_control]['tmp_name'], $file_uploaded);
         } else {
             //Đổi tên file upload
-            $this->new_name  =  $new_name . '.webp';
-            
+            $this->new_name  = $final_name;
             //Đường dẫn đầy đủ của file mới
-            $file_uploaded  =   $path_upload . $this->new_name;
-
-            (new Image)->convertToWebP($_FILES[$name_control]['tmp_name'], $file_uploaded, $extension, 85);
+            $file_uploaded  = $path_upload . $this->new_name;
+            move_uploaded_file($_FILES[$name_control]['tmp_name'], $file_uploaded);
         }
         
 		
