@@ -172,10 +172,12 @@ switch ($field) {
         $field_id   =   'bed_id';
         $arr_field  =   ['bed_active'];
         break;
+ 
     case 'doc_active':
+    case 'doc_hot':
         $table      =   'document';
         $field_id   =   'doc_id';
-        $arr_field  =   ['doc_active'];
+        $arr_field  =   ['doc_active', 'doc_hot'];
         break;
 
     default:

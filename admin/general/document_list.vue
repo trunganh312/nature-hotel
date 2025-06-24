@@ -59,6 +59,14 @@
                     :unchecked-value="0"
                 ></a-checkbox>
             </template>
+            <template v-if="column.dataIndex == 'hot'">
+                <a-checkbox
+                    v-model:checked="record.doc_hot"
+                    @change="handleChangeHot(record)"
+                    :checked-value="1"
+                    :unchecked-value="0"
+                ></a-checkbox>
+            </template>
             <template v-if="column.dataIndex === 'edit'">
                 <EditTwoTone @click="handleRedirect(record)" />
             </template>
@@ -119,20 +127,8 @@ export default {
                 title: 'Tên danh mục',
                 dataIndex: 'doc_name'
             },
-            {
-                title: 'Tên danh mục cha',
-                dataIndex: 'doc_parent_name'
-            },
-            {
-                title: 'Icon',
-                dataIndex: 'doc_icon',
-                align: 'center'
-            },
-            {
-                title: 'Thứ tự',
-                dataIndex: 'doc_order',
-                align: 'center'
-            }
+           
+            
         ],
         loading: false,
         data_source: [],
@@ -153,6 +149,12 @@ export default {
             let baseColumns = [...this.baseColumns];
             if (this.permissions.hasEdit) {
                 baseColumns.push(
+                    {
+                        title: 'Hot',
+                        dataIndex: 'hot',
+                        width: '30px',
+                        align: 'center'
+                    },
                     {
                         title: 'Act',
                         dataIndex: 'active',
@@ -225,6 +227,29 @@ export default {
             this.loading = false;
         },
         async handleChangeActive(record, field = 'doc_active') {
+            const id = record.doc_id;
+            this.loading = true;
+            let res = await $.ajax({
+                url: `/common/active.php?field=${field}&id=${id}`,
+                type: 'GET',
+                dataType: 'json'
+            });
+
+            if (this.lodash.toNumber(res.success) == 1) {
+                notification.success({
+                    placement: 'bottomRight',
+                    message: 'Cập nhật thành công'
+                });
+            } else {
+                for (let i in res.data) {
+                    notification.error({
+                        message: res.data[i]
+                    });
+                }
+            }
+            this.loading = false;
+        },
+        async handleChangeHot(record, field = 'doc_hot') {
             const id = record.doc_id;
             this.loading = true;
             let res = await $.ajax({

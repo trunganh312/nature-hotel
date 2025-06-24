@@ -67,7 +67,7 @@ foreach ($hotels as $hotel) {
 $news = DB::pass()->query("
     SELECT doc_id, doc_name, doc_img, doc_slug, created_at 
     FROM document 
-    WHERE doc_active = 1 
+    WHERE doc_hot = 1 
     ORDER BY created_at DESC 
     LIMIT 3
 ")->toArray();
