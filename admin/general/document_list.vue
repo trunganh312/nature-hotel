@@ -41,6 +41,16 @@
             <template v-if="column.dataIndex === 'stt'">
                 {{ index + 1 }}
             </template>
+             <template v-if="column.dataIndex === 'doc_img'">
+                <a-image
+                    v-if="record.doc_img_url"
+                    :src="record.doc_img_url"
+                    alt="Ảnh"
+                    width="100px"
+                style="aspect-ratio: 16 /14; object-fit: cover"
+                    :preview="true"
+                />
+            </template>
             <template v-if="column.dataIndex == 'active'">
                 <a-checkbox
                     v-model:checked="record.doc_active"
@@ -72,7 +82,7 @@ import {
     EditTwoTone,
     PlusCircleOutlined
 } from '@lib/@ant-design/icons-vue';
-import { Tag, notification, Modal, message, Checkbox, InputNumber, AutoComplete } from '@lib/ant-design-vue';
+import { Tag, notification, Modal, message, Checkbox, InputNumber, AutoComplete, Image } from '@lib/ant-design-vue';
 import utils from '@root/utils';
 import SelectCustom from '@admin/components/select-custom.vue';
 
@@ -88,7 +98,8 @@ export default {
         AAutoComplete: AutoComplete,
         EditTwoTone,
         SelectCustom,
-        PlusCircleOutlined
+        PlusCircleOutlined,
+        AImage: Image
     },
     data: () => ({
         others: {},
@@ -97,6 +108,11 @@ export default {
                 title: '#',
                 dataIndex: 'stt',
                 width: '30px',
+                align: 'center'
+            },
+            {
+                title: 'Ảnh',
+                dataIndex: 'doc_img',
                 align: 'center'
             },
             {

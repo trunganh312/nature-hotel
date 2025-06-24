@@ -20,7 +20,7 @@ $Table  =   new DataTable('document', 'doc_id');
 
 $Table->column('doc_name', 'Tên danh mục', TAB_TEXT);
 $Table->column('doc_parent_id', 'Tên danh mục cha', TAB_SELECT);
-
+$Table->column('doc_img', 'Ảnh', TAB_TEXT);
 
 $Table->column('doc_active', 'Act', TAB_CHECKBOX, false, true);
 $parent_id = getValue('doc_parent_id');
@@ -40,6 +40,8 @@ $Table->addSQL("SELECT * FROM document WHERE 1 $sql_where ORDER BY doc_parent_id
 $data   =   DB::pass()->query($Table->sql_table)->toArray();
 $data = array_map(function($item) {
     $item['doc_parent_name'] = DB::pass()->query('SELECT * FROM document WHERE doc_id = ' . $item['doc_parent_id'])->getOne()['doc_name'] ?? '';
+    global $Router;
+    $item['doc_img_url'] = $item['doc_img'] ? $Router->srcDocument($item['doc_img']) : '';
     return $item;
 }, $data);
 

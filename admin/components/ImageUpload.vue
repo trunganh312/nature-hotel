@@ -54,7 +54,7 @@ export default {
         },
         action: {
             type: String,
-            default: '/hrm/account/company'
+            default: '/'
         },
         extra: {
             type: String,

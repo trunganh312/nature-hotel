@@ -75,7 +75,7 @@ h1 {
     color: #2e7d32;
 }
 
-.content {
+.thanks .content {
     display: flex;
     justify-content: space-between;
     gap: 30px;

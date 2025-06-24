@@ -2,6 +2,7 @@
 use src\Models\Hotel;
 use src\Models\HotelPicture;
 use src\Services\HotelService;
+use src\Facades\DB;
 
 include('Core/Config/require_web.php');
 
@@ -62,5 +63,28 @@ foreach ($hotels as $hotel) {
     }
 }
 
+// Lấy 3 bài viết mới nhất từ bảng document
+$news = DB::pass()->query("
+    SELECT doc_id, doc_name, doc_img, doc_slug, created_at 
+    FROM document 
+    WHERE doc_active = 1 
+    ORDER BY created_at DESC 
+    LIMIT 3
+")->toArray();
+
+$news_list = [];
+foreach ($news as $item) {
+    $news_list[] = [
+        'title' => $item['doc_name'],
+        // Thêm DOMAIN_WEB vào trước đường dẫn ảnh
+        'image' => $item['doc_img'] ? $Router->srcDocument($item['doc_img'] ) : $cfg_default_image,
+        'link'  => '/document/' . $item['doc_slug'] . '-' . $item['doc_id'] . '.html',
+        'created' => date('d/m/Y', strtotime($item['created_at']))
+    ];
+}
+
+
+// Truyền ra view
+$news_list = array_values($news_list);
 $data_hotels = array_values($data_hotels);
 ?>

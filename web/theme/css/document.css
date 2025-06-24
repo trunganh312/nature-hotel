@@ -1,0 +1,205 @@
+.document-detail {
+    background: #fff;
+    padding: 32px 24px;
+    margin: 32px auto;
+    max-width: 1200px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+.document-detail .col-md-8 {
+    flex: 2;
+    padding-right: 32px;
+}
+.document-detail .col-md-4 {
+    flex: 1;
+    padding-left: 32px;
+}
+.document-detail h1 {
+    color: #1a2a3a;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+.document-detail .meta {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 18px;
+}
+.document-detail .content {
+    overflow-x: auto;
+    max-width: 100%;
+    word-break: break-word;
+    font-size: 1.15rem;
+    padding-bottom: 24px;
+}
+.document-detail .content table {
+    width: 100% !important;
+    max-width: 100%;
+    table-layout: auto;
+    display: block;
+    overflow-x: auto;
+    margin-bottom: 18px;
+    background: #fafbfc;
+    border-radius: 6px;
+}
+.document-detail .content img {
+    display: block;
+    margin: 18px auto;
+    max-width: 100%;
+    height: auto;
+}
+.document-detail .content p:only-child > img,
+.document-detail .content p > img:only-child,
+.document-detail .content img:only-child {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.document-detail aside {
+    border-radius: 16px;
+    padding: 18px 18px 8px 18px;
+    margin-top: 0;
+}
+.document-detail aside h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    background: none;
+    padding: 0;
+    text-align: center;
+}
+.document-detail aside ul {
+    padding-left: 0;
+    margin: 0;
+}
+.document-detail aside li {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    min-height: 70px;
+    transition: background 0.15s;
+}
+.document-detail aside li:last-child {
+    margin-bottom: 0;
+}
+.document-detail aside .thumb {
+    width: 110px;
+    height: 65px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #eee;
+    flex-shrink: 0;
+    display: flex;
+}
+.document-detail aside .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.document-detail aside .info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.document-detail aside .info .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    font-weight: 700;
+    font-size: 1.08rem;
+}
+.document-detail aside a {
+    color: #222;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.08rem;
+    display: block;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s;
+}
+.document-detail aside a:hover {
+    color: #217346;
+    text-decoration: underline;
+}
+.document-detail aside .text-muted,
+.document-detail aside .small {
+    font-size: 0.97rem;
+    color: #888;
+    margin-top: 2px;
+}
+figure.image_resized {
+    margin: 0 auto;
+}
+
+/* Responsive cho layout */
+@media (max-width: 1200px) {
+    .document-detail {
+        max-width: 100%;
+        padding: 18px 8px;
+        gap: 16px;
+    }
+    .document-detail .col-md-8 {
+        padding-right: 16px;
+    }
+    .document-detail .col-md-4 {
+        padding-left: 16px;
+    }
+}
+@media (max-width: 900px) {
+    .document-detail {
+        flex-direction: column;
+        padding: 12px 4px;
+        gap: 0;
+        justify-content: center;
+        align-items: center;
+    }
+    .document-detail .col-md-8, .document-detail .col-md-4 {
+        padding: 0;
+    }
+    .document-detail .col-md-4 {
+        margin: 32px auto 0 auto;
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .document-detail aside {
+        width: 100%;
+        text-align: center;
+    }
+    .document-detail aside ul {
+        width: 100%;
+    }
+    .document-detail h1 {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 600px) {
+    .document-detail {
+        padding: 4px 0;
+    }
+    .document-detail h1 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    .document-detail .content {
+        font-size: 1rem;
+        padding-bottom: 12px;
+    }
+    .document-detail aside .thumb {
+        width: 60px;
+        height: 38px;
+    }
+}
