@@ -126,15 +126,9 @@ $data_cities = array_values($data_cities);
                     </li> -->
 
                     <!-- News -->
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="newsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tin tức & Sự kiện
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/posts/tuyen-dung">Tuyển dụng</a></li>
-                            <li><a class="dropdown-item" href="https://naturehotel.vn/vi/posts/tin-tuc">Tin tức</a></li>
-                        </ul>
-                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/news.html">Tin tức</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact.html">Liên hệ</a>
                     </li>

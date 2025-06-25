@@ -154,7 +154,7 @@ body {
     font-weight: 500;
 }
 
-.card-body {
+.card .card-body {
     padding: 24px;
     background: #fff !important;
     /* margin-bottom: 20px;  */

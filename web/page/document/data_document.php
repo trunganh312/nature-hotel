@@ -1,4 +1,6 @@
 <?php
+
+use src\Models\Document; 
 use src\Facades\DB;
 
 if (!isset($path_root)) {
@@ -32,5 +34,10 @@ if (!$document) {
 }
 
 // Lấy 10 bài viết khác (trừ bài hiện tại)
-$other_documents = DB::query("SELECT doc_id, doc_name, doc_slug, created_at FROM document WHERE doc_id != $doc_id AND doc_active = 1 ORDER BY created_at DESC LIMIT 10")->toArray();
-?>
+$other_documents = Document::where('doc_id', '!=', $doc_id)
+    ->where('doc_active', 1)
+    ->orderBy('created_at', 'desc')
+    ->limit(10)
+    ->select('doc_id', 'doc_name', 'doc_slug', 'created_at')
+    ->toArray();
+

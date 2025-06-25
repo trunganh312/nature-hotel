@@ -15,6 +15,8 @@
   --error-color: #d32f2f; /* Màu lỗi */
   --success-color: #388e3c; /* Màu thành công */
   --warning-color: #f57c00; /* Màu cảnh báo */
+  --white-color: #ffffff; /* Màu trắng */
+
 
   /* Màu gradient (dựa trên màu chính và phụ) */
   --gradient-primary: linear-gradient(135deg, #233a1a, #4a6c4c);

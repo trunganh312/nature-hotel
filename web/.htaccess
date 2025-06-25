@@ -26,3 +26,5 @@ RewriteRule ^introduce\.html$ /page/introduce/introduce.php [QSA,L]
 RewriteRule ^contact\.html$ /page/contact/contact.php [QSA,L]
 
 RewriteRule ^document/(.+)-([0-9]+)\.html$ /page/document/document.php [L,QSA]
+
+RewriteRule ^news\.html$ /page/document/news.php [QSA,L]
